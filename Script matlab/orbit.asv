@@ -196,10 +196,10 @@ function map = light_gray
 
 %}
 % -----------------------
-r_m = 0.8; g = r_m; b = r_m;
-map = [r_m g b
+r = 0.8; g = r; b = r;
+map = [r g b
        0 0 0
-       r_m g b];
+       r g b];
 end %light_gray
 
 end %output
