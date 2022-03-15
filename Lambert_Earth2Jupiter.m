@@ -49,7 +49,7 @@ string = 'pro';
 [v1_l_e, v2_l_j] = lambert(r1_e, r2_j, dt, string);
 
 %...Algorithm 4.1 (using r1 and v1):
-coe      = coe_from_sv(r1_e, v1_l, mu);
+coe      = coe_from_sv(r1_e, v1_l_e, mu);
 %...Save the initial true anomaly:
 TA1      = coe(6);
 
