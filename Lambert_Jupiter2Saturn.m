@@ -60,7 +60,7 @@ TA2      = coe(6);
 
 %...Echo the input data and output the results to the command window:
 fprintf('-----------------------------------------------------')		
-fprintf('\n Example 5.2: Lambert''s Problem\n')
+fprintf('\n Lambert''s Problem from Jupiter to Saturn\n')
 fprintf('\n\n Input data:\n');
 fprintf('\n   Gravitational parameter (km^3/s^2) = %g\n', mu);
 fprintf('\n   r1 (km)                       = [%g  %g  %g]', ...

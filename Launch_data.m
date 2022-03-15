@@ -22,7 +22,7 @@ grid on
 
 %% Ipothesis launch data sidereal time
 lst_launch = LST(2022, 02, 01, hour, -52.8);
-ninety = 90.0 + 0.0*hours;  % desired sidereal time
+ninety = 90 + 0*hour;  % desired sidereal time
 figure(2)
 plot(hour, lst_launch, hour, ninety);
 xlabel('ora')
