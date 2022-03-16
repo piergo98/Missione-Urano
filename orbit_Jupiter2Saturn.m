@@ -199,7 +199,7 @@ axis equal
 xlabel('km')
 ylabel('km')
 zlabel('km')
-
+title ('Trajectory Jupiter to Earth')
 % ~~~~~~~~~~~~~~~~~~~~~~~
 function map = light_gray
 % ~~~~~~~~~~~~~~~~~~~~~~~

@@ -1,6 +1,6 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % compute 
-% Lambert_Earth2Jupiter
+% Lambert_Saturn2Uranus
 
 % compute the state vector (r,v) from the
  % classical orbital elements (coe).
@@ -8,7 +8,7 @@
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-function orbit_Earth2Jupiter(r0, v0)
+function orbit_Saturn2Uranus(r0, v0)
 % ~~~~~~~~~~~~
 %{
   This function computes the orbit of a spacecraft by using rkf45 to 
@@ -53,11 +53,11 @@ function orbit_Earth2Jupiter(r0, v0)
 % global v;
 
 
-addpath /Users/francescoiotti/Documents/'uranus mission'/Missione-Urano/'Script matlab'/ 
+%addpath /Users/francescoiotti/Documents/'uranus mission'/Missione-Urano/'Script matlab'/ 
 
 
 %clc; close all; clear all
-%addpath '.\Script matlab'
+addpath '.\Script matlab'
 
 
 hours = 3600;
@@ -72,7 +72,7 @@ m2 = 10000; %massa Spacecraft
 % r0 = [7.340622168770193e+07, -1.330980287745039e+08, 7.419923737573080e+03];
 % v0 = [29.598333401471606, 24.329637840649344, -5.756462414286793];
 t0 = 0;
-tf = 59443200; %dt in Lambert
+tf = 139276800; %dt in Lambert
 %...End input data
 
 
@@ -151,7 +151,7 @@ v_at_rmin   = norm([y(imin,4) y(imin,5) y(imin,6)]);
 
 %...Output to the command window:
 fprintf('\n\n--------------------------------------------------------\n')
-fprintf('\n Earth to Jupiter interplanetary orbit\n')
+fprintf('\n Saturn to Uranus interplanetary orbit\n')
 fprintf(' %s\n', datestr(now))
 fprintf('\n The initial position is [%g, %g, %g] (km).',...
                                                      r0(1), r0(2), r0(3))
@@ -198,7 +198,7 @@ axis equal
 xlabel('km')
 ylabel('km')
 zlabel('km')
-title ('Trajectory Earth to Jupiter')
+title ('Trajectory Saturn to Uranus')
 % ~~~~~~~~~~~~~~~~~~~~~~~
 function map = light_gray
 % ~~~~~~~~~~~~~~~~~~~~~~~
