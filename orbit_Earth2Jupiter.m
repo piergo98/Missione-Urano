@@ -8,7 +8,7 @@
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-function orbit
+function orbit_Earth2Jupiter(r0, v0)
 % ~~~~~~~~~~~~
 %{
   This function computes the orbit of a spacecraft by using rkf45 to 
@@ -49,11 +49,11 @@ function orbit
 % -------------------------------------------------------------------
 % Define global variables state vector (r,v)
 
-global r;
-global v;
+% global r;
+% global v;
 
 
-addpath /Users/francescoiotti/Desktop/'uranus mission'/Missione-Urano/'Script matlab'/ 
+addpath /Users/francescoiotti/Documents/'uranus mission'/Missione-Urano/'Script matlab'/ 
 
 
 %clc; close all; clear all
@@ -69,8 +69,8 @@ m1 = 2e30;    %massa del Sole
 R  = 696340;  %raggio sole
 m2 = 10000; %massa Spacecraft
 
-r0 = [7.340622168770193e+07, -1.330980287745039e+08, 7.419923737573080e+03];
-v0 = [29.598333401471606, 24.329637840649344, -5.756462414286793];
+% r0 = [7.340622168770193e+07, -1.330980287745039e+08, 7.419923737573080e+03];
+% v0 = [29.598333401471606, 24.329637840649344, -5.756462414286793];
 t0 = 0;
 tf = 59443200; %dt in Lambert
 %...End input data
@@ -198,7 +198,7 @@ axis equal
 xlabel('km')
 ylabel('km')
 zlabel('km')
-
+title ('Trajectory Earth to Jupiter')
 % ~~~~~~~~~~~~~~~~~~~~~~~
 function map = light_gray
 % ~~~~~~~~~~~~~~~~~~~~~~~
