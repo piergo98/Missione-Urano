@@ -8,7 +8,7 @@
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-function orbit_Saturn2Uranus(r0, v0)
+function y = orbit_Saturn2Uranus(r0, v0)
 % ~~~~~~~~~~~~
 %{
   This function computes the orbit of a spacecraft by using rkf45 to 
@@ -65,14 +65,14 @@ G     = 6.6742e-20;
 
 %...Input data:
 %   Earth:
-m1 = 2e30;    %massa del Sole
-R  = 696340;  %raggio sole
-m2 = 10000; %massa Spacecraft
+m1 = 2e30;      % massa del Sole
+R  = 696340;    % raggio sole
+m2 = 10000;     % massa Spacecraft
 
-% r0 = [7.340622168770193e+07, -1.330980287745039e+08, 7.419923737573080e+03];
-% v0 = [29.598333401471606, 24.329637840649344, -5.756462414286793];
+% r0 = [1.144732448391396e+09, 7.748021927789913e+08, -5.901952834965596e+07];
+% v0 = [6.146072981233291, 17.408758174030304, 0.408810133578843];
 t0 = 0;
-tf = 139276800; %dt in Lambert
+tf = 139276800; % dt in Lambert
 %...End input data
 
 
@@ -199,6 +199,9 @@ xlabel('km')
 ylabel('km')
 zlabel('km')
 title ('Trajectory Saturn to Uranus')
+% hold on
+% plot(rf, 'r-o')
+
 % ~~~~~~~~~~~~~~~~~~~~~~~
 function map = light_gray
 % ~~~~~~~~~~~~~~~~~~~~~~~

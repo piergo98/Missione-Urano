@@ -96,4 +96,4 @@ if coe(2)<1
 end
 fprintf('\n-----------------------------------------------------\n')		
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-orbit_Jupiter2Saturn(r1_j, v1_l_j)
+y = orbit_Jupiter2Saturn(r1_j, v1_l_j)

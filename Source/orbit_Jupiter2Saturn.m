@@ -8,7 +8,7 @@
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-function orbit_Jupiter2Saturn (r0,v0)
+function y = orbit_Jupiter2Saturn (r0,v0)
 % ~~~~~~~~~~~~
 %{
   This function computes the orbit of a spacecraft by using rkf45 to 
