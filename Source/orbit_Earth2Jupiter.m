@@ -53,11 +53,11 @@ function orbit_Earth2Jupiter(r0, v0)
 % global v;
 
 
-addpath /Users/francescoiotti/Documents/'uranus mission'/Missione-Urano/'Script matlab'/ 
+% addpath /Users/francescoiotti/Documents/'uranus mission'/Missione-Urano/'Script matlab'/ 
 
 
 %clc; close all; clear all
-%addpath '.\Script matlab'
+addpath '.\Script matlab'
 
 
 hours = 3600;
