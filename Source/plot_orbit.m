@@ -52,7 +52,7 @@ function plot_orbit(obj_id, annus)
 	%Starting position at 1/1
     [~, r0, v0, ~] = planet_elements_and_sv(obj_id,annus,1,1,0,0,0);
 
-    pos = [r0];
+    pos = r0;
     for g = 1:year(obj_id)
         %Planet position day by day
         [r, ~] = rv_from_r0v0(r0, v0, g*60*60*24);
@@ -60,6 +60,6 @@ function plot_orbit(obj_id, annus)
     end
 
     %Orbit plot
-    plot3(pos(:,1),pos(:,2),pos(:,3),'--', 'Color', colors(obj_id)
+    plot3(pos(:,1),pos(:,2),pos(:,3),'--', 'Color', colors(obj_id))
     
 end

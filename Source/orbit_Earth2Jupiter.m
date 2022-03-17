@@ -57,7 +57,7 @@ function orbit_Earth2Jupiter(r0, v0)
 
 
 %clc; close all; clear all
-addpath '.\Script matlab'
+addpath 'Script matlab'
 
 
 hours = 3600;
