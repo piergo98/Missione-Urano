@@ -1,5 +1,5 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-function [r_tran] = planet2sun(r,coe,mu)
+function [r_tran] = sun2planet(r,coe,mu)
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %{
   This function computes the state vector (r,v) from the
@@ -27,6 +27,7 @@ function [r_tran] = planet2sun(r,coe,mu)
   User M-functions required: none
 %}
 % ----------------------------------------------
+
 h    = coe(1);
 e    = coe(2);
 RA   = coe(3);
@@ -63,7 +64,7 @@ Q_pX = (R3_w*R1_i*R3_W)';
 % %...Convert r and v into row vectors:
 % r = r';
 % v = v';
-r_tran_tr = Q_pX * r';
+r_tran_tr = Q_pX' * r';
 r_tran = r_tran_tr';
 
 end
