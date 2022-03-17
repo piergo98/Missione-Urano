@@ -1,0 +1,19 @@
+ESCAPE FROM EARTH
+
+V_inf+ = V_tgp - V_terra ==> determino l'eccentricità dell'iperbole di fuga
+
+V_tgp = velocità dello spacecraft in uscita dalla Terra, calcolata con Lambert
+
+
+FLYBY AROUND JUPITER
+
+V_tga = velocità dello spacecraft in arrivo su Giove, calcolata con Lambert
+
+V_gsp = velocità dello spacecraft in uscita dalla Giove, calcolata con Lambert
+
+V_inf+ = V_gsp - V_giove
+
+
+TEMPO SIDERALE
+
+Restituisce informazioni riguardo l'ora di lancio in relazione all'ascensione retta considerata in partenza (Omega = 0)
