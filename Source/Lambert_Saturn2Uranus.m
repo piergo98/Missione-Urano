@@ -37,7 +37,7 @@ deg = pi/180;
 
 mu = 1.327*10^11;                   % mu sun (km^3/s^2)
 % TOF
-dt = year2seconds(2):year2seconds(1):year2seconds(20);
+dt = year2seconds(2):year2seconds(1):year2seconds(10);
 % Position of Saturn at the departure (km)
 [coe1_s, r1_s, v1_s, jd1_s] = planet_elements_and_sv(6, 2026, 07, 27, 12, 00, 00);
 

@@ -37,22 +37,24 @@ deg = pi/180;
 
 mu = 1.327*10^11;                   % mu sun (km^3/s^2)
 % TOF
-dt     = year2seconds(1):year2seconds(1):year2seconds(10);
+dt = year2seconds(1):year2seconds(1):year2seconds(10);
 
 r_giove = zeros(10,3);
+v_giove = zeros(10,3);
 
 % Position of Earth at the departure (km)
-[coe1_e, r1_e, v1_e, jd1_e] = planet_elements_and_sv(3, 2022, 07, 21, 12, 00, 00);
+[coe1_e, r1_e, v1_e, jd1_e] = planet_elements_and_sv(3, 2022, 03, 01, 18, 00, 00);
 
 for i = 1:length(dt)
     % Position of Jupiter at the arrival  (km)     
-    [coe2_j, r2_j, v2_j, jd2_j] = planet_elements_and_sv(5, 2022+i, 07, 21, 12, 00, 00);
+    [coe2_j, r2_j, v2_j, jd2_j] = planet_elements_and_sv(5, 2024+i, 06, 21, 12, 00, 00);
     r_giove(i, 1:3) = r2_j;
     string = 'pro';
     %...
 
     %...Algorithm 5.2:
     [v1_l_e, v2_l_j] = lambert(r1_e, r2_j, dt(i), string);
+    v_giove(i, 1:3) = v2_j;
     
     %...Algorithm 4.1 (using r1 and v1):
     coe      = coe_from_sv(r1_e, v1_l_e, mu);
@@ -64,8 +66,10 @@ for i = 1:length(dt)
     %...Save the final true anomaly:
     TA2      = coe(6);
     
+    
+
     % Plot of planets orbit and trajectory orbit
-    y = orbit_Earth2Jupiter(r1_e, v1_l_e, dt(i));
+    y = orbit_Earth2Jupiter(r1_e, v1_l_e, dt(i), i);
     plot_orbit(5, 2024)
 end
 plot_orbit(3, 2022)

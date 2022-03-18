@@ -26,3 +26,11 @@ deltaV_2 = v_fu - v_ta;     % final impulse
 tof = P/2 / p_e      % time of flight from Earth to Uranus (years)
 
 deltaV_TOT = deltaV_1 + deltaV_2
+
+% Position of Earth at the departure (km)
+[coe1_eh, r1_eh, v1_eh, jd1_eh] = planet_elements_and_sv(3, 2022, 07, 21, 12, 00, 00);
+
+y = orbit_Homann_Earth2Uranus(r1_eh, v1_eh, year2seconds(tof));
+
+plot_orbit(3, 2022);
+plot_orbit(7, 2022+tof)
