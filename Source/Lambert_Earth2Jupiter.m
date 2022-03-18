@@ -29,71 +29,82 @@
 
 % clear all; 
 clc
-addpath 'Script matlab'
+addpath './Script matlab'
 global mu
 deg = pi/180;
 
 %...Data declaration:
 
 mu = 1.327*10^11;                   % mu sun (km^3/s^2)
+% TOF
+dt     = year2seconds(1):year2seconds(1):year2seconds(10);
+
+r_giove = zeros(10,3);
+
 % Position of Earth at the departure (km)
-[coe1_e, r1_e, v1_e, jd1_e] = planet_elements_and_sv(3, 2024, 07, 21, 12, 00, 00);
-% Position of Jupiter at the arrival  (km)     
-[coe2_j, r2_j, v2_j, jd2_j] = planet_elements_and_sv(5, 2026, 06, 09, 12, 00, 00);
-% TOF (s)
-dt     = 59443200;                   
-string = 'pro';
-%...
+[coe1_e, r1_e, v1_e, jd1_e] = planet_elements_and_sv(3, 2022, 07, 21, 12, 00, 00);
 
-%...Algorithm 5.2:
-[v1_l_e, v2_l_j] = lambert(r1_e, r2_j, dt, string);
+for i = 1:length(dt)
+    % Position of Jupiter at the arrival  (km)     
+    [coe2_j, r2_j, v2_j, jd2_j] = planet_elements_and_sv(5, 2022+i, 07, 21, 12, 00, 00);
+    r_giove(i, 1:3) = r2_j;
+    string = 'pro';
+    %...
 
-%...Algorithm 4.1 (using r1 and v1):
-coe      = coe_from_sv(r1_e, v1_l_e, mu);
-%...Save the initial true anomaly:
-TA1      = coe(6);
-
-%...Algorithm 4.1 (using r2 and v2):
-coe      = coe_from_sv(r2_j, v2_l_j, mu);
-%...Save the final true anomaly:
-TA2      = coe(6);
-
-%...Echo the input data and output the results to the command window:
-fprintf('-----------------------------------------------------')		
-fprintf('\n Lambert''s Problem from Earth to Jupiter\n')
-fprintf('\n\n Input data:\n');
-fprintf('\n   Gravitational parameter (km^3/s^2) = %g\n', mu);
-fprintf('\n   r1_e (km)                       = [%g  %g  %g]', ...
-                                            r1_e(1), r1_e(2), r1_e(3))
-fprintf('\n   r2_j (km)                       = [%g  %g  %g]', ...
-                                            r2_j(1), r2_j(2), r2_j(3))
-fprintf('\n   Elapsed time (s)              = %g', dt);
-fprintf('\n\n Solution:\n')
-
-fprintf('\n   v1_e (km/s)                     = [%g  %g  %g]', ...
-                                            v1_l_e(1), v1_l_e(2), v1_l_e(3))
-fprintf('\n   v2_j (km/s)                     = [%g  %g  %g]', ...
-                                            v2_l_j(1), v2_l_j(2), v2_l_j(3))
-																							 
-fprintf('\n\n Orbital elements:')
-fprintf('\n   Angular momentum (km^2/s)     = %g', coe(1))
-fprintf('\n   Eccentricity                  = %g', coe(2))
-fprintf('\n   Inclination (deg)             = %g', coe(4)/deg)
-fprintf('\n   RA of ascending node (deg)    = %g', coe(3)/deg)
-fprintf('\n   Argument of perigee (deg)     = %g', coe(5)/deg)
-fprintf('\n   True anomaly initial (deg)    = %g', TA1/deg)
-fprintf('\n   True anomaly final   (deg)    = %g', TA2/deg)
-fprintf('\n   Semimajor axis (km)           = %g', coe(7))
-fprintf('\n   Periapse radius (km)          = %g', coe(1)^2/mu/(1 + coe(2)))
-%...If the orbit is an ellipse, output its period:
-if coe(2)<1
-	T = 2*pi/sqrt(mu)*coe(7)^1.5; 
-	fprintf('\n   Period:')
-	fprintf('\n     Seconds                     = %g', T) 
-	fprintf('\n     Minutes                     = %g', T/60)
-	fprintf('\n     Hours                       = %g', T/3600)
-	fprintf('\n     Days                        = %g', T/24/3600)
+    %...Algorithm 5.2:
+    [v1_l_e, v2_l_j] = lambert(r1_e, r2_j, dt(i), string);
+    
+    %...Algorithm 4.1 (using r1 and v1):
+    coe      = coe_from_sv(r1_e, v1_l_e, mu);
+    %...Save the initial true anomaly:
+    TA1      = coe(6);
+    
+    %...Algorithm 4.1 (using r2 and v2):
+    coe      = coe_from_sv(r2_j, v2_l_j, mu);
+    %...Save the final true anomaly:
+    TA2      = coe(6);
+    
+    % Plot of planets orbit and trajectory orbit
+    y = orbit_Earth2Jupiter(r1_e, v1_l_e, dt(i));
+    plot_orbit(5, 2024+i)
 end
-fprintf('\n-----------------------------------------------------\n')		
+plot_orbit(3, 2022)
+
+% %...Echo the input data and output the results to the command window:
+% fprintf('-----------------------------------------------------')		
+% fprintf('\n Lambert''s Problem from Earth to Jupiter\n')
+% fprintf('\n\n Input data:\n');
+% fprintf('\n   Gravitational parameter (km^3/s^2) = %g\n', mu);
+% fprintf('\n   r1_e (km)                       = [%g  %g  %g]', ...
+%                                             r1_e(1), r1_e(2), r1_e(3))
+% fprintf('\n   r2_j (km)                       = [%g  %g  %g]', ...
+%                                             r2_j(1), r2_j(2), r2_j(3))
+% fprintf('\n   Elapsed time (s)              = %g', dt);
+% fprintf('\n\n Solution:\n')
+% 
+% fprintf('\n   v1_e (km/s)                     = [%g  %g  %g]', ...
+%                                             v1_l_e(1), v1_l_e(2), v1_l_e(3))
+% fprintf('\n   v2_j (km/s)                     = [%g  %g  %g]', ...
+%                                             v2_l_j(1), v2_l_j(2), v2_l_j(3))
+% 																							 
+% fprintf('\n\n Orbital elements:')
+% fprintf('\n   Angular momentum (km^2/s)     = %g', coe(1))
+% fprintf('\n   Eccentricity                  = %g', coe(2))
+% fprintf('\n   Inclination (deg)             = %g', coe(4)/deg)
+% fprintf('\n   RA of ascending node (deg)    = %g', coe(3)/deg)
+% fprintf('\n   Argument of perigee (deg)     = %g', coe(5)/deg)
+% fprintf('\n   True anomaly initial (deg)    = %g', TA1/deg)
+% fprintf('\n   True anomaly final   (deg)    = %g', TA2/deg)
+% fprintf('\n   Semimajor axis (km)           = %g', coe(7))
+% fprintf('\n   Periapse radius (km)          = %g', coe(1)^2/mu/(1 + coe(2)))
+% %...If the orbit is an ellipse, output its period:
+% if coe(2)<1
+% 	T = 2*pi/sqrt(mu)*coe(7)^1.5; 
+% 	fprintf('\n   Period:')
+% 	fprintf('\n     Seconds                     = %g', T) 
+% 	fprintf('\n     Minutes                     = %g', T/60)
+% 	fprintf('\n     Hours                       = %g', T/3600)
+% 	fprintf('\n     Days                        = %g', T/24/3600)
+% end
+% fprintf('\n-----------------------------------------------------\n')		
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-orbit_Earth2Jupiter(r1_e, v1_l_e)

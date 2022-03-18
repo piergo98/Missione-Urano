@@ -8,7 +8,7 @@
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-function y = orbit_Jupiter2Saturn (r0,v0)
+function y = orbit_Jupiter2Saturn (r0,v0, dt)
 % ~~~~~~~~~~~~
 %{
   This function computes the orbit of a spacecraft by using rkf45 to 
@@ -57,7 +57,7 @@ function y = orbit_Jupiter2Saturn (r0,v0)
 
 
 %clc; close all; clear all
-addpath '.\Script matlab'
+addpath './Script matlab'
 
 
 hours = 3600;
@@ -67,13 +67,13 @@ G     = 6.6742e-20;
 %   Earth:
 m1 = 2e30;    %massa del Sole
 R  = 696340;  %raggio sole
-m2 = 10000; %massa Spacecraft
+m2 = 10000;   %massa Spacecraft
 
 % r0 = [-4.177500634071865e+08, 6.678960788257897e+08, 6.570826803283082e+06];
 % v0 = [10.802557011615574, -27.022662976615525, -0.016381621699842];
 % v0 = [20.132758614540330, 17.185359995204553, -1.094023522456790];
 t0 = 0;
-tf = 6730560; %dt in Lambert
+tf = dt; %dt in Lambert
 %...End input data
 
 
@@ -187,8 +187,8 @@ line(  [0 0],   [0 0], [0 2*R]); text(  0,   0, 2*R, 'Z')
 hold on
 plot3(  y(:,1),    y(:,2),    y(:,3),'k')
 line([0 r0(1)], [0 r0(2)], [0 r0(3)])
-text(   y(1,1),    y(1,2),    y(1,3), 'o')
-text( y(end,1),  y(end,2),  y(end,3), 'f')
+text(   y(1,1),    y(1,2),    y(1,3), 'o', 'Color','r')
+text( y(end,1),  y(end,2),  y(end,3), 'f', 'Color', 'g')
 
 %   Select a view direction (a vector directed outward from the origin) 
 view([1,1,.4])
@@ -199,7 +199,8 @@ axis equal
 xlabel('km')
 ylabel('km')
 zlabel('km')
-title ('Trajectory Jupiter to Earth')
+title ('Trajectory Jupiter to Saturn')
+zlim([-1e9 1e9])
 % ~~~~~~~~~~~~~~~~~~~~~~~
 function map = light_gray
 % ~~~~~~~~~~~~~~~~~~~~~~~
