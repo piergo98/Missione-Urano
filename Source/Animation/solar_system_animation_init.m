@@ -84,7 +84,7 @@ col_uran    = col(7);   % Uranus
 col_spcr	= [0,	196, 255]	/255;	% spacecraft
 
 % dimension of objects
-dim_sun		= 28;
+dim_sun		= 24;
 dim_earth	= 8;
 dim_mars	= 8;
 dim_jupiter = 14;
