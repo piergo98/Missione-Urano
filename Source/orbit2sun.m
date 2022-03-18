@@ -1,5 +1,5 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-function [r_tran] = planet2sun(r,coe,mu)
+function [r_tran] = orbit2sun(r,coe,mu)
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %{
   This function computes the state vector (r,v) from the
