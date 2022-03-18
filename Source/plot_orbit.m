@@ -14,9 +14,7 @@ function plot_orbit(obj_id, annus)
 %                7 = Uranus
 %                8 = Neptune
 %                9 = Pluto
-%               10 = Vesta
-%               11 = Ceres
-%               12 = Sun
+%               10 = Sun
 %
 %   annus    - year considered
 %
