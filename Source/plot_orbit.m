@@ -14,15 +14,14 @@ function plot_orbit(obj_id, annus)
 %                7 = Uranus
 %                8 = Neptune
 %                9 = Pluto
-%               10 = Vesta
-%               11 = Ceres
-%               12 = Sun
+%               10 = Sun
 %
 %   annus    - year considered
 %
 
     %Earth-days for a complete revolution of the planet
-    addpath 'Script matlab'
+    addpath './Script matlab'
+
     year = [88 
             225 
             365 
@@ -31,9 +30,7 @@ function plot_orbit(obj_id, annus)
             10748 
             30666 
             60148 
-            90560 
-            1340 
-            1690 
+            90560
             25];
         
     colors = ["g"          %green
