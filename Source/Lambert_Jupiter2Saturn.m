@@ -29,7 +29,7 @@
 
 % clear all; 
 clc
-addpath '.\Script matlab'
+addpath 'Script matlab'
 global mu
 deg = pi/180;
 
