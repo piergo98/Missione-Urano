@@ -66,7 +66,7 @@ for i = 1:length(dt)
     
     % Plot of planets orbit and trajectory orbit
     y = orbit_Earth2Jupiter(r1_e, v1_l_e, dt(i));
-    plot_orbit(5, 2024+i)
+    plot_orbit(5, 2024)
 end
 plot_orbit(3, 2022)
 

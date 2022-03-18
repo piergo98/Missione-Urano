@@ -68,8 +68,10 @@ for i = 1:length(dt)
 %   Plot of the orbit
     y = orbit_Jupiter2Saturn(r1_j, v1_l_j, dt(i));
 end
-plot_orbit(5, 2024)
-plot_orbit(6, 2028)
+
+plot_orbit(5, 2024)     % plot Jupiter orbit
+plot_orbit(6, 2028)     % plot Saturn orbit
+
 % %...Echo the input data and output the results to the command window:
 % fprintf('-----------------------------------------------------')		
 % fprintf('\n Lambert''s Problem from Jupiter to Saturn\n')
