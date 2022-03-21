@@ -37,42 +37,37 @@ deg = pi/180;
 
 mu = 1.327*10^11;                   % mu sun (km^3/s^2)
 % TOF 
-% dt = year2seconds(1):year2seconds(1):year2seconds(10);
-dt = month2seconds(1):month2seconds(1):month2seconds(12);
+dt_y = year2seconds(1):year2seconds(1):year2seconds(10);
+dt_m = month2seconds(1):month2seconds(1):month2seconds(12);
 
-r_giove = zeros(10,3);
-v_giove = zeros(10,3);
-for i = 1:3:length(dt)
 % Position of Earth at the departure (km)
-[coe1_e, r1_e, v1_e, jd1_e] = planet_elements_and_sv(3, 2022, 10, 01, 18, 00, 00);
+[coe1_e, r1_e, v1_e, jd1_e] = planet_elements_and_sv(3, 2022, 07, 01, 18, 00, 00);
 
-%for i = 1:length(dt)
-    % Position of Jupiter at the arrival  (km)     
-    [coe2_j, r2_j, v2_j, jd2_j] = planet_elements_and_sv(5, 2024, 01, 21, 12, 00, 00);
-    r_giove(i, 1:3) = r2_j;
-    string = 'pro';
-    %...
 
-    %...Algorithm 5.2:
-    [v1_l_e, v2_l_j] = lambert(r1_e, r2_j, dt(i), string);
-    v_giove(i, 1:3) = v2_j;
-    
-    %...Algorithm 4.1 (using r1 and v1):
-    coe      = coe_from_sv(r1_e, v1_l_e, mu);
-    %...Save the initial true anomaly:
-    TA1      = coe(6);
-    
-    %...Algorithm 4.1 (using r2 and v2):
-    coe      = coe_from_sv(r2_j, v2_l_j, mu);
-    %...Save the final true anomaly:
-    TA2      = coe(6);
-    
-    
+% Position of Jupiter at the arrival  (km)     
+[coe2_j, r2_j, v2_j, jd2_j] = planet_elements_and_sv(5, 2024, 07, 21, 18, 00, 00);
 
-    % Plot of planets orbit and trajectory orbit
-    y = orbit_Earth2Jupiter(r1_e, v1_l_e, dt(i), i);
-    plot_orbit(5, 2024)
-end
+string = 'pro';
+%...
+dt = dt_y(2) + days2seconds(20);     % Total TOF (speriamo)
+%...Algorithm 5.2:
+[v1_l_e, v2_l_j] = lambert(r1_e, r2_j, dt, string);
+
+
+%...Algorithm 4.1 (using r1 and v1):
+coe      = coe_from_sv(r1_e, v1_l_e, mu);
+%...Save the initial true anomaly:
+TA1      = coe(6);
+
+%...Algorithm 4.1 (using r2 and v2):
+coe      = coe_from_sv(r2_j, v2_l_j, mu);
+%...Save the final true anomaly:
+TA2      = coe(6);
+
+% Plot of planets orbit and trajectory orbit
+y = orbit_Earth2Jupiter(r1_e, v1_l_e, dt);
+
+plot_orbit(5, 2024)
 plot_orbit(3, 2022)
 
 % %...Echo the input data and output the results to the command window:
