@@ -184,21 +184,21 @@ line(  [0 0],   [0 0], [0 2*R]); text(  0,   0, 2*R, 'Z')
 %   Plot the orbit, draw a radial to the starting point
 %   and label the starting point (o) and the final point (f)
 
-colors = ["g"          %green
-              "m"          %magenta
-              "b"          %blue
-              "r"          %red
-              "#A2142F"    %darker red
-              "#7E2F8E"    %purple
-              "#4DBEEE"    %darker cyan
-              "c"          %(bright) cyan
-              "#D95319"    %orange
-              "#77AC30"    %darker green
-              "#EDB120"    %ochre
-              "#D95319"];  %orange, not visible due to Sun orbit dimensions
+% colors = ["g"          %green
+%               "m"          %magenta
+%               "b"          %blue
+%               "r"          %red
+%               "#A2142F"    %darker red
+%               "#7E2F8E"    %purple
+%               "#4DBEEE"    %darker cyan
+%               "c"          %(bright) cyan
+%               "#D95319"    %orange
+%               "#77AC30"    %darker green
+%               "#EDB120"    %ochre
+%               "#D95319"];  %orange, not visible due to Sun orbit dimensions
 
 hold on
-plot3(  y(:,1),    y(:,2),    y(:,3), 'Color', colors(i))
+plot3(  y(:,1),    y(:,2),    y(:,3), 'k')
 line([0 r0(1)], [0 r0(2)], [0 r0(3)])
 text(   y(1,1),    y(1,2),    y(1,3), 'o', 'Color','b')
 text( y(end,1),  y(end,2),  y(end,3), 'f', 'Color','r')

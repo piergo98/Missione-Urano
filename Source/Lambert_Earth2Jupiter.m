@@ -36,18 +36,19 @@ deg = pi/180;
 %...Data declaration:
 
 mu = 1.327*10^11;                   % mu sun (km^3/s^2)
-% TOF
-dt = year2seconds(1):year2seconds(1):year2seconds(10);
+% TOF 
+% dt = year2seconds(1):year2seconds(1):year2seconds(10);
+dt = month2seconds(1):month2seconds(1):month2seconds(12);
 
 r_giove = zeros(10,3);
 v_giove = zeros(10,3);
-
+for i = 1:3:length(dt)
 % Position of Earth at the departure (km)
-[coe1_e, r1_e, v1_e, jd1_e] = planet_elements_and_sv(3, 2022, 03, 01, 18, 00, 00);
+[coe1_e, r1_e, v1_e, jd1_e] = planet_elements_and_sv(3, 2022, 10, 01, 18, 00, 00);
 
-for i = 1:length(dt)
+%for i = 1:length(dt)
     % Position of Jupiter at the arrival  (km)     
-    [coe2_j, r2_j, v2_j, jd2_j] = planet_elements_and_sv(5, 2024+i, 06, 21, 12, 00, 00);
+    [coe2_j, r2_j, v2_j, jd2_j] = planet_elements_and_sv(5, 2024, 01, 21, 12, 00, 00);
     r_giove(i, 1:3) = r2_j;
     string = 'pro';
     %...
