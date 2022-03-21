@@ -36,12 +36,19 @@ deg = pi/180;
 %...Data declaration:
 
 mu = 1.327*10^11; % mu sun (km^3/s^2)
-dt = year2seconds(6):year2seconds(1):year2seconds(10);  % Time Of Flight
+
+%commento vettore di 4 elementi e faccio un dt di 10 anni
+%dt = year2seconds(6):year2seconds(1):year2seconds(10);  % Time Of Flight
+dt = year2seconds(1):year2seconds(1):year2seconds(10);  % Time Of Flight
+
+
 % Position of Jupiter at the departure (km)
 [coe1_j, r1_j, v1_j, jd1_j] = planet_elements_and_sv(5, 2026, 06, 09, 12, 00, 00);
-for i = 1:length(dt)
+
+%plotto i primi 5 anni
+for i = 1:5
     % Position of Saturn at the arrival  (km)     
-    [coe2_s, r2_s, v2_s, jd2_s] = planet_elements_and_sv(6, 2027+i+5, 06, 09, 12, 00, 00);
+    [coe2_s, r2_s, v2_s, jd2_s] = planet_elements_and_sv(6, 2027+i, 06, 09, 12, 00, 00);
     string = 'pro';
     % Solving Lambert Problem from Jupiter to Saturn
     [v1_l_j, v2_l_s] = lambert(r1_j, r2_s, dt(i), string);
@@ -58,7 +65,7 @@ for i = 1:length(dt)
     y_js = orbit_Jupiter2Saturn(r1_j, v1_l_j, dt(i));
 
     % Position of Uranus at the arrival  (km)     
-    [coe2_u, r2_u, v2_u, jd2_u] = planet_elements_and_sv(7, 2028+i+5, 07, 27, 12, 00, 00);
+    [coe2_u, r2_u, v2_u, jd2_u] = planet_elements_and_sv(7, 2028+i, 07, 27, 12, 00, 00);
 
     % Solving Lambert Problem from Jupiter to Saturn
     [v2_l_s, v2_l_u] = lambert(r2_s, r2_u, dt(i), string);
@@ -76,6 +83,47 @@ for i = 1:length(dt)
 %     y_su = orbit_Saturn2Uranus(r2_s, v2_l_s, dt(i));
 
 end
+
+
+%plotto i secondi 5 anni
+for i = 6:10
+    % Position of Saturn at the arrival  (km)     
+    [coe2_s, r2_s, v2_s, jd2_s] = planet_elements_and_sv(6, 2027+i, 06, 09, 12, 00, 00);
+    string = 'pro';
+    % Solving Lambert Problem from Jupiter to Saturn
+    [v1_l_j, v2_l_s] = lambert(r1_j, r2_s, dt(i), string);
+
+    coe = coe_from_sv(r1_j, v1_l_j, mu);
+    %Save the initial true anomaly:
+    TA1_js = coe(6);
+
+    coe      = coe_from_sv(r2_s, v2_l_s, mu);
+    %Save the final true anomaly:
+    TA2_js = coe(6);
+
+    % Plot orbit
+    y_js = orbit_Jupiter2Saturn(r1_j, v1_l_j, dt(i));
+
+    % Position of Uranus at the arrival  (km)     
+    [coe2_u, r2_u, v2_u, jd2_u] = planet_elements_and_sv(7, 2028+i, 07, 27, 12, 00, 00);
+
+    % Solving Lambert Problem from Jupiter to Saturn
+    [v2_l_s, v2_l_u] = lambert(r2_s, r2_u, dt(i), string);
+
+    coe = coe_from_sv(r1_s, v1_l_s, mu);
+    %Save the initial true anomaly:
+    TA1_su = coe(6);
+    
+    %...Algorithm 4.1 (using r2 and v2):
+    coe = coe_from_sv(r2_u, v2_l_u, mu);
+    %Save the final true anomaly:
+    TA2_su = coe(6);
+
+    % Plot orbit
+%     y_su = orbit_Saturn2Uranus(r2_s, v2_l_s, dt(i));
+
+end
+
 
 plot_orbit(5, 2024)     % plot Jupiter orbit
 plot_orbit(6, 2028)     % plot Saturn orbit
