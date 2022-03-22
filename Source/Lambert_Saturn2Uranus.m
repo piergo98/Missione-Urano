@@ -43,7 +43,7 @@ dt = year2seconds(2):year2seconds(1):year2seconds(10);
 
 for i=1:length(dt)
     % Position of Uranus at the arrival  (km)     
-    [coe2_u, r2_u, v2_u, jd2_u] = planet_elements_and_sv(7, 2026+i, 07, 27, 12, 00, 00);
+    [coe2_u, r2_u, v2_u, jd2_u] = planet_elements_and_sv(7, 2027+i, 07, 27, 12, 00, 00);
     % TOF (s)
     % dt     = 139276800;                   
     string = 'pro';
@@ -61,7 +61,7 @@ for i=1:length(dt)
     coe      = coe_from_sv(r2_u, v2_l_u, mu);
     %...Save the final true anomaly:
     TA2      = coe(6);
-
+d_theta(i) = abs((TA1 - TA2)*180/pi);
     y = orbit_Saturn2Uranus(r1_s, v1_l_s, dt(i));
 end
 

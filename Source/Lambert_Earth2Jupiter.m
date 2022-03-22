@@ -63,7 +63,7 @@ TA1      = coe(6);
 coe      = coe_from_sv(r2_j, v2_l_j, mu);
 %...Save the final true anomaly:
 TA2      = coe(6);
-
+d_theta = abs((TA1 - TA2)*180/pi);
 % Plot of planets orbit and trajectory orbit
 y = orbit_Earth2Jupiter(r1_e, v1_l_e, dt);
 
