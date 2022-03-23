@@ -65,10 +65,18 @@ for i = 1:length(dt)
     coe      = coe_from_sv(r2_s, v2_l_s, mu);
     %...Save the final true anomaly:
     TA2      = coe(6);
-d_theta(i) = abs((TA1 - TA2)*180/pi);
+    d_theta(i) = abs((TA1 - TA2)*180/pi);
 %   Plot of the orbit
+<<<<<<< Updated upstream
 if d_theta(i) > 175 && d_theta(i) < 185
     y = orbit_Jupiter2Saturn(r1_j, v1_l_j, dt(i));
+=======
+    if d_theta(i) < 180 && d_theta(i) > 90
+        y = orbit_Jupiter2Saturn(r1_j, v1_l_j, dt(i));
+        fprintf('\n   delta t (s)  = %g', dt(i))
+    end
+
+>>>>>>> Stashed changes
 end
 end
 
