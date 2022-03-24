@@ -51,9 +51,9 @@ for i = 1:length(dt)
 
 string = 'pro';
 %...
-dt = year2seconds(3)+ month2seconds(2)+days2seconds(9);     % Total TOF (speriamo)
+%dt = year2seconds(3)+ month2seconds(2)+days2seconds(9);     % Total TOF (speriamo)
 %...Algorithm 5.2:
-[v1_l_e, v2_l_j] = lambert(r1_e, r2_j, dt, string);
+[v1_l_e, v2_l_j] = lambert(r1_e, r2_j, dt(i), string);
 
 
 %...Algorithm 4.1 (using r1 and v1):
