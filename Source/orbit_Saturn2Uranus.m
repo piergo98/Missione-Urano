@@ -199,7 +199,7 @@ xlabel('km')
 ylabel('km')
 zlabel('km')
 title ('Trajectory Saturn to Uranus')
-zlim([-1e9 1e9])
+zlim([-3e9 3e9])
 
 % ~~~~~~~~~~~~~~~~~~~~~~~
 function map = light_gray

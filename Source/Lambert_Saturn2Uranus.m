@@ -37,13 +37,13 @@ deg = pi/180;
 
 mu = 1.327*10^11;                   % mu sun (km^3/s^2)
 % TOF
-dt = year2seconds(2):year2seconds(1):year2seconds(10);
+dt = year2seconds(1):year2seconds(1):year2seconds(100);
 % Position of Saturn at the departure (km)
-[coe1_s, r1_s, v1_s, jd1_s] = planet_elements_and_sv(6, 2026, 07, 27, 12, 00, 00);
+[coe1_s, r1_s, v1_s, jd1_s] = planet_elements_and_sv(6, 2025, 09, 10, 12, 00, 00);
 
 for i=1:length(dt)
     % Position of Uranus at the arrival  (km)     
-    [coe2_u, r2_u, v2_u, jd2_u] = planet_elements_and_sv(7, 2027+i, 07, 27, 12, 00, 00);
+    [coe2_u, r2_u, v2_u, jd2_u] = planet_elements_and_sv(7, 2025+i, 07, 27, 12, 00, 00);
     % TOF (s)
     % dt     = 139276800;                   
     string = 'pro';
@@ -53,16 +53,20 @@ for i=1:length(dt)
     [v1_l_s, v2_l_u] = lambert(r1_s, r2_u, dt(i), string);
     
     %...Algorithm 4.1 (using r1 and v1):
-    coe      = coe_from_sv(r1_s, v1_l_s, mu);
+    coe = coe_from_sv(r1_s, v1_l_s, mu);
     %...Save the initial true anomaly:
-    TA1      = coe(6);
+    TA1      = rad2deg(coe1_s(6));
     
     %...Algorithm 4.1 (using r2 and v2):
-    coe      = coe_from_sv(r2_u, v2_l_u, mu);
+    coe = coe_from_sv(r2_u, v2_l_u, mu);
     %...Save the final true anomaly:
-    TA2      = coe(6);
-d_theta(i) = abs((TA1 - TA2)*180/pi);
-    y = orbit_Saturn2Uranus(r1_s, v1_l_s, dt(i));
+    TA2      = rad2deg(coe2_u(6));
+    d_theta(i) = norm(TA1 - TA2);
+    if d_theta(i) < 185 && d_theta(i) > 175
+        y = orbit_Saturn2Uranus(r1_s, v1_l_s, dt(i));
+        fprintf('\n   delta t (s) = %g \n', dt(i))
+        fprintf('\n index = %g \n', i)
+    end
 end
 
 plot_orbit(6, 2028)     % plot Saturn orbit

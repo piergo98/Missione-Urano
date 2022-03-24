@@ -149,7 +149,7 @@ end
 v_at_rmax   = norm([y(imax,4) y(imax,5) y(imax,6)]);
 v_at_rmin   = norm([y(imin,4) y(imin,5) y(imin,6)]);
 
-if v_at_rmin < 55       % aggiungere una costante (km/s)
+if v_at_rmin < 1000       % aggiungere una costante (km/s)
 
     %...Output to the command window:
     fprintf('\n\n--------------------------------------------------------\n')
