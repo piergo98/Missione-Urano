@@ -14,9 +14,10 @@ R_SOI_Earth = d_Earth2Sun*(m_Earth/m_Sun)^(2/5); % ray SOI of Earth
                                             (3, 2024, 07, 3, 12, 00 , 00);
 
 % Plot the SOI
-
+figure(1)
 surface(r_d_Earth(1)+R_SOI_Earth*X,r_d_Earth(2)+R_SOI_Earth*Y,...
-    r_d_Earth(3)+R_SOI_Earth*Z);
+    r_d_Earth(3)+R_SOI_Earth*Z,'EdgeColor','red','FaceColor','red',...
+    'FaceAlpha','0');
 
 
 

@@ -39,37 +39,40 @@ mu = 1.327*10^11;                   % mu sun (km^3/s^2)
 % TOF 
 % dt_y = year2seconds(1):year2seconds(1):year2seconds(10);
 % dt_m = month2seconds(1):month2seconds(1):month2seconds(12);
-dt = year2seconds(1): year2seconds(1):year2seconds(100);
+dt = year2seconds(1): year2seconds(1):year2seconds(12);
 
 for i = 1:length(dt)
-% Position of Earth at the departure (km)
-[coe1_e, r1_e, v1_e, jd1_e] = planet_elements_and_sv(3, 2022, 07, 01, 18, 00, 00);
-
-
-% Position of Jupiter at the arrival  (km)     
-[coe2_j, r2_j, v2_j, jd2_j] = planet_elements_and_sv(5, 2022+i, 07, 01, 18, 00, 00);
-
-string = 'pro';
-%...
-%dt = year2seconds(3)+ month2seconds(2)+days2seconds(9);     % Total TOF (speriamo)
-%...Algorithm 5.2:
-[v1_l_e, v2_l_j] = lambert(r1_e, r2_j, dt(i), string);
-
-
-%...Algorithm 4.1 (using r1 and v1):
-coe      = coe_from_sv(r1_e, v1_l_e, mu);
-%...Save the initial true anomaly:
-TA1      = coe(6);
-
-%...Algorithm 4.1 (using r2 and v2):
-coe      = coe_from_sv(r2_j, v2_l_j, mu);
-%...Save the final true anomaly:
-TA2      = coe(6);
-d_theta(i) = abs((TA1 - TA2)*180/pi);
-if d_theta(i)< 190 && d_theta(i)> 170
-    % Plot of planets orbit and trajectory orbit
-    y = orbit_Earth2Jupiter(r1_e, v1_l_e, dt);
-end
+    % Position of Earth at the departure (km)
+    [coe1_e, r1_e, v1_e, jd1_e] = planet_elements_and_sv(3, 2022, 07, 01, 18, 00, 00);
+    
+    
+    % Position of Jupiter at the arrival  (km)     
+    [coe2_j, r2_j, v2_j, jd2_j] = planet_elements_and_sv(5, 2022+i, 07, 01, 18, 00, 00);
+    
+    string = 'pro';
+    %...
+    %dt = year2seconds(3)+ month2seconds(2)+days2seconds(9);     % Total TOF (speriamo)
+    %...Algorithm 5.2:
+    [v1_l_e, v2_l_j] = lambert(r1_e, r2_j, dt(i), string);
+    
+    
+    %...Algorithm 4.1 (using r1 and v1):
+    coe      = coe_from_sv(r1_e, v1_l_e, mu);
+    %...Save the initial true anomaly:
+    TA1      = rad2deg(coe(6));
+    
+    %...Algorithm 4.1 (using r2 and v2):
+    coe      = coe_from_sv(r2_j, v2_l_j, mu);
+    %...Save the final true anomaly:
+    TA2      = rad2deg(coe(6));
+    d_theta(i) = (TA2 - TA1);
+    if d_theta(i) < 181 && d_theta(i) > 89
+        % Plot of planets orbit and trajectory orbit
+        y = orbit_Earth2Jupiter(r1_e, v1_l_e, dt);
+        fprintf('\n TOF = %g\n', dt(i));
+        fprintf('\n Index = %g \n', i);
+        fprintf('\n-----------------------------------------------------\n')
+    end
 end
 plot_orbit(5, 2024)
 plot_orbit(3, 2022)

@@ -66,7 +66,7 @@ v_giove = zeros(10,3);
 [coe1_e, r1_e, v1_e, jd1_e] = planet_elements_and_sv(3, 2022, 07, 01, 12, 00, 00);
 
 % Position of Jupiter at the arrival  (km) 2024/07/21_12:00:00    
-[coe2_j, r2_j, v2_j, jd2_j] = planet_elements_and_sv(5, 2024, 07, 21, 12, 00, 00);
+[coe2_j, r2_j, v2_j, jd2_j] = planet_elements_and_sv(5, 2023, 07, 01, 12, 00, 00);
 r_giove = r2_j;
 string = 'pro';
 
@@ -100,15 +100,21 @@ plot_orbit(3, 2022)
 
 % TOF
 
-t_Jupiter = datetime(2024,08,01,12,00,00);
-t_Saturn = datetime(2031,04,01,12,00,00);
+%aggiorno la data di partenza da Giove stimandola dal tempo di flyby
+%t_Jupiter = datetime(2024,08,01,12,00,00);
+t_Jupiter = datetime(2024, 07, 22, 00, 53, 40);
+t_Saturn = datetime(2031, 04, 01, 12, 00, 00);
   
 time_diff = days(t_Saturn - t_Jupiter);
 dt = time_diff*24*3600;
 
 
 % Position of Jupiter at the departure (km) 2024/07/21_12:00:00 
-[coe1_j, r1_j, v1_j, jd1_j] = planet_elements_and_sv(5, 2024, 08, 01, 12, 00, 00);
+<<<<<<< HEAD
+[coe1_j, r1_j, v1_j, jd1_j] = planet_elements_and_sv(5, 2024, 07, 02, 00, 00, 00);
+=======
+[coe1_j, r1_j, v1_j, jd1_j] = planet_elements_and_sv(5, 2024, 07, 22, 00, 53, 40);
+>>>>>>> Grafica
 
 % Position of Saturn at the arrival  (km) 2031/07/27_12:00:00     
 [coe2_s, r2_s, v2_s, jd2_s] = planet_elements_and_sv(6, 2031, 04, 01, 12, 00, 00);
