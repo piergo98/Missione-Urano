@@ -9,7 +9,7 @@ addpath './Script matlab'
 % [coe, r, v, jd] = planet_elements_and_sv(8, 2030, 12,25, 00, 00, 00);
                 
 
-theta = coe(6);
+theta = coe(6)*180/pi;
 r_planet = r;
 %v_planet = v;
 
