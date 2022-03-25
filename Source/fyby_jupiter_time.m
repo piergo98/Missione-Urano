@@ -43,4 +43,4 @@ t_flyby = M_deg*sqrt(-a^3/GM_jupiter) %in secondi
 t_flyby_tot=2*t_flyby  
 t_flyby_tot_hours= t_flyby_tot/3600 
  
- 
+[y m d h min sec] = sec2date(t_flyby_tot) 
