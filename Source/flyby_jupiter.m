@@ -38,18 +38,18 @@
 %}
 % -------------------------------------------------------------------
 % Define global variables state vector (r,v)
-flyby_jupiter1(r2_j,v2_l_j,v2_j,dt)
-function [y]= flyby_jupiter1(r2_j,v2_l_j,v2_j,dt)
+flyby_jupiter1(r2_j,v1_l_j,v1_j,dt)
+function [y]= flyby_jupiter1(r2_j,v1_l_j,v1_j,dt)
 %%LambertTotale
 %hold on
 %SOI_jupiter    
 %hold on
 GM_jupiter = 126686534; %[km^3/s^2]
-v_inf_down = v2_l_j - v2_j ; 
+v_inf_down = v1_l_j - v1_j ; 
 v_inf_down_norm = norm(v_inf_down);
 %v_inf_up_norm = norm(v_inf_up);
 a= - GM_jupiter/((v_inf_down_norm)^2);%semiaxis major
-r_p= 2e5-69911;
+r_p= 1e5;
 e= 1-(r_p/a);
 delta= 2*asind(1/e);
 %clc; close all; clear all
@@ -69,13 +69,13 @@ m2 = 10000;   %massa Spacecraft
 % v0 = [10.802557011615574, -27.022662976615525, -0.016381621699842];
 % v0 = [20.132758614540330, 17.185359995204553, -1.094023522456790];
 t0 = 0;
-tf = 4.6420e+04*1000; %dt in Lambert
+tf = 3.8071e+04; %dt in Lambert
 %...End input data
 
 
 %...Numerical integration:
 mu    = G*(m1 + m2);
-r1= [r2_j(1)-r_p, r2_j(2)-r_p, r2_j(3)]
+r1= [r_p, r_p, 0];
 y0    = [r1 v_inf_down]';
 [t,y] = rkf45(@rates, [t0 tf], y0);
 
@@ -183,9 +183,10 @@ line(  [0 0],   [0 0], [0 2*R]); text(  0,   0, 2*R, 'Z')
 %   and label the starting point (o) and the final point (f)
 hold on
 plot3(  y(:,1),    y(:,2),    y(:,3),'k')
+comet3(  y(:,1),    y(:,2),    y(:,3))
 line([0 r1(1)], [0 r1(2)], [0 r1(3)])
-text(   y(1,1),    y(1,2),    y(1,3), 'o', 'Color','r')
-text( y(end,1),  y(end,2),  y(end,3), 'f', 'Color', 'g')
+text(   y(1,1),    y(1,2),    y(1,3), 'giove', 'Color','r')
+text( y(end,1),  y(end,2),  y(end,3), 'fine giove', 'Color', 'g')
 
 %   Select a view direction (a vector directed outward from the origin) 
 view([1,1,.4])
@@ -197,9 +198,9 @@ xlabel('km')
 ylabel('km')
 zlabel('km')
 title ('Trajectory flyby around jupiter')
-xlim([-1e9 1e9])
-ylim([-1e9 1e9])
-zlim([-1e9 1e9])
+xlim([-2e5 2e5])
+ylim([-2e5 2e5])
+zlim([-2e5 2e5])
 % ~~~~~~~~~~~~~~~~~~~~~~~
 function map = light_gray
 % ~~~~~~~~~~~~~~~~~~~~~~~
