@@ -152,23 +152,23 @@ v_at_rmin   = norm([y(imin,4) y(imin,5) y(imin,6)]);
 if v_at_rmin < 1000       % aggiungere una costante (km/s)
 
     %...Output to the command window:
-    fprintf('\n\n--------------------------------------------------------\n')
-    fprintf('\n Earth to Jupiter interplanetary orbit\n')
-    fprintf(' %s\n', datestr(now))
-    fprintf('\n The initial position is [%g, %g, %g] (km).',...
-                                                         r0(1), r0(2), r0(3))
-    fprintf('\n   Magnitude = %g km\n', norm(r0))
-    fprintf('\n The initial velocity is [%g, %g, %g] (km/s).',...
-                                                         v0(1), v0(2), v0(3))
-    fprintf('\n   Magnitude = %g km/s\n', norm(v0))
-    fprintf('\n Initial time = %g h.\n Final time   = %g h.\n',0,tf/hours) 
-    fprintf('\n The minimum altitude is %g km at time = %g h.',...
-                rmin-R, t(imin)/hours)
-    fprintf('\n The speed at that point is %g km/s.\n', v_at_rmin)
-    fprintf('\n The maximum altitude is %g km at time = %g h.',...
-                rmax-R, t(imax)/hours)
-    fprintf('\n The speed at that point is %g km/s\n', v_at_rmax)
-    fprintf('\n--------------------------------------------------------\n\n')
+%     fprintf('\n\n--------------------------------------------------------\n')
+%     fprintf('\n Earth to Jupiter interplanetary orbit\n')
+%     fprintf(' %s\n', datestr(now))
+%     fprintf('\n The initial position is [%g, %g, %g] (km).',...
+%                                                          r0(1), r0(2), r0(3))
+%     fprintf('\n   Magnitude = %g km\n', norm(r0))
+%     fprintf('\n The initial velocity is [%g, %g, %g] (km/s).',...
+%                                                          v0(1), v0(2), v0(3))
+%     fprintf('\n   Magnitude = %g km/s\n', norm(v0))
+%     fprintf('\n Initial time = %g h.\n Final time   = %g h.\n',0,tf/hours) 
+%     fprintf('\n The minimum altitude is %g km at time = %g h.',...
+%                 rmin-R, t(imin)/hours)
+%     fprintf('\n The speed at that point is %g km/s.\n', v_at_rmin)
+%     fprintf('\n The maximum altitude is %g km at time = %g h.',...
+%                 rmax-R, t(imax)/hours)
+%     fprintf('\n The speed at that point is %g km/s\n', v_at_rmax)
+%     fprintf('\n--------------------------------------------------------\n\n')
     
     %...Plot the results:
     %   Draw the planet

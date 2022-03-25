@@ -37,18 +37,16 @@ deg = pi/180;
 
 mu = 1.327*10^11;                   % mu sun (km^3/s^2)
 % TOF
-dt     = year2seconds(1):year2seconds(1):year2seconds(25);
+dt = year2seconds(1):year2seconds(1):year2seconds(29);
 
 for i = 1:length(dt)
     % Position of Jupiter at the departure (km)
-    [coe1_j, r1_j, v1_j, jd1_j] = planet_elements_and_sv(5, 2025, 09, 10, 12, 00, 00);
+    [coe1_j, r1_j, v1_j, jd1_j] = planet_elements_and_sv(5, 2023, 07, 02, 00, 00, 00);
     % Position of Saturn at the arrival  (km)     
-    [coe2_s, r2_s, v2_s, jd2_s] = planet_elements_and_sv(6, 2025+i, 09, 10, 12, 00, 00);
+    [coe2_s, r2_s, v2_s, jd2_s] = planet_elements_and_sv(6, 2023+i, 07, 02, 00, 00, 00);
      %r_saturno(i) = r2_s; 
     % TOF (s)
     % dt     = 98841600;  % (s)
-    
-%     dt = 67305600:31536000:382665600;
     
     string = 'pro';
     %...
@@ -59,25 +57,20 @@ for i = 1:length(dt)
     %...Algorithm 4.1 (using r1 and v1):
     coe      = coe_from_sv(r1_j, v1_l_j, mu);
     %...Save the initial true anomaly:
-    TA1      = coe(6);
+    TA1      = rad2deg(coe(6));
     
     %...Algorithm 4.1 (using r2 and v2):
     coe      = coe_from_sv(r2_s, v2_l_s, mu);
     %...Save the final true anomaly:
-    TA2      = coe(6);
-    d_theta(i) = abs((TA1 - TA2)*180/pi);
+    TA2      = rad2deg(coe(6));
+    d_theta(i) = (TA2 - TA1);
 %   Plot of the orbit
-<<<<<<< Updated upstream
-if d_theta(i) > 175 && d_theta(i) < 185
-    y = orbit_Jupiter2Saturn(r1_j, v1_l_j, dt(i));
-=======
-    if d_theta(i) < 180 && d_theta(i) > 90
+    if d_theta(i) < 181 && d_theta(i) > 89
         y = orbit_Jupiter2Saturn(r1_j, v1_l_j, dt(i));
-        fprintf('\n   delta t (s)  = %g', dt(i))
+        fprintf('\n  Delta t (s)  = %g', dt(i))
+        fprintf('\n  Index  = %g', i)
+        fprintf('\n-----------------------------------------------------\n')
     end
-
->>>>>>> Stashed changes
-end
 end
 
 plot_orbit(5, 2024)     % plot Jupiter orbit
