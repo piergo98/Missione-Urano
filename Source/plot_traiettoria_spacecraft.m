@@ -12,22 +12,24 @@ p = h^2 / mu;       % Semilato retto
 
 
 
+% Rotazione rispetto a Z dell'ascensione retta
 R3_W = [ cos(RA)  sin(RA)  0
         -sin(RA)  cos(RA)  0
             0        0     1];
 
-%...Equation 4.32:
+% Rotazione rispetto a X dell'inclinazione dell'orbita
 R1_i = [1       0          0
         0   cos(incl)  sin(incl)
         0  -sin(incl)  cos(incl)];
 
-%...Equation 4.34:
+% Rotazione attorno a Z dell'argomento del periasse
 R3_w = [ cos(w)  sin(w)  0 
         -sin(w)  cos(w)  0
            0       0     1];
 
-%...Equation 4.49:
-Q_pX = (R3_w*R1_i*R3_W)';       % Da perifocale a geocentrico
+% Passaggio da perifocale a eliocentrico per rappresentare l'orbita in 3D
+% il centro è sempre il sole
+Q_pX = (R3_w*R1_i*R3_W)';        
 
 % hold on
 f = 1:0.1:360;
@@ -47,9 +49,9 @@ for i = 1:length(f)
     if i == 1 
         plot(x,y, 'bo-', 'LineWidth', 2, 'MarkerSize', 18);
         c = circle_plot(x, y, radius);
-        r = animatedline(x, y,"Color",'r','LineWidth',3);
+        ra = animatedline(x, y,"Color",'r','LineWidth',3);
     end
-    addpoints(r, x, y);
+    addpoints(ra, x, y);
     drawnow;
     c.Position(1) = x - radius;
     c.Position(2) = y - radius;
