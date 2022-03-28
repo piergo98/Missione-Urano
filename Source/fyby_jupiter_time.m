@@ -6,10 +6,13 @@ v_inf_down_norm_Jupiter = norm(v_inf_down_Jupiter);
 
 a_flyby_Jupiter = - GM_jupiter/((v_inf_down_norm_Jupiter)^2);%semiaxis major 
 r_p_flyby_Jupiter = 503800;  %hp  
+<<<<<<< HEAD
+=======
 
+>>>>>>> Grafica
 e_flyby_Jupiter = 1-(r_p_flyby_Jupiter/a_flyby_Jupiter); 
 
-delta_Jupiter = 2*asind(1/e_flyby_Jupiter); %angolo tra gli asintoti 
+delta_Jupiter = 2*asin(1/e_flyby_Jupiter); %angolo tra gli asintoti 
 delta_deg_Jupiter = rad2deg(delta_Jupiter); 
 
 %ricavo l'anomalia vera f
