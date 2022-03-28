@@ -1,7 +1,7 @@
 %Calcolo il tempo t di flyby giove usando l'equazione di keplero
 
 %conosco a,e,r dallo script Flyby_jupiter
-GM_jupiter = 126686534; %[km^3/s^2] 
+GM_jupiter = 126686534; %[m^3/s^2] 
 v_inf_down_Jupiter = v2_l_j - v2_j ;  
 v_inf_down_norm_Jupiter = norm(v_inf_down_Jupiter); 
 
@@ -10,7 +10,7 @@ r_p_flyby_Jupiter = 1e6;  %hp
 e_flyby_Jupiter = 1-(r_p_flyby_Jupiter/a_flyby_Jupiter); 
 
 delta_Jupiter = 2*asind(1/e_flyby_Jupiter); %angolo tra gli asintoti 
-delta_deg_Jupiter = rad2deg(delta); 
+delta_deg_Jupiter = rad2deg(delta_Jupiter); 
 
 %ricavo l'anomalia vera f
 
