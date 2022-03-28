@@ -56,24 +56,25 @@ for i = 1:length(dt)
     [v1_l_e, v2_l_j] = lambert(r1_e, r2_j, dt(i), string);
     
     
-    %...Algorithm 4.1 (using r1 and v1):
-    coe      = coe_from_sv(r1_e, v1_l_e, mu);
-    %...Save the initial true anomaly:
-    TA1      = rad2deg(coe(6));
+    % Estrazione elementi orbitali orbita di trasferimento (using r1 and v1):
+    coe = coe_from_sv(r1_e, v1_l_e, mu);
+    % Initial true anomaly:
+    TA1 = rad2deg(coe(6));
     
-    %...Algorithm 4.1 (using r2 and v2):
-    coe      = coe_from_sv(r2_j, v2_l_j, mu);
-    %...Save the final true anomaly:
-    TA2      = rad2deg(coe(6));
+    % Estrazione elementi orbitali orbita di trasferimento (using r2 and v2):
+    coe = coe_from_sv(r2_j, v2_l_j, mu);
+    % Final true anomaly:
+    TA2 = rad2deg(coe(6));
     d_theta(i) = (TA2 - TA1);
     if d_theta(i) < 181 && d_theta(i) > 89
         % Plot of planets orbit and trajectory orbit
-        y = orbit_Earth2Jupiter(r1_e, v1_l_e, dt);
+        plot_traiettoria_spacecraft(coe, TA1, TA2, 'g')
         fprintf('\n TOF = %g\n', dt(i));
         fprintf('\n Index = %g \n', i);
         fprintf('\n-----------------------------------------------------\n')
     end
 end
+
 plot_orbit(5, 2024)
 plot_orbit(3, 2022)
 

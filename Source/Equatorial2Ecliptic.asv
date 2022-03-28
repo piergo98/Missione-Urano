@@ -1,9 +1,0 @@
-function eq2ec()
-
-% Defining the inclination angle between equatorial and ecliptical plane
-fi = 23.5;      % (deg)
-
-% Rotation matrix
-R_eq2ec = [1     0           0;
-           0   cosd(fi)   -sind(fi);
-           0   sind(fi)    cos(fi)];

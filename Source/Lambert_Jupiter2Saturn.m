@@ -65,8 +65,8 @@ for i = 1:length(dt)
     TA2      = rad2deg(coe(6));
     d_theta(i) = (TA2 - TA1);
 %   Plot of the orbit
-    if d_theta(i) < 181 && d_theta(i) > 89
-        y = orbit_Jupiter2Saturn(r1_j, v1_l_j, dt(i));
+    if d_theta(i) < 181 && d_theta(i) > 0
+        plot_traiettoria_spacecraft(coe, TA1, TA2, 'r')
         fprintf('\n  Delta t (s)  = %g', dt(i))
         fprintf('\n  Index  = %g', i)
         fprintf('\n-----------------------------------------------------\n')
