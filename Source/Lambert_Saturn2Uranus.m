@@ -55,15 +55,16 @@ for i=1:length(dt)
     %...Algorithm 4.1 (using r1 and v1):
     coe = coe_from_sv(r1_s, v1_l_s, mu);
     %...Save the initial true anomaly:
-    TA1      = rad2deg(coe1_s(6));
+    TA1 = rad2deg(coe(6));
     
     %...Algorithm 4.1 (using r2 and v2):
     coe = coe_from_sv(r2_u, v2_l_u, mu);
     %...Save the final true anomaly:
-    TA2      = rad2deg(coe2_u(6));
+    TA2 = rad2deg(coe(6));
     d_theta(i) = norm(TA1 - TA2);
-    if d_theta(i) < 185 && d_theta(i) > 175
-        y = orbit_Saturn2Uranus(r1_s, v1_l_s, dt(i));
+    if d_theta(i) < 181 && d_theta(i) > 89
+%         y = orbit_Saturn2Uranus(r1_s, v1_l_s, dt(i));
+        plot_traiettoria_spacecraft(coe, TA1, TA2, 'g')
         fprintf('\n   delta t (s) = %g \n', dt(i))
         fprintf('\n index = %g \n', i)
     end
