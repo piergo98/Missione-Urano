@@ -20,9 +20,10 @@
   TA2    - Final true anomaly (rad)
   T      - period of an elliptic orbit (s)
 
-  User M-functions required: lambert, coe_from_sv
 %}
 % ---------------------------------------------
+% Per poter effettuare l'animazione complessiva costruiamo una tabella in
+% cui memorizziamo tutte le posizioni dello spacecraft al variare del tempo
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -66,10 +67,10 @@ dt = time_diff*24*3600;
 
 
 % Position of Earth at the departure (km) 2022/07/01_12:00:00
-[coe1_e, r1_e, v1_e, jd1_e] = planet_elements_and_sv(3, 2022, 07, 01, 12, 00, 00);
+[~, r1_e, v1_e, ~] = planet_elements_and_sv(3, 2022, 07, 01, 12, 00, 00);
 
 % Position of Jupiter at the arrival  (km) 2024/07/21_12:00:00    
-[coe2_j, r2_j, v2_j, jd2_j] = planet_elements_and_sv(5, 2024, 07, 01, 12, 00, 00);
+[~, r2_j, v2_j, ~] = planet_elements_and_sv(5, 2024, 07, 01, 12, 00, 00);
 r_giove = r2_j;
 string = 'pro';
 
@@ -78,22 +79,22 @@ string = 'pro';
 v_giove = v2_j;
 
 %...Algorithm 4.1 (using r1 and v1):
-coe = coe_from_sv(r1_e, v1_l_e, mu);
+coe_ej = coe_from_sv(r1_e, v1_l_e, mu);
 %...Save the initial true anomaly:
-TA1 = rad2deg(coe(6));
+TA_init_e = rad2deg(coe_ej(6));
 
 %...Algorithm 4.1 (using r2 and v2):
-coe = coe_from_sv(r2_j, v2_l_j, mu);
+coe_ej = coe_from_sv(r2_j, v2_l_j, mu);
 %...Save the final true anomaly:
-TA2 = rad2deg(coe(6));
+TA_final_j = rad2deg(coe_ej(6));
 
  
 % Plot of planets orbit and trajectory orbit
-% y = orbit_Earth2Jupiter(r1_e, v1_l_e, dt);
-plot_traiettoria_spacecraft(coe, TA1, TA2, color)
-plot_orbit(5, 2024)
 
-plot_orbit(3, 2022)
+% plot_traiettoria_spacecraft(coe, TA_init_e, TA_final_j, color)
+% plot_orbit(5, 2024)
+% 
+% plot_orbit(3, 2022)
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -115,10 +116,10 @@ dt = time_diff*24*3600;
 
 % Position of Jupiter at the departure (km) 2024/07/21_12:00:00 
 %[coe1_j, r1_j, v1_j, jd1_j] = planet_elements_and_sv(5, 2024, 07, 02, 00, 00, 00);
-[coe1_j, r1_j, v1_j, jd1_j] = planet_elements_and_sv(5, 2024, 07, 24, 08, 14, 54);
+[~, r1_j, v1_j, ~] = planet_elements_and_sv(5, 2024, 07, 24, 08, 14, 54);
 
 % Position of Saturn at the arrival  (km) 2031/07/27_12:00:00     
-[coe2_s, r2_s, v2_s, jd2_s] = planet_elements_and_sv(6, 2031, 04, 01, 12, 00, 00);
+[~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2031, 04, 01, 12, 00, 00);
 
 
 % TOF (s)
@@ -129,19 +130,19 @@ string = 'pro';
 
 
 %...Algorithm 4.1 (using r1 and v1):
-coe = coe_from_sv(r1_j, v1_l_j, mu);
+coe_js = coe_from_sv(r1_j, v1_l_j, mu);
 %...Save the initial true anomaly:
-TA1 = rad2deg(coe(6));
+TA_init_j = rad2deg(coe_js(6));
 
 %...Algorithm 4.1 (using r2 and v2):
-coe = coe_from_sv(r2_s, v2_l_s, mu);
+coe_js = coe_from_sv(r2_s, v2_l_s, mu);
 %...Save the final true anomaly:
-TA2 = rad2deg(coe(6));
+TA_final_s = rad2deg(coe_js(6));
 
 %   Plot of the orbit
-% y = orbit_Jupiter2Saturn(r1_j, v1_l_j, dt);
-plot_traiettoria_spacecraft(coe, TA1, TA2, color)
-plot_orbit(6, 2031)     % plot Saturn orbit
+
+% plot_traiettoria_spacecraft(coe, TA_init_j, TA_final_s color)
+% plot_orbit(6, 2031)     % plot Saturn orbit
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -159,13 +160,13 @@ dt = time_diff*24*3600;
 
 
 % Position of Saturn at the departure (km) 2031/07/27_12:00:00  
-[coe1_s, r1_s, v1_s, jd1_s] = planet_elements_and_sv(6, 2031, 04, 04, 15, 45, 41);
+[~, r1_s, v1_s, ~] = planet_elements_and_sv(6, 2031, 04, 04, 15, 45, 41);
 
 % % Position of Uranus at the arrival  (km) 2028/06/09_12:00:00
 % [coe2_u, r2_u, v2_u, jd2_u] = planet_elements_and_sv(6, 2028, 06, 09, 12, 00, 00);
 
 % Position of Uranus at the arrival  (km) 2035/12/25_12:00:00
-[coe2_u, r2_u, v2_u, jd2_u] = planet_elements_and_sv(7, 2035, 12, 25, 12, 00, 00);
+[~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2035, 12, 25, 12, 00, 00);
 
 
 % TOF (s)
@@ -175,19 +176,18 @@ string = 'pro';
 [v1_l_s, v2_l_u] = lambert(r1_s, r2_u, dt, string);
 
 %...Algorithm 4.1 (using r1 and v1):
-coe = coe_from_sv(r1_s, v1_l_s, mu);
+coe_su = coe_from_sv(r1_s, v1_l_s, mu);
 %...Save the initial true anomaly:
-TA1 = rad2deg(coe(6));
+TA_init_s = rad2deg(coe_su(6));
 
 %...Algorithm 4.1 (using r2 and v2):
-coe = coe_from_sv(r2_u, v2_l_u, mu);
+coe_su = coe_from_sv(r2_u, v2_l_u, mu);
 %...Save the final true anomaly:
-TA2 = rad2deg(coe(6));
+TA_final_u = rad2deg(coe_su(6));
 
-% y = orbit_Saturn2Uranus(r1_s, v1_l_s, dt);
-plot_traiettoria_spacecraft(coe, TA1, TA2, color)
 
-plot_orbit(7, 2035)     % plot Uranus orbit
+% plot_traiettoria_spacecraft(coe, TA_init_s, TA_final_u, color)
+% plot_orbit(7, 2035)     % plot Uranus orbit
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

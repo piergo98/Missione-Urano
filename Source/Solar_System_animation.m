@@ -13,7 +13,11 @@ movie_mode		= 2;	% 1 for movie writing, 2 for HD movie, 0 for only matlab animat
 addpath(genpath("Script matlab"));
 addpath(genpath("Animation"));
 
-solar_system_animation_init;	% init all par, constants and plot parameters
+% Init all par, constants and plot parameters
+solar_system_animation_init;
+
+% Risolvo il problema di Lambert per tutta la missione (senza plot)
+LambertTotale
 
 %%Spacecraft_position_for_animation;					% computes the position of the spacecraft 
 								% for each day of the mission
@@ -65,7 +69,7 @@ for d = 1:100:n_days				% speed
 		delete(p_Jupiter)
 		delete(p_Saturn)
         delete(p_Uran)
-		%delete(p_spcr)
+% 		delete(p_spcr)
 	end
 	
 	% now
@@ -99,6 +103,8 @@ for d = 1:100:n_days				% speed
 	%							year_now, month_now, day_now, 0, 0, 0);
 	
 	%% SpaceCraft
+
+
 	%spcr_now = pos_spcr(d,:);
 	
 	%----------------------------------------------------------------------						
@@ -114,7 +120,10 @@ for d = 1:100:n_days				% speed
     p_Saturn	= plot3(Saturn_now(1),Saturn_now(2),Saturn_now(3),'o','Color',col_saturn, 'MarkerSize', dim_saturn,'MarkerFaceColor',col_saturn);
 
     p_Uran      = plot3(Uran_now(1),Uran_now(2),Uran_now(3),'o','Color',col_uran, 'MarkerSize', dim_uran,'MarkerFaceColor',col_uran);
-    %%SPACECRAFT
+
+    %SPACECRAFT
+
+
     %p_spcr		= plot3(spcr_now(1),spcr_now(2),spcr_now(3),'o','Color',col_spcr, 'MarkerSize', dim_spcr,'MarkerFaceColor',col_spcr);
 
     %%sofar
@@ -123,7 +132,7 @@ for d = 1:100:n_days				% speed
 	%		'-','Color', col_spcr,'LineWidth', width_spcr);
 	%
 	%%----------------------------------------------------------------------
-	% figure paramters update				
+	% figure parameters update				
 	axis equal;
     grid on;
 	hold on
@@ -131,7 +140,7 @@ for d = 1:100:n_days				% speed
 	xlim([-xy_lim, xy_lim]);
 	ylim([-xy_lim, xy_lim]);
 	zlim([-z_lim, z_lim]);
-	
+
 	if spinlon == 0 && spinlat == 0
 		if d == 1
 			view(View(1, 1), View(1, 2));

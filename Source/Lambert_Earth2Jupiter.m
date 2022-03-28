@@ -38,7 +38,7 @@ deg = pi/180;
 mu = 1.327*10^11;                   % mu sun (km^3/s^2)
 % TOF 
 % dt_y = year2seconds(1):year2seconds(1):year2seconds(10);
-% dt_m = month2seconds(1):month2seconds(1):month2seconds(12);
+dt_m = month2seconds(1):month2seconds(1):month2seconds(12);
 dt = year2seconds(1): year2seconds(1):year2seconds(12);
 
 for i = 1:length(dt)

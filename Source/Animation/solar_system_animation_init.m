@@ -37,7 +37,7 @@ n_days = size(time_vector,1);
     %%- 4: at Ceres arrival (from Vesta) -> 5/3/15
 %}
 
-%%Qui è ancora tutto da definire
+%% Qui è ancora tutto da definire
 %Earth
 [Earth_coe0, Earth_r0, Earth_v0, ~] = planet_elements_and_sv(3,2022,9,27,0,0,0);
 [Earth_coe1, Earth_r1, Earth_v1, ~] = planet_elements_and_sv(3,2024,2,17,0,0,0);

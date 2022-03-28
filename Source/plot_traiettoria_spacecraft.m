@@ -53,7 +53,7 @@ function plot_traiettoria_spacecraft(coe, TA_i, TA_f, color)
         y = r*sind(f(i));
         z = 0;
 %       Cambio di coordinate il vettore posizione per plottarlo
-        pos = Q_pX * [x y z]';
+        pos(i) = Q_pX * [x y z]';
     
         if i == 1 
             c = circle_plot(pos(1), pos(2), radius);
