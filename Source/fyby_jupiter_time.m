@@ -1,11 +1,15 @@
 %Calcolo il tempo t di flyby giove usando l'equazione di keplero
 
-GM_jupiter = 126686534; %[m^3/s^2] 
+GM_jupiter = 1.26686534e8; %[km^3/s^2] 
 v_inf_down_Jupiter = v2_l_j - v2_j ;  
 v_inf_down_norm_Jupiter = norm(v_inf_down_Jupiter); 
 
 a_flyby_Jupiter = - GM_jupiter/((v_inf_down_norm_Jupiter)^2);%semiaxis major 
 r_p_flyby_Jupiter = 503800;  %hp  
+<<<<<<< HEAD
+=======
+
+>>>>>>> Grafica
 e_flyby_Jupiter = 1-(r_p_flyby_Jupiter/a_flyby_Jupiter); 
 
 delta_Jupiter = 2*asin(1/e_flyby_Jupiter); %angolo tra gli asintoti 
