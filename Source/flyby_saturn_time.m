@@ -4,7 +4,7 @@ GM_Saturn = 3.7931187e7; %[km^3/s^2]
 v_inf_down_Saturn = v2_l_s - v2_s ;  
 v_inf_down_norm_Saturn = norm(v_inf_down_Saturn); 
 
-a_flyby_Saturn = - GM_Saturn/((v_inf_down_norm_Saturn)^2);%semiaxis major 
+a_flyby_Saturn = - GM_Saturn/((v_inf_down_norm_Saturn)^2); %semiaxis major 
 r_p_flyby_Saturn = 1e6;  %hp  
 e_flyby_Saturn = 1-(r_p_flyby_Saturn/a_flyby_Saturn); 
 
