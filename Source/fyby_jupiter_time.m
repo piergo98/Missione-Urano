@@ -30,10 +30,11 @@ p= r_p*(1+e*cos(f))
 %calcolo f1 su sfera più stretta r=10000 
 r=R_SOI_Jupiter; 
 %calcolo anomalia vera per r 
-f1= (1/e)*acos((p/r)-1) 
+f1= acos((1/e)*((p/r)-1)) 
 
 %E = 2*atanhd((((1-e)/(1+e))^(1/2))*(tan(f/2))) 
-E=atanh(sqrt((e-1)/(e+1))*tan(f1/2))   
+E_2=atanh(sqrt((e-1)/(e+1))*tan(f1/2)); 
+E = E_2/2;
 E_deg= rad2deg(E) 
 %trovo anomalia media M 
  
@@ -42,7 +43,7 @@ M_deg=rad2deg(M)
  
 %trovo il tempo 
  
-t_flyby = M_deg*sqrt(-a^3/GM_jupiter) %in secondi 
+t_flyby = M*sqrt(-a^3/GM_jupiter) %in secondi 
 t_flyby_tot=2*t_flyby  
 t_flyby_tot_hours= t_flyby_tot/3600 
  
