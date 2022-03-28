@@ -1,6 +1,5 @@
 %Calcolo il tempo t di flyby giove usando l'equazione di keplero
 
-%conosco a,e,r dallo script Flyby_jupiter
 GM_jupiter = 126686534; %[m^3/s^2] 
 v_inf_down_Jupiter = v2_l_j - v2_j ;  
 v_inf_down_norm_Jupiter = norm(v_inf_down_Jupiter); 
@@ -20,19 +19,19 @@ f_deg_Jupiter =rad2deg(f_Jupiter);
 %trovo p semilato retto [km] 
 p_Jupiter = r_p_flyby_Jupiter*(1+e_flyby_Jupiter*cos(f_Jupiter)); 
  
-%calcolo f1 su sfera più stretta r=10000 
 r=R_SOI_Jupiter; 
+
 %calcolo anomalia vera per r 
 f1_Jupier = acos((1/e_flyby_Jupiter)*((p_Jupiter/r)-1)); 
 
-%E = 2*atanhd((((1-e)/(1+e))^(1/2))*(tan(f/2))) 
 E_2_Jupiter = atanh(sqrt((e_flyby_Jupiter-1)/(e_flyby_Jupiter+1))*tan(f1_Jupier/2)); 
 E_Jupiter = E_2_Jupiter/2;
 E_deg_Jupiter = rad2deg(E_Jupiter); 
+
 %trovo anomalia media M 
  
 M_Jupiter = e_flyby_Jupiter*sinh(E_Jupiter)-E_Jupiter; 
-M_deg_Jupiter=rad2deg(M); 
+M_deg_Jupiter=rad2deg(M_Jupiter); 
  
 %trovo il tempo 
  
