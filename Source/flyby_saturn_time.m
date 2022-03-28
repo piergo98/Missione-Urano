@@ -8,7 +8,7 @@ a_flyby_Saturn = - GM_Saturn/((v_inf_down_norm_Saturn)^2);%semiaxis major
 r_p_flyby_Saturn = 1e6;  %hp  
 e_flyby_Saturn = 1-(r_p_flyby_Saturn/a_flyby_Saturn); 
 
-delta_Saturn = 2*asind(1/e_flyby_Saturn); %angolo tra gli asintoti 
+delta_Saturn = 2*asin(1/e_flyby_Saturn); %angolo tra gli asintoti 
 delta_deg_Saturn = rad2deg(delta_Saturn); 
 
 %ricavo l'anomalia vera f
