@@ -1,11 +1,12 @@
 %Calcolo il tempo t di flyby giove usando l'equazione di keplero
 
-GM_jupiter = 126686534; %[m^3/s^2] 
+GM_jupiter = 1.26686534e8; %[km^3/s^2] 
 v_inf_down_Jupiter = v2_l_j - v2_j ;  
 v_inf_down_norm_Jupiter = norm(v_inf_down_Jupiter); 
 
 a_flyby_Jupiter = - GM_jupiter/((v_inf_down_norm_Jupiter)^2);%semiaxis major 
-r_p_flyby_Jupiter = 1e6;  %hp  
+r_p_flyby_Jupiter = 503800;  %hp  
+
 e_flyby_Jupiter = 1-(r_p_flyby_Jupiter/a_flyby_Jupiter); 
 
 delta_Jupiter = 2*asind(1/e_flyby_Jupiter); %angolo tra gli asintoti 
@@ -22,9 +23,9 @@ p_Jupiter = r_p_flyby_Jupiter*(1+e_flyby_Jupiter*cos(f_Jupiter));
 r=R_SOI_Jupiter; 
 
 %calcolo anomalia vera per r 
-f1_Jupier = acos((1/e_flyby_Jupiter)*((p_Jupiter/r)-1)); 
+f1_Jupiter = acos((1/e_flyby_Jupiter)*((p_Jupiter/r)-1)); 
 
-E_2_Jupiter = atanh(sqrt((e_flyby_Jupiter-1)/(e_flyby_Jupiter+1))*tan(f1_Jupier/2)); 
+E_2_Jupiter = atanh(sqrt((e_flyby_Jupiter-1)/(e_flyby_Jupiter+1))*tan(f1_Jupiter/2)); 
 E_Jupiter = E_2_Jupiter/2;
 E_deg_Jupiter = rad2deg(E_Jupiter); 
 
