@@ -12,6 +12,7 @@ function plot_traiettoria_spacecraft(coe, TA_i, TA_f, color)
     RA = coe(3);        % Ascensione retta
     incl = coe(4);
     w = coe(5);
+    a = coe(7);
     
     radius = 6e3;
     mu = 1.327*10^11;   % mu sun (km^2/s^3)

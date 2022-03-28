@@ -43,6 +43,9 @@ addpath './Script matlab'
 global mu
 deg = pi/180;
 
+% Colore della traiettoria dello spacecraft
+color = 'g';
+
 %...Data declaration:
 
 mu = 1.327*10^11;                   % mu sun (km^3/s^2)
@@ -75,18 +78,19 @@ string = 'pro';
 v_giove = v2_j;
 
 %...Algorithm 4.1 (using r1 and v1):
-coe      = coe_from_sv(r1_e, v1_l_e, mu);
+coe = coe_from_sv(r1_e, v1_l_e, mu);
 %...Save the initial true anomaly:
-TA1      = coe(6);
+TA1 = rad2deg(coe(6));
 
 %...Algorithm 4.1 (using r2 and v2):
-coe      = coe_from_sv(r2_j, v2_l_j, mu);
+coe = coe_from_sv(r2_j, v2_l_j, mu);
 %...Save the final true anomaly:
-TA2      = coe(6);
+TA2 = rad2deg(coe(6));
 
  
 % Plot of planets orbit and trajectory orbit
-y = orbit_Earth2Jupiter(r1_e, v1_l_e, dt);
+% y = orbit_Earth2Jupiter(r1_e, v1_l_e, dt);
+plot_traiettoria_spacecraft(coe, TA1, TA2, color)
 plot_orbit(5, 2024)
 
 plot_orbit(3, 2022)
@@ -125,17 +129,18 @@ string = 'pro';
 
 
 %...Algorithm 4.1 (using r1 and v1):
-coe      = coe_from_sv(r1_j, v1_l_j, mu);
+coe = coe_from_sv(r1_j, v1_l_j, mu);
 %...Save the initial true anomaly:
-TA1      = coe(6);
+TA1 = rad2deg(coe(6));
 
 %...Algorithm 4.1 (using r2 and v2):
-coe      = coe_from_sv(r2_s, v2_l_s, mu);
+coe = coe_from_sv(r2_s, v2_l_s, mu);
 %...Save the final true anomaly:
-TA2      = coe(6);
+TA2 = rad2deg(coe(6));
 
 %   Plot of the orbit
-y = orbit_Jupiter2Saturn(r1_j, v1_l_j, dt);
+% y = orbit_Jupiter2Saturn(r1_j, v1_l_j, dt);
+plot_traiettoria_spacecraft(coe, TA1, TA2, color)
 plot_orbit(6, 2031)     % plot Saturn orbit
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -170,17 +175,18 @@ string = 'pro';
 [v1_l_s, v2_l_u] = lambert(r1_s, r2_u, dt, string);
 
 %...Algorithm 4.1 (using r1 and v1):
-coe      = coe_from_sv(r1_s, v1_l_s, mu);
+coe = coe_from_sv(r1_s, v1_l_s, mu);
 %...Save the initial true anomaly:
-TA1      = coe(6);
+TA1 = rad2deg(coe(6));
 
 %...Algorithm 4.1 (using r2 and v2):
-coe      = coe_from_sv(r2_u, v2_l_u, mu);
+coe = coe_from_sv(r2_u, v2_l_u, mu);
 %...Save the final true anomaly:
-TA2      = coe(6);
+TA2 = rad2deg(coe(6));
 
-y = orbit_Saturn2Uranus(r1_s, v1_l_s, dt);
-%plot_orbit(7, 2026)     % plot Uranus orbit
+% y = orbit_Saturn2Uranus(r1_s, v1_l_s, dt);
+plot_traiettoria_spacecraft(coe, TA1, TA2, color)
+
 plot_orbit(7, 2035)     % plot Uranus orbit
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
