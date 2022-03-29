@@ -14,8 +14,8 @@ R_SOI_Jupiter = d_Jupiter2Sun*(m_Jupiter/m_Sun)^(2/5); % ray SOI of Earth
                                             (5, 2025, 07, 01, 18, 00, 00);
 
 % Plot the SOI
-figure(3)
-surface(r_d_Jupiter(1)+R_SOI_Jupiter*X,r_d_Jupiter(2)+R_SOI_Jupiter*Y,...
+figure(1)
+surf(r_d_Jupiter(1)+R_SOI_Jupiter*X,r_d_Jupiter(2)+R_SOI_Jupiter*Y,...
     r_d_Jupiter(3)+R_SOI_Jupiter*Z,'EdgeColor','red','FaceColor','red', ...
     'FaceAlpha','0');
 

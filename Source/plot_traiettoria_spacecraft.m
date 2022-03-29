@@ -44,7 +44,7 @@ function plot_traiettoria_spacecraft(coe, TA_i, TA_f, color)
     
     figure(1)
     hold on;
-    
+
     for i = 1:length(f)
 %       Legge oraria dello spacecraft in funzione dell'anomalia vera
         r = p / (1 + e*cosd(f(i)));
@@ -53,7 +53,7 @@ function plot_traiettoria_spacecraft(coe, TA_i, TA_f, color)
         y = r*sind(f(i));
         z = 0;
 %       Cambio di coordinate il vettore posizione per plottarlo
-        pos(i) = Q_pX * [x y z]';
+        pos = Q_pX * [x y z]';
     
         if i == 1 
             c = circle_plot(pos(1), pos(2), radius);
@@ -65,6 +65,7 @@ function plot_traiettoria_spacecraft(coe, TA_i, TA_f, color)
         c.Position(2) = pos(2) - radius;
         drawnow;
         axis equal
+  
 %         xlim([-1e9 1e9])
 %         ylim([-1e9 1e9])
 %         zlim([-8e8 8e8])

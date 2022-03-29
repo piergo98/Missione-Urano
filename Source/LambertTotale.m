@@ -91,10 +91,10 @@ TA_final_j = rad2deg(coe_ej(6));
  
 % Plot of planets orbit and trajectory orbit
 
+% plot_orbit(3, 2022)
 % plot_traiettoria_spacecraft(coe, TA_init_e, TA_final_j, color)
 % plot_orbit(5, 2024)
-% 
-% plot_orbit(3, 2022)
+
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

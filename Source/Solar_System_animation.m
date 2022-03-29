@@ -177,7 +177,7 @@ for d = 1:100:n_days				% speed
 	end
 	
 	%----------------------------------------------------------------------
-	% write video
+	 % write video
 	if movie_mode ~= 0
 		%if movie_mode == 1
 			movieVector(k) = getframe(figh);
