@@ -10,8 +10,8 @@ function plot_traiettoria_spacecraft(coe, TA_i, TA_f, color)
     h = coe(1);         % Momento angolare
     e = coe(2);         % Eccentricità
     RA = coe(3);        % Ascensione retta
-    incl = coe(4);
-    w = coe(5);
+    incl = coe(4);      % Inclinazione orbita di trasferimento
+    w = coe(5);         % Argomento del periasse
     a = coe(7);
     
     radius = 6e3;

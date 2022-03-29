@@ -17,11 +17,11 @@ Delta_TA_ej = abs(TA_final_j - TA_init_e);
 % Variazione di anomalia vera in un giorno
 dTA = Delta_TA_ej / ej_days;
 
-h = coe_ej(1);         % Momento angolare
-e = coe_ej(2);         % Eccentricità
-RA = coe_ej(3);        % Ascensione retta
-incl = coe_ej(4);
-w = coe_ej(5);
+h = coe_ej(1);          % Momento angolare
+e = coe_ej(2);          % Eccentricità
+RA = coe_ej(3);         % Ascensione retta
+incl = coe_ej(4);       % Inclinazione orbita di trasferimento
+w = coe_ej(5);          % Argomento del periasse
 
 p = h^2 / mu;       % Semilato retto    
 
@@ -69,11 +69,11 @@ Delta_TA_js = abs(TA_final_s - TA_init_j);
 %   Minima variazione di anomalia vera in un giorno
 dTA = Delta_TA_js / js_days;
 
-h = coe_js(1);         % Momento angolare
-e = coe_js(2);         % Eccentricità
-RA = coe_js(3);        % Ascensione retta
-incl = coe_js(4);
-w = coe_js(5);
+h = coe_js(1);          % Momento angolare
+e = coe_js(2);          % Eccentricità
+RA = coe_js(3);         % Ascensione retta
+incl = coe_js(4);       % Inclinazione orbita di trasferimento
+w = coe_js(5);          % Argomento del periasse
 
 p = h^2 / mu;       % Semilato retto    
 
@@ -118,11 +118,11 @@ Delta_TA_su = abs(TA_final_u - TA_init_s);
 %   Minima variazione di anomalia vera in un giorno
 dTA = Delta_TA_su / su_days;
 
-h = coe_su(1);         % Momento angolare
-e = coe_su(2);         % Eccentricità
-RA = coe_su(3);        % Ascensione retta
-incl = coe_su(4);
-w = coe_su(5);
+h = coe_su(1);          % Momento angolare
+e = coe_su(2);          % Eccentricità
+RA = coe_su(3);         % Ascensione retta
+incl = coe_su(4);       % Inclinazione orbita di trasferimento
+w = coe_su(5);          % Argomento del periasse
 a = coe_su(7);
 
 p = h^2 / mu;       % Semilato retto    
