@@ -11,6 +11,9 @@ function [spcr_SOI_input_point] = SOI_input_point(coe,TA_pianeta, pos_pianeta)
     e = coe(2);         % Eccentricità
     RA = coe(3);        % Ascensione retta
     incl = coe(4);
+    w = coe(5);
+    a = coe(7);
+   
            
     mu = 1.327*10^11;   % mu sun (km^2/s^3)
     
@@ -35,8 +38,8 @@ function [spcr_SOI_input_point] = SOI_input_point(coe,TA_pianeta, pos_pianeta)
     % il centro è sempre il sole
     Q_pX = (R3_w*R1_i*R3_W)';        
     
-    % hold on
-    f = (TA_pianeta - 0.01) : 0.5 : (TA_pianeta + 0.01);
+    % Effettuo il controllo su un intorno della TA_Finale (+-20 deg)
+    f = (TA_pianeta - 20) : 0.5 : (TA_pianeta + 20);
     pos = [];
     
     SOI_JUPITER;            %lo uso per trovare la soi di giove
@@ -54,9 +57,9 @@ function [spcr_SOI_input_point] = SOI_input_point(coe,TA_pianeta, pos_pianeta)
 
         %salvo posizione spacecraft se entro nella soi del pianeta di
         %arrivo
-
-        if norm(pos - pos_p_heliocentric) <= R_SOI_Jupiter
-           spcr_SOI_input_point = [pos(1) pos(2) pos(3)];
+        r_spcr_pianeta = pos - pos_p_heliocentric;
+        if norm(r_spcr_pianeta) <= R_SOI_Jupiter
+           spcr_SOI_input_point = [r_spcr_pianeta(1) r_spcr_pianeta(2) r_spcr_pianeta(3)];
         else
            spcr_SOI_input_point = [0 0 0];
         end    
