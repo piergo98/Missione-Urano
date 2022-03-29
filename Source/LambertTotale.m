@@ -45,7 +45,7 @@ global mu
 deg = pi/180;
 
 % Colore della traiettoria dello spacecraft
-color = 'g';
+% color = 'g';
 
 %...Data declaration:
 

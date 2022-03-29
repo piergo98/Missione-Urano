@@ -39,8 +39,8 @@ n_days = size(time_vector,1);
 
 %% Qui è ancora tutto da definire
 %Earth
-[Earth_coe0, Earth_r0, Earth_v0, ~] = planet_elements_and_sv(3,2022,9,27,0,0,0);
-[Earth_coe1, Earth_r1, Earth_v1, ~] = planet_elements_and_sv(3,2024,2,17,0,0,0);
+% [Earth_coe0, Earth_r0, Earth_v0, ~] = planet_elements_and_sv(3,2022,9,27,0,0,0);
+% [Earth_coe1, Earth_r1, Earth_v1, ~] = planet_elements_and_sv(3,2024,2,17,0,0,0);
 
 %%Mars
 %[Mars_coe0, Mars_r0, Mars_v0, ~] = planet_elements_and_sv(4,2024,9,27,0,0,0);
@@ -90,7 +90,7 @@ dim_mars	= 8;
 dim_jupiter = 14;
 dim_saturn  = 12;
 dim_uran    = 10;
-dim_spcr	= 3;
+dim_spcr	= 2;
 
 % width of lines
 planet_linewidth = 0.1;

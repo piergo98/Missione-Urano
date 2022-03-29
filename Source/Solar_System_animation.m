@@ -1,14 +1,15 @@
 %% Script description
 % This script executes the animation of the Uran Mission
 % The animation works by plotting each day the position of planets, Sun,
-% Ceres, Vesta and the spacecraft.
+% and the spacecraft.
 
 %In this first version it will plot only planets and Sun.
 
 %% intro
-clc; clear;
+clc; 
+% clear;
 
-movie_mode		= 2;	% 1 for movie writing, 2 for HD movie, 0 for only matlab animation
+movie_mode = 2;	% 1 for movie writing, 2 for HD movie, 0 for only matlab animation
 
 addpath(genpath("Script matlab"));
 addpath(genpath("Animation"));
@@ -16,17 +17,14 @@ addpath(genpath("Animation"));
 % Init all par, constants and plot parameters
 solar_system_animation_init;
 
-% Risolvo il problema di Lambert per tutta la missione (senza plot)
-LambertTotale
-
-%%Spacecraft_position_for_animation;					% computes the position of the spacecraft 
-								% for each day of the mission
+% Computes the position of the spacecraft for each day of the mission
+Spacecraft_position_for_animation
 
 %% Editable animation parameters
 
 % animation rates
 time_pause = 0;		% time [s] after each drawing. Set to zero to avoid pausing
-fr_skip = 0 +1;		% frame skip between each drawing
+fr_skip = 6;		% frame skip between each drawing
 
 % view angles
 View = [90 35];				% initial view
@@ -39,7 +37,9 @@ clf
 set(gcf, 'Renderer', 'zbuffer');
 set(gca, 'color', col_bkgnd)
 ax = gca;
-ax.GridColor = col_grid; 
+ax.GridColor = col_grid;
+% Colore della traiettoria dello spacecraft
+color = 'g';
 
 if movie_mode == 2
 	warning('Note that a 1080p resolution is needed for movie_mode = 2')
@@ -56,9 +56,8 @@ plot_orbit2(6,  time_vector(1,1), planet_linewidth)	    %Saturn
 plot_orbit2(7,  time_vector(1,1), planet_linewidth)     %Uran
  
 	
-%for d = 1:fr_skip:n_days
-for d = 1:100:n_days				% speed
-% for d = (n_days-10):fr_skip:n_days	% last days of the mission
+for d = 1:fr_skip:n_days			% speed
+    % for d = (n_days-10):fr_skip:n_days	% last days of the mission
 
 	%----------------------------------------------------------------------
 	%reset figure
@@ -90,6 +89,8 @@ for d = 1:100:n_days				% speed
 	[~, Saturn_now, ~, ~]  = planet_elements_and_sv(6, year_now, month_now, day_now, 0, 0, 0);
     %Uran (id = 7)
 	[~, Uran_now, ~, ~]    = planet_elements_and_sv(7, year_now, month_now, day_now, 0, 0, 0);
+    %Spacecraft
+    spcr_now = pos_spcr(:,d);
 	
 	
 	%% dirty trick for reaching ceres in the animation.
@@ -102,10 +103,6 @@ for d = 1:100:n_days				% speed
 	%[~, Ceres_now, ~, ~] = planet_elements_and_sv(11, ...
 	%							year_now, month_now, day_now, 0, 0, 0);
 	
-	%% SpaceCraft
-
-
-	%spcr_now = pos_spcr(d,:);
 	
 	%----------------------------------------------------------------------						
 	%%plot
@@ -122,15 +119,24 @@ for d = 1:100:n_days				% speed
     p_Uran      = plot3(Uran_now(1),Uran_now(2),Uran_now(3),'o','Color',col_uran, 'MarkerSize', dim_uran,'MarkerFaceColor',col_uran);
 
     %SPACECRAFT
+    
+    if d == 1 
+        c = circle_plot(spcr_now(1), spcr_now(2), radius);
+        ra = animatedline(spcr_now(1), spcr_now(2), spcr_now(3), "Color", color,'LineWidth', dim_spcr);
+    end
+    addpoints(ra, spcr_now(1), spcr_now(2), spcr_now(3));
+    drawnow;
+    c.Position(1) = spcr_now(1) - radius;
+    c.Position(2) = spcr_now(2) - radius;
+    drawnow;
 
-
-    %p_spcr		= plot3(spcr_now(1),spcr_now(2),spcr_now(3),'o','Color',col_spcr, 'MarkerSize', dim_spcr,'MarkerFaceColor',col_spcr);
-
-    %%sofar
-	%pos_tillnow = pos_spcr(1:d,:);
-	%plot3(pos_tillnow(:,1),pos_tillnow(:,2),pos_tillnow(:,3),...
-	%		'-','Color', col_spcr,'LineWidth', width_spcr);
-	%
+%     p_spcr		= plot3(spcr_now(1),spcr_now(2),spcr_now(3),'o','Color',col_spcr, 'MarkerSize', dim_spcr,'MarkerFaceColor',col_spcr);
+% 
+%     %sofar
+% 	pos_tillnow = pos_spcr(:,1:d);
+% 	plot3(pos_tillnow(1,:),pos_tillnow(2,:),pos_tillnow(3,:),...
+% 			'-','Color', col_spcr,'LineWidth', width_spcr);
+	
 	%%----------------------------------------------------------------------
 	% figure parameters update				
 	axis equal;
@@ -154,20 +160,22 @@ for d = 1:100:n_days				% speed
 	date = datetime(time_vector(d,:));
 	
 	%% update title
-	%if d <= day_mars
-	%	status_msg = ['Left Earth! To Mars...'];
-	%elseif d <= day_vesta 
-	%	status_msg = ['Mars Flyby done! To Vesta...'];
-	%elseif d <= day_left_vesta
-	%	status_msg = ['Park-orbit Vesta.'];
-	%elseif d < day_ceres
-	%	status_msg = ['Left Vesta! To Ceres...'];
-	%else 
-	%	status_msg = ['Ceres Reached.'];
-	%end
+% 	if d <= day_mars
+% 		status_msg = ['Left Earth! To Mars...'];
+% 	elseif d <= day_vesta 
+% 		status_msg = ['Mars Flyby done! To Vesta...'];
+% 	elseif d <= day_left_vesta
+% 		status_msg = ['Park-orbit Vesta.'];
+% 	elseif d < day_ceres
+% 		status_msg = ['Left Vesta! To Ceres...'];
+% 	else 
+% 		status_msg = ['Ceres Reached.'];
+% 	end
+
+    status_msg = 'Solar System';
 	
-	%%Title = [status_msg '   '  datestr(date), ' (day ', num2str(d), ' of ', num2str(n_days), ').'];
-	title("Solar System")
+	Title = [status_msg '   '  datestr(date), ' (day ', num2str(d), ' of ', num2str(n_days), ').'];
+    title(Title)
 	
 	drawnow;
 	
