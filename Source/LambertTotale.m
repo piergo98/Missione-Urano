@@ -43,6 +43,7 @@
 addpath './Script matlab'
 global mu
 deg = pi/180;
+color = 'g';
 
 % Colore della traiettoria dello spacecraft
 % color = 'g';
@@ -91,9 +92,9 @@ TA_final_j = rad2deg(coe_ej(6));
  
 % Plot of planets orbit and trajectory orbit
 
-% plot_orbit(3, 2022)
-% plot_traiettoria_spacecraft(coe, TA_init_e, TA_final_j, color)
-% plot_orbit(5, 2024)
+plot_traiettoria_spacecraft(coe_ej, TA_init_e, TA_final_j, color)
+plot_orbit(5, 2024)
+plot_orbit(3, 2022)
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -141,8 +142,8 @@ TA_final_s = rad2deg(coe_js(6));
 
 %   Plot of the orbit
 
-% plot_traiettoria_spacecraft(coe, TA_init_j, TA_final_s color)
-% plot_orbit(6, 2031)     % plot Saturn orbit
+plot_traiettoria_spacecraft(coe_js, TA_init_j, TA_final_s, color)
+plot_orbit(6, 2031)     % plot Saturn orbit
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -186,8 +187,8 @@ coe_su = coe_from_sv(r2_u, v2_l_u, mu);
 TA_final_u = rad2deg(coe_su(6));
 
 
-% plot_traiettoria_spacecraft(coe, TA_init_s, TA_final_u, color)
-% plot_orbit(7, 2035)     % plot Uranus orbit
+plot_traiettoria_spacecraft(coe_su, TA_init_s, TA_final_u, color)
+plot_orbit(7, 2035)     % plot Uranus orbit
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -47,7 +47,7 @@ for i = 1:length(dt)
     
     
     % Position of Jupiter at the arrival  (km)     
-    [coe2_j, r2_j, v2_j, jd2_j] = planet_elements_and_sv(5, 2024+i, 07, 01, 18, 00, 00);
+    [coe2_j, r2_j, v2_j, jd2_j] = planet_elements_and_sv(5, 2022+i, 07, 01, 18, 00, 00);
     
     string = 'pro';
     %...
@@ -70,7 +70,7 @@ for i = 1:length(dt)
     if d_theta(i) < 181 && d_theta(i) > 89
         % Plot of planets orbit and trajectory orbit
         plot_traiettoria_spacecraft(coe, TA1, TA2, 'g')
-        spcr_soi_in = SOI_input_point(coe, TA2, r2_j)
+        %spcr_soi_in = SOI_input_point(coe, TA2, r2_j)
         fprintf('\n TOF = %g\n', dt(i));
         fprintf('\n Index = %g \n', i);
         fprintf('\n Final speed = %g (Km/s)\n ', V_final)
