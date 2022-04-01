@@ -4,7 +4,7 @@ v_inf_down_Jupiter = v2_l_j - v2_j ;
 v_inf_down_norm_Jupiter = norm(v_inf_down_Jupiter); 
 
 a_flyby_Jupiter = - GM_jupiter/((v_inf_down_norm_Jupiter)^2);%semiaxis major 
-r_p_flyby_Jupiter = 1e5:1e5:4e7 ;  %hp  
+r_p_flyby_Jupiter = 1e5:5e4:1e6 ;  %hp  
 for i = 1:length(r_p_flyby_Jupiter)
 e_flyby_Jupiter(i) = 1-(r_p_flyby_Jupiter(i)/a_flyby_Jupiter); 
 
