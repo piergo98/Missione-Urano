@@ -15,5 +15,4 @@ v_fin_Jupiter = v_fin_Jupiter_trasp';
 
 %vettore posiione spacecraft dopo flyby
 
-r2_fin_j_trasp = ( R_j* r2_j' );
-r2_fin_j= r2_fin_j_trasp';
+r2_fin_j=r2_j+R_SOI_Jupiter;
