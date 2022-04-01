@@ -50,6 +50,7 @@ for i = 1:length(Ta_for_lambert)
     fprintf('\n Distance from Jupiter = %g (Km)\n ',r_p_flyby_Jupiter(j))
     fprintf('\n eccentricity = %g \n ',e_flyby_Jupiter)
     fprintf('\n eccentricity from coe = %g \n ',coe_flyby(2))
+    fprintf('\n-----------------------------------------------------\n')
     end
 
 end
