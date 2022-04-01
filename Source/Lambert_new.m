@@ -6,6 +6,10 @@
 
 [~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2026, 08, 01, 12, 00, 00);
 
+%definisco il tempo di volo
+
+t = year2seconds(2);
+
 %Eseguo un ciclo for che varia la posizione di rp e mi modifica delta
 GM_jupiter = 1.26686534e8; %[km^3/s^2] 
 v_inf_down_Jupiter = v2_l_j - v2_j ;  
@@ -24,12 +28,6 @@ delta_deg_Jupiter = rad2deg(delta_Jupiter);
 
 StateVector_flyby;
 
-%Trovo la posizione del pianeta Target
-
-[~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2026, 08, 01, 12, 00, 00);
-
-%definisco il tempo di volo
-t = year2seconds(2);
 %sposto il vettore posizione dello spacecraft lungo la direzione dopo il
 %flyby sfruttando l'anomalia vera
 
