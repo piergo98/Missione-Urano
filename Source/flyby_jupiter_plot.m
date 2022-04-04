@@ -38,10 +38,13 @@
 %}
 % -------------------------------------------------------------------
 % Define global variables state vector (r,v)
-flyby_jupiter1(r2_j,v_inf_down_Jupiter,f1_Jupiter,p_Jupiter,t_flyby_tot_Jupiter)
-function [y]= flyby_jupiter1(r2_j,v_inf_down_Jupiter,f1_Jupiter,p_Jupiter,t_flyby_tot_Jupiter)
+
+flyby_jupiter1(r2_j,v_inf_down_Jupiter,f1_Jupiter,p_Jupiter,t_flyby_tot_Jupiter,x1_int,y1_int,x2_int,y2_int,t_ke)
+function [y]= flyby_jupiter1(r2_j,v_inf_down_Jupiter,f1_Jupiter,p_Jupiter,t_flyby_tot_Jupiter,x1_int,y1_int,x2_int,y2_int,t_ke)
 
 GM_jupiter = 126686534; %[km^3/s^2]
+
+
 
 %clc; close all; clear all
 addpath './Script matlab'
@@ -57,13 +60,12 @@ R  = 69911;  %raggio giove
 m2 = 10000;   %massa Spacecraft
 
 t0 = 0;
-tf = t_flyby_tot_Jupiter; %dt in Lambert
+tf =2*t_ke; %dt in Lambert, probabilmente è sbagliato
 %...End input data
-
 
 %...Numerical integration:
 mu    = G*(m1 + m2);
-r1= [p_Jupiter*sin(f1_Jupiter),p_Jupiter*cos(f1_Jupiter),0];
+r1= [x2_int,y2_int,0];
 y0    = [r1 v_inf_down_Jupiter]';
 [t,y] = rkf45(@rates, [t0 tf], y0);
 
@@ -185,6 +187,7 @@ axis equal
 xlabel('km')
 ylabel('km')
 zlabel('km')
+autoscale
 title ('Trajectory flyby around jupiter')
 xlim([-2e5 2e5])
 ylim([-2e5 2e5])
