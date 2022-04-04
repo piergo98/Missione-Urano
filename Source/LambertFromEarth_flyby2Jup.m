@@ -2,6 +2,8 @@
 % Modifico vettore di posizione nel tempo in dipendenza dell'angolo di
 % Flyby.
 
+SOI_Earth;
+
 %Trovo la posizione del pianeta Target
 
 [~, r2_j, v2_j, ~] = planet_elements_and_sv(5, 2024, 10, 01, 12, 00, 00);
@@ -34,6 +36,8 @@ mu  = 1.327*10^11;
 coe_flyby = coe_from_sv(r2_fin_e,v_fin_Earth,mu);
 Ta_post_flyby = coe_flyby(6);
 Ta_for_lambert = Ta_post_flyby:10*(pi/180):2*pi;
+%plotto orbita di Giove
+plot_orbit(5, 2026);
 for i = 1:length(Ta_for_lambert)
     coe_new = coe_flyby;
     coe_new(6)= Ta_for_lambert(i);
@@ -42,16 +46,29 @@ for i = 1:length(Ta_for_lambert)
     d_theta = abs((Ta_post_flyby - Ta_for_lambert)*180/pi);
     d_V = v - V1;
     d_V_norm = norm(d_V);
+    
     if d_V_norm < 26
-    %fprintf('\n Starting speed = %s (Km/s)\n ', V1)
-    fprintf('\n Delta True anomaly = %g (deg)\n ', d_theta(i))
-    %fprintf('\n Starting speed = [%c %c %c] (Km/s)\n ', d_V(1),d_V(2), d_V(3))
-    fprintf('\n delta v = %s (Km/s)\n ', d_V_norm)
-    fprintf('\n Distance from Jupiter = %g (Km)\n ',r_p_flyby_Earth(j))
-    fprintf('\n eccentricity = %g \n ',e_flyby_Earth(j))
-    fprintf('\n eccentricity from coe = %g \n ',coe_flyby(2))
-    fprintf('\n starting point lambert = [%c %c %c] \n ',r(1),r(2),r(3))
-    fprintf('\n-----------------------------------------------------\n')
+
+        % Estrazione elementi orbitali orbita di trasferimento (using r1 and v1):
+        coe = coe_from_sv(r, V1, mu);
+        % Initial true anomaly:
+        TA1 = rad2deg(coe(6));
+    
+        % Estrazione elementi orbitali orbita di trasferimento (using r2 and v2):
+        coe = coe_from_sv(r2_j, V2, mu);
+        % Final true anomaly:
+        TA2 = rad2deg(coe(6));
+        % Plot of planets orbit and trajectory orbit
+        plot_traiettoria_spacecraft(coe, TA1, TA2, 'g')
+        %fprintf('\n Starting speed = %s (Km/s)\n ', V1)
+        fprintf('\n Delta True anomaly = %g (deg)\n ', d_theta(i))
+        %fprintf('\n Starting speed = [%c %c %c] (Km/s)\n ', d_V(1),d_V(2), d_V(3))
+        fprintf('\n delta v = %s (Km/s)\n ', d_V_norm)
+        fprintf('\n Distance from Jupiter = %g (Km)\n ',r_p_flyby_Earth(j))
+        fprintf('\n eccentricity = %g \n ',e_flyby_Earth(j))
+        fprintf('\n eccentricity from coe = %g \n ',coe_flyby(2))
+        fprintf('\n starting point lambert = [%c %c %c] \n ',r(1),r(2),r(3))
+        fprintf('\n-----------------------------------------------------\n')
     end
 
 end
