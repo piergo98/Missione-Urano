@@ -30,7 +30,6 @@
 % clear all; 
 clc
 addpath './Script matlab'
-global mu
 deg = pi/180;
 
 %...Data declaration:
@@ -47,7 +46,7 @@ dt = month2seconds(16);
     
     
     % Position of Earth at the arrival  (km)     
-    [coe2_e2, r2_e2, v2_e2, jd2_e2] = planet_elements_and_sv(3, 2023, 10, 01, 18, 00, 00);
+    [coe2_e2, r2_e2, v2_e2, jd2_e2] = planet_elements_and_sv(3, 2023, 04, 01, 18, 00, 00);
     
     string = 'pro';
     %...
@@ -67,7 +66,7 @@ dt = month2seconds(16);
     TA2 = rad2deg(coe(6));
     d_theta = abs(TA2 - TA1);
     V_final = norm(v2_l_e2);
-    if d_theta < 181 && d_theta > 89
+    if d_theta < 359 && d_theta > 0
         % Plot of planets orbit and trajectory orbit
         plot_traiettoria_spacecraft(coe, TA1, TA2, 'g')
         %spcr_soi_in = SOI_input_point(coe, TA2, r2_j)
