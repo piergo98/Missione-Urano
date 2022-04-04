@@ -4,11 +4,11 @@
 
 %Trovo la posizione del pianeta Target
 
-[~, r2_s, v2_s, ~] = planet_elements_and_sv(7, 2031, 04, 01, 12, 00, 00);
+[~, r2_s, v2_s, ~] = planet_elements_and_sv(7, 2032, 04, 01, 12, 00, 00);
 
 %definisco il tempo di volo
 
-t = year2seconds(3);
+t = year2seconds(4);
 
 %Eseguo un ciclo for che varia la posizione di rp e mi modifica delta
 GM_jupiter = 1.26686534e8; %[km^3/s^2] 
@@ -42,7 +42,7 @@ for i = 1:length(Ta_for_lambert)
     d_theta = abs((Ta_post_flyby - Ta_for_lambert)*180/pi);
     d_V = v - V1;
     d_V_norm = norm(d_V);
-    if d_V_norm < 15
+    if d_V_norm < 10
     %fprintf('\n Starting speed = %s (Km/s)\n ', V1)
     fprintf('\n Delta True anomaly = %g (deg)\n ', d_theta(i))
     fprintf('\n Starting speed = [%c %c %c] (Km/s)\n ', V1(1),V1(2), V1(3))
