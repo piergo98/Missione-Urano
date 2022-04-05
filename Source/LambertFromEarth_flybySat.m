@@ -6,7 +6,7 @@ SOI_Earth;
 
 %Trovo la posizione del pianeta Target
 
-[~, r2_j, v2_j, ~] = planet_elements_and_sv(6, 2030, 10, 03, 00, 00, 00);
+[~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2030, 10, 03, 00, 00, 00);
 
 %definisco il tempo di volo
 
@@ -28,7 +28,7 @@ delta_deg_Earth = rad2deg(delta_Earth);
 
 %Uso scrpit per calcolare state vector dopo flyby
 
-StateVector_flyby;
+StateVector_Earth;
 
 %sposto il vettore posizione dello spacecraft lungo la direzione dopo il
 %flyby sfruttando l'anomalia vera
@@ -37,17 +37,17 @@ coe_flyby = coe_from_sv(r2_fin_e,v_fin_Earth,mu);
 Ta_post_flyby = coe_flyby(6);
 Ta_for_lambert = Ta_post_flyby:10*(pi/180):Ta_post_flyby+pi;
 %plotto orbita di Giove
-plot_orbit(5, 2026);
+%plot_orbit(5, 2026);
 for i = 1:length(Ta_for_lambert)
     coe_new = coe_flyby;
     coe_new(6)= Ta_for_lambert(i);
     [r, v] = sv_from_coe(coe_new,mu);
-    [V1, V2] = lambert(r, r2_j, t, 'pro');
+    [V1, V2] = lambert(r, r2_s, t, 'pro');
     d_theta = abs((Ta_post_flyby - Ta_for_lambert)*180/pi);
     d_V = v - V1;
     d_V_norm = norm(d_V);
     
-    if d_V_norm < 40
+    if d_V_norm < 2
 
         % Estrazione elementi orbitali orbita di trasferimento (using r1 and v1):
         coe = coe_from_sv(r, V1, mu);
@@ -55,7 +55,7 @@ for i = 1:length(Ta_for_lambert)
         TA1 = rad2deg(coe(6));
     
         % Estrazione elementi orbitali orbita di trasferimento (using r2 and v2):
-        coe = coe_from_sv(r2_j, V2, mu);
+        coe = coe_from_sv(r2_s, V2, mu);
         % Final true anomaly:
         TA2 = rad2deg(coe(6));
         % Plot of planets orbit and trajectory orbit
