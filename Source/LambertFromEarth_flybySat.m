@@ -10,7 +10,7 @@ SOI_Earth;
 
 %definisco il tempo di volo
 
-t = year2seconds(6);
+t = year2seconds(7);
 
 %Eseguo un ciclo for che varia la posizione di rp e mi modifica delta
 GM_Earth = 3986004418; %[km^3/s^2] 
@@ -18,7 +18,7 @@ v_inf_down_Earth = v2_l_e2 - v2_e2 ;
 v_inf_down_norm_Earth = norm(v_inf_down_Earth); 
 
 a_flyby_Earth = - GM_Earth/((v_inf_down_norm_Earth)^2);%semiaxis major 
- r_p_flyby_Earth = 1e4:5e3:9e5 ;  %hp  
+r_p_flyby_Earth = 1e4:5e3:9e5 ;  %hp  
 %r_p_flyby_Jupiter = 1e5;
 for j = 1:length(r_p_flyby_Earth)
 e_flyby_Earth = 1-(r_p_flyby_Earth/a_flyby_Earth); 
