@@ -47,7 +47,7 @@ for i = 1:length(Ta_for_lambert)
     d_V = v - V1;
     d_V_norm = norm(d_V);
     
-    if d_V_norm < 2
+    if d_V_norm < 3
 
         % Estrazione elementi orbitali orbita di trasferimento (using r1 and v1):
         coe = coe_from_sv(r, V1, mu);

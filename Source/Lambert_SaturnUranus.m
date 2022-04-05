@@ -14,14 +14,14 @@ t = year2seconds(6);
 
 %Eseguo un ciclo for che varia la posizione di rp e mi modifica delta
 GM_saturn = 37931187; %[km^3/s^2] 
-v_inf_down_saturn = [-1.308904e+00 9.744000e+00 -2.282013e-01] - v2_u ;  
+v_inf_down_saturn = [-1.308904e+00 9.744000e+00 -2.282013e-01] - v2_s ;  
 v_inf_down_norm_saturn = norm(v_inf_down_saturn); 
 
-a_flyby_Saturn = - GM_saturn/((v_inf_down_norm_saturn)^2);%semiaxis major 
-r_p_flyby_saturn = 1e5:1e5:R_SOI_Saturn ;  %hp  
+a_flyby_saturn = - GM_saturn/((v_inf_down_norm_saturn)^2);%semiaxis major 
+r_p_flyby_saturn = 3e5:1e5:3e7 ;  %hp  
 %r_p_flyby_Jupiter = 1e5;
 for j = 1:length(r_p_flyby_saturn)
-e_flyby_saturn = 1-(r_p_flyby_saturn/a_flyby_saturn); 
+e_flyby_saturn(j) = 1-(r_p_flyby_saturn(j)/a_flyby_saturn); 
 
 delta_saturn = 2*asin(1/e_flyby_saturn(j)); %angolo tra gli asintoti 
 delta_deg_saturn = rad2deg(delta_saturn); 
@@ -47,7 +47,7 @@ for i = 1:length(Ta_for_lambert)
     d_V = v - V1;
     d_V_norm = norm(d_V);
     
-    if d_V_norm < 3
+    if d_V_norm < 2 && e_flyby_saturn(j) < 6
 
         % Estrazione elementi orbitali orbita di trasferimento (using r1 and v1):
         coe = coe_from_sv(r, V1, mu);
