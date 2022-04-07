@@ -10,7 +10,7 @@ SOI_Earth;
 
 %definisco il tempo di volo
 
-t = year2seconds(7);
+t = year2seconds(6);
 
 %Eseguo un ciclo for che varia la posizione di rp e mi modifica delta
 GM_Earth = 3986004418; %[km^3/s^2] 
@@ -47,7 +47,7 @@ for i = 1:length(Ta_for_lambert)
     d_V = v - V1;
     d_V_norm = norm(d_V);
     
-    if d_V_norm < 3
+    if d_V_norm < 13
 
         % Estrazione elementi orbitali orbita di trasferimento (using r1 and v1):
         coe = coe_from_sv(r, V1, mu);

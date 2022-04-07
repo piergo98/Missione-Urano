@@ -38,16 +38,16 @@ deg = pi/180;
 mu = 1.327*10^11;                   % mu sun (km^3/s^2)
 % TOF 
 % dt_y = year2seconds(1):year2seconds(1):year2seconds(10);
-dt = month2seconds(16);
+dt = month2seconds(17);
 %dt = year2seconds(0.1): year2seconds(0.1):year2seconds(2);
 
 %for i = 1:length(dt)
     % Position of Earth at the departure (km)
-    [coe1_e1, r1_e1, v1_e1, jd1_e1] = planet_elements_and_sv(3, 2022, 06, 01, 18, 00, 00);
+    [coe1_e1, r1_e1, v1_e1, jd1_e1] = planet_elements_and_sv(3, 2022, 10, 01, 18, 00, 00);
     
     
     % Position of Earth at the arrival  (km)     
-    [coe2_e2, r2_e2, v2_e2, jd2_e2] = planet_elements_and_sv(3, 2023, 10, 01, 18, 00, 00);
+    [coe2_e2, r2_e2, v2_e2, jd2_e2] = planet_elements_and_sv(3, 2024, 03, 01, 18, 00, 00);
     
     string = 'pro';
     %...

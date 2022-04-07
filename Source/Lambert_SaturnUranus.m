@@ -14,7 +14,7 @@ t = year2seconds(6);
 
 %Eseguo un ciclo for che varia la posizione di rp e mi modifica delta
 GM_saturn = 37931187; %[km^3/s^2] 
-v_inf_down_saturn = [-1.624530e+00 9.322171e+00 -1.801021e-01] - v2_s ;  
+v_inf_down_saturn = [-5.063960e+00 4.854841e+00 1.571872e+00] - v2_s ;  
 v_inf_down_norm_saturn = norm(v_inf_down_saturn); 
 
 a_flyby_saturn = - GM_saturn/((v_inf_down_norm_saturn)^2);%semiaxis major 
@@ -47,7 +47,7 @@ for i = 1:length(Ta_for_lambert)
     d_V = v - V1;
     d_V_norm = norm(d_V);
     
-    if d_V_norm < 1.7 && e_flyby_saturn(j) < 6
+    if d_V_norm < 3.9 && e_flyby_saturn(j) < 6
 
         % Estrazione elementi orbitali orbita di trasferimento (using r1 and v1):
         coe = coe_from_sv(r, V1, mu);
