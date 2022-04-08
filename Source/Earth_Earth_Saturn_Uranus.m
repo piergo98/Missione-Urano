@@ -39,10 +39,10 @@ mu = 1.327*10^11;                   % mu sun (km^3/s^2)
 % TOF 
 dt = month2seconds(17);
 
-[coe1_e1, r1_e1, v1_e1, jd1_e1] = planet_elements_and_sv(3, 2022, 10, 01, 18, 00, 00);
+[coe1_e1, r1_e1, v1_e1, jd1_e1] = planet_elements_and_sv(3, 2023, 02, 01, 18, 00, 00);
 
 
-[coe2_e2, r2_e2, v2_e2, jd2_e2] = planet_elements_and_sv(3, 2024, 03, 01, 18, 00, 00);
+[coe2_e2, r2_e2, v2_e2, jd2_e2] = planet_elements_and_sv(3, 2024, 07, 01, 18, 00, 00);
 
 string = 'pro';
 [v1_l_e1, v2_l_e2] = lambert(r1_e1, r2_e2, dt, string);
@@ -93,7 +93,7 @@ v_inf_down_Earth = v2_l_e2 - v2_e2 ;
 v_inf_down_norm_Earth = norm(v_inf_down_Earth); 
 
 a_flyby_Earth = - mu_Earth/((v_inf_down_norm_Earth)^2);%semiaxis major 
-r_p_flyby_Earth = 30000 ;  %rp  
+r_p_flyby_Earth = 10000 ;  %rp  
 
 e_flyby_Earth = 1-(r_p_flyby_Earth/a_flyby_Earth); 
     
@@ -107,25 +107,25 @@ StateVector_Earth;
 %sposto il vettore posizione dello spacecraft lungo la direzione dopo il
 %flyby sfruttando l'anomalia vera
 
-coe_flyby = coe_from_sv(r2_fin_e,v_fin_Earth,mu);
+coe_flyby_e = coe_from_sv(r2_fin_e,v_fin_Earth,mu);
 
 %anomalia vera in partenza dalla SOI della Terra
-Ta_post_flyby = coe_flyby(6);
+Ta_post_flyby = coe_flyby_e(6);
 
 %anomalia vera nel punto di partenza della traiettoria di Lambert fra la
 %Terra e Saturno
-Ta_for_lambert = Ta_post_flyby + 90*(pi/180);
+Ta_for_lambert = Ta_post_flyby + 50*(pi/180);
 
 %aggiorno l'anomalia vera per plottare la traiettoria
-coe_new = coe_flyby;
-coe_new(6)= Ta_for_lambert;
+coe_new_e = coe_flyby_e;
+coe_new_e(6)= Ta_for_lambert;
 
 %plotto la traiettoria fra SOI Terra e punto partenza di Lambert fra Terra
 %e Saturno
-plot_traiettoria_spacecraft(coe_new, rad2deg(Ta_post_flyby), rad2deg(Ta_for_lambert), 'g')
+plot_traiettoria_spacecraft(coe_new_e, rad2deg(Ta_post_flyby), rad2deg(Ta_for_lambert), 'g')
 
 %punto partenza lambert post flyby terra con arrivo su saturno
-[r, v] = sv_from_coe(coe_new,mu);
+[r, v] = sv_from_coe(coe_new_e,mu);
 
 [V1_l_2, V2_l_s] = lambert(r, r2_s, t, 'pro');
 
@@ -171,7 +171,7 @@ SOI_Saturn;
 
 %Trovo la posizione del pianeta Target
 
-[~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2036, 04, 03, 00, 00, 00);
+[~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2036, 07, 03, 00, 00, 00);
 
 %definisco il tempo di volo
 
@@ -183,7 +183,7 @@ v_inf_down_saturn = V2_l_s - v2_s ;
 v_inf_down_norm_saturn = norm(v_inf_down_saturn); 
 
 a_flyby_saturn = - GM_saturn/((v_inf_down_norm_saturn)^2);%semiaxis major 
-r_p_flyby_saturn = 1.8e6 ;  %hp  
+r_p_flyby_saturn = 500000 ;  %hp  
 %r_p_flyby_Jupiter = 1e5;
 
 e_flyby_saturn = 1-(r_p_flyby_saturn/a_flyby_saturn); 
@@ -197,16 +197,29 @@ stateVector_saturn;
 
 %sposto il vettore posizione dello spacecraft lungo la direzione dopo il
 %flyby sfruttando l'anomalia vera
-% mu  = 1.327*10^11;
-% coe_flyby = coe_from_sv(r2_fin_s,v_fin_saturn,mu);
-% Ta_post_flyby = coe_flyby(6);
-% Ta_for_lambert = Ta_post_flyby+ 20*(pi/180);
-%plotto orbita di Giove
-% %plot_orbit(5, 2026);
-%     coe_new = coe_flyby;
-%     coe_new(6)= Ta_for_lambert;
-%     [r, v] = sv_from_coe(coe_new,mu);
-    [V1_l_2, V2_l_u] = lambert(r2_fin_s, r2_u, t, 'pro');
+
+coe_flyby_s = coe_from_sv(r2_fin_s,v_fin_saturn,mu);
+
+%anomalia vera in partenza dalla SOI della Terra
+Ta_post_flyby = coe_flyby_s(6);
+
+%anomalia vera nel punto di partenza della traiettoria di Lambert fra la
+%Terra e Saturno
+Ta_for_lambert = Ta_post_flyby + 10*(pi/180);
+
+%aggiorno l'anomalia vera per plottare la traiettoria
+coe_new_s = coe_flyby;
+coe_new_s(6)= Ta_for_lambert;
+
+%plotto la traiettoria fra SOI Terra e punto partenza di Lambert fra Terra
+%e Saturno
+plot_traiettoria_spacecraft(coe_new_s, rad2deg(Ta_post_flyby), rad2deg(Ta_for_lambert), 'g')
+
+%punto partenza lambert post flyby terra con arrivo su saturno
+[r, v] = sv_from_coe(coe_new_s,mu);
+
+
+[V1_l_2, V2_l_u] = lambert(r, r2_u, t, 'pro');
     
     d_V_2 = v_fin_saturn - V1_l_2;
     d_V_norm = norm(d_V_2);

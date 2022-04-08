@@ -6,7 +6,7 @@ SOI_Earth;
 
 %Trovo la posizione del pianeta Target
 
-[~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2030, 10, 03, 00, 00, 00);
+[~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2030, 07, 03, 00, 00, 00);
 
 %definisco il tempo di volo
 
@@ -35,7 +35,7 @@ StateVector_Earth;
 mu  = 1.327*10^11;
 coe_flyby = coe_from_sv(r2_fin_e,v_fin_Earth,mu);
 Ta_post_flyby = coe_flyby(6);
-Ta_for_lambert = Ta_post_flyby:10*(pi/180):Ta_post_flyby+pi;
+Ta_for_lambert = Ta_post_flyby:10*(pi/180):Ta_post_flyby+180*(pi/180);
 %plotto orbita di Giove
 %plot_orbit(5, 2026);
 for i = 1:length(Ta_for_lambert)
@@ -47,7 +47,7 @@ for i = 1:length(Ta_for_lambert)
     d_V = v - V1;
     d_V_norm = norm(d_V);
     
-    if d_V_norm < 13
+    if d_V_norm < 6
 
         % Estrazione elementi orbitali orbita di trasferimento (using r1 and v1):
         coe = coe_from_sv(r, V1, mu);

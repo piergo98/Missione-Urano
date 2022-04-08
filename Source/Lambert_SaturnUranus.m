@@ -6,7 +6,7 @@ SOI_Saturn;
 
 %Trovo la posizione del pianeta Target
 
-[~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2036, 10, 03, 00, 00, 00);
+[~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2036, 06, 03, 00, 00, 00);
 
 %definisco il tempo di volo
 
@@ -14,7 +14,7 @@ t = year2seconds(6);
 
 %Eseguo un ciclo for che varia la posizione di rp e mi modifica delta
 GM_saturn = 37931187; %[km^3/s^2] 
-v_inf_down_saturn = [-5.063960e+00 4.854841e+00 1.571872e+00] - v2_s ;  
+v_inf_down_saturn = [-4.540322e+00 1.579986e+00 3.013845e-02] - v2_s ;  
 v_inf_down_norm_saturn = norm(v_inf_down_saturn); 
 
 a_flyby_saturn = - GM_saturn/((v_inf_down_norm_saturn)^2);%semiaxis major 
