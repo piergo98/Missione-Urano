@@ -1,4 +1,4 @@
-v_nav = [-7.271924e+00 5.351467e+00 2.524992e-01];
+v_nav = V2_l_u;
 v_sc = norm(v_nav);
 v_u = norm(v2_u);
 sc_produt = dot(v_nav,v2_u);
@@ -13,6 +13,6 @@ GM_Uranus = 5793939;
 ac_capt = -GM_Uranus - v_inf_capt^2;
 e_capt_gen = 1 - rp_c/ac_capt;
 v_f = sqrt(GM_Uranus/rp_c);
-delta_v = sqrt(v_inf_capt^2 + 2*v_f^2) - v_f;
+delta_v = sqrt(v_inf_capt^2 + 2*v_f^2) - v_f
 
 

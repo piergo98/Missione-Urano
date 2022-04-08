@@ -208,7 +208,7 @@ Ta_post_flyby = coe_flyby_s(6);
 Ta_for_lambert = Ta_post_flyby + 10*(pi/180);
 
 %aggiorno l'anomalia vera per plottare la traiettoria
-coe_new_s = coe_flyby;
+coe_new_s = coe_flyby_s;
 coe_new_s(6)= Ta_for_lambert;
 
 %plotto la traiettoria fra SOI Terra e punto partenza di Lambert fra Terra
