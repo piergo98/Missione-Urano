@@ -21,7 +21,7 @@
 %     figure(1)
     hold on;
 %     circle_plot(0, 0, R_SOI_Jupiter);
-%     circle_plot(0, 0, 69911);
+    circle_plot(0, 0, 69911);
     for i = 1:length(f)
 %       Legge oraria dello spacecraft in funzione dell'anomalia vera
         r = p / (1 + e*cosd(f(i)));
