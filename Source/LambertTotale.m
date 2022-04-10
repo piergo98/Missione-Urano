@@ -44,7 +44,6 @@ addpath './Script matlab'
 global mu
 deg = pi/180;
 color = 'g';
-
 % Colore della traiettoria dello spacecraft
 % color = 'g';
 
@@ -55,8 +54,9 @@ mu = 1.327*10^11;                   % mu sun (km^3/s^2)
 % TOF 
 t_Earth = datetime(2022,07,01,12,00,00);
 t_Jupiter = datetime(2024,07,21,12,00,00);
+t_Tot= t_Jupiter-t_day_ke;
 
-time_diff =days(t_Jupiter - t_Earth);
+time_diff =days(t_Tot - t_Earth);
 dt = time_diff*24*3600;
 %time_diff = between(t_Earth,t_Jupiter);
 %dt = caldays(time_diff)
@@ -71,13 +71,15 @@ dt = time_diff*24*3600;
 [~, r1_e, v1_e, ~] = planet_elements_and_sv(3, 2022, 07, 01, 12, 00, 00);
 
 % Position of Jupiter at the arrival  (km) 2024/07/21_12:00:00    
-[~, r2_j, v2_j, ~] = planet_elements_and_sv(5, 2024, 07, 01, 12, 00, 00);
+[~, r2_j, v2_j, ~] = planet_elements_and_sv(5,2024,07,21,12,00,00);
 r_giove = r2_j;
 string = 'pro';
 
 %...Algorithm 5.2:
-[v1_l_e, v2_l_j] = lambert(r1_e, r2_j, dt, string);
+[v1_l_e, v2_l_j] = lambert(r1_e, [r2_j(1)-x1_int,r2_j(2)-y1_int,r2_j(3)], dt, string);
 v_giove = v2_j;
+
+
 
 %...Algorithm 4.1 (using r1 and v1):
 coe_ej = coe_from_sv(r1_e, v1_l_e, mu);
@@ -85,7 +87,7 @@ coe_ej = coe_from_sv(r1_e, v1_l_e, mu);
 TA_init_e = rad2deg(coe_ej(6));
 
 %...Algorithm 4.1 (using r2 and v2):
-coe_ej = coe_from_sv(r2_j, v2_l_j, mu);
+coe_ej = coe_from_sv([r2_j(1)-x1_int,r2_j(2)-y1_int,r2_j(3)], v2_l_j, mu);
 %...Save the final true anomaly:
 TA_final_j = rad2deg(coe_ej(6));
 
@@ -93,8 +95,12 @@ TA_final_j = rad2deg(coe_ej(6));
 % Plot of planets orbit and trajectory orbit
 
 plot_traiettoria_spacecraft(coe_ej, TA_init_e, TA_final_j, color)
+%flyby_jupiter_plot;
 plot_orbit(5, 2024)
 plot_orbit(3, 2022)
+SOI_JUPITER;
+
+%ok
 
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -108,42 +114,45 @@ plot_orbit(3, 2022)
 
 %aggiorno la data di partenza da Giove stimandola dal tempo di flyby
 %t_Jupiter = datetime(2024,08,01,12,00,00);
-t_Jupiter = datetime(2024, 07, 24, 08, 14, 54);
-t_Saturn = datetime(2031, 04, 01, 12, 00, 00);
-  
-time_diff = days(t_Saturn - t_Jupiter);
+t_Jupiter = datetime(2024,07,21,12,00,00)+(2*t_day_ke);        %aggiunto (6 mesi e 16 giorni) per flyby (prima era 2024,7,24-> considerando 3 gg x flyby) 
+t_Saturn = datetime(2031, 10, 1, 10, 46, 41);        %(4,10)
+t_Tot = t_Saturn-t_day_ke_s;
+
+time_diff = days(t_Tot - t_Jupiter);
 dt = time_diff*24*3600;
 
 
 % Position of Jupiter at the departure (km) 2024/07/21_12:00:00 
 %[coe1_j, r1_j, v1_j, jd1_j] = planet_elements_and_sv(5, 2024, 07, 02, 00, 00, 00);
-[~, r1_j, v1_j, ~] = planet_elements_and_sv(5, 2024, 07, 24, 08, 14, 54);
+[~, r1_j, v1_j, ~] = planet_elements_and_sv(5, 2024, 10,2, 14, 21, 11);    %(prima era 2024,7,24,8,14,54)
 
 % Position of Saturn at the arrival  (km) 2031/07/27_12:00:00     
-[~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2031, 04, 01, 12, 00, 00);
+[~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2031, 10, 1, 10, 46, 41);      %(2031, 4, 10, 12, 00, 00)
 
 
 % TOF (s)
 
 string = 'pro';
 
-[v1_l_j, v2_l_s] = lambert(r1_j, r2_s, dt, string);
+[v1_l_j, v2_l_s] = lambert([r1_j(1)+x2_int,r1_j(2)+y2_int,r1_j(3)],[r2_s(1)-x1_int_s,r2_s(2)-y1_int_s,r2_s(3)], dt, string);
 
 
 %...Algorithm 4.1 (using r1 and v1):
-coe_js = coe_from_sv(r1_j, v1_l_j, mu);
+coe_js = coe_from_sv([r1_j(1)+x2_int,r1_j(2)+y2_int,r1_j(3)], v1_l_j, mu);
 %...Save the initial true anomaly:
 TA_init_j = rad2deg(coe_js(6));
 
 %...Algorithm 4.1 (using r2 and v2):
-coe_js = coe_from_sv(r2_s, v2_l_s, mu);
+coe_js = coe_from_sv([r2_s(1)-x1_int_s,r2_s(2)-y1_int_s,r2_s(3)], v2_l_s, mu);
 %...Save the final true anomaly:
 TA_final_s = rad2deg(coe_js(6));
 
 %   Plot of the orbit
 
-plot_traiettoria_spacecraft(coe_js, TA_init_j, TA_final_s, color)
+plot_traiettoria_spacecraft(coe_js,TA_init_j,TA_final_s, color)
+%plot_orbit(5,2025)
 plot_orbit(6, 2031)     % plot Saturn orbit
+SOI_Saturn;
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -153,7 +162,7 @@ plot_orbit(6, 2031)     % plot Saturn orbit
 
 
 % TOF
-t_Saturn = datetime(2031, 04, 04, 15, 45, 41);
+t_Saturn = datetime(2031, 10, 1, 10, 46, 41)+(2*t_day_ke_s);
 t_Uranus = datetime(2035, 12, 25, 12, 00, 00);
 
 time_diff = days(t_Uranus - t_Saturn);
@@ -161,7 +170,7 @@ dt = time_diff*24*3600;
 
 
 % Position of Saturn at the departure (km) 2031/07/27_12:00:00  
-[~, r1_s, v1_s, ~] = planet_elements_and_sv(6, 2031, 04, 04, 15, 45, 41);
+[~, r1_s, v1_s, ~] = planet_elements_and_sv(6, 2032, 1, 24, 12, 48, 41);
 
 % % Position of Uranus at the arrival  (km) 2028/06/09_12:00:00
 % [coe2_u, r2_u, v2_u, jd2_u] = planet_elements_and_sv(6, 2028, 06, 09, 12, 00, 00);
@@ -174,10 +183,10 @@ dt = time_diff*24*3600;
 string = 'pro';
 
 %...Algorithm 5.2:
-[v1_l_s, v2_l_u] = lambert(r1_s, r2_u, dt, string);
+[v1_l_s, v2_l_u] = lambert([r1_s(1)+x2_int_s,r1_s(2)+y2_int_s,r1_s(3)], r2_u, dt, string);
 
 %...Algorithm 4.1 (using r1 and v1):
-coe_su = coe_from_sv(r1_s, v1_l_s, mu);
+coe_su = coe_from_sv([r1_s(1)+x2_int_s,r1_s(2)+y2_int_s,r1_s(3)], v1_l_s, mu);
 %...Save the initial true anomaly:
 TA_init_s = rad2deg(coe_su(6));
 
@@ -189,6 +198,7 @@ TA_final_u = rad2deg(coe_su(6));
 
 plot_traiettoria_spacecraft(coe_su, TA_init_s, TA_final_u, color)
 plot_orbit(7, 2035)     % plot Uranus orbit
+SOI_uranus
 
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
