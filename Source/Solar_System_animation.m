@@ -15,10 +15,11 @@ addpath(genpath("Script matlab"));
 addpath(genpath("Animation"));
 
 % Init all par, constants and plot parameters
-solar_system_animation_init;
+solar_system_animation_init
 
 % Computes the position of the spacecraft for each day of the mission
-Spacecraft_position_for_animation
+Spacecraft_position_for_JSU
+% Spacecraft_position_for_EESU
 
 %% Editable animation parameters
 
@@ -32,7 +33,7 @@ spinlon = -45;				% how much view angle change long [grad]
 spinlat = -29;				% how much view angle change lat [grad]
 
 %% Solar System Plot and Animation
-figh = figure(1);
+figh = figure(3);
 clf 
 set(gcf, 'Renderer', 'zbuffer');
 set(gca, 'color', col_bkgnd)

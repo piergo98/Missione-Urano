@@ -17,7 +17,7 @@ Epark_radius = 200;		%[km]
 Epark_inclination = 0;	%[rad]
 
 % time_vector, a row for each day of the mission
-time_vector = ymd_gen([2022, 07, 01],[2035, 12, 25]);
+time_vector = ymd_gen([2022, 10, 01],[2036, 4, 3]);
 n_days = size(time_vector,1);
 
 %% Mission info
@@ -36,18 +36,6 @@ n_days = size(time_vector,1);
     %%- 3: at Vesta departure (to Ceres) -> 5/9/12
     %%- 4: at Ceres arrival (from Vesta) -> 5/3/15
 %}
-
-%% Qui è ancora tutto da definire
-%Earth
-% [Earth_coe0, Earth_r0, Earth_v0, ~] = planet_elements_and_sv(3,2022,9,27,0,0,0);
-% [Earth_coe1, Earth_r1, Earth_v1, ~] = planet_elements_and_sv(3,2024,2,17,0,0,0);
-
-%%Mars
-%[Mars_coe0, Mars_r0, Mars_v0, ~] = planet_elements_and_sv(4,2024,9,27,0,0,0);
-%[Mars_coe1, Mars_r1, Mars_v1, ~] = planet_elements_and_sv(4,2028,2,17,0,0,0);
-%[Mars_coe2, Mars_r2, Mars_v2, ~] = planet_elements_and_sv(4,2029,7,16,0,0,0);
-
-
 %% Plots Parameters
 
 % init of status msg
