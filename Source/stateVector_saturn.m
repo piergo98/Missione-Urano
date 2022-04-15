@@ -15,4 +15,4 @@ delta_V_saturn = [-1.308904e+00 9.744000e+00 -2.282013e-01] - v_fin_saturn;
 norm_delta_V_saturn = norm(delta_V_saturn);
 
 %posizione dopo flyby
-r2_fin_s = r2_s + R_SOI_Saturn^1/3;
+r2_fin_s = r2_s;

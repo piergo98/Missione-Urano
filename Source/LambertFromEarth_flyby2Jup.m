@@ -6,11 +6,11 @@ SOI_Earth;
 
 %Trovo la posizione del pianeta Target
 
-[~, r2_j, v2_j, ~] = planet_elements_and_sv(5, 2024, 10, 01, 12, 00, 00);
+[~, r2_j, v2_j, ~] = planet_elements_and_sv(5, 2025, 11, 01, 12, 00, 00);
 
 %definisco il tempo di volo
 
-t = year2seconds(1);
+t = year2seconds(2);
 
 %Eseguo un ciclo for che varia la posizione di rp e mi modifica delta
 GM_Earth = 3986004418; %[km^3/s^2] 
@@ -35,7 +35,7 @@ StateVector_Earth;
 mu  = 1.327*10^11;
 coe_flyby = coe_from_sv(r2_fin_e,v_fin_Earth,mu);
 Ta_post_flyby = coe_flyby(6);
-Ta_for_lambert = Ta_post_flyby:10*(pi/180):2*pi;
+Ta_for_lambert = Ta_post_flyby:10*(pi/180):200*(pi/180);
 %plotto orbita di Giove
 plot_orbit(5, 2026);
 for i = 1:length(Ta_for_lambert)
@@ -47,7 +47,7 @@ for i = 1:length(Ta_for_lambert)
     d_V = v - V1;
     d_V_norm = norm(d_V);
     
-    if d_V_norm < 26
+    if d_V_norm < 2.1
 
         % Estrazione elementi orbitali orbita di trasferimento (using r1 and v1):
         coe = coe_from_sv(r, V1, mu);
@@ -59,10 +59,12 @@ for i = 1:length(Ta_for_lambert)
         % Final true anomaly:
         TA2 = rad2deg(coe(6));
         % Plot of planets orbit and trajectory orbit
-        plot_traiettoria_spacecraft(coe, TA1, TA2, 'g')
+        %plot_traiettoria_spacecraft(coe, TA1, TA2, 'g')
         %fprintf('\n Starting speed = %s (Km/s)\n ', V1)
         fprintf('\n Delta True anomaly = %g (deg)\n ', d_theta(i))
-        %fprintf('\n Starting speed = [%c %c %c] (Km/s)\n ', d_V(1),d_V(2), d_V(3))
+        fprintf('\n Starting speed lambert = [%c %c %c] (Km/s)\n ', V1(1),V1(2), V1(3))
+        fprintf('\n Final speed lambert = [%c %c %c] (Km/s)\n ', V2(1),V2(2), V2(3))
+        fprintf('\n Actual speed spacecraft = [%c %c %c] (Km/s)\n ', v(1),v(2), v(3))
         fprintf('\n delta v = %s (Km/s)\n ', d_V_norm)
         fprintf('\n Distance from Jupiter = %g (Km)\n ',r_p_flyby_Earth(j))
         fprintf('\n eccentricity = %g \n ',e_flyby_Earth(j))

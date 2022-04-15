@@ -38,22 +38,22 @@ deg = pi/180;
 mu = 1.327*10^11;                   % mu sun (km^3/s^2)
 % TOF 
 % dt_y = year2seconds(1):year2seconds(1):year2seconds(10);
-dt_m = month2seconds(3):month2seconds(1):month2seconds(8);
-dt = year2seconds(1): year2seconds(1):year2seconds(13);
+%dt_m = month2seconds(3):month2seconds(1):month2seconds(8);
+dt = year2seconds(2);
 
-for i = 1:length(dt)
+% for i = 1:length(dt)
     % Position of Earth at the departure (km)
-    [coe1_e, r1_e, v1_e, jd1_e] = planet_elements_and_sv(3, 2022, 06, 01, 18, 00, 00);
+    [coe1_e, r1_e, v1_e, jd1_e] = planet_elements_and_sv(3, 2023, 12, 01, 18, 00, 00);
     
     
     % Position of Jupiter at the arrival  (km)     
-    [coe2_j, r2_j, v2_j, jd2_j] = planet_elements_and_sv(5, 2022+i, 07, 01, 18, 00, 00);
+    [coe2_j, r2_j, v2_j, jd2_j] = planet_elements_and_sv(5, 2025, 12, 01, 18, 00, 00);
     
     string = 'pro';
     %...
     %dt = year2seconds(3)+ month2seconds(2)+days2seconds(9);     % Total TOF (speriamo)
     %...Algorithm 5.2:
-    [v1_l_e, v2_l_j] = lambert(r1_e, r2_j, dt(i), string);
+    [v1_l_e, v2_l_j] = lambert(r1_e, r2_j, dt, string);
     
     
     % Estrazione elementi orbitali orbita di trasferimento (using r1 and v1):
@@ -65,19 +65,19 @@ for i = 1:length(dt)
     coe = coe_from_sv(r2_j, v2_l_j, mu);
     % Final true anomaly:
     TA2 = rad2deg(coe(6));
-    d_theta(i) = (TA2 - TA1);
-    V_final = norm(v2_l_j);
-    if d_theta(i) < 181 && d_theta(i) > 89
-        % Plot of planets orbit and trajectory orbit
-        plot_traiettoria_spacecraft(coe, TA1, TA2, 'g')
-        %spcr_soi_in = SOI_input_point(coe, TA2, r2_j)
-        fprintf('\n TOF = %g\n', dt(i));
-        fprintf('\n Index = %g \n', i);
-        fprintf('\n Final speed = %g (Km/s)\n ', V_final)
-        fprintf('\n Delta True Anomaly = %g (deg)\n', d_theta(i));
-        fprintf('\n-----------------------------------------------------\n')
-    end
-end
+%     d_theta(i) = (TA2 - TA1);
+%     V_final = norm(v2_l_j);
+%     if d_theta(i) < 181 && d_theta(i) > 89
+%         % Plot of planets orbit and trajectory orbit
+%         plot_traiettoria_spacecraft(coe, TA1, TA2, 'g')
+%         %spcr_soi_in = SOI_input_point(coe, TA2, r2_j)
+%         fprintf('\n TOF = %g\n', dt(i));
+%         fprintf('\n Index = %g \n', i);
+%         fprintf('\n Final speed = %g (Km/s)\n ', V_final)
+%         fprintf('\n Delta True Anomaly = %g (deg)\n', d_theta(i));
+%         fprintf('\n-----------------------------------------------------\n')
+%     end
+% end
 
 plot_orbit(5, 2024)
 plot_orbit(3, 2022)
