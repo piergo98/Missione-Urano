@@ -6,11 +6,11 @@ SOI_Earth;
 
 %Trovo la posizione del pianeta Target
 
-[~, r2_j, v2_j, ~] = planet_elements_and_sv(5, 2025, 11, 01, 12, 00, 00);
+[~, r2_j, v2_j, ~] = planet_elements_and_sv(5, 2035, 07, 01, 12, 00, 00);
 
 %definisco il tempo di volo
 
-t = year2seconds(2);
+t = year2seconds(3);
 
 %Eseguo un ciclo for che varia la posizione di rp e mi modifica delta
 GM_Earth = 3986004418; %[km^3/s^2] 
@@ -48,16 +48,22 @@ for i = 1:length(Ta_for_lambert)
     d_V_norm = norm(d_V);
     
     if d_V_norm < 2.1
-
+        %calcolo del tempo (in sec) per sposatrmi sull'elissoide nel punto in cui
+        %faccio lambert
+        dT = time_post_flyby(Ta_post_flyby, Ta_for_lambert(i), coe_flyby(7), ...
+            coe_flyby(2), mu); 
+        %tempo riscritto 
+         [years, months, days, hours, minutes, seconds] = sec2date(dT);
+        TBF = [years, months, days, hours, minutes, seconds]
         % Estrazione elementi orbitali orbita di trasferimento (using r1 and v1):
         coe = coe_from_sv(r, V1, mu);
         % Initial true anomaly:
-        TA1 = rad2deg(coe(6));
+        TA1(i,j) = rad2deg(coe(6));
     
         % Estrazione elementi orbitali orbita di trasferimento (using r2 and v2):
         coe = coe_from_sv(r2_j, V2, mu);
         % Final true anomaly:
-        TA2 = rad2deg(coe(6));
+        TA2(i,j) = rad2deg(coe(6));
         % Plot of planets orbit and trajectory orbit
         %plot_traiettoria_spacecraft(coe, TA1, TA2, 'g')
         %fprintf('\n Starting speed = %s (Km/s)\n ', V1)
@@ -70,6 +76,8 @@ for i = 1:length(Ta_for_lambert)
         fprintf('\n eccentricity = %g \n ',e_flyby_Earth(j))
         fprintf('\n eccentricity from coe = %g \n ',coe_flyby(2))
         fprintf('\n starting point lambert = [%c %c %c] \n ',r(1),r(2),r(3))
+        fprintf('\n time before lambert = %g \n ',dT)
+        fprintf('\n indices = [%g %g] \n ',i , j)
         fprintf('\n-----------------------------------------------------\n')
     end
 
