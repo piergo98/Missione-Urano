@@ -74,7 +74,7 @@ V_final = norm(v2_l_e2);
 % plot_orbit(5,2030);
 
 
-%% Calcolo per risolvere Lambert dopo Flyby su un pianeta
+%% Calcolo per risolvere flyby e Lambert dopo Flyby sulla Terra
 % Modifico vettore di posizione nel tempo in dipendenza dell'angolo di
 % Flyby.
 
@@ -108,6 +108,11 @@ TA_post_flyby = rad2deg(coe_flyby(6));
 % Anomalia vera nel punto di partenza della traiettoria di Lambert fra la
 % Terra e Saturno
 TA_for_lambert = TA_post_flyby + 90;
+
+% Calcolo delta T su traiettoria ellissoidale
+a = coe_flyby(7);
+e = coe_flyby(2);
+dT = time_post_flyby(TA_post_flyby, TA_for_lambert, a, e, mu);
 
 % Aggiorno il valore dell'anomalia vera per ottenere i coe prima del dV
 coe_flyby(6) = deg2rad(TA_for_lambert);

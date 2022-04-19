@@ -47,7 +47,8 @@ end
 %% Flyby orbit
 % from (1/3/2024) to (3/4/2024)
 % Giorni in cui lo spacecraft sta sull'orbita ottenuta dal flyby
-fl_days = datenum([2024 4 3]) - datenum([2024 3 1]);
+% fl_days = datenum([2024 4 3]) - datenum([2024 3 1]);
+fl_days = ceil(dT / days2seconds(1));
 
 Delta_TA_fl = abs(TA_for_lambert - TA_post_flyby);
 % Variazione di anomalia vera in un giorno

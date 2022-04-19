@@ -18,8 +18,8 @@ addpath(genpath("Animation"));
 solar_system_animation_init
 
 % Computes the position of the spacecraft for each day of the mission
-Spacecraft_position_for_JSU
-% Spacecraft_position_for_EESU
+% Spacecraft_position_for_JSU
+Spacecraft_position_for_EESU
 
 %% Editable animation parameters
 
