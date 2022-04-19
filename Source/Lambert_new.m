@@ -4,6 +4,7 @@
 
 %Trovo la posizione del pianeta Target
 
+<<<<<<< HEAD
 [~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2038, 12, 01, 12, 00, 00);
 
 %definisco il tempo di volo
@@ -12,6 +13,14 @@ t = year2seconds(13);
 
 %definisco velocità finale (opzionale se l'ho definita in precedenza)
 v2_l_j = [-4.834634e+00 1.056403e-01 4.808383e-03];
+=======
+[~, r2_s, v2_s, ~] = planet_elements_and_sv(7, 2032, 04, 01, 12, 00, 00);
+
+%definisco il tempo di volo
+
+t = year2seconds(4);
+
+>>>>>>> Grafica
 %Eseguo un ciclo for che varia la posizione di rp e mi modifica delta
 GM_jupiter = 1.26686534e8; %[km^3/s^2] 
 v_inf_down_Jupiter = v2_l_j - v2_j ;  
@@ -28,23 +37,39 @@ delta_deg_Jupiter = rad2deg(delta_Jupiter);
 
 %Uso scrpit per calcolare state vector dopo flyby
 
+<<<<<<< HEAD
 StateVector_JUPITER;
+=======
+StateVector_flyby;
+>>>>>>> Grafica
 
 %sposto il vettore posizione dello spacecraft lungo la direzione dopo il
 %flyby sfruttando l'anomalia vera
 mu  = 1.327*10^11;
 coe_flyby = coe_from_sv(r2_fin_j,v_fin_Jupiter,mu);
 Ta_post_flyby = coe_flyby(6);
+<<<<<<< HEAD
 Ta_for_lambert = Ta_post_flyby:10*(pi/180):220*(pi/180);
+=======
+Ta_for_lambert = Ta_post_flyby:10*(pi/180):2*pi;
+>>>>>>> Grafica
 for i = 1:length(Ta_for_lambert)
     coe_new = coe_flyby;
     coe_new(6)= Ta_for_lambert(i);
     [r, v] = sv_from_coe(coe_new,mu);
+<<<<<<< HEAD
     [V1, V2] = lambert(r, r2_u, t, 'pro');
     d_theta = abs((Ta_post_flyby - Ta_for_lambert)*180/pi);
     d_V = v - V1;
     d_V_norm = norm(d_V);
     if d_V_norm < 6 && abs(r(2)) < abs(r2_u(2)) 
+=======
+    [V1, V2] = lambert(r, r2_s, t, 'pro');
+    d_theta = abs((Ta_post_flyby - Ta_for_lambert)*180/pi);
+    d_V = v - V1;
+    d_V_norm = norm(d_V);
+    if d_V_norm < 10
+>>>>>>> Grafica
     %fprintf('\n Starting speed = %s (Km/s)\n ', V1)
     fprintf('\n Delta True anomaly = %g (deg)\n ', d_theta(i))
     fprintf('\n Starting speed = [%c %c %c] (Km/s)\n ', V1(1),V1(2), V1(3))

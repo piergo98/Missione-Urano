@@ -39,7 +39,7 @@
 % -------------------------------------------------------------------
 % Define global variables state vector (r,v)
 flyby_jupiter1(r2_j,v_inf_down_Jupiter,f1_Jupiter,p_Jupiter,t_flyby_tot_Jupiter)
-function [y]= flyby_jupiter1(r2_j,v_inf_down_Jupiter,f1_Jupiter,p_Jupiter,t_flyby_tot_Jupiter)
+function [y]= flyby_jupiter1(r2_j, v_inf_down_Jupiter, f1_Jupiter, p_Jupiter, t_flyby_tot_Jupiter)
 
 GM_jupiter = 126686534; %[km^3/s^2]
 
