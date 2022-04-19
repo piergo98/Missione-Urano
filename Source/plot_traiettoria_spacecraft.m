@@ -12,7 +12,7 @@ function plot_traiettoria_spacecraft(coe, TA_i, TA_f, color)
     RA = coe(3);        % Ascensione retta
     incl = coe(4);      % Inclinazione orbita di trasferimento
     w = coe(5);         % Argomento del periasse
-    a = coe(7);
+%     a = coe(7);
     
     radius = 6e3;
     mu = 1.327*10^11;   % mu sun (km^2/s^3)
@@ -36,7 +36,12 @@ function plot_traiettoria_spacecraft(coe, TA_i, TA_f, color)
     
     % Passaggio da perifocale a eliocentrico per rappresentare l'orbita in 3D
     % il centro è sempre il sole
-    Q_pX = (R3_w*R1_i*R3_W)';        
+    Q_pX = (R3_w*R1_i*R3_W)'; 
+
+    % Disambiguità per TA_i > TA_f
+    if (TA_i > TA_f)
+        TA_f = TA_f + 360;
+    end
     
     % hold on
     f = TA_i:0.5:TA_f;
