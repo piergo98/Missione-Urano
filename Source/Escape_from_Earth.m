@@ -12,9 +12,12 @@ v_infp_mod = norm(v_infp);
 v_park = sqrt(mu_e/r_orbit);    % parking orbit velocity
 
 v_burn = sqrt(v_infp_mod^2 + 2*v_park^2);   % velocity at the perigee of the hyperbola
-D_v_escape = v_burn - v_park % velocity variation to escape
+D_v_escape = v_burn - v_park;        % velocity variation to escape
 
 a = - mu_e / v_infp_mod^2;  % hyperbola semiaxis
 e = 1 - (r_orbit/a);        % hyperbola eccentricity
 
-delta = 2*asind(1/e)        % angle between hyperbola asintoti
+delta = 2*asind(1/e);       % angle between hyperbola asintoti
+
+fprintf('\n Delta V Escape = %g (deg)\n ', D_v_escape);
+fprintf('\n delta angle = %g (Km/s)\n ', delta);

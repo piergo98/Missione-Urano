@@ -164,7 +164,7 @@ plot_traiettoria_spacecraft(coe_eu, TA1_eu, TA2_eu, 'r');
 % fprintf('\n Final speed = [%c %c %c] (Km/s)\n ', V2(1),V2(2), V2(3))
 % fprintf('\n Actual speed of sp = [%c %c %c] (Km/s)\n ', v(1),v(2), v(3))
 fprintf('\n delta v = %s (Km/s)\n ', d_V_norm)
-fprintf('\n Distance from Jupiter = %g (Km)\n ',r_p_flyby_Earth)
+fprintf('\n Perigee flyby Earth = %g (Km)\n ',r_p_flyby_Earth)
 fprintf('\n eccentricity = %g \n ',e_flyby_Earth)
 fprintf('\n eccentricity from coe = %g \n ',coe_eu(2))
 fprintf('\n starting point lambert = [%c %c %c] \n ',r(1),r(2),r(3))
