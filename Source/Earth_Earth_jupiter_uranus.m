@@ -181,18 +181,18 @@ SOI_JUPITER;
 t = year2seconds(6);
 
 %Eseguo un ciclo for che varia la posizione di rp e mi modifica delta
-GM_saturn = 37931187; %[km^3/s^2] 
-v_inf_down_saturn = V2_l_j - v2_j ;  
-v_inf_down_norm_saturn = norm(v_inf_down_saturn); 
+GM_jupiter = 126686534; %[km^3/s^2] 
+v_inf_down_jupiter = V2_l_j - v2_j ;  
+v_inf_down_norm_saturn = norm(v_inf_down_jupiter); 
 
-a_flyby_saturn = - GM_saturn/((v_inf_down_norm_saturn)^2);%semiaxis major 
-r_p_flyby_saturn = 650000 ;  %hp  
+a_flyby_jupiter = - GM_jupiter/((v_inf_down_norm_saturn)^2);%semiaxis major 
+r_p_flyby_jupiter = 650000 ;  %hp  
 %r_p_flyby_Jupiter = 1e5;
 
-e_flyby_saturn = 1-(r_p_flyby_saturn/a_flyby_saturn); 
+e_flyby_jupiter = 1-(r_p_flyby_jupiter/a_flyby_jupiter); 
 
-delta_saturn = 2*asin(1/e_flyby_saturn); %angolo tra gli asintoti 
-delta_deg_saturn = rad2deg(delta_saturn); 
+delta_Jupiter = 2*asin(1/e_flyby_jupiter); %angolo tra gli asintoti 
+delta_deg_Jupiter = rad2deg(delta_Jupiter); 
 
 %Uso scrpit per calcolare state vector dopo flyby
 
@@ -241,4 +241,4 @@ TA2_ju = rad2deg(coe_ju(6));
 % Plot of planets orbit and trajectory orbit
 plot_orbit(7,2036)
 plot_traiettoria_spacecraft(coe_ju, TA1_ju, TA2_ju , 'g');
-plot_orbit(1,2036)
+plot_orbit(5,2036)

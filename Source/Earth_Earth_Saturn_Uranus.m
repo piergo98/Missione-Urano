@@ -62,15 +62,15 @@ V_final = norm(v2_l_e2);
 
 % if d_theta < 181 && d_theta > 89
 % %     Plot of planets orbit and trajectory orbit
-%     plot_traiettoria_spacecraft(coe_ee, TA1_ee, TA2_ee, 'g')
+    plot_traiettoria_spacecraft(coe_ee, TA1_ee, TA2_ee, 'g')
 %     fprintf('\n TOF = %g\n', dt);
 %     fprintf('\n Final speed = %g (Km/s)\n ', V_final)
 %     fprintf('\n Delta True Anomaly = %g (deg)\n', d_theta);
 %     fprintf('\n-----------------------------------------------------\n')
 % end
 
-% plot_orbit(3, 2022)
-% plot_orbit(4,2030);
+ plot_orbit(3, 2022)
+ plot_orbit(4,2030);
 % plot_orbit(5,2030);
 
 
@@ -119,7 +119,7 @@ coe_flyby(6) = deg2rad(TA_for_lambert);
 
 %plotto la traiettoria fra SOI Terra e punto partenza di Lambert fra Terra
 %e Saturno
-% plot_traiettoria_spacecraft(coe_flyby, TA_post_flyby, TA_for_lambert, 'g')
+ plot_traiettoria_spacecraft(coe_flyby, TA_post_flyby, TA_for_lambert, 'g')
 
 %% Punto partenza lambert post flyby terra con arrivo su saturno
 % Trovo la posizione di Saturno
@@ -149,8 +149,8 @@ TA2_es = rad2deg(coe_es(6));
 
 % Plot of planets orbit and trajectory orbit
 
-% plot_orbit(6,2030);
-% plot_traiettoria_spacecraft(coe_es, TA1_es, TA2_es , 'g');
+ plot_orbit(6,2030);
+ plot_traiettoria_spacecraft(coe_es, TA1_es, TA2_es , 'g');
 
      
 % fprintf('\n Starting speed = [%c %c %c] (Km/s)\n ', V1(1),V1(2), V1(3))
@@ -227,4 +227,5 @@ coe_su = coe_from_sv(r2_u, V2_l_u, mu);
 % Final true anomaly:
 TA2_su = rad2deg(coe_su(6));
 % Plot of planets orbit and trajectory orbit
-%   plot_orbit(7,2036)
+   plot_orbit(7,2036)
+   plot_traiettoria_spacecraft(coe_su, TA1_su, TA2_su , 'g');
