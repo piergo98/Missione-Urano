@@ -8,21 +8,21 @@
 
 
 
-[~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2040, 07, 01, 12, 00, 00);
+[~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2042, 08, 01, 12, 00, 00);
 
 
 %definisco il tempo di volo
 
-t = year2seconds(5);
+t = year2seconds(6);
 
 %definisco velocità finale (opzionale se l'ho definita in precedenza)
 
-v2_l_j = [-4.834634e+00 1.056403e-01 4.808383e-03];
+v2_l_j = [-8.143979e+00 -3.155774e+00 1.128578e-01];
 
 
 
 
-v2_l_j = [-6.628555e+00 3.546484e+00 8.320873e-02] ;
+%v2_l_j = [-6.628555e+00 3.546484e+00 8.320873e-02] ;
 
 %Eseguo un ciclo for che varia la posizione di rp e mi modifica delta
 GM_jupiter = 1.26686534e8; %[km^3/s^2] 
@@ -71,10 +71,10 @@ for i = 1:length(Ta_for_lambert)
         %faccio lambert
     dT = time_post_flyby(Ta_post_flyby, Ta_for_lambert(i), coe_flyby(7), ...
            coe_flyby(2), mu); 
-    if d_V_norm < 7 && dT < month2seconds(6) % condizione di minimo deltaV
+    if d_V_norm < 4 && dT < month2seconds(6) % condizione di minimo deltaV
        
         % tempo riscritto 
-        [years, months, days, hours, minutes, seconds] = sec2date(dT);
+        [years, months, days, hours, minutes, seconds] = sec2date(abs(dT));
         TBF = [years, months, days, hours, minutes, seconds]
          % Estrazione elementi orbitali orbita di trasferimento (using r1 and v1):
         coe = coe_from_sv(r, V1, mu);
