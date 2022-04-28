@@ -39,9 +39,9 @@ mu = 1.327*10^11;                   % mu sun (km^3/s^2)
 % TOF 
 dt = month2seconds(17);
 
-[~, r1_e1, v1_e1, ~] = planet_elements_and_sv(3, 2022, 10, 01, 18, 00, 00);
+[~, r1_e1, v1_e1, ~] = planet_elements_and_sv(3, 2023, 03, 01, 18, 00, 00);
 
-[~, r2_e2, v2_e2, ~] = planet_elements_and_sv(3, 2024, 03, 01, 18, 00, 00);
+[~, r2_e2, v2_e2, ~] = planet_elements_and_sv(3, 2024, 08, 01, 18, 00, 00);
 
 string = 'pro';
 
@@ -86,7 +86,7 @@ v_inf_down_Earth = v2_l_e2 - v2_e2;
 v_inf_down_norm_Earth = norm(v_inf_down_Earth); 
 
 a_flyby_Earth = - mu_Earth/((v_inf_down_norm_Earth)^2); %semiaxis major 
-r_p_flyby_Earth = 30000 ;  %rp  
+r_p_flyby_Earth = 10000 ;  %rp  
 
 e_flyby_Earth = 1-(r_p_flyby_Earth/a_flyby_Earth); 
     
@@ -107,7 +107,7 @@ TA_post_flyby = rad2deg(coe_flyby(6));
 
 % Anomalia vera nel punto di partenza della traiettoria di Lambert fra la
 % Terra e Saturno
-TA_for_lambert = TA_post_flyby + 90;
+TA_for_lambert = TA_post_flyby ;
 
 % Calcolo delta T su traiettoria ellissoidale
 a = coe_flyby(7);
@@ -123,7 +123,7 @@ coe_flyby(6) = deg2rad(TA_for_lambert);
 
 %% Punto partenza lambert post flyby terra con arrivo su saturno
 % Trovo la posizione di Saturno
-[~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2030, 04, 03, 00, 00, 00);
+[~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2030, 08, 01, 00, 00, 00);
 
 % Definisco il tempo di volo
 t = year2seconds(6);
@@ -175,7 +175,7 @@ SOI_Saturn;
 
 %Trovo la posizione del pianeta Target
 
-[~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2036, 04, 03, 00, 00, 00);
+[~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2036, 08, 01, 00, 00, 00);
 
 %definisco il tempo di volo
 t = year2seconds(6);
@@ -186,7 +186,7 @@ v_inf_down_saturn = V2_l_s - v2_s ;
 v_inf_down_norm_saturn = norm(v_inf_down_saturn); 
 
 a_flyby_saturn = - GM_saturn/((v_inf_down_norm_saturn)^2);%semiaxis major 
-r_p_flyby_saturn = 1.8e6 ;  %hp  
+r_p_flyby_saturn = 300000 ;  %hp  
 %r_p_flyby_Jupiter = 1e5;
 
 e_flyby_saturn = 1-(r_p_flyby_saturn/a_flyby_saturn); 

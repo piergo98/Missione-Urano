@@ -6,7 +6,7 @@ SOI_Earth;
 
 %Trovo la posizione del pianeta Target
 
-[~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2030, 07, 03, 00, 00, 00);
+[~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2030, 08, 01, 00, 00, 00);
 
 %definisco il tempo di volo
 
@@ -47,7 +47,7 @@ for i = 1:length(Ta_for_lambert)
     d_V = v - V1;
     d_V_norm = norm(d_V);
     
-    if d_V_norm < 6
+    if d_V_norm < 4
          %calcolo del tempo (in sec) per sposatrmi sull'elissoide nel punto in cui
         %faccio lambert
         dT = time_post_flyby(Ta_post_flyby, Ta_for_lambert(i), coe_flyby(7), ...

@@ -6,24 +6,24 @@ SOI_Saturn;
 
 %Trovo la posizione del pianeta Target
 
-[~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2036, 06, 03, 00, 00, 00);
+[~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2037, 08, 01, 00, 00, 00);
 
 %definisco il tempo di volo
 
-t = year2seconds(6);
+t = year2seconds(7);
 
 %Eseguo un ciclo for che varia la posizione di rp e mi modifica delta
 GM_saturn = 37931187; %[km^3/s^2] 
-v_inf_down_saturn = [-4.540322e+00 1.579986e+00 3.013845e-02] - v2_s ;  
+v_inf_down_saturn = [-3.830607e+00 7.572312e-01 9.138900e-02] - v2_s ;  
 v_inf_down_norm_saturn = norm(v_inf_down_saturn); 
 
 a_flyby_saturn = - GM_saturn/((v_inf_down_norm_saturn)^2);%semiaxis major 
 r_p_flyby_saturn = 3e5:1e5:3e7 ;  %hp  
 %r_p_flyby_Jupiter = 1e5;
 for j = 1:length(r_p_flyby_saturn)
-e_flyby_saturn(j) = 1-(r_p_flyby_saturn(j)/a_flyby_saturn); 
+e_flyby_saturn = 1-(r_p_flyby_saturn(j)/a_flyby_saturn); 
 
-delta_saturn = 2*asin(1/e_flyby_saturn(j)); %angolo tra gli asintoti 
+delta_saturn = 2*asin(1/e_flyby_saturn); %angolo tra gli asintoti 
 delta_deg_saturn = rad2deg(delta_saturn); 
 
 %Uso scrpit per calcolare state vector dopo flyby
@@ -46,9 +46,16 @@ for i = 1:length(Ta_for_lambert)
     d_theta = abs((Ta_post_flyby - Ta_for_lambert)*180/pi);
     d_V = v - V1;
     d_V_norm = norm(d_V);
+    dT = time_post_flyby(Ta_post_flyby, Ta_for_lambert(i), coe_flyby(7), ...
+            coe_flyby(2), mu); 
+        
     
-    if d_V_norm < 3.9 && e_flyby_saturn(j) < 6
+    if d_V_norm < 2 && dT < month2seconds(6)
 
+        %tempo riscritto 
+         [years, months, days, hours, minutes, seconds] = sec2date(dT);
+        TBF = [years, months, days, hours, minutes, seconds]
+    
         % Estrazione elementi orbitali orbita di trasferimento (using r1 and v1):
         coe = coe_from_sv(r, V1, mu);
         % Initial true anomaly:
@@ -68,7 +75,7 @@ for i = 1:length(Ta_for_lambert)
         fprintf('\n Actual speed of sp = [%c %c %c] (Km/s)\n ', v(1),v(2), v(3))
         fprintf('\n delta v = %s (Km/s)\n ', d_V_norm)
         fprintf('\n Distance from Jupiter = %g (Km)\n ',r_p_flyby_saturn(j))
-        fprintf('\n eccentricity = %g \n ',e_flyby_saturn(j))
+        fprintf('\n eccentricity = %g \n ',e_flyby_saturn)
         fprintf('\n eccentricity from coe = %g \n ',coe_flyby(2))
         fprintf('\n starting point lambert = [%c %c %c] \n ',r(1),r(2),r(3))
         fprintf('\n-----------------------------------------------------\n')
