@@ -43,11 +43,11 @@ dt = month2seconds(17);
 
 %for i = 1:length(dt)
     % Position of Earth at the departure (km)
-    [coe1_e1, r1_e1, v1_e1, jd1_e1] = planet_elements_and_sv(3, 2022, 10, 01, 18, 00, 00);
+    [coe1_e1, r1_e1, v1_e1, jd1_e1] = planet_elements_and_sv(3, 2023, 02, 01, 18, 00, 00);
     
     
     % Position of Earth at the arrival  (km)     
-    [coe2_e2, r2_e2, v2_e2, jd2_e2] = planet_elements_and_sv(3, 2024, 03, 01, 18, 00, 00);
+    [coe2_e2, r2_e2, v2_e2, jd2_e2] = planet_elements_and_sv(3, 2024, 07, 01, 18, 00, 00);
     
     string = 'pro';
     %...

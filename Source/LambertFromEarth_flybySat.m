@@ -6,7 +6,7 @@ SOI_Earth;
 
 %Trovo la posizione del pianeta Target
 
-[~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2030, 07, 03, 00, 00, 00);
+[~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2030, 07, 01, 00, 00, 00);
 
 %definisco il tempo di volo
 
