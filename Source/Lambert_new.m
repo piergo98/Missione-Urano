@@ -8,16 +8,16 @@
 
 
 
-[~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2042, 08, 01, 12, 00, 00);
+[~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2042, 04, 01, 12, 00, 00);
 
 
 %definisco il tempo di volo
 
-t = year2seconds(6);
+t = year2seconds(6) ;
 
 %definisco velocità finale (opzionale se l'ho definita in precedenza)
 
-v2_l_j = [-8.143979e+00 -3.155774e+00 1.128578e-01];
+v2_l_j = [-8.123309e+00 -1.354161e+00 1.149054e-01];
 
 
 

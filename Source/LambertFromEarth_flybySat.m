@@ -48,6 +48,13 @@ for i = 1:length(Ta_for_lambert)
     d_V_norm = norm(d_V);
     
     if d_V_norm < 6
+         %calcolo del tempo (in sec) per sposatrmi sull'elissoide nel punto in cui
+        %faccio lambert
+        dT = time_post_flyby(Ta_post_flyby, Ta_for_lambert(i), coe_flyby(7), ...
+            coe_flyby(2), mu); 
+        %tempo riscritto 
+         [years, months, days, hours, minutes, seconds] = sec2date(dT);
+        TBF = [years, months, days, hours, minutes, seconds]
 
         % Estrazione elementi orbitali orbita di trasferimento (using r1 and v1):
         coe = coe_from_sv(r, V1, mu);

@@ -39,9 +39,9 @@ mu = 1.327*10^11;                   % mu sun (km^3/s^2)
 % TOF 
 dt = month2seconds(17);
 
-[~, r1_e1, v1_e1, ~] = planet_elements_and_sv(3, 2027, 11, 01, 18, 00, 00);
+[~, r1_e1, v1_e1, ~] = planet_elements_and_sv(3, 2031, 03, 01, 18, 00, 00);
 
-[~, r2_e2, v2_e2, ~] = planet_elements_and_sv(3, 2029, 03, 01, 18, 00, 00);
+[~, r2_e2, v2_e2, ~] = planet_elements_and_sv(3, 2032, 08, 01, 18, 00, 00);
 
 string = 'pro';
 
@@ -86,7 +86,7 @@ v_inf_down_Earth = v2_l_e2 - v2_e2;
 v_inf_down_norm_Earth = norm(v_inf_down_Earth); 
 
 a_flyby_Earth = - mu_Earth/((v_inf_down_norm_Earth)^2); %semiaxis major 
-r_p_flyby_Earth = 35000 ;  %rp  
+r_p_flyby_Earth = 10000 ;  %rp  
 
 e_flyby_Earth = 1-(r_p_flyby_Earth/a_flyby_Earth); 
     
@@ -106,7 +106,7 @@ TA_post_flyby = rad2deg(coe_flyby(6));
 
 % Anomalia vera nel punto di partenza della traiettoria di Lambert fra la
 % Terra e Giove
-TA_for_lambert = TA_post_flyby + 100;
+TA_for_lambert = TA_post_flyby;
 
 % Calcolo delta T su traiettoria ellissoidale
 a = coe_flyby(7);
@@ -122,10 +122,10 @@ coe_flyby(6) = deg2rad(TA_for_lambert);
 
 %% Punto partenza lambert post flyby terra con arrivo su giove
 % Trovo la posizione di Giove
-[~, r2_j, v2_j, ~] = planet_elements_and_sv(5, 2032, 03, 01, 00, 00, 00);
+[~, r2_j, v2_j, ~] = planet_elements_and_sv(5, 2036, 08, 01, 00, 00, 00);
 
 % Definisco il tempo di volo
-t = year2seconds(3);
+t = year2seconds(4);
 
 
 % Estraggo il vettore di stato con i coe aggiornati all'ultima posizione
@@ -175,10 +175,10 @@ SOI_JUPITER;
 
 %Trovo la posizione del pianeta Target
 
-[~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2036, 02, 01, 00, 00, 00);
+[~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2042, 12, 01, 00, 00, 00);
 
 %definisco il tempo di volo
-t = year2seconds(6);
+t = year2seconds(6) + month2seconds(4);
 
 %Eseguo un ciclo for che varia la posizione di rp e mi modifica delta
 GM_jupiter = 126686534; %[km^3/s^2] 
@@ -186,7 +186,7 @@ v_inf_down_jupiter = V2_l_j - v2_j ;
 v_inf_down_norm_saturn = norm(v_inf_down_jupiter); 
 
 a_flyby_jupiter = - GM_jupiter/((v_inf_down_norm_saturn)^2);%semiaxis major 
-r_p_flyby_jupiter = 650000 ;  %hp  
+r_p_flyby_jupiter = 100000 ;  %hp  
 %r_p_flyby_Jupiter = 1e5;
 
 e_flyby_jupiter = 1-(r_p_flyby_jupiter/a_flyby_jupiter); 
@@ -206,7 +206,7 @@ TA_post_flyby = rad2deg(coe_flyby(6));
 
 % Anomalia vera nel punto di partenza della traiettoria di Lambert fra
 % Giove e Urano
-TA_for_lambert = TA_post_flyby + 170 ;
+TA_for_lambert = TA_post_flyby;
 
 % Calcolo delta T su traiettoria ellissoidale
 a = coe_flyby(7);
