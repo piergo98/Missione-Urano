@@ -34,12 +34,11 @@ init_Terra_Terra_Saturno_Urano;
 % Dati per posizione e velocità Terra alla partenza della spedizione e al
 % momento della cattura per il primo flyby
 
-%[~, r1_e1, v1_e1, ~] = planet_elements_and_sv(3, 2022, 10, 01, 18, 00, 00);
+%[~, r1_e1, v1_e1, ~] = planet_elements_and_sv(3, 2022, 10, 01, 18, 00, 00); %date vecchie
 [~, r1_e1, v1_e1, ~] = planet_elements_and_sv(3, 2023, 03, 01, 18, 00, 00);
 
-%[~, r2_e2, v2_e2, ~] = planet_elements_and_sv(3, 2024, 03, 01, 18, 00, 00);
+%[~, r2_e2, v2_e2, ~] = planet_elements_and_sv(3, 2024, 03, 01, 18, 00, 00); %date vecchie
 [~, r2_e2, v2_e2, ~] = planet_elements_and_sv(3, 2024, 08, 01, 18, 00, 00);
-
 % Tempo di volo Terra-Terra
 t_EE = month2seconds(17);
 
@@ -76,7 +75,7 @@ v_inf_down_norm_Earth = norm(v_inf_down_Earth); % in norma
 a_flyby_Earth = - mu_Earth/((v_inf_down_norm_Earth)^2);
 
 % Distanza minima fra traiettoria di flyby e pianeta(km) 
-%r_p_flyby_Earth = 30000;  
+%r_p_flyby_Earth = 30000;  %vecchio
 r_p_flyby_Earth = 10000;  
 
 % Eccentricità traiettoria di flyby
@@ -91,37 +90,36 @@ delta_deg_Earth = rad2deg(delta_Earth); % in gradi
 StateVector_Earth;
 
 %% Traiettoria eliocentrica dopo Flyby sulla Terra 
-% % Modifico vettore di posizione nel tempo in dipendenza dell'angolo di
-% % Flyby, variando l'anomalia vera.
-% 
-% % Elementi orbitali dell'orbita dopo il flyby
-% coe_flyby = coe_from_sv(r2_fin_e,v_fin_Earth,mu);
-% 
-% % Anomalia vera in partenza dalla SOI della Terra
-% TA_post_flyby = rad2deg(coe_flyby(6));
-% 
-% % Anomalia vera nel punto di partenza della traiettoria di Lambert fra la
-% % Terra e Saturno
-% %TA_for_lambert = TA_post_flyby + 90;
-% TA_for_lambert = TA_post_flyby + 0;
-% 
-% 
-% % Calcolo delta T su traiettoria ellissoidale
-% a = coe_flyby(7);
-% e = coe_flyby(2);
-% dT = time_post_flyby(TA_post_flyby, TA_for_lambert, a, e, mu);
-% 
-% % Aggiorno il valore dell'anomalia vera per ottenere i coe prima del dV
-% coe_flyby(6) = deg2rad(TA_for_lambert);
-% 
+% Modifico vettore di posizione nel tempo in dipendenza dell'angolo di
+% Flyby, variando l'anomalia vera.
+
+% Elementi orbitali dell'orbita dopo il flyby
+coe_flyby = coe_from_sv(r2_fin_e,v_fin_Earth,mu);
+
+% Anomalia vera in partenza dalla SOI della Terra
+TA_post_flyby = rad2deg(coe_flyby(6));
+
+% Anomalia vera nel punto di partenza della traiettoria di Lambert fra la
+% Terra e Saturno
+%TA_for_lambert = TA_post_flyby + 90; %vecchio
+TA_for_lambert = TA_post_flyby; %Rimane invariata
+
+% Calcolo delta T su traiettoria ellissoidale
+a = coe_flyby(7);
+e = coe_flyby(2);
+dT = time_post_flyby(TA_post_flyby, TA_for_lambert, a, e, mu);
+
+% Aggiorno il valore dell'anomalia vera per ottenere i coe prima del dV
+coe_flyby(6) = deg2rad(TA_for_lambert);
+
 %% Calcolo traiettoria lambert post flyby terra con arrivo su saturno
 
 % Trovo la posizione e velocità di Saturno
-% [~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2030, 04, 03, 00, 00, 00);
+%[~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2030, 04, 03, 00, 00, 00); %vecchio
 [~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2030, 08, 01, 00, 00, 00);
 
 % Definisco il tempo di volo dal punto scelto post flyby e Saturno
-t_fS = year2seconds(6); % 'fS' = da punto post flyby a Saturno
+t_fS = year2seconds(6); % 'fS' = da punto post flyby a Saturno 6anni-il tempo trascorso sull'orbita eliocentrica
 
 % Estraggo il vettore di stato con i coe aggiornati all'ultima posizione
 [r, v] = sv_from_coe(coe_flyby, mu);
@@ -156,7 +154,7 @@ v_inf_down_norm_saturn = norm(v_inf_down_saturn); % in norma
 a_flyby_saturn = - mu_Saturn/((v_inf_down_norm_saturn)^2);
 
 % Distanza minima fra traiettoria di flyby e pianeta(km) 
-%r_p_flyby_saturn = 1.8e6;
+%r_p_flyby_saturn = 1.8e6; %vecchio
 r_p_flyby_saturn = 300000;
 
 % Eccentricità traiettoria di flyby
@@ -173,7 +171,7 @@ StateVector_Saturn;
 %% Calcolo traiettoria di Lambert post Flyby su Saturno 
 
 % Trovo la posizione e velocità di Urano
-%[~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2036, 04, 03, 00, 00, 00);
+%[~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2036, 04, 03, 00, 00, 00); %vecchio
 [~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2036, 08, 01, 00, 00, 00);
 
 % Definisco il tempo di volo Saturno-Urano

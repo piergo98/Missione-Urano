@@ -6,7 +6,7 @@ v_infp_escape_Earth = v1_l_e1 - v1_e1;   % Differenza fra velocità necessaria p
 v_infp_escape_Earth_mod = norm(v_infp_escape_Earth);  % In norma
 
 r_orbit = 6571; % Raggio orbita di parcheggio intorno alla Terra(km)     
-v_park = sqrt(mu_Earth/r_orbit);    % Velocità sull'orbita di parcheggio
+v_park = sqrt(mu_Earth/r_orbit);    % Velocità sull'orbita di parcheggio km/s
 
 
 % Calcolo elementi orbitali del flyby

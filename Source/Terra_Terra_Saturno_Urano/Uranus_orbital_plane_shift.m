@@ -1,7 +1,7 @@
 %% Orbit plane change with three pulse maneuver on Uranus from ecliptical 
 % plane (0 deg) to equatorial plane (97.77 deg)
 
-clear, clc
+%clear, clc
 r_uranus = 25362;
 r_orbit_u = r_uranus + 1000;     % Uranus radius + orbit altitude (km)
 mu_u = 5.7939*10^6;            % Uranus mu (km^3/s^2)

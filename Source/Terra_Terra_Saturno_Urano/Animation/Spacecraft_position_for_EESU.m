@@ -11,7 +11,9 @@ mu = 1.327*10^11;
 
 %% Earth to Earth
 % from day (01/10/22) to (01/03/2024)
-ee_days = datenum([2024 03 01]) - datenum([2022 10 01]);
+%ee_days = datenum([2024 03 01]) - datenum([2022 10 01]);
+ee_days = datenum([2024 08 01]) - datenum([2023 03 01]);
+
 
 Delta_TA_ee = abs(TA2_ee - TA1_ee);
 % Variazione di anomalia vera in un giorno
@@ -47,8 +49,8 @@ end
 %% Flyby orbit
 % from (1/3/2024) to (3/4/2024)
 % Giorni in cui lo spacecraft sta sull'orbita ottenuta dal flyby
-% fl_days = datenum([2024 4 3]) - datenum([2024 3 1]);
-fl_days = ceil(dT / days2seconds(1));
+fl_days = datenum([2024 4 3]) - datenum([2024 3 1]);
+%fl_days = ceil(dT / days2seconds(1));
 
 Delta_TA_fl = abs(TA_for_lambert - TA_post_flyby);
 % Variazione di anomalia vera in un giorno
@@ -81,7 +83,8 @@ end
 
 %% Earth to Saturn
 % from (03/4/24) to (3/4/30)
-es_days = datenum([2030 4 3]) - datenum([2024 4 3]);
+%es_days = datenum([2030 04 03]) - datenum([2024 03 01]); %vecchio
+es_days = datenum([2030 08 01]) - datenum([2024 08 01]);
 
 Delta_TA_es = abs(TA2_es - TA1_es);
 %   Minima variazione di anomalia vera in un giorno
@@ -109,13 +112,15 @@ for t = 1:(es_days)
     y = r*sind(f);
     z = 0;
 %       Cambio di coordinate il vettore posizione
-    pos_spcr(:,t+ee_days+fl_days) = Q_pX * [x y z]';
+%    pos_spcr(:,t+ee_days+fl_days) = Q_pX * [x y z]'; %vecchio
+    pos_spcr(:,t+ee_days) = Q_pX * [x y z]';
 end
 
 
 %% Saturn to Uranus
 % from (3/4/30) to (3/4/36)
-su_days = datenum([2036 4 3])- datenum([2030 4 3]);
+%su_days = datenum([2036 04 03])- datenum([2030 04 03]); %vecchio
+su_days = datenum([2036 08 01])- datenum([2030 08 01]);
 
 Delta_TA_su = abs(TA2_su - TA1_su);
 %   Minima variazione di anomalia vera in un giorno
@@ -144,7 +149,8 @@ for t = 1:(su_days+1)
     y = r*sind(f);
     z = 0;
 %       Cambio di coordinate il vettore posizione
-    pos_spcr(:,t+ee_days+fl_days+es_days) = Q_pX * [x y z]';
+%    pos_spcr(:,t+ee_days+fl_days+es_days) = Q_pX * [x y z]'; %vecchia
+    pos_spcr(:,t+ee_days+es_days) = Q_pX * [x y z]';
 end
 
 %% tests

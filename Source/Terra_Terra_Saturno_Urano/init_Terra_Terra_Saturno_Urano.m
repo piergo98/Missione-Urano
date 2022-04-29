@@ -21,7 +21,7 @@ Epark_radius = 200;		%[km]
 Epark_inclination = 0;	%[rad]
 
 %% Compute the ray of SOI_Earth
-mu_Earth = 3986004418; %[km^3/s^2] 
+mu_Earth = 398600.4418; %[km^3/s^2] 
 m_Earth = 5.972e+24;    %Earth mass in kg
 r_Earth = 6.371e+3;
 d_Earth2Sun = 152104285;    %distance Earth-Sun in km
@@ -37,6 +37,7 @@ R_SOI_Saturn = d_Saturn2Sun*(m_Saturn/m_Sun)^(2/5);
 
 
 %% Compute the ray of SOI_Uranus
+mu_Uranus = 5793939; %[km^3/s^2]	
 m_Uranus = 8.681e+25;    %Earth mass in kg
 d_Uranus2Sun = 2857319330;    %distance Earth-Sun in km
 r_Uranus = 2.5362e+4;

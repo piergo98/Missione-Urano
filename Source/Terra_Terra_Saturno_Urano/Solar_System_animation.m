@@ -25,7 +25,7 @@ time_pause = 0;		% time [s] after each drawing. Set to zero to avoid pausing
 fr_skip = 6;		% frame skip between each drawing
 
 % View angles
-View = [90 35];				% initial view
+View = [90 90];				% initial view
 spinlon = -45;				% how much view angle change long [grad]
 spinlat = -29;				% how much view angle change lat [grad]
 
@@ -152,12 +152,16 @@ for d = 1:fr_skip:n_days			% speed
 	end
 end
 
-%% Video stuff
-if movie_mode
-	movie = VideoWriter('movie_heliocentric', 'MPEG-4');
-	movie.FrameRate = movie_fps;
+% %% Video stuff
+% if movie_mode
+% 	movie = VideoWriter('movie_heliocentric', 'MPEG-4');
+% 	movie.FrameRate = movie_fps;
+% 
+% 	open(movie);
+% 	writeVideo(movie, movieVector);
+% 	close(movie);
+% end
 
-	open(movie);
-	writeVideo(movie, movieVector);
-	close(movie);
-end
+
+%% Plot cambio piano finale e calcolo dei deltaV 
+%DeltaV;
