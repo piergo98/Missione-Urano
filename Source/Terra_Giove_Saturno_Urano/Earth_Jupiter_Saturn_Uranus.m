@@ -91,56 +91,6 @@ delta_deg_Jupiter = rad2deg(delta_Jupiter); % in gradi
 
 StateVector_Jupiter;
 
-% %% Traiettoria eliocentrica dopo Flyby sulla Terra 
-% % Modifico vettore di posizione nel tempo in dipendenza dell'angolo di
-% % Flyby, variando l'anomalia vera.
-% 
-% % Elementi orbitali dell'orbita dopo il flyby
-% coe_flyby = coe_from_sv(r2_fin_e,v_fin_Earth,mu);
-% 
-% % Anomalia vera in partenza dalla SOI della Terra
-% TA_post_flyby = rad2deg(coe_flyby(6));
-% 
-% % Anomalia vera nel punto di partenza della traiettoria di Lambert fra la
-% % Terra e Saturno
-% TA_for_lambert = TA_post_flyby + 90;
-% 
-% % Calcolo delta T su traiettoria ellissoidale
-% a = coe_flyby(7);
-% e = coe_flyby(2);
-% dT = time_post_flyby(TA_post_flyby, TA_for_lambert, a, e, mu);
-% 
-% % Aggiorno il valore dell'anomalia vera per ottenere i coe prima del dV
-% coe_flyby(6) = deg2rad(TA_for_lambert);
-
-% %% Calcolo traiettoria lambert post flyby terra con arrivo su saturno
-% 
-% % Trovo la posizione e velocità di Saturno
-% [~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2030, 04, 03, 00, 00, 00);
-% 
-% % Definisco il tempo di volo dal punto scelto post flyby e Saturno
-% t_fS = year2seconds(6); % 'fS' = da punto post flyby a Saturno
-% 
-% % Estraggo il vettore di stato con i coe aggiornati all'ultima posizione
-% [r, v] = sv_from_coe(coe_flyby, mu);
-% % Risolvo Lambert per arrivare su Saturno
-% [V1_l_f, V2_l_s] = lambert(r, r2_s, t_fS, 'pro');
-% 
-% % Delta V necessario per portarmi sulla traiettoria di Lambert
-% d_V_fS = v - V1_l_f;    % 'fS' = da punto post flyby a Saturno     
-% d_V_fS_norm = norm(d_V_fS);    % in norma
-% 
-% 
-% % Estrazione elementi orbitali dall'orbita ottenuta con Lambert(partenza)
-% coe_es = coe_from_sv(r, V1_l_f, mu);
-% % Anomalia vera alla partenza della missione r-Saturno
-% TA1_es = rad2deg(coe_es(6));
-% 
-% % Estrazione elementi orbitali dall'orbita ottenuta con Lambert(arrivo)
-% coe_es = coe_from_sv(r2_s, V2_l_s, mu);
-% % Anomalia vera alla fine della missione r-Saturno
-% TA2_es = rad2deg(coe_es(6));
-% 
 %% Calcolo traiettoria di Lambert post Flyby su Giove 
 
 % Trovo la posizione e velocità di Saturno

@@ -16,19 +16,12 @@ deg = pi/180;
 %Masses
 Sun_mass = 1.989*10^30;		%[kg]
 
-%SOI: (m_planet/m_Sun)^(2/5) * distance_from_Sun
-Earth_SOI   = 9.24*10^5;	%[km]
-Mars_SOI    = 5.74*10^5;	%[km]
-Jupiter_SOI = 4.82*10^7;    %[km]
-Saturn_SOI  = 5.45*10^7;    %[km]
-Uranus_SOI  = 5.19*10^7;    %[km]
-
 %Parking orbits (not considering body radius)
 Epark_radius = 200;		%[km]
 Epark_inclination = 0;	%[rad]
 
 %% Compute the ray of SOI_Earth
-mu_Earth = 3986004418; %[km^3/s^2] 
+mu_Earth = 398600.4418; %[km^3/s^2] 
 m_Earth = 5.972e+24;    %Earth mass in kg
 r_Earth = 6.371e+3;
 d_Earth2Sun = 152104285;    %distance Earth-Sun in km
