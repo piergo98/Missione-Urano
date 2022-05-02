@@ -2,13 +2,8 @@
 % plane (0 deg) to equatorial plane (97.77 deg)
 
 %clear, clc
-r_uranus = 25362;
-r_orbit_u = r_uranus + 1000;     % Uranus radius + orbit altitude (km)
-mu_u = 5.7939*10^6;            % Uranus mu (km^3/s^2)
 deltaT_min = 1e20;            % Initialization minimum tof 
-SOI_uranus
-radius = 1e3;                   % raggio spacecraft
-color = 'b';
+color = 'r';
 i1_u = 0;     % inclination ecliptic orbit around Uranus (rad)
 i2_u = deg2rad(97.77);  % inclination equatorial parking orbit around Uranus (rad)
 RAAN1_u = 3*pi/2;  % right ascention ecliptical orbit (rad)
@@ -62,7 +57,7 @@ fprintf('\n   TOF (days)            = %g', deltaT_min/(24*3600))
 fprintf('\n -----------------------------------------------------------\n');
 
 % Plot orbital plane shift
-sphere()
+hold on
 % Circlar initial orbit
 f = 0:1:270;
 e = 0;
@@ -81,14 +76,10 @@ for i = 1:length(f)
     pos = Q_pX * [x y z]';
 %     pos = [x y z];
 
-    if i == 1 
-        c = circle_plot(pos(1), pos(2), radius);
+    if i == 1
         ra = animatedline(pos(1), pos(2), pos(3), "Color", color,'LineWidth',1);
     end
     addpoints(ra, pos(1), pos(2), pos(3));
-    drawnow;
-    c.Position(1) = pos(1) - radius;
-    c.Position(2) = pos(2) - radius;
     drawnow;
 end
 
@@ -108,21 +99,17 @@ for i = 1:length(f)
     pos = Q_pX * [x y z]';
 %     pos = [x y z];
 
-    if i == 1 
-        c = circle_plot(pos(1), pos(2), radius);
+    if i == 1
         ra = animatedline(pos(1), pos(2), pos(3), "Color", color,'LineWidth',1);
     end
     addpoints(ra, pos(1), pos(2), pos(3));
-    drawnow;
-    c.Position(1) = pos(1) - radius;
-    c.Position(2) = pos(2) - radius;
     drawnow;
 end
 
 % Second transfer orbit
 f = 180:1:360;
 pos = [];
-color = 'r';
+color = 'c';
 for i = 1:length(f)
 %    Legge oraria dello spacecraft in funzione dell'anomalia vera
     r = p_tf_2 / (1 + e_tf_2*cosd(f(i)));
@@ -136,13 +123,9 @@ for i = 1:length(f)
 %     pos = [x y z];
 
     if i == 1 
-        c = circle_plot(pos(1), pos(2), radius);
         ra = animatedline(pos(1), pos(2), pos(3), "Color", color,'LineWidth',1);
     end
     addpoints(ra, pos(1), pos(2), pos(3));
-    drawnow;
-    c.Position(1) = pos(1) - radius;
-    c.Position(2) = pos(2) - radius;
     drawnow;
 end
 
@@ -165,14 +148,10 @@ for i = 1:length(f)
     pos = Q_pX * [x y z]';
 %     pos = [x y z];
 
-    if i == 1 
-        c = circle_plot(pos(1), pos(2), radius);
+    if i == 1
         ra = animatedline(pos(1), pos(2), pos(3), "Color", color,'LineWidth',1);
     end
     addpoints(ra, pos(1), pos(2), pos(3));
-    drawnow;
-    c.Position(1) = pos(1) - radius;
-    c.Position(2) = pos(2) - radius;
     drawnow;
 end
 
@@ -186,7 +165,7 @@ zlim([-1e5 1e5])
 xlabel('x (km)')
 ylabel('y (km)')
 zlabel('z (km)')
-view([0, 0, 1])
+% view([0, 0, 1])
    
 
 

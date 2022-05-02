@@ -28,13 +28,13 @@ f_Jupiter = acos((a_flyby_Jupiter*(1-e_flyby_Jupiter^2)-r_p_flyby_Jupiter) / (e_
 f_deg_Jupiter =rad2deg(f_Jupiter);
 
 %trovo p semilato retto [km] 
-p_Jupiter = r_p_flyby_Jupiter*(1+e_flyby_Jupiter*cos(f_Jupiter)); 
+p_flyby_Jupiter = r_p_flyby_Jupiter*(1+e_flyby_Jupiter*cos(f_Jupiter)); 
  
 %distanza per la quale voglio calcolare il tempo di volo
 r = R_SOI_Jupiter; 
 
 %calcolo anomalia vera per r (in ingresso alla SOI) 
-f1_Jupiter = acos((1/e_flyby_Jupiter)*((p_Jupiter/r)-1)); 
+f1_Jupiter = acos((1/e_flyby_Jupiter)*((p_flyby_Jupiter/r)-1)); 
 
 %calcolo anomalia eccentrica
 E_2_Jupiter = atanh(sqrt((e_flyby_Jupiter-1)/(e_flyby_Jupiter+1))*tan(f1_Jupiter/2)); 
