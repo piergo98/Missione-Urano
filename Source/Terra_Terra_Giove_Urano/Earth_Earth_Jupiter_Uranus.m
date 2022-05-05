@@ -125,10 +125,10 @@ t_EJ = year2seconds(4); % 'fS' = da punto post flyby a Saturno
 % Estraggo il vettore di stato con i coe aggiornati all'ultima posizione
 [r, v] = sv_from_coe(coe_flyby, mu);
 % Risolvo Lambert per arrivare su Saturno
-[V1_l_f, V2_l_j] = lambert(r, r2_s, t_EJ, 'pro');
+[V1_l_f, V2_l_j] = lambert(r, r2_j, t_EJ, 'pro');
 
 % Delta V necessario per portarmi sulla traiettoria di Lambert
-d_V_ej = v - V1_l_f;    % 'fS' = da punto post flyby a Saturno     
+d_V_ej = v_fin_Earth - V1_l_f;    % 'fS' = da punto post flyby a Saturno     
 d_V_ej_norm = norm(d_V_ej);    % in norma
 
 
@@ -146,7 +146,7 @@ TA2_ej = rad2deg(coe_ej(6));
 %% Calcolo per risolvere flyby intorno a Giove
 
 % Recupero dati pianeta attorno al quale faccio il flyby
-v_inf_down_Jupiter = V2_l_s - v2_s; % velocità in ingresso al flyby     
+v_inf_down_Jupiter = V2_l_j - v2_j; % velocità in ingresso al flyby     
 v_inf_down_norm_Jupiter = norm(v_inf_down_Jupiter); % in norma  
 
 % Calcolo elementi orbitali del flyby
@@ -167,7 +167,7 @@ delta_deg_Jupiter = rad2deg(delta_Jupiter);   % in gradi
 
 % Uso script per calcolare state vector dopo flyby
 
-StateVector_Jupiter;
+StateVector_JUPITER;
 
 %% Calcolo traiettoria di Lambert post Flyby su Saturno 
 

@@ -11,8 +11,8 @@ v_fin_Jupiter = v_fin_Jupiter_tr';
 
 %deltaV necessario
 
-delta_V_Jupiter = v2_l_j - v_fin_Jupiter;
-norm_delta_V_Jupiter = norm(delta_V_Jupiter);
+%delta_V_Jupiter = v2_l_j - v_fin_Jupiter;
+%norm_delta_V_Jupiter = norm(delta_V_Jupiter);
 
 %posizione dopo flyby
 r2_fin_j = r2_j;
