@@ -25,7 +25,7 @@ fprintf('\n -----------------------------------------------------------\n')
 %% Plot capture
 % Plot SOI Uranus
 [X,Y,Z] = sphere;
-figure(1)
+figure(5)
 surface(R_SOI_Uranus*X,R_SOI_Uranus*Y,...
     R_SOI_Uranus*Z,'EdgeColor','cyan','FaceColor','cyan',...
     'FaceAlpha','0');
@@ -91,7 +91,7 @@ end
 % Plot planet
 hold on
 [xx, yy, zz] = sphere(100);
-surf(r_uranus*xx, r_uranus*yy, r_uranus*zz, 'EdgeColor','blue','FaceColor','blue',...
+surf(r_Uranus*xx, r_Uranus*yy, r_Uranus*zz, 'EdgeColor','blue','FaceColor','blue',...
     'FaceAlpha','1');
 % colormap light_gray
 % caxis([-r_uranus/100 r_uranus/100])

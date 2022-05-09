@@ -44,7 +44,7 @@ fprintf('\n\n Results escape computation:')
 fprintf('\n   Velocità di fuga al perigeo (km/s)  = %g', V_escape_perigee)
 fprintf('\n   Velocità orbita di parcheggio (km/s) = %g', V_park_e)
 fprintf('\n   DeltaV fuga (km/s) = %g', deltaV_escape_Earth)
-fprintf('\n   DeltaV fuga (km/s) = %g', deltaV_escape_Earth)
+fprintf('\n   DeltaT fuga (hours) = %g', t_tot_hours_escape_Earth)
 fprintf('\n -----------------------------------------------------------\n')
 
 %% Plot escape

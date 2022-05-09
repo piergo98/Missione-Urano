@@ -12,14 +12,14 @@ V_park_e = sqrt(mu_Earth/r_orbit);
 % Semiasse maggiore
 a_escape_Earth = - mu_Earth / v_infp_escape_Earth_mod^2;
 % Eccentricità traiettoria di Escape
-e_escape_Earth = 1 - (r_orbit/a_escape_Earth);  
+e_escape_Earth = 1 - (r_orbit/a_escape_Earth);
 % Trovo p semilato retto [km] 
 p_escape_Earth = a_escape_Earth * (1-e_escape_Earth^2); 
 % Angolo tra gli asintoti 
 delta_escape_Earth = 2 * asin(1/e_escape_Earth);   
 delta_deg_escape_Earth = rad2deg(delta_escape_Earth); % in gradi 
 % Ricavo l'anomalia vera f
-f_escape_Earth = acos((p_escape_Earth-R_SOI_Earth) / (e_escape_Earth*R_SOI_Earth)); 
+f_escape_Earth = acos((p_escape_Earth-R_SOI_Earth) / (e_escape_Earth*R_SOI_Earth));
 f_deg_escape_Earth = rad2deg(f_escape_Earth);
 % Velocità al perigeo dell'iperbole
 V_escape_perigee = sqrt(v_infp_escape_Earth_mod^2 + (2*mu_Earth/r_orbit));
@@ -27,7 +27,7 @@ V_escape_perigee = sqrt(v_infp_escape_Earth_mod^2 + (2*mu_Earth/r_orbit));
 deltaV_escape_Earth = V_escape_perigee - V_park_e;
 
 % Calcolo anomalia eccentrica
-E_2_escape_Earth = atanh(sqrt((e_escape_Earth-1)/(e_escape_Earth+1))*tan(f1_escape_Earth/2)); 
+E_2_escape_Earth = atanh(sqrt((e_escape_Earth-1)/(e_escape_Earth+1))*tan(f_escape_Earth/2)); 
 E_escape_Earth = E_2_escape_Earth/2;
 E_deg_escape_Earth = rad2deg(E_escape_Earth);   % In gradi 
 
@@ -43,6 +43,7 @@ t_tot_hours_escape_Earth = t_tot_escape_Earth/3600;
 fprintf('\n\n Results escape computation:')
 fprintf('\n   Velocità di fuga al perigeo (km/s)  = %g', V_escape_perigee)
 fprintf('\n   Velocità orbita di parcheggio (km/s) = %g', V_park_e)
+fprintf('\n   DeltaV fuga (km/s) = %g', deltaV_escape_Earth)
 fprintf('\n   DeltaV fuga (km/s) = %g', deltaV_escape_Earth)
 fprintf('\n -----------------------------------------------------------\n')
 

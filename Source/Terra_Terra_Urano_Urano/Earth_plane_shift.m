@@ -21,7 +21,7 @@ deltaV_orbit_e = 2*v_orbit_e*sind(theta_e/2);    % delta v to ecliptical orbit
 % Plot orbital plane shift
 
 % Plot planet
-figure(1)
+figure(2)
 [xx, yy, zz] = sphere(100);
 surf(r_Earth*xx, r_Earth*yy, r_Earth*zz, 'EdgeColor','green','FaceColor','green',...
     'FaceAlpha','1');

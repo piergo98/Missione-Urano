@@ -16,15 +16,15 @@ for j = r_orbit_u:1e5:5e7
     cos_theta_u = cos(i1_u)*cos(i2_u) + sin(i1_u)*sin(i2_u)*cos(RAAN2_u-RAAN1_u);
     theta_u = acos(cos_theta_u);
     
-    v_orbit_u = sqrt(mu_u / r_orbit_u);     % orbit velocity (km/s)
+    v_orbit_u = sqrt(mu_Uranus / r_orbit_u);     % orbit velocity (km/s)
     deltaV_1 = 2*(sqrt(2*rho/(1+rho))- 1)* v_orbit_u;   %considering dv1 and dv3
     
-    v_a = sqrt(mu_u/r_orbit_u)*sqrt(2/(rho*(1+rho)));
+    v_a = sqrt(mu_Uranus/r_orbit_u)*sqrt(2/(rho*(1+rho)));
     deltaV_2 = 2*v_a*sin(theta_u/2);   % delta v to equatorial orbit
     deltaV_tot = deltaV_1 + deltaV_2;   %dv3 is considered in dv1
     
 %   Compute the time of flight
-    Tc = 2*pi*sqrt(r_orbit_u^3 / mu_u);
+    Tc = 2*pi*sqrt(r_orbit_u^3 / mu_Uranus);
     deltaT = Tc * sqrt((1+rho)^3 / 8);
     if deltaT/(24*3600*365.25) < 1 && deltaV_tot < 13         % Considero le traiettorie che impiegano meno di 1 anno
         if deltaT < deltaT_min
