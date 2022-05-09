@@ -1,7 +1,7 @@
 %% Calcolo il tempo t di flyby Earth usando l'equazione di keplero
 
 % Recupero dati pianeta attorno a cui faccio il flyby
-Earth_Earth_Saturn_Uranus;
+Earth_Earth_Jupiter_Uranus;
 v_inf_down_Earth = v2_l_e2 - v2_e2; % velocità in ingresso al flyby   
 v_inf_down_norm_Earth = norm(v_inf_down_Earth); % in norma 
 
@@ -32,10 +32,11 @@ p_Earth = r_p_flyby_Earth*(1+e_flyby_Earth*cos(f_Earth));
 r = R_SOI_Earth; 
 
 % Calcolo anomalia vera per r 
-f1_Earth = acos((1/e_flyby_Earth)*((p_Earth/r)-1)); 
+f_in_Earth = acos((1/e_flyby_Earth)*((p_Earth/r)-1)); 
+f_in_Earth_deg = rad2deg(f_in_Earth);   % in gradi
 
 % Calcolo anomalia eccentrica
-E_2_Earth = atanh(sqrt((e_flyby_Earth-1)/(e_flyby_Earth+1))*tan(f1_Earth/2)); 
+E_2_Earth = atanh(sqrt((e_flyby_Earth-1)/(e_flyby_Earth+1))*tan(f_in_Earth/2)); 
 E_Earth = E_2_Earth/2;
 E_deg_Earth = rad2deg(E_Earth); % In gradi 
 
@@ -50,6 +51,23 @@ t_flyby_tot_hours_Earth = t_flyby_tot_Earth/3600;
  
 [years_E months_E days_E hours_E minutes_E seconds_E] = sec2date(t_flyby_tot_Earth); 
 
+%...Output to the command window:
+fprintf('\n\n--------------------------------------------------------\n')
+fprintf('\n fly-by orbit Earth\n')
+fprintf('\n The initial position is [%g, %g, %g] (km).',...
+                                                     r2_e2(1), r2_e2(2), r2_e2(3))
+fprintf('\n The initial velocity is [%g, %g, %g] (km/s).',...
+                                                     v2_l_e2(1), v2_l_e2(2), v2_l_e2(3))
+fprintf('\n The minimum altitude is %g km', r_p_flyby_Earth)
+fprintf('\n The final position is [%g, %g, %g] (km).',...
+                                                     r2_fin_e(1), r2_fin_e(2), r2_fin_e(3))
+fprintf('\n The final velocity is [%g, %g, %g] (km/s).',...
+                                                     v_fin_Earth(1), v_fin_Earth(2), v_fin_Earth(3))
+fprintf('\n Time of flyby [%g Y, %g M, %g D, %g h, %g m, %g s] (km/s).',years_E, months_E, days_E, hours_E, minutes_E, seconds_E)
+
+fprintf('\n--------------------------------------------------------\n\n')
+
+plot_flyby(r_Earth, R_SOI_Earth, e_flyby_Earth, p_Earth, f_in_Earth_deg, r_p_flyby_Earth);
 
 
  
