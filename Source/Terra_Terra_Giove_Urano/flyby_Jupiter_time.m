@@ -1,16 +1,16 @@
 %Calcolo il tempo t di flyby giove usando l'equazione di keplero
 
-Earth_Jupiter_Saturn_Uranus;
+Earth_Earth_Jupiter_Uranus;
 
 %velocità in uscita da Jupiter
-v_inf_down_Jupiter = v2_l_j - v2_j;  
+v_inf_down_Jupiter = V2_l_j - v2_j;  
 v_inf_down_norm_Jupiter = norm(v_inf_down_Jupiter); 
 
 %semiaxis major
 a_flyby_Jupiter = - mu_Jupiter / ((v_inf_down_norm_Jupiter)^2);   
 
 %rp (km)
-r_p_flyby_Jupiter = 503800;    
+r_p_flyby_Jupiter = 100000;    
 
 %eccentricity
 e_flyby_Jupiter = 1-(r_p_flyby_Jupiter/a_flyby_Jupiter); 
@@ -58,7 +58,7 @@ fprintf('\n fly-by orbit Jupiter\n')
 fprintf('\n The initial position is [%g, %g, %g] (km).',...
                                                      r2_j(1), r2_j(2), r2_j(3))
 fprintf('\n The initial velocity is [%g, %g, %g] (km/s).',...
-                                                     v2_l_j(1), v2_l_j(2), v2_l_j(3))
+                                                     V2_l_j(1), V2_l_j(2), V2_l_j(3))
 fprintf('\n The minimum altitude is %g km', r_p_flyby_Jupiter)
 fprintf('\n The final position is [%g, %g, %g] (km).',...
                                                      r2_fin_j(1), r2_fin_j(2), r2_fin_j(3))
