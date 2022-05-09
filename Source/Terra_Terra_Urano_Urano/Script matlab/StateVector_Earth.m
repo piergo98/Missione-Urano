@@ -15,4 +15,4 @@ delta_V_Earth = v2_l_e2 - v_fin_Earth;
 norm_delta_V_Earth = norm(delta_V_Earth);
 
 % Posizione dopo flyby
-r2_fin_e = r2_e2 ;
+r2_fin_e = r2_e2 + R_SOI_Earth;
