@@ -10,11 +10,13 @@ SOI_Saturn;
 
 %definisco il tempo di volo
 
-t = year2seconds(6);
+t = year2seconds(6) + month2seconds(3);
 
 %Eseguo un ciclo for che varia la posizione di rp e mi modifica delta
 GM_saturn = 37931187; %[km^3/s^2] 
-v_inf_down_saturn = [-4.540322e+00 1.579986e+00 3.013845e-02] - v2_s ;  
+ %v2_l_s = [-2.782798e+00 3.298032e+00 1.711240e-01];
+ v2_l_s = [-2.753839e+00 3.343597e+00 2.733539e-01];
+v_inf_down_saturn = v2_l_s - v2_s ;  
 v_inf_down_norm_saturn = norm(v_inf_down_saturn); 
 
 a_flyby_saturn = - GM_saturn/((v_inf_down_norm_saturn)^2);%semiaxis major 
@@ -46,8 +48,16 @@ for i = 1:length(Ta_for_lambert)
     d_theta = abs((Ta_post_flyby - Ta_for_lambert)*180/pi);
     d_V = v - V1;
     d_V_norm = norm(d_V);
+     %calcolo del tempo (in sec) per sposatrmi sull'elissoide nel punto in cui
+        %faccio lambert
+        dT = time_post_flyby(Ta_post_flyby, Ta_for_lambert(i), coe_flyby(7), ...
+            coe_flyby(2), mu); 
     
-    if d_V_norm < 3.9 && e_flyby_saturn(j) < 6
+    if d_V_norm < 1.2 && e_flyby_saturn(j) < 6 && dT < month2seconds(6)
+
+         %tempo riscritto 
+         [years, months, days, hours, minutes, seconds] = sec2date(dT);
+        TBF = [years, months, days, hours, minutes, seconds]
 
         % Estrazione elementi orbitali orbita di trasferimento (using r1 and v1):
         coe = coe_from_sv(r, V1, mu);
