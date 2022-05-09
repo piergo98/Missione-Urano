@@ -6,14 +6,14 @@ SOI_Earth;
 
 %Trovo la posizione del pianeta Target
 
-[~, r2_j, v2_j, ~] = planet_elements_and_sv(5, 2036, 04, 01, 12, 00, 00);
+[~, r2_j, v2_j, ~] = planet_elements_and_sv(5, 2037, 06, 01, 12, 00, 00);
 
 %definisco il tempo di volo
 
-t = year2seconds(4)-month2seconds(4);
+t = year2seconds(5);
 
 %Eseguo un ciclo for che varia la posizione di rp e mi modifica delta
-GM_Earth = 3986004418; %[km^3/s^2] 
+GM_Earth = 398600.4418; %[km^3/s^2] 
 v_inf_down_Earth = v2_l_e2 - v2_e2 ;  
 v_inf_down_norm_Earth = norm(v_inf_down_Earth); 
 
@@ -37,7 +37,7 @@ coe_flyby = coe_from_sv(r2_fin_e,v_fin_Earth,mu);
 Ta_post_flyby = coe_flyby(6);
 Ta_for_lambert = Ta_post_flyby:10*(pi/180):200*(pi/180);
 %plotto orbita di Giove
-plot_orbit(5, 2026);
+%plot_orbit(5, 2026);
 for i = 1:length(Ta_for_lambert)
     coe_new = coe_flyby;
     coe_new(6)= Ta_for_lambert(i);
@@ -47,7 +47,7 @@ for i = 1:length(Ta_for_lambert)
     d_V = v - V1;
     d_V_norm = norm(d_V);
     
-    if d_V_norm < 3.5
+    if d_V_norm < 6 && e_flyby_Earth(j) < 50
         %calcolo del tempo (in sec) per sposatrmi sull'elissoide nel punto in cui
         %faccio lambert
         dT = time_post_flyby(Ta_post_flyby, Ta_for_lambert(i), coe_flyby(7), ...
