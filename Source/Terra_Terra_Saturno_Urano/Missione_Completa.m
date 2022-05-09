@@ -15,10 +15,14 @@
     Escape_from_Earth;
 
     % Fly-by sulla Terra
+    flyby_Earth_time;
+    plot_flyby(r_Earth, R_SOI_Earth, e_flyby_Earth, p_Earth, f_in_Earth_deg, r_p_flyby_Earth);
 
 %% Fase Terra-Saturno
 
-    % Fly-by su Urano
+    % Fly-by su Saturno
+    flyby_Saturn_time;
+    plot_flyby(r_Saturn, R_SOI_Saturn, e_flyby_Saturn, p_Saturn, f_in_Saturn_deg, r_p_flyby_Saturn);
 
 %% Fase Saturno-Urano
 
