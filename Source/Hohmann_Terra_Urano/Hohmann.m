@@ -59,11 +59,27 @@ coe_Hohmann = [ 0, e_Hohmann, 0, 0, 0, 0, a_Hohmann];
 
 % Orbita della Terra
 plot_orbit(3, 2022);
+
 hold on
+grid on
+
 % Orbita di Urano
-plot_orbit(7, 2038);
+circle_plot(0,0,d_Uranus2Sun, "#4DBEEE");
 
 % Orbita di Hohmann
 plot_traiettoria_spacecraft(coe_Hohmann, 0, 180, 'g');
 
 axis equal
+
+%% Scelta data di partenza
+% A spanne sembra che il momento migliore sia ad agosto del 2022
+
+% Angolo in deg spazzato da Urano durante il TOF
+theta = 360 * (TOF_Hohmann/T_circolare_Uranus);
+
+% Angolo relativo tra Terra e Urano alla partenza
+alpha = 180 - theta;
+
+% noto alpha e imponendo il vettore della terra mi calcolo il vettore
+% posizione dalla formula inversa del prodotto scalare, devo fare dei cicli
+% for per anno mese e giorno!

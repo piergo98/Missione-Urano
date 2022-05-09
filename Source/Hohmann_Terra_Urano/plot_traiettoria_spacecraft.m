@@ -56,7 +56,7 @@ function plot_traiettoria_spacecraft(coe, TA_i, TA_f, color)
         pos = Q_pX * [x y z]';
     
         if i == 1 
-            c = circle_plot(pos(1), pos(2), radius);
+            c = circle_plot(pos(1), pos(2), radius, 'g');
             ra = animatedline(pos(1), pos(2), pos(3), "Color", color,'LineWidth',1);
         end
         addpoints(ra, pos(1), pos(2), pos(3));
