@@ -3,6 +3,8 @@
 
 %% Dati del problema 
 
+init_Hohmann;
+
 % Raggio delle orbite circolari iniziale e finale
 r_iniziale_Hohmann = d_Earth2Sun;
 r_finale_Hohoman = d_Uranus2Sun;
@@ -19,6 +21,9 @@ T_circolare_Uranus = 2*pi*sqrt((d_Uranus2Sun)^3 / mu_Sun);
 
 % Apoasse dell'orbita di trasferimento
 a_Hohmann = (r_iniziale_Hohmann + r_finale_Hohoman) / 2;
+
+% Eccentricità dell'orbita di trasferimento
+e_Hohmann = 1 - r_iniziale_Hohmann/a_Hohmann;
 
 % Velocità pericentro orbita di trasferimento (ricavata dall'eq dell'Ener)
 v_p_Hohmann = sqrt((mu_Sun/r_iniziale_Hohmann) * (2 - 2 / (1 + (r_finale_Hohoman/r_iniziale_Hohmann))));
@@ -42,6 +47,23 @@ TOF_Hohmann = pi * sqrt(a_Hohmann^3 / mu_Sun); % in [sec]
 %% Info
 
 fprintf('\n Hohmann Earth-Uranus results \n')
+fprintf('\n Eccentricità orbita di trasferimento = %g \n', e_Hohmann)
 fprintf('\n Delta V = %g (km/s)\n', deltaV_Hohmann)
 fprintf('\n TOF = %g (years)\n', seconds2year(TOF_Hohmann))
 fprintf('\n-----------------------------------------------------\n')
+
+%% Plot
+
+% coe dell'orbita di Hohmann
+coe_Hohmann = [ 0, e_Hohmann, 0, 0, 0, 0, a_Hohmann];
+
+% Orbita della Terra
+plot_orbit(3, 2022);
+hold on
+% Orbita di Urano
+plot_orbit(7, 2038);
+
+% Orbita di Hohmann
+plot_traiettoria_spacecraft(coe_Hohmann, 0, 180, 'g');
+
+axis equal
