@@ -23,7 +23,7 @@ b_flyby_Jupiter = a_flyby_Jupiter * tand((180-delta_deg_Jupiter)/2);
 
 %ricavo l'anomalia vera f 
 f_Jupiter = acos((a_flyby_Jupiter*(1-e_flyby_Jupiter^2)-r_p_flyby_Jupiter) / (e_flyby_Jupiter*r_p_flyby_Jupiter)); 
-f_deg_Jupiter =rad2deg(f_Jupiter);
+f_deg_Jupiter = rad2deg(f_Jupiter);
 
 %trovo p semilato retto [km] 
 p_Jupiter = r_p_flyby_Jupiter*(1+e_flyby_Jupiter*cos(f_Jupiter)); 
@@ -32,10 +32,12 @@ p_Jupiter = r_p_flyby_Jupiter*(1+e_flyby_Jupiter*cos(f_Jupiter));
 r = R_SOI_Jupiter; 
 
 %calcolo anomalia vera per r (in ingresso alla SOI) 
-f1_Jupiter = acos((1/e_flyby_Jupiter)*((p_Jupiter/r)-1)); 
+f_in_Jupiter = acos((1/e_flyby_Jupiter)*((p_Jupiter/r)-1)); 
+f_in_Jupiter_deg = rad2deg(f_in_Jupiter);   % in gradi
+
 
 %calcolo anomalia eccentrica
-E_2_Jupiter = atanh(sqrt((e_flyby_Jupiter-1)/(e_flyby_Jupiter+1))*tan(f1_Jupiter/2)); 
+E_2_Jupiter = atanh(sqrt((e_flyby_Jupiter-1)/(e_flyby_Jupiter+1))*tan(f_in_Jupiter/2)); 
 E_Jupiter = E_2_Jupiter/2;
 E_deg_Jupiter = rad2deg(E_Jupiter); 
 
@@ -49,3 +51,23 @@ t_flyby_tot_Jupiter = 2*t_flyby_Jupiter;
 t_flyby_tot_hours_Jupiter = t_flyby_tot_Jupiter/3600; 
  
 [years_J months_J days_J hours_J minutes_J seconds_J] = sec2date(t_flyby_tot_Jupiter);
+
+%...Output to the command window:
+fprintf('\n\n--------------------------------------------------------\n')
+fprintf('\n fly-by orbit Jupiter\n')
+fprintf('\n The initial position is [%g, %g, %g] (km).',...
+                                                     r2_j(1), r2_j(2), r2_j(3))
+fprintf('\n The initial velocity is [%g, %g, %g] (km/s).',...
+                                                     v2_l_j(1), v2_l_j(2), v2_l_j(3))
+fprintf('\n The minimum altitude is %g km', r_p_flyby_Jupiter)
+fprintf('\n The final position is [%g, %g, %g] (km).',...
+                                                     r2_fin_j(1), r2_fin_j(2), r2_fin_j(3))
+fprintf('\n The final velocity is [%g, %g, %g] (km/s).',...
+                                                     v_fin_Jupiter(1), v_fin_Jupiter(2), v_fin_Jupiter(3))
+fprintf('\n Time of flyby [%g Y, %g M, %g D, %g h, %g m, %g s] (km/s).',years_J, months_J, days_J, hours_J, minutes_J, seconds_J)
+
+fprintf('\n--------------------------------------------------------\n\n')
+
+plot_flyby(r_Jupiter, R_SOI_Jupiter, e_flyby_Jupiter, p_Jupiter, f_in_Jupiter_deg, r_p_flyby_Jupiter);
+
+
