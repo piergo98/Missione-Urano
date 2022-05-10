@@ -3,7 +3,7 @@
 
 % Risolvo la Hohmann
 
-% Hohmann;
+Hohmann;
 
 % Dimensioni dello spacecraft
 radius = 100;
@@ -21,7 +21,8 @@ eu_days = datenum([2038 6 29])- datenum([2022 7 17]);
 Delta_TA_eu = 180;     %[deg]
 
 %   Minima variazione di anomalia vera in un giorno
-dTA = Delta_TA_eu / (TOF_Hohmann * 60 * 60 * 24);
+%dTA = Delta_TA_eu / (TOF_Hohmann * 60 * 60 * 24);
+dTA = Delta_TA_eu / eu_days;
 
 h = coe_Hohmann(1);         % Momento angolare
 e = coe_Hohmann(2);         % Eccentricità
@@ -36,7 +37,12 @@ p = a*(1 - e^2);    % Semilato retto
 % il centro è sempre il sole
 Q_pX = perifocal2helio(RA, incl, w);        
 
-for t = 1:((TOF_Hohmann * 60 * 60 * 24)+1)
+%%
+pos_spcr = [];
+
+%%
+%for t = 1:((TOF_Hohmann * 60 * 60 * 24)+1)
+for t = 1:(eu_days+1)
 %       Anomalia vera nel tempo
     f = dTA * t + coe_e(6);
 %       Legge oraria dello spacecraft in funzione dell'anomalia vera
@@ -48,16 +54,3 @@ for t = 1:((TOF_Hohmann * 60 * 60 * 24)+1)
 %       Cambio di coordinate il vettore posizione
     pos_spcr(:,t) = Q_pX * [x y z]';
 end
-
-%% tests
-%sanity check
-%(em_days + mv_days + v_days + vc_days) - (n_days-1)
-
-
-%% days
-
-% day_left_earth	= 1;
-% day_mars		= 1 + ej_days;
-% day_vesta		= 1 + ej_days + js_days;
-% day_left_vesta	= 1 + ej_days + js_days + v_days;
-% day_ceres		= 1 + ej_days + js_days + v_days + vc_days;

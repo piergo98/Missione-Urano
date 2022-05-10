@@ -1,16 +1,16 @@
 %% Constants
-global mu
-mu = 1.327565122000000e+11; %[km^3/s^2]
+% global mu
+% mu = 1.327565122000000e+11; %[km^3/s^2]
 
 %Masses
-Sun_mass = 1.989*10^30;		%[kg]
+%Sun_mass = 1.989*10^30;		%[kg]
 
-%SOI: (m_planet/m_Sun)^(2/5) * distance_from_Sun
-Earth_SOI   = 9.24*10^5;	%[km]
-Mars_SOI    = 5.74*10^5;	%[km]
-Jupiter_SOI = 4.82*10^7;    %[km]
-Saturn_SOI  = 5.45*10^7;    %[km]
-Uranus_SOI  = 5.19*10^7;    %[km]
+% %SOI: (m_planet/m_Sun)^(2/5) * distance_from_Sun
+% Earth_SOI   = 9.24*10^5;	%[km]
+% Mars_SOI    = 5.74*10^5;	%[km]
+% Jupiter_SOI = 4.82*10^7;    %[km]
+% Saturn_SOI  = 5.45*10^7;    %[km]
+% Uranus_SOI  = 5.19*10^7;    %[km]
 
 %Parking orbits (not considering body radius)
 Epark_radius = 200;		%[km]
