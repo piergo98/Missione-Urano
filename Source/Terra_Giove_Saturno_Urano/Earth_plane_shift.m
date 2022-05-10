@@ -21,16 +21,17 @@ deltaV_orbit_e = 2*v_orbit_e*sind(theta_e/2);    % delta v to ecliptical orbit
 % Plot orbital plane shift
 
 % Plot planet
-figure(1)
-[xx, yy, zz] = sphere(100);
-surf(r_Earth*xx, r_Earth*yy, r_Earth*zz, 'EdgeColor','green','FaceColor','green',...
-    'FaceAlpha','1');
+% figure(1)
+% [xx, yy, zz] = sphere(100);
+% surf(r_Earth*xx, r_Earth*yy, r_Earth*zz, 'EdgeColor','green','FaceColor','green',...
+%     'FaceAlpha','1');
+plot_Earth;
 
 % Circlar initial orbit
 f = 0:1:360;
 e = 0;
 p = r_orbit;
-color = 'k';
+color = 'y';
 pos = [];
 for i = 1:length(f)
 %   Legge oraria dello spacecraft in funzione dell'anomalia vera
@@ -45,7 +46,7 @@ for i = 1:length(f)
 %     pos = [x y z];
 
     if i == 1
-        ra = animatedline(pos(1), pos(2), pos(3), "Color", color,'LineWidth',1);
+        ra = animatedline(pos(1), pos(2), pos(3), "Color", color,'LineWidth',3);
     end
     addpoints(ra, pos(1), pos(2), pos(3));
     drawnow;
@@ -70,7 +71,7 @@ for i = 1:length(f)
 %     pos = [x y z];
 
     if i == 1
-        ra = animatedline(pos(1), pos(2), pos(3), "Color", color,'LineWidth',1);
+        ra = animatedline(pos(1), pos(2), pos(3), "Color", color,'LineWidth',3);
     end
     addpoints(ra, pos(1), pos(2), pos(3));
     drawnow;
@@ -88,6 +89,6 @@ fprintf('\n -----------------------------------------------------------\n');
 % xlabel('x (km)')
 % ylabel('y (km)')
 % zlabel('z (km)')
-view([0 0 1])
+%view([0 0 1])
 
 Escape_from_Earth
