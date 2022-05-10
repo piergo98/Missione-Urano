@@ -44,12 +44,23 @@ deltaV_Hohmann = deltaV_p + deltaV_a;
 % orbita di trasferimento)
 TOF_Hohmann = pi * sqrt(a_Hohmann^3 / mu_Sun); % in [sec]
 
+%% Date di partenza e arrivo
+
+Departure_and_arrive_date;
+
 %% Info
 
 fprintf('\n Hohmann Earth-Uranus results \n')
 fprintf('\n Eccentricità orbita di trasferimento = %g \n', e_Hohmann)
 fprintf('\n Delta V = %g (km/s)\n', deltaV_Hohmann)
 fprintf('\n TOF = %g (years)\n', seconds2year(TOF_Hohmann))
+if abs(error) <= 1e-5
+    fprintf('\n La data di partenza scelta soddisfa i requisiti della Hohmann!\n')
+    fprintf('\n Data di partenza dalla Terra = [%g, %g, %g, %g, %g, %g] (anno, mese, giorno, ora, min, sec) \n', departure_date);
+    fprintf('\n Data di arrivo su Urano = [%g, %g, %g, %g, %g, %g] (anno, mese, giorno, ora, min, sec) \n', arrive_date);
+else
+    fprintf('\n La data di partenza scelta NON soddisfa i requisiti della Hohmann!\n')
+end
 fprintf('\n-----------------------------------------------------\n')
 
 %% Plot
@@ -71,15 +82,3 @@ plot_traiettoria_spacecraft(coe_Hohmann, 0, 180, 'g');
 
 axis equal
 
-%% Scelta data di partenza
-% A spanne sembra che il momento migliore sia ad agosto del 2022
-
-% Angolo in deg spazzato da Urano durante il TOF
-theta = 360 * (TOF_Hohmann/T_circolare_Uranus);
-
-% Angolo relativo tra Terra e Urano alla partenza
-alpha = 180 - theta;
-
-% noto alpha e imponendo il vettore della terra mi calcolo il vettore
-% posizione dalla formula inversa del prodotto scalare, devo fare dei cicli
-% for per anno mese e giorno!
