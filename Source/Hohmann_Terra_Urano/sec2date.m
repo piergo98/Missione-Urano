@@ -24,5 +24,5 @@ function  data = sec2date(sec)
         days2seconds(1))), 3600), 60) );
     minutes = minutes + floor(seconds / 60);
     seconds = seconds - 60 * floor(seconds / 60);
-    data = [years, months, days, hours, minutes, seconds]
+    data = [years, months, days, hours, minutes, seconds];
 end
