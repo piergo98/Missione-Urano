@@ -3,7 +3,7 @@
 
 % Risolvo la Hohmann
 
-Hohmann;
+ Hohmann;
 
 % Dimensioni dello spacecraft
 radius = 100;
@@ -12,14 +12,18 @@ mu = 1.327*10^11;
 
 %% Earth to Uranus
 % from (17/7/2022) to (29/6/38)
-eu_days = datenum([2038 6 29])- datenum([2022 7 17]);
+% eu_days = datenum([2038 6 29])- datenum([2022 7 17]);
+eu_days = TOF_Hohmann / (24*3600);
 
 % Parametri orbitali terra alla partenza
 [coe_e, ~, ~, ~] = planet_elements_and_sv(3, anno_d, mese_d, giorno_d, ora_d, min_d, sec_d);
 
-% Variazione di anomalia vera durante il trasferimento interplanetario
-Delta_TA_eu = 180;     %[deg]
+% Parametri orbitali di urano all'arrivo
+[coe_u, ~, ~, ~] = planet_elements_and_sv(7, anno_a, mese_a, giorno_a, ora_a, min_a, sec_a);
 
+% Variazione di anomalia vera durante il trasferimento interplanetario
+Delta_TA_eu = rad2deg(coe_u(6) - coe_e(6));     %[deg]
+% Delta_TA_eu = 180;
 %   Minima variazione di anomalia vera in un giorno
 %dTA = Delta_TA_eu / (TOF_Hohmann * 60 * 60 * 24);
 dTA = Delta_TA_eu / eu_days;
@@ -44,7 +48,7 @@ pos_spcr = [];
 %for t = 1:((TOF_Hohmann * 60 * 60 * 24)+1)
 for t = 1:(eu_days+1)
 %       Anomalia vera nel tempo
-    f = dTA * t + coe_e(6);
+    f = dTA * t + rad2deg(coe_e(6));
 %       Legge oraria dello spacecraft in funzione dell'anomalia vera
     r = p / (1 + e*cosd(f));
 %       Converto in coordinate cartesiane

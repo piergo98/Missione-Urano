@@ -25,7 +25,7 @@ solar_system_animation_init
 
 % animation rates
 time_pause = 0;		% time [s] after each drawing. Set to zero to avoid pausing
-fr_skip = 6;		% frame skip between each drawing
+fr_skip = 50;		% frame skip between each drawing
 
 % view angles
 View = [90 35];				% initial view
@@ -122,7 +122,7 @@ for d = 1:fr_skip:n_days			% speed
     %SPACECRAFT
     
     if d == 1 
-        c = circle_plot(spcr_now(1), spcr_now(2), radius);
+        c = circle_plot(spcr_now(1), spcr_now(2), radius, 'g');
         ra = animatedline(spcr_now(1), spcr_now(2), spcr_now(3), "Color", color,'LineWidth', dim_spcr);
     end
     addpoints(ra, spcr_now(1), spcr_now(2), spcr_now(3));

@@ -64,21 +64,21 @@ end
 fprintf('\n-----------------------------------------------------\n')
 
 %% Plot
-% 
+
 % coe dell'orbita di Hohmann
 coe_Hohmann = [ 0, e_Hohmann, 0, 0, 0, 0, a_Hohmann];
-% 
-% % Orbita della Terra
-% plot_orbit(3, 2022);
-% 
-% hold on
-% grid on
-% 
-% % Orbita di Urano
-% circle_plot(0,0,d_Uranus2Sun, "#4DBEEE");
-% 
-% % Orbita di Hohmann
-% plot_traiettoria_spacecraft(coe_Hohmann, 0, 180, 'g');
-% 
-% axis equal
-% 
+
+% Orbita della Terra
+plot_orbit(3, 2022);
+
+hold on
+grid on
+
+% Orbita di Urano
+circle_plot(0,0,d_Uranus2Sun, "#4DBEEE");
+
+% Orbita di Hohmann
+plot_traiettoria_spacecraft(coe_Hohmann, 0, 180, 'g');
+
+axis equal
+

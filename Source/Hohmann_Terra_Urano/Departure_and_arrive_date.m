@@ -4,20 +4,17 @@
 % Angolo in deg spazzato da Urano durante il TOF
 theta = 360 * (TOF_Hohmann/T_circolare_Uranus);
 
-% Angolo relativo tra Terra e Urano alla partenza che devo averee
-alpha = 180 - theta;
-
 % noto alpha e imponendo il vettore della terra mi calcolo il vettore
 % posizione dalla formula inversa del prodotto scalare, devo fare dei cicli
 % for per anno mese e giorno!
 
 % Data di partenza
-anno_d = 2022;
-mese_d = 7;
-giorno_d = 16;
-ora_d = 23;
-min_d = 59;
-sec_d = 32;
+anno_d = 2023;
+mese_d = 2;
+giorno_d = 9;
+ora_d = 9;
+min_d = 8;
+sec_d = 35;
 departure_date = [anno_d, mese_d, giorno_d, ora_d, min_d, sec_d];
 
 % Data di arrivo
@@ -35,18 +32,30 @@ arrive_date_sec = departure_date_sec + TOF_Hohmann;
 arrive_date = sec2date(arrive_date_sec);
 
 % Vettore posizione della terra
-[~, r_T, ~, ~] = planet_elements_and_sv(3, anno_d, mese_d, giorno_d, ora_d, min_d, sec_d);
+[coe_T, r_T, ~, ~] = planet_elements_and_sv(3, anno_d, mese_d, giorno_d, ora_d, min_d, sec_d);
 
-% Vettore posizione di Urano
-[~, r_U, ~, ~] = planet_elements_and_sv(7, anno_d, mese_d, giorno_d, ora_d, min_d, sec_d);
+% % Vettore posizione di Urano alla partenza
+% [coe_U, r_U, ~, ~] = planet_elements_and_sv(7, anno_d, mese_d, giorno_d, ora_d, min_d, sec_d);
+
+% Vettore posizione di Urano all'arrivo
+[coe_U, ~, ~, ~] = planet_elements_and_sv(7, anno_a, mese_a, giorno_a, ora_a, min_a, sec_a);
+
+% % Angolo relativo tra Terra e Urano alla partenza che devo averee NOOOO!!!!
+% % QUESTA È L'ANOMALIA VERA CHE URANO DEVE AVERE ALLA PARTENZA!!!!!
+% alpha =rad2deg(coe_T(6)) + 180 - theta;
 
 % Angolo tra i due vettori posizione
-gamma = acosd( (r_T * r_U') / (norm(r_T)*norm(r_U)));
+% gamma = acosd( (r_T * r_U') / (norm(r_T)*norm(r_U)));
+
+% Anomalia vera di Urano all'arrivo
+ gamma = rad2deg(coe_U(6));
 
 % Differenza tra l'angolo alla partenza richiesto dalla Hohmann e quello
 % che si ha nella data di partenza scelta
-error = alpha - gamma;
- 
+
+% Anomalia vera che Urano deve avere all'arrivo meno quella calcolata
+% se zero la data di partenza è corretta
+error = rad2deg(coe_T(6) + pi) - gamma
 
 
 
