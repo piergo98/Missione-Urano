@@ -2,6 +2,9 @@
 % plane (0 deg) to equatorial plane (97.77 deg)
 
 %clear, clc
+r_uranus = 25362;
+r_orbit_u = r_uranus + 1000;
+mu_u = 5.7939*10^6;
 deltaT_min = 1e20;            % Initialization minimum tof 
 color = 'r';
 i1_u = 0;     % inclination ecliptic orbit around Uranus (rad)
