@@ -11,8 +11,6 @@ mu_Sun = 1.327*10^11;   % mu sun (km^3/s^2)
 m_Sun = 1.989e+30;  % Sun mass in kg
 G = 6.6742e-20; % Costante gravitazionale
 
-deg = pi/180;
-
 %Masses
 Sun_mass = 1.989*10^30;		%[kg]
 

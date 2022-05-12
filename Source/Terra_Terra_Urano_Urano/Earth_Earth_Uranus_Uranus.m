@@ -10,8 +10,8 @@ init_Terra_Terra_Urano_Urano
 % 
 % [coe_u2, ~, ~, ~] = planet_elements_and_sv(7, 2036, 04, 03, 00, 00, 00);
 
-[~, r1_e1, v1_e1, ~] = planet_elements_and_sv(3, 2022, 03, 01, 18, 00, 00);
-[~, r2_e2, v2_e2, ~] = planet_elements_and_sv(3, 2023, 10, 01, 18, 00, 00);
+[~, r1_e1, v1_e1, ~] = planet_elements_and_sv(3, 2022, 06, 01, 18, 00, 00);
+[~, r2_e2, v2_e2, ~] = planet_elements_and_sv(3, 2023, 01, 01, 18, 00, 00);
 % TOF 
 dt_ee = month2seconds(17);
 string = 'pro';
@@ -60,32 +60,44 @@ TA_post_flyby_e = rad2deg(coe_flyby_e(6));
 
 % Anomalia vera nel punto di partenza della traiettoria di Lambert fra la
 % Terra e Saturno
-TA_for_lambert_e = TA_post_flyby_e + 90;
+deltaV_ottimo_e = inf;
+for i=1:1:360
+    TA_for_lambert_e = TA_post_flyby_e + i;
+   
+    % Punto partenza Lambert post flyby Terra con arrivo su Urano
+    
+    % Trovo la posizione di Urano
+    [~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2039, 01, 02, 12, 00, 00);
+    
+    % Definisco il tempo di volo
+    dt_eu = year2seconds(20);
+    
+    % Estraggo il vettore di stato con i coe aggiornati all'ultima posizione
+    [r, v] = sv_from_coe(coe_flyby_e, mu_Sun);
+    % Risolvo Lambert per arrivare su Saturno
+    [V1_l_f, V2_l_u] = lambert(r, r2_u, dt_eu, string);
+    
+    d_V_1 = v - V1_l_f;
+    deltaV_Earth_Uranus = norm(d_V_1);
+    if deltaV_ottimo_e > deltaV_Earth_Uranus
+        deltaV_ottimo_e = deltaV_Earth_Uranus;
+        TA_for_lambert_ottimo_e = TA_for_lambert_e;
+        if TA_for_lambert_ottimo_e >= 360
+            TA_for_lambert_ottimo_e = TA_for_lambert_ottimo_e - 360;
+        end
+    end
+end
+
+fprintf("\n Delta V ottimo = %g\n", deltaV_ottimo_e);
+fprintf("\n TA for lambert = %g\n", TA_for_lambert_ottimo_e)
 
 % Calcolo delta T su traiettoria ellissoidale
 a = coe_flyby_e(7);
 e = coe_flyby_e(2);
-dt_flyby = time_post_flyby(TA_post_flyby_e, TA_for_lambert_e, a, e, mu_Sun);
+dt_flyby = time_post_flyby(TA_post_flyby_e, TA_for_lambert_ottimo_e, a, e, mu_Sun);
 
 % Aggiorno il valore dell'anomalia vera per ottenere i coe prima del dV
-coe_flyby_e(6) = deg2rad(TA_for_lambert_e);
-
-%% Punto partenza Lambert post flyby Terra con arrivo su Urano
-
-% Trovo la posizione di Urano
-[~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2039, 05, 13, 00, 00, 00);
-
-% Definisco il tempo di volo
-dt_eu = year2seconds(15);
-
-% Estraggo il vettore di stato con i coe aggiornati all'ultima posizione
-[r, v] = sv_from_coe(coe_flyby_e, mu_Sun);
-% Risolvo Lambert per arrivare su Saturno
-[V1_l_f, V2_l_u] = lambert(r, r2_u, dt_eu, string);
-
-d_V_1 = v - V1_l_f;
-deltaV_Earth_Uranus = norm(d_V_1);
-
+coe_flyby_e(6) = deg2rad(TA_for_lambert_ottimo_e);
 
 % Estrazione elementi orbitali orbita di trasferimento (using r1 and v1_l):
 coe_eu = coe_from_sv(r, V1_l_f, mu_Sun);
@@ -132,7 +144,7 @@ StateVector_Uranus;
 coe_flyby_u = coe_from_sv(r2_fin_u, v_fin_Uranus, mu_Sun);
 
 % Anomalia vera in partenza dalla SOI della Terra
-TA_post_flyby_u = rad2deg(coe_flyby(6));
+TA_post_flyby_u = rad2deg(coe_flyby_u(6));
 
 % Anomalia vera nel punto di partenza della traiettoria di Lambert fra la
 % Terra e Saturno
@@ -159,7 +171,7 @@ plot_orbit(7,2036);     % Uranus
 
 % Plot della traiettoria fra SOI Terra e punto partenza di Lambert fra Terra
 % e Urano
-plot_traiettoria_spacecraft(coe_flyby_e, TA_post_flyby_e, TA_post_flyby_e+360, 'g')
+plot_traiettoria_spacecraft(coe_flyby_e, TA_post_flyby_e, TA_for_lambert_ottimo_e, 'g')
 
 % Plot della traiettoria di Lambert fra Terra e Urano
 % plot_traiettoria_spacecraft(coe_eu, TA1_eu, TA1_eu+360 , 'g');

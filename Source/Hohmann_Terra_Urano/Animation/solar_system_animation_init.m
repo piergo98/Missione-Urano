@@ -17,7 +17,7 @@ Epark_radius = 200;		%[km]
 Epark_inclination = 0;	%[rad]
 
 % time_vector, a row for each day of the mission
-time_vector = ymd_gen([2023, 2, 9],[2039, 1, 21]);
+time_vector = ymd_gen([anno_d, mese_d, giorno_d],[anno_a, mese_a, giorno_a]);
 n_days = size(time_vector,1);
 
 %% Mission info

@@ -9,7 +9,7 @@ a_flyby_Earth = - mu_Earth / (v_inf_down_norm_Earth^2);
 
 r_p_flyby_Earth_true = 0;
 
-for i=2:1:1000
+for i=1:1:360
     % Rp
     r_p_flyby_Earth = r_Earth + i*10^2;    
     

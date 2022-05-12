@@ -14,12 +14,11 @@ movie_mode = 2;	% 1 for movie writing, 2 for HD movie, 0 for only matlab animati
 addpath(genpath("Script matlab"));
 addpath(genpath("Animation"));
 
+% Computes the position of the spacecraft for each day of the mission
+Spacecraft_position_for_Hohmann
+
 % Init all par, constants and plot parameters
 solar_system_animation_init
-
-% Computes the position of the spacecraft for each day of the mission
- Spacecraft_position_for_Hohmann
-%Spacecraft_position_for_EESU
 
 %% Editable animation parameters
 
@@ -196,12 +195,12 @@ for d = 1:fr_skip:n_days			% speed
 	end
 end
 
-%% Video stuff
-if movie_mode
-	movie = VideoWriter('movie_heliocentric', 'MPEG-4');
-	movie.FrameRate = movie_fps;
-
-	open(movie);
-	writeVideo(movie, movieVector);
-	close(movie);
-end
+% %% Video stuff
+% if movie_mode
+% 	movie = VideoWriter('movie_heliocentric', 'MPEG-4');
+% 	movie.FrameRate = movie_fps;
+% 
+% 	open(movie);
+% 	writeVideo(movie, movieVector);
+% 	close(movie);
+% end

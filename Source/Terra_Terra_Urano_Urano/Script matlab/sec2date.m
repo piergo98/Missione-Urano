@@ -1,4 +1,4 @@
-function [years, months, days, hours, minutes, seconds] = sec2date(sec)
+function date = sec2date(sec)
 %   Estraggo gli anni
     years = floor(sec / year2seconds(1));
 %   Estraggo i mesi
@@ -24,4 +24,6 @@ function [years, months, days, hours, minutes, seconds] = sec2date(sec)
         days2seconds(1))), 3600), 60) );
     minutes = minutes + floor(seconds / 60);
     seconds = seconds - 60 * floor(seconds / 60);
+
+    date = [years, months, days, hours, minutes, seconds];
 end

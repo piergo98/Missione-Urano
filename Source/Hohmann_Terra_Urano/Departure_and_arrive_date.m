@@ -31,6 +31,14 @@ departure_date_sec = year2seconds(anno_d) + month2seconds(mese_d) + days2seconds
 arrive_date_sec = departure_date_sec + TOF_Hohmann;
 arrive_date = sec2date(arrive_date_sec);
 
+% Aggiorno le date
+anno_a = arrive_date(1);
+mese_a = arrive_date(2);
+giorno_a = arrive_date(3);
+ora_a = arrive_date(4);
+min_a = arrive_date(5);
+sec_a = arrive_date(6);
+
 % Vettore posizione della terra
 [coe_T, r_T, ~, ~] = planet_elements_and_sv(3, anno_d, mese_d, giorno_d, ora_d, min_d, sec_d);
 
