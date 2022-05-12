@@ -6,16 +6,16 @@ SOI_Saturn;
 
 %Trovo la posizione del pianeta Target
 
-[~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2036, 06, 03, 00, 00, 00);
+[~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2034, 10, 03, 00, 00, 00);
 
 %definisco il tempo di volo
 
-t = year2seconds(6) + month2seconds(3);
+t = year2seconds(6) ;
 
 %Eseguo un ciclo for che varia la posizione di rp e mi modifica delta
 GM_saturn = 37931187; %[km^3/s^2] 
  %v2_l_s = [-2.782798e+00 3.298032e+00 1.711240e-01];
- v2_l_s = [-2.753839e+00 3.343597e+00 2.733539e-01];
+ v2_l_s = [-1.209192e+00 5.539810e+00 4.727488e-01];
 v_inf_down_saturn = v2_l_s - v2_s ;  
 v_inf_down_norm_saturn = norm(v_inf_down_saturn); 
 
@@ -53,7 +53,7 @@ for i = 1:length(Ta_for_lambert)
         dT = time_post_flyby(Ta_post_flyby, Ta_for_lambert(i), coe_flyby(7), ...
             coe_flyby(2), mu); 
     
-    if d_V_norm < 1.2 && e_flyby_saturn(j) < 6 && dT < month2seconds(6)
+    if d_V_norm < 3 && e_flyby_saturn(j) < 6 && dT < month2seconds(6)
 
          %tempo riscritto 
          [years, months, days, hours, minutes, seconds] = sec2date(dT);
@@ -69,7 +69,9 @@ for i = 1:length(Ta_for_lambert)
         % Final true anomaly:
         TA2 = rad2deg(coe(6));
         % Plot of planets orbit and trajectory orbit
-%         plot_traiettoria_spacecraft(coe, TA1, TA2, 'g')
+%          plot_traiettoria_spacecraft(coe, TA1, TA2, 'g')
+%          plot_orbit(6,2030)
+%          plot_orbit(7,2036)
         %fprintf('\n Starting speed = %s (Km/s)\n ', V1)
         fprintf('\n Delta True anomaly = %g (deg)\n ', d_theta(i))
         %fprintf('\n Starting speed = [%c %c %c] (Km/s)\n ', d_V(1),d_V(2), d_V(3))

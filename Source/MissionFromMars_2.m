@@ -9,15 +9,15 @@ mu = 1.327*10^11;                   % mu sun (km^3/s^2)
 % TOF 
 % dt_y = year2seconds(1):year2seconds(1):year2seconds(10);
 %dt_m = month2seconds(3):month2seconds(1):month2seconds(8);
-dt = year2seconds(1) + month2seconds(1);
+dt = year2seconds(1) + month2seconds(5) ;
 
 % for i = 1:length(dt)
     % Position of Earth at the departure (km)
-    [coe1_e, r1_e, v1_e, jd1_e] = planet_elements_and_sv(3, 2022, 09, 01, 18, 00, 00);
+    [coe1_e, r1_e, v1_e, jd1_e] = planet_elements_and_sv(3, 2027, 05, 01, 18, 00, 00);
     
     
     % Position of Jupiter at the arrival  (km)     
-    [coe2_m, r2_m, v2_m, jd2_m] = planet_elements_and_sv(4, 2023, 10, 01, 18, 00, 00);
+    [coe2_m, r2_m, v2_m, jd2_m] = planet_elements_and_sv(4, 2028, 10, 01, 18, 00, 00);
     
     string = 'pro';
     %...
@@ -29,15 +29,15 @@ dt = year2seconds(1) + month2seconds(1);
 
     
     
-    % Estrazione elementi orbitali orbita di trasferimento (using r1 and v1):
-    coe = coe_from_sv(r1_e, v1_l_m, mu);
-    % Initial true anomaly:
-    TA1 = rad2deg(coe(6));
-    
-    % Estrazione elementi orbitali orbita di trasferimento (using r2 and v2):
-    coe = coe_from_sv(r2_m, v2_l_m, mu);
-    % Final true anomaly:
-    TA2 = rad2deg(coe(6));
+%     % Estrazione elementi orbitali orbita di trasferimento (using r1 and v1):
+%     coe = coe_from_sv(r1_e, v1_l_m, mu);
+%     % Initial true anomaly:
+%     TA1 = rad2deg(coe(6));
+%     
+%     % Estrazione elementi orbitali orbita di trasferimento (using r2 and v2):
+%     coe = coe_from_sv(r2_m, v2_l_m, mu);
+%     % Final true anomaly:
+%     TA2 = rad2deg(coe(6));
 
     %% Assist gravitazionale su Marte
     % Modifico vettore di posizione nel tempo in dipendenza dell'angolo di
@@ -45,11 +45,11 @@ dt = year2seconds(1) + month2seconds(1);
 
 %Trovo la posizione del pianeta Target
 
-[~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2028, 10, 01, 00, 00, 00);
+[~, r2_j, v2_j, ~] = planet_elements_and_sv(5, 2032, 07, 01, 00, 00, 00);
 
 %definisco il tempo di volo
 
-t = year2seconds(5);
+t = year2seconds(3) + month2seconds(9);
 
 %Eseguo un ciclo for che varia la posizione di rp e mi modifica delta
 GM_Mars = 42828; %[km^3/s^2] 
@@ -81,7 +81,7 @@ for i = 1:length(Ta_for_lambert)
     coe_new = coe_flyby;
     coe_new(6)= Ta_for_lambert(i);
     [r, v] = sv_from_coe(coe_new,mu);
-    [V1, V2] = lambert(r, r2_s, t, 'pro');
+    [V1, V2] = lambert(r, r2_j, t, 'pro');
     d_theta = abs((Ta_post_flyby - Ta_for_lambert)*180/pi);
     d_V = v - V1;
     d_V_norm = norm(d_V);
@@ -90,7 +90,7 @@ for i = 1:length(Ta_for_lambert)
         dT = time_post_flyby(Ta_post_flyby, Ta_for_lambert(i), coe_flyby(7), ...
             coe_flyby(2), mu); 
     
-    if d_V_norm < 12.7 && e_flyby_Mars(j)< 10 && dT < month2seconds(6)
+    if d_V_norm < 15.4 && e_flyby_Mars(j)< 15 && dT < month2seconds(6)
          
         %tempo riscritto 
          [years, months, days, hours, minutes, seconds] = sec2date(dT);
@@ -102,14 +102,14 @@ for i = 1:length(Ta_for_lambert)
         TA1 = rad2deg(coe(6));
     
         % Estrazione elementi orbitali orbita di trasferimento (using r2 and v2):
-        coe = coe_from_sv(r2_s, V2, mu);
+        coe = coe_from_sv(r2_j, V2, mu);
         % Final true anomaly:
         TA2 = rad2deg(coe(6));
         % Plot of planets orbit and trajectory orbit
 %         figure()
-%          plot_traiettoria_spacecraft(coe, TA1, TA2, 'g')
-%          plot_orbit(4,2023)
-%          plot_orbit(6,2030)
+%           plot_traiettoria_spacecraft(coe, TA1, TA2, 'g')
+%           plot_orbit(4,2023)
+%           plot_orbit(5,2030)
         %fprintf('\n Starting speed = %s (Km/s)\n ', V1)
         fprintf('\n Delta True anomaly = %g (deg)\n ', d_theta(i))
         %fprintf('\n Starting speed = [%c %c %c] (Km/s)\n ', d_V(1),d_V(2), d_V(3))
@@ -132,44 +132,40 @@ end
 
 
     %% Lambert Marte Saturno
-% addpath './Script matlab'
-% global mu
-% deg = pi/180;
-% 
-% %...Data declaration:
-% 
-% mu = 1.327*10^11;                   % mu sun (km^3/s^2)
-% % TOF 
-% % dt_y = year2seconds(1):year2seconds(1):year2seconds(10);
-% %dt_m = month2seconds(3):month2seconds(1):month2seconds(8);
-% dt = year2seconds(5);
-% 
-% % for i = 1:length(dt)
-%     % Position of Earth at the departure (km)
-%     [coe1_m, r1_m, v1_m, jd1_m] = planet_elements_and_sv(3, 2023, 11, 01, 18, 00, 00);
-%     
-%     
-%     % Position of Jupiter at the arrival  (km)     
-%     [coe2_s, r2_s, v2_s, jd2_s] = planet_elements_and_sv(6, 2028, 11, 01, 18, 00, 00);
-%     
-%     string = 'pro';
-%     %...
-%     %dt = year2seconds(3)+ month2seconds(2)+days2seconds(9);     % Total TOF (speriamo)
-%     %...Algorithm 5.2:
-%     [v1_l_m, v2_l_s] = lambert(r1_m, r2_s, dt, string);
-%     Dv = v1_l_m - v2_l_m;
-%     norm (Dv)
-%     
-%     % Estrazione elementi orbitali orbita di trasferimento (using r1 and v1):
-%     coe = coe_from_sv(r1_m, v1_l_m, mu);
-%     % Initial true anomaly:
-%     TA1 = rad2deg(coe(6));
-%     
-%     % Estrazione elementi orbitali orbita di trasferimento (using r2 and v2):
-%     coe = coe_from_sv(r2_s, v2_l_s, mu);
-%     % Final true anomaly:
-%     TA2 = rad2deg(coe(6));
+addpath './Script matlab'
+global mu
+deg = pi/180;
 
+%...Data declaration:
 
+mu = 1.327*10^11;                   % mu sun (km^3/s^2)
+% TOF 
 
+dt = year2seconds(4);
 
+% for i = 1:length(dt)
+    % Position of Earth at the departure (km)
+    [coe1_m, r1_m, v1_m, jd1_m] = planet_elements_and_sv(4, 2026, 08, 01, 18, 00, 00);
+    
+    
+    % Position of Jupiter at the arrival  (km)     
+    [coe2_s, r2_s, v2_s, jd2_s] = planet_elements_and_sv(5, 2030, 08, 01, 18, 00, 00);
+    
+    string = 'pro';
+    %...
+    %dt = year2seconds(3)+ month2seconds(2)+days2seconds(9);     % Total TOF (speriamo)
+    %...Algorithm 5.2:
+    [v1_l_m, v2_l_s] = lambert(r1_m, r2_s, dt, string);
+    Dv = v1_l_m - v2_l_m;
+    norm (Dv)
+    norm(v1_l_m)
+    
+    % Estrazione elementi orbitali orbita di trasferimento (using r1 and v1):
+    coe = coe_from_sv(r1_m, v1_l_m, mu);
+    % Initial true anomaly:
+    TA1 = rad2deg(coe(6));
+    
+    % Estrazione elementi orbitali orbita di trasferimento (using r2 and v2):
+    coe = coe_from_sv(r2_s, v2_l_s, mu);
+    % Final true anomaly:
+    TA2 = rad2deg(coe(6));
