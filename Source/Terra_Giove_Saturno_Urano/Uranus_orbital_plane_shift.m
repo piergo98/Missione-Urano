@@ -1,12 +1,14 @@
 %% Orbit plane change with three pulse maneuver on Uranus from ecliptical 
 % plane (0 deg) to equatorial plane (97.77 deg)
-
 %clear, clc
-r_uranus = 25362;
-r_orbit_u = r_uranus + 1000;
-mu_u = 5.7939*10^6;
+%r_uranus = 25362;
+r_orbit_u = r_Uranus + 1000;
+%mu_u = 5.7939*10^6;
+
+plot_Uranus;
+
 deltaT_min = 1e20;            % Initialization minimum tof 
-color = 'r';
+color = 'b';
 i1_u = 0;     % inclination ecliptic orbit around Uranus (rad)
 i2_u = deg2rad(97.77);  % inclination equatorial parking orbit around Uranus (rad)
 RAAN1_u = 3*pi/2;  % right ascention ecliptical orbit (rad)
@@ -19,15 +21,15 @@ for j = r_orbit_u:1e5:5e7
     cos_theta_u = cos(i1_u)*cos(i2_u) + sin(i1_u)*sin(i2_u)*cos(RAAN2_u-RAAN1_u);
     theta_u = acos(cos_theta_u);
     
-    v_orbit_u = sqrt(mu_u / r_orbit_u);     % orbit velocity (km/s)
+    v_orbit_u = sqrt(mu_Uranus / r_orbit_u);     % orbit velocity (km/s)
     deltaV_1 = 2*(sqrt(2*rho/(1+rho))- 1)* v_orbit_u;   %considering dv1 and dv3
     
-    v_a = sqrt(mu_u/r_orbit_u)*sqrt(2/(rho*(1+rho)));
+    v_a = sqrt(mu_Uranus/r_orbit_u)*sqrt(2/(rho*(1+rho)));
     deltaV_2 = 2*v_a*sin(theta_u/2);   % delta v to equatorial orbit
     deltaV_tot = deltaV_1 + deltaV_2;   %dv3 is considered in dv1
     
 %   Compute the time of flight
-    Tc = 2*pi*sqrt(r_orbit_u^3 / mu_u);
+    Tc = 2*pi*sqrt(r_orbit_u^3 / mu_Uranus);
     deltaT = Tc * sqrt((1+rho)^3 / 8);
     if deltaT/(24*3600*365.25) < 1 && deltaV_tot < 13         % Considero le traiettorie che impiegano meno di 1 anno
         if deltaT < deltaT_min
@@ -80,7 +82,7 @@ for i = 1:length(f)
 %     pos = [x y z];
 
     if i == 1
-        ra = animatedline(pos(1), pos(2), pos(3), "Color", color,'LineWidth',1);
+        ra = animatedline(pos(1), pos(2), pos(3), "Color", color,'LineWidth',2);
     end
     addpoints(ra, pos(1), pos(2), pos(3));
     drawnow;
@@ -88,7 +90,7 @@ end
 
 % First transfer orbit
 f = 0:1:180;
-color = 'k';
+color = 'c';
 pos = [];
 for i = 1:length(f)
 %   Legge oraria dello spacecraft in funzione dell'anomalia vera
@@ -103,7 +105,7 @@ for i = 1:length(f)
 %     pos = [x y z];
 
     if i == 1
-        ra = animatedline(pos(1), pos(2), pos(3), "Color", color,'LineWidth',1);
+        ra = animatedline(pos(1), pos(2), pos(3), "Color", color,'LineWidth',2);
     end
     addpoints(ra, pos(1), pos(2), pos(3));
     drawnow;
@@ -126,7 +128,7 @@ for i = 1:length(f)
 %     pos = [x y z];
 
     if i == 1 
-        ra = animatedline(pos(1), pos(2), pos(3), "Color", color,'LineWidth',1);
+        ra = animatedline(pos(1), pos(2), pos(3), "Color", color,'LineWidth',2);
     end
     addpoints(ra, pos(1), pos(2), pos(3));
     drawnow;
@@ -137,7 +139,7 @@ f = 0:1:360;
 e = 0;
 r = r_orbit_u;
 p = r;
-color = 'g';
+color = 'r';
 pos = [];
 for i = 1:length(f)
 %   Legge oraria dello spacecraft in funzione dell'anomalia vera
@@ -152,7 +154,7 @@ for i = 1:length(f)
 %     pos = [x y z];
 
     if i == 1
-        ra = animatedline(pos(1), pos(2), pos(3), "Color", color,'LineWidth',1);
+        ra = animatedline(pos(1), pos(2), pos(3), "Color", color,'LineWidth',2);
     end
     addpoints(ra, pos(1), pos(2), pos(3));
     drawnow;
@@ -165,10 +167,10 @@ axis equal
 xlim([-1e5 1e5])
 ylim([-1e5 1e5])
 zlim([-1e5 1e5])
-xlabel('x (km)')
-ylabel('y (km)')
-zlabel('z (km)')
-% view([0, 0, 1])
+% xlabel('x (km)')
+% ylabel('y (km)')
+% zlabel('z (km)')
+ view([1, 1, 0])
    
 
 
