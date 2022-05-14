@@ -39,7 +39,7 @@ dt = year2seconds(1) + month2seconds(1);
     % Final true anomaly:
     TA2 = rad2deg(coe(6));
 
-    %% Assist gravitazionale su Marte
+    %% Assist gravitazionale su Marte per Saturno
     % Modifico vettore di posizione nel tempo in dipendenza dell'angolo di
 % Flyby.
 
@@ -128,48 +128,4 @@ end
 end
 
 
-   
-
-
-    %% Lambert Marte Saturno
-% addpath './Script matlab'
-% global mu
-% deg = pi/180;
-% 
-% %...Data declaration:
-% 
-% mu = 1.327*10^11;                   % mu sun (km^3/s^2)
-% % TOF 
-% % dt_y = year2seconds(1):year2seconds(1):year2seconds(10);
-% %dt_m = month2seconds(3):month2seconds(1):month2seconds(8);
-% dt = year2seconds(5);
-% 
-% % for i = 1:length(dt)
-%     % Position of Earth at the departure (km)
-%     [coe1_m, r1_m, v1_m, jd1_m] = planet_elements_and_sv(3, 2023, 11, 01, 18, 00, 00);
-%     
-%     
-%     % Position of Jupiter at the arrival  (km)     
-%     [coe2_s, r2_s, v2_s, jd2_s] = planet_elements_and_sv(6, 2028, 11, 01, 18, 00, 00);
-%     
-%     string = 'pro';
-%     %...
-%     %dt = year2seconds(3)+ month2seconds(2)+days2seconds(9);     % Total TOF (speriamo)
-%     %...Algorithm 5.2:
-%     [v1_l_m, v2_l_s] = lambert(r1_m, r2_s, dt, string);
-%     Dv = v1_l_m - v2_l_m;
-%     norm (Dv)
-%     
-%     % Estrazione elementi orbitali orbita di trasferimento (using r1 and v1):
-%     coe = coe_from_sv(r1_m, v1_l_m, mu);
-%     % Initial true anomaly:
-%     TA1 = rad2deg(coe(6));
-%     
-%     % Estrazione elementi orbitali orbita di trasferimento (using r2 and v2):
-%     coe = coe_from_sv(r2_s, v2_l_s, mu);
-%     % Final true anomaly:
-%     TA2 = rad2deg(coe(6));
-
-
-
-
+  

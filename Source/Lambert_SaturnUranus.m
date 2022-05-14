@@ -53,7 +53,7 @@ for i = 1:length(Ta_for_lambert)
         dT = time_post_flyby(Ta_post_flyby, Ta_for_lambert(i), coe_flyby(7), ...
             coe_flyby(2), mu); 
     
-    if d_V_norm < 3 && e_flyby_saturn(j) < 6 && dT < month2seconds(6)
+    if d_V_norm < 2 && e_flyby_saturn(j) < 6 && dT < month2seconds(6)
 
          %tempo riscritto 
          [years, months, days, hours, minutes, seconds] = sec2date(dT);
