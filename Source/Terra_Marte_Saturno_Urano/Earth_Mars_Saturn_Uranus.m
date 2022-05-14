@@ -27,7 +27,7 @@
 %}
 % ---------------------------------------------
 addpath './Script matlab'
-init_Terra_Terra_Saturno_Urano;
+init_Terra_Marte_Saturno_Urano;
 
 %% calcolo Lambert fra posizione iniziale Terra e Marte al momento del flyby
 
@@ -40,7 +40,7 @@ init_Terra_Terra_Saturno_Urano;
 %[~, r2_e2, v2_e2, ~] = planet_elements_and_sv(3, 2024, 03, 01, 18, 00, 00); %date vecchie
 [~, r2_m, v2_m, ~] = planet_elements_and_sv(4, 2023, 10, 01, 18, 00, 00);
 % Tempo di volo Terra-Terra
-t_EE = month2seconds(25);
+t_EE = month2seconds(1) + year2seconds(1);
 
 string = 'pro'; %direzione lambert
 
@@ -76,7 +76,7 @@ a_flyby_Mars = - mu_Mars/((v_inf_down_norm_Mars)^2);
 
 % Distanza minima fra traiettoria di flyby e pianeta(km) 
 %r_p_flyby_Earth = 30000;  %vecchio
-r_p_flyby_Mars = 6000;  
+r_p_flyby_Mars = 16000;  
 
 % Eccentricità traiettoria di flyby
 e_flyby_Mars = 1-(r_p_flyby_Mars/a_flyby_Mars); 
@@ -102,7 +102,7 @@ TA_post_flyby = rad2deg(coe_flyby(6));
 % Anomalia vera nel punto di partenza della traiettoria di Lambert fra la
 % Terra e Saturno
 %TA_for_lambert = TA_post_flyby + 90; %vecchio
-TA_for_lambert = TA_post_flyby + 20*pi/180; 
+TA_for_lambert = TA_post_flyby; 
 
 % Calcolo delta T su traiettoria ellissoidale
 a = coe_flyby(7);
@@ -116,28 +116,28 @@ coe_flyby(6) = deg2rad(TA_for_lambert);
 
 % Trovo la posizione e velocità di Saturno
 %[~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2030, 04, 03, 00, 00, 00); %vecchio
-[~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2028, 10, 01, 00, 00, 00);
+[~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2028, 11, 01, 00, 00, 00);
 
 % Definisco il tempo di volo dal punto scelto post flyby e Saturno
-t_fS = year2seconds(5) - month2seconds(1)- days2seconds(16); % 'fS' = da punto post flyby a Saturno 6anni-il tempo trascorso sull'orbita eliocentrica
+t_fS = year2seconds(5) + month2seconds(1); % 'fS' = da punto post flyby a Saturno 6anni-il tempo trascorso sull'orbita eliocentrica
 
 % Estraggo il vettore di stato con i coe aggiornati all'ultima posizione
 [r, v] = sv_from_coe(coe_flyby, mu);
 % Risolvo Lambert per arrivare su Saturno
-[V1_l_f, V2_l_s] = lambert(r, r2_s, t_fS, 'pro');
+[V1_l_f, V2_l_s] = lambert(r2_m, r2_s, t_fS, 'pro');
 
 % Delta V necessario per portarmi sulla traiettoria di Lambert
-d_V_fS = v - V1_l_f;    % 'fS' = da punto post flyby a Saturno     
+d_V_fS = v_fin_Mars - V1_l_f;    % 'fS' = da punto post flyby a Saturno     
 d_V_fS_norm = norm(d_V_fS);    % in norma
 
 
 % Estrazione elementi orbitali dall'orbita ottenuta con Lambert(partenza)
-coe_ms = coe_from_sv(r, V1_l_f, mu);
+coe_ms = coe_from_sv(r2_fin_m, V1_l_f, mu);
 % Anomalia vera alla partenza della missione r-Saturno
 TA1_ms = rad2deg(coe_ms(6));
 
 % Estrazione elementi orbitali dall'orbita ottenuta con Lambert(arrivo)
-coe_ms = coe_from_sv(r2_m, V2_l_s, mu);
+coe_ms = coe_from_sv(r2_s, V2_l_s, mu);
 % Anomalia vera alla fine della missione r-Saturno
 TA2_ms = rad2deg(coe_ms(6));
 
@@ -172,7 +172,7 @@ StateVector_Saturn;
 
 % Trovo la posizione e velocità di Urano
 %[~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2036, 04, 03, 00, 00, 00); %vecchio
-[~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2034, 10, 01, 00, 00, 00);
+[~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2034, 11, 01, 00, 00, 00);
 
 % Definisco il tempo di volo Saturno-Urano
 t_SU = year2seconds(6);

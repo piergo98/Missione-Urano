@@ -22,7 +22,7 @@ Spacecraft_position_for_EMSU
 
 % Animation rates
 time_pause = 0;		% time [s] after each drawing. Set to zero to avoid pausing
-fr_skip = 6;		% frame skip between each drawing
+fr_skip = 12;		% frame skip between each drawing
 
 % View angles
 View = [90 90];				% initial view
