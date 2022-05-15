@@ -1,7 +1,7 @@
 %% Calcolo il tempo t di flyby Saturn usando l'equazione di keplero
 
 % Recupero dati pianeta attorno al quale faccio il flyby
-Earth_Venus_Saturn_Uranus;
+%Earth_Venus_Saturn_Uranus;
 v_inf_down_Saturn = V2_l_s - v2_s; % velocità in ingresso al flyby     
 v_inf_down_norm_Saturn = norm(v_inf_down_Saturn); % in norma  
 
