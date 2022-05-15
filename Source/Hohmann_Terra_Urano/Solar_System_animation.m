@@ -14,11 +14,13 @@ movie_mode = 2;	% 1 for movie writing, 2 for HD movie, 0 for only matlab animati
 addpath(genpath("Script matlab"));
 addpath(genpath("Animation"));
 
-% Computes the position of the spacecraft for each day of the mission
-Spacecraft_position_for_Hohmann
+
 
 % Init all par, constants and plot parameters
 solar_system_animation_init
+
+% Computes the position of the spacecraft for each day of the mission
+Spacecraft_position_for_Hohmann
 
 %% Editable animation parameters
 

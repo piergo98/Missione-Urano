@@ -48,6 +48,9 @@ TOF_Hohmann = pi * sqrt(a_Hohmann^3 / mu_Sun); % in [sec]
 
 Departure_and_arrive_date;
 
+% coe dell'orbita di Hohmann
+% coe_Hohmann = [ 0, e_Hohmann, 0, 0, 0, 0, a_Hohmann];
+
 %% Info
 
 fprintf('\n Hohmann Earth-Uranus results \n')
@@ -63,22 +66,23 @@ else
 end
 fprintf('\n-----------------------------------------------------\n')
 
+
+
 %% Plot
 
-% % coe dell'orbita di Hohmann
-% coe_Hohmann = [ 0, e_Hohmann, 0, 0, 0, 0, a_Hohmann];
-% 
-% % Orbita della Terra
-% plot_orbit(3, 2022);
-% 
-% hold on
-% grid on
-% 
-% % Orbita di Urano
-% circle_plot(0,0,d_Uranus2Sun, "#4DBEEE");
-% 
-% % Orbita di Hohmann
-% plot_traiettoria_spacecraft(coe_Hohmann, 0, 180, 'g');
-% 
+% Orbita della Terra
+plot_orbit(3, 2022);
+
+hold on
+grid on
+
+% Orbita di Urano
+circle_plot(0,0,d_Uranus2Sun, "#4DBEEE");
+
+% Orbita di Hohmann
+plot_traiettoria_spacecraft(coe_Hohmann, TA1_eu, TA2_eu + 360, 'g');
+
+plot3(r_T(1), r_T(2), r_T(3), 'o', "MarkerEdgeColor", 'b')
+plot3(r_U(1), r_U(2), r_U(3), 'x', "MarkerEdgeColor", 'b')
 % axis equal
 

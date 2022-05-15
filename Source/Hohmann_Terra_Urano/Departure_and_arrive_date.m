@@ -10,11 +10,11 @@ theta = 360 * (TOF_Hohmann/T_circolare_Uranus);
 
 % Data di partenza
 anno_d = 2023;
-mese_d = 2;
-giorno_d = 9;
-ora_d = 9;
-min_d = 8;
-sec_d = 35;
+mese_d = 1;
+giorno_d = 31;
+ora_d = 10;
+min_d = 35;
+sec_d = 50;
 departure_date = [anno_d, mese_d, giorno_d, ora_d, min_d, sec_d];
 
 % Data di arrivo
@@ -46,7 +46,7 @@ sec_a = arrive_date(6);
 % [coe_U, r_U, ~, ~] = planet_elements_and_sv(7, anno_d, mese_d, giorno_d, ora_d, min_d, sec_d);
 
 % Vettore posizione di Urano all'arrivo
-[coe_U, ~, ~, ~] = planet_elements_and_sv(7, anno_a, mese_a, giorno_a, ora_a, min_a, sec_a);
+[coe_U, r_U, ~, ~] = planet_elements_and_sv(7, anno_a, mese_a, giorno_a, ora_a, min_a, sec_a);
 
 % % Angolo relativo tra Terra e Urano alla partenza che devo averee NOOOO!!!!
 % % QUESTA È L'ANOMALIA VERA CHE URANO DEVE AVERE ALLA PARTENZA!!!!!
@@ -56,7 +56,7 @@ sec_a = arrive_date(6);
 % gamma = acosd( (r_T * r_U') / (norm(r_T)*norm(r_U)));
 
 % Anomalia vera di Urano all'arrivo
- gamma = rad2deg(coe_U(6));
+ gamma = rad2deg(coe_U(6) - coe_U(5));
 
 % Differenza tra l'angolo alla partenza richiesto dalla Hohmann e quello
 % che si ha nella data di partenza scelta
@@ -64,6 +64,16 @@ sec_a = arrive_date(6);
 % Anomalia vera che Urano deve avere all'arrivo meno quella calcolata
 % se zero la data di partenza è corretta
 error = rad2deg(coe_T(6) + pi) - gamma
+
+%% Lambert come Hohmann
+
+[v1_H, v2_H] = lambert(r_T, r_U, TOF_Hohmann, mu_Sun);
+
+coe_Hohmann = coe_from_sv(r_T, v1_H, mu_Sun);
+TA1_eu = rad2deg(coe_Hohmann(6));
+
+coe_Hohmann = coe_from_sv(r_U, v2_H, mu_Sun);
+TA2_eu = rad2deg(coe_Hohmann(6));
 
 
 
