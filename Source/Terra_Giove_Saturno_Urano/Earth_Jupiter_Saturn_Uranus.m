@@ -78,7 +78,7 @@ v_inf_down_norm_Jupiter = norm(v_inf_down_Jupiter); % in norma
 a_flyby_Jupiter = - mu_Jupiter / ((v_inf_down_norm_Jupiter)^2);
 
 % Distanza minima fra traiettoria di flyby e pianeta(km) 
-r_p_flyby_Jupiter = 503800;   
+r_p_flyby_Jupiter = 5e6;   
 
 % Eccentricità traiettoria di flyby
 e_flyby_Jupiter = 1-(r_p_flyby_Jupiter/a_flyby_Jupiter); 
@@ -94,11 +94,11 @@ StateVector_Jupiter;
 %% Calcolo traiettoria di Lambert post Flyby su Giove 
 
 % Trovo la posizione e velocità di Saturno
-[~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2031, 04, 01, 12, 00, 00);
+[~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2030, 9, 15, 12, 00, 00);
 
 % Definisco il tempo di volo Giove Saturno
 t_Jupiter = datetime(2024, 07, 24, 08, 14, 54);
-t_Saturn = datetime(2031, 04, 01, 12, 00, 00);
+t_Saturn = datetime(2030, 9, 15, 12, 00, 00);
   
 time_diff = days(t_Saturn - t_Jupiter);
 t_JS = time_diff*24*3600;
@@ -132,7 +132,7 @@ v_inf_down_norm_saturn = norm(v_inf_down_saturn); % in norma
 a_flyby_saturn = - mu_Saturn/((v_inf_down_norm_saturn)^2);
 
 % Distanza minima fra traiettoria di flyby e pianeta(km) 
-r_p_flyby_saturn = 1.8e6;
+r_p_flyby_saturn = 2e6;
 
 % Eccentricità traiettoria di flyby
 e_flyby_saturn = 1-(r_p_flyby_saturn/a_flyby_saturn); 

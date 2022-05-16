@@ -10,7 +10,7 @@ v_inf_down_norm_Jupiter = norm(v_inf_down_Jupiter);
 a_flyby_Jupiter = - mu_Jupiter / ((v_inf_down_norm_Jupiter)^2);   
 
 %rp (km)
-r_p_flyby_Jupiter = 503800;    
+r_p_flyby_Jupiter = 5e6;    
 
 %eccentricity
 e_flyby_Jupiter = 1-(r_p_flyby_Jupiter/a_flyby_Jupiter); 
@@ -34,15 +34,14 @@ r = R_SOI_Jupiter;
 %calcolo anomalia vera per r (in ingresso alla SOI) 
 f_in_Jupiter = acos((1/e_flyby_Jupiter)*((p_Jupiter/r)-1)); 
 f_in_Jupiter_deg = rad2deg(f_in_Jupiter);   % in gradi
-
+cosh_F_jupiter=(e_flyby_Jupiter+cos(f_in_Jupiter))/(e_flyby_Jupiter*cos(f_in_Jupiter)+1)
 
 %calcolo anomalia eccentrica
-E_2_Jupiter = atanh(sqrt((e_flyby_Jupiter-1)/(e_flyby_Jupiter+1))*tan(f_in_Jupiter/2)); 
-E_Jupiter = E_2_Jupiter/2;
-E_deg_Jupiter = rad2deg(E_Jupiter); 
+F_jupiter=log(cosh_F_jupiter+sqrt((cosh_F_jupiter)^2-1));
+F_jupiter_deg=rad2deg(F_jupiter)
 
 %trovo anomalia media M 
-M_Jupiter = e_flyby_Jupiter*sinh(E_Jupiter)-E_Jupiter; 
+M_Jupiter=e_flyby_Jupiter*sinh(F_jupiter)-F_jupiter; 
 M_deg_Jupiter=rad2deg(M_Jupiter); 
  
 %trovo il tempo 

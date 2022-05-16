@@ -1,7 +1,7 @@
 %% Calcolo il tempo t di flyby Earth usando l'equazione di keplero
 
 % Recupero dati pianeta attorno a cui faccio il flyby
-Earth_Earth_Jupiter_Uranus;
+% Earth_Earth_Saturn_Uranus;
 v_inf_down_Earth = v2_l_e2 - v2_e2; % velocità in ingresso al flyby   
 v_inf_down_norm_Earth = norm(v_inf_down_Earth); % in norma 
 
@@ -23,7 +23,7 @@ delta_deg_Earth = rad2deg(delta_Earth); % in gradi
 % Ricavo l'anomalia vera f
 f_Earth = acos((a_flyby_Earth*(1-e_flyby_Earth^2)-r_p_flyby_Earth) ...
     / (e_flyby_Earth*r_p_flyby_Earth)); 
-f_deg_Earth = rad2deg(f_Earth); % In gradi
+f_deg_Earth = rad2deg(f_Earth); % in gradi
 
 % Trovo p semilato retto [km] 
 p_Earth = r_p_flyby_Earth*(1+e_flyby_Earth*cos(f_Earth)); 
@@ -38,14 +38,14 @@ f_in_Earth_deg = rad2deg(f_in_Earth);   % in gradi
 % Calcolo anomalia eccentrica
 E_2_Earth = atanh(sqrt((e_flyby_Earth-1)/(e_flyby_Earth+1))*tan(f_in_Earth/2)); 
 E_Earth = E_2_Earth/2;
-E_deg_Earth = rad2deg(E_Earth); % In gradi 
+E_deg_Earth = rad2deg(E_Earth); % in gradi 
 
 % Trovo anomalia media M 
 M_Earth = e_flyby_Earth*sinh(E_Earth)-E_Earth; 
-M_deg_Earth = rad2deg(M_Earth); % In gradi
+M_deg_Earth = rad2deg(M_Earth); % in gradi
  
 % Trovo il tempo 
-t_flyby_Earth = M_Earth*sqrt(-a_flyby_Earth^3/mu_Earth); %in secondi 
+t_flyby_Earth = M_Earth*sqrt(-a_flyby_Earth^3/mu_Earth); % in secondi 
 t_flyby_tot_Earth = 2*t_flyby_Earth;  
 t_flyby_tot_hours_Earth = t_flyby_tot_Earth/3600; 
  
@@ -67,7 +67,5 @@ fprintf('\n Time of flyby [%g Y, %g M, %g D, %g h, %g m, %g s] (km/s).',years_E,
 
 fprintf('\n--------------------------------------------------------\n\n')
 
-plot_flyby(r_Earth, R_SOI_Earth, e_flyby_Earth, p_Earth, f_in_Earth_deg, r_p_flyby_Earth);
 
-
- 
+plot_flyby(r_Earth, R_SOI_Earth, e_flyby_Earth, p_Earth, f_in_Earth_deg, r_p_flyby_Earth, 'E');

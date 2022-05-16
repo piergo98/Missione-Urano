@@ -1,15 +1,19 @@
 %% Options
 alpha   = 1; % globe transparency level, 1 = opaque, through 0 = invisible
 % image.
-image_file = './Animation/img/saturn.jpg';
+image_file = './Animation/img/saturn.png';
 %% Create figure
 space_color = 'k';
 figure('Color', space_color);
 hold on;
 % Turn off the normal axes
- set(gca, 'NextPlot','add', 'Visible','off');
- axis equal;
- axis auto;
+set(gca, 'NextPlot','add', 'Visible','off');
+%  axis equal;
+%  axis auto;
+xlim([-inf inf])
+ylim([-inf inf])
+zlim([-inf inf])
+
 % Set initial view
 view(0,30);
 axis vis3d;

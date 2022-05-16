@@ -23,20 +23,25 @@ fprintf('\n   DeltaV cattura (km/s) = %g', deltaV_uranus_capture)
 fprintf('\n -----------------------------------------------------------\n')
 
 %% Plot capture
-% Plot SOI Uranus
-[X,Y,Z] = sphere;
-figure(1)
-surface(R_SOI_Uranus*X,R_SOI_Uranus*Y,...
-    R_SOI_Uranus*Z,'EdgeColor','cyan','FaceColor','cyan',...
-    'FaceAlpha','0');
-
+% %Plot SOI Uranus 
+% hold on; 
+% [X,Y,Z] = sphere; 
+% %figure() 
+% surface(R_SOI_Uranus*X,R_SOI_Uranus*Y,... 
+%     R_SOI_Uranus*Z,'EdgeColor','cyan','FaceColor','cyan',... 
+%     'FaceAlpha','0'); 
+ 
+%%  
+plot_Uranus; 
+%%  
+ 
 % Hyperbolic orbit
 % Semilato retto
 p_hyp_u = a_hyp_u * (1 - e_hyp_u^2);
 f_deg_Uranus = acosd((p_hyp_u - R_SOI_Uranus) / (R_SOI_Uranus*e_hyp_u));
 f = -f_deg_Uranus:0.1:0;
 radius = 10;
-color = 'r';
+color = 'b';
 pos = [];
 for i = 1:length(f)
 %   Legge oraria dello spacecraft in funzione dell'anomalia vera
@@ -51,7 +56,7 @@ for i = 1:length(f)
 %     pos = [x y z];
 
     if i == 1
-        ra = animatedline(pos(1), pos(2), pos(3), "Color", color,'LineWidth',1);
+        ra = animatedline(pos(1), pos(2), pos(3), "Color", color,'LineWidth',2);
     end
     addpoints(ra, pos(1), pos(2), pos(3));
     drawnow;
@@ -67,7 +72,7 @@ p_uranus_park = r_orbit_u;
 % Eccentricity
 e_uranus_park = 0;
 radius = 10;
-color = 'r';
+color = 'b';
 pos = [];
 for i = 1:length(f)
 %   Legge oraria dello spacecraft in funzione dell'anomalia vera
@@ -82,27 +87,27 @@ for i = 1:length(f)
 %     pos = [x y z];
 
     if i == 1 
-        ra = animatedline(pos(1), pos(2), pos(3), "Color", color,'LineWidth',1);
+        ra = animatedline(pos(1), pos(2), pos(3), "Color", color,'LineWidth',2);
     end
     addpoints(ra, pos(1), pos(2), pos(3));
     drawnow;
 end
 
 % Plot planet
-hold on
-[xx, yy, zz] = sphere(100);
-surf(r_uranus*xx, r_uranus*yy, r_uranus*zz, 'EdgeColor','blue','FaceColor','blue',...
-    'FaceAlpha','1');
+% hold on
+% [xx, yy, zz] = sphere(100);
+% surf(r_uranus*xx, r_uranus*yy, r_uranus*zz, 'EdgeColor','blue','FaceColor','blue',...
+%     'FaceAlpha','1');
 % colormap light_gray
 % caxis([-r_uranus/100 r_uranus/100])
 % shading interp
   
-xlim([-1e5 1e5])
-ylim([-1e5 1e5])
-zlim([-1e5 1e5])
-xlabel('x (km)')
-ylabel('y (km)')
-zlabel('z (km)')
+% xlim([-1e5 1e5])
+% ylim([-1e5 1e5])
+% zlim([-1e5 1e5])
+% xlabel('x (km)')
+% ylabel('y (km)')
+% zlabel('z (km)')
 
 % Change plane
-Uranus_orbital_plane_shift
+%Uranus_orbital_plane_shift

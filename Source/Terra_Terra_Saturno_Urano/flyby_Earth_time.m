@@ -34,14 +34,17 @@ r = R_SOI_Earth;
 % Calcolo anomalia vera per r 
 f_in_Earth = acos((1/e_flyby_Earth)*((p_Earth/r)-1)); 
 f_in_Earth_deg = rad2deg(f_in_Earth);   % in gradi
+cosh_F_Earth = (e_flyby_Earth+cos(f_in_Earth))/(e_flyby_Earth*cos(f_in_Earth)+1);
 
 % Calcolo anomalia eccentrica
-E_2_Earth = atanh(sqrt((e_flyby_Earth-1)/(e_flyby_Earth+1))*tan(f_in_Earth/2)); 
-E_Earth = E_2_Earth/2;
-E_deg_Earth = rad2deg(E_Earth); % in gradi 
+% E_2_Earth = atanh(sqrt((e_flyby_Earth-1)/(e_flyby_Earth+1))*tan(f_in_Earth/2)); 
+% E_Earth = E_2_Earth/2;
+% E_deg_Earth = rad2deg(E_Earth); % in gradi 
+F_Earth = log(cosh_F_Earth+sqrt((cosh_F_Earth)^2-1));
+F_Earth_deg = rad2deg(F_Earth);
 
 % Trovo anomalia media M 
-M_Earth = e_flyby_Earth*sinh(E_Earth)-E_Earth; 
+M_Earth = e_flyby_Earth*sinh(F_Earth)-F_Earth; 
 M_deg_Earth = rad2deg(M_Earth); % in gradi
  
 % Trovo il tempo 
@@ -68,5 +71,4 @@ fprintf('\n Time of flyby [%g Y, %g M, %g D, %g h, %g m, %g s] (km/s).',years_E,
 fprintf('\n--------------------------------------------------------\n\n')
 
 
-
- 
+plot_flyby(r_Earth, R_SOI_Earth, e_flyby_Earth, p_Earth, f_in_Earth_deg, r_p_flyby_Earth, 'E');

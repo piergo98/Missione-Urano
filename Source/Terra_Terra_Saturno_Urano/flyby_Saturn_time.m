@@ -34,14 +34,17 @@ r = R_SOI_Saturn;
 % Calcolo anomalia vera per r 
 f_in_Saturn = acos((1/e_flyby_Saturn)*((p_Saturn/r)-1)); 
 f_in_Saturn_deg = rad2deg(f_in_Saturn); %In gradi
+cosh_F_Saturn = (e_flyby_Saturn+cos(f_in_Saturn))/(e_flyby_Saturn*cos(f_in_Saturn)+1);
 
 % Calcolo anomalia eccentrica
-E_2_Saturn = atanh(sqrt((e_flyby_Saturn-1)/(e_flyby_Saturn+1))*tan(f_in_Saturn/2)); 
-E_Saturn = E_2_Saturn/2;
-E_deg_Saturn = rad2deg(E_Saturn); 
+% E_2_Saturn = atanh(sqrt((e_flyby_Saturn-1)/(e_flyby_Saturn+1))*tan(f_in_Saturn/2)); 
+% E_Saturn = E_2_Saturn/2;
+% E_deg_Saturn = rad2deg(E_Saturn); 
+F_Saturn = log(cosh_F_Saturn+sqrt((cosh_F_Saturn)^2-1));
+F_Saturn_deg = rad2deg(F_Saturn);
 
 % Trovo anomalia media M 
-M_Saturn = e_flyby_Saturn*sinh(E_Saturn)-E_Saturn; 
+M_Saturn = e_flyby_Saturn*sinh(F_Saturn)-F_Saturn; 
 M_deg_Saturn=rad2deg(M_Saturn); 
  
 % Trovo il tempo 
@@ -66,5 +69,5 @@ fprintf('\n Time of flyby [%g Y, %g M, %g D, %g h, %g m, %g s] (km/s).',years_S,
 
 fprintf('\n--------------------------------------------------------\n\n')
 
-
+plot_flyby(r_Saturn, R_SOI_Saturn, e_flyby_Saturn, p_Saturn, f_in_Saturn_deg, r_p_flyby_Saturn, 'S');
  
