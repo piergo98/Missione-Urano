@@ -30,7 +30,7 @@ spinlon = -45;				% how much view angle change long [grad]
 spinlat = -29;				% how much view angle change lat [grad]
 
 %% Solar System Plot and Animation
-figh = figure(3);
+figh = figure();
 clf 
 set(gcf, 'Renderer', 'zbuffer');
 set(gca, 'color', col_bkgnd)
@@ -152,12 +152,12 @@ for d = 1:fr_skip:n_days			% speed
 	end
 end
 
-%% Video stuff
-if movie_mode
-	movie = VideoWriter('movie_heliocentric', 'MPEG-4');
-	movie.FrameRate = movie_fps;
-
-	open(movie);
-	writeVideo(movie, movieVector);
-	close(movie);
-end
+% %% Video stuff
+% if movie_mode
+% 	movie = VideoWriter('movie_heliocentric', 'MPEG-4');
+% 	movie.FrameRate = movie_fps;
+% 
+% 	open(movie);
+% 	writeVideo(movie, movieVector);
+% 	close(movie);
+% end

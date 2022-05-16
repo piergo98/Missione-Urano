@@ -11,7 +11,7 @@ v_inf_down_norm_Saturn = norm(v_inf_down_Saturn); % in norma
 a_flyby_Saturn = - mu_Saturn/((v_inf_down_norm_Saturn)^2);
 
 % Distanza minima fra traiettoria di flyby e pianeta(km) 
-r_p_flyby_Saturn = 1.8e6;
+r_p_flyby_Saturn = 2e6;
 
 % Eccentricità traiettoria di flyby
 e_flyby_Saturn = 1-(r_p_flyby_Saturn/a_flyby_Saturn); 
@@ -34,15 +34,14 @@ r = R_SOI_Saturn;
 % Calcolo anomalia vera per r 
 f_in_Saturn = acos((1/e_flyby_Saturn)*((p_Saturn/r)-1)); 
 f_in_Saturn_deg = rad2deg(f_in_Saturn);   % in gradi
+cosh_F_saturn=(e_flyby_Saturn+cos(f_in_Saturn))/(e_flyby_Saturn*cos(f_in_Saturn)+1)
 
 % Calcolo anomalia eccentrica
-E_2_Saturn = atanh(sqrt((e_flyby_Saturn-1)/(e_flyby_Saturn+1))*tan(f_in_Saturn/2)); 
-E_Saturn = E_2_Saturn/2;
-E_deg_Saturn = rad2deg(E_Saturn);   % In gradi 
+F_saturn=log(cosh_F_saturn+sqrt((cosh_F_saturn)^2-1));
+F_saturn_deg=rad2deg(F_saturn)
 
 % Trovo anomalia media M 
-M_Saturn = e_flyby_Saturn*sinh(E_Saturn)-E_Saturn; 
-M_deg_Saturn=rad2deg(M_Saturn); % In gradi
+M_Saturn=e_flyby_Saturn*sinh(F_saturn)-F_saturn;
  
 % Trovo il tempo 
 t_flyby_Saturn = M_Saturn*sqrt(-a_flyby_Saturn^3/mu_Saturn); % In secondi 
