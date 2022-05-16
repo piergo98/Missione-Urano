@@ -35,10 +35,12 @@ init_Terra_Terra_Giove_Urano;
 % momento della cattura per il primo flyby
 
 %[~, r1_e1, v1_e1, ~] = planet_elements_and_sv(3, 2022, 10, 01, 18, 00, 00);
-[~, r1_e1, v1_e1, ~] = planet_elements_and_sv(3, 2031, 03, 01, 18, 00, 00);
+[~, r1_e1, v1_e1, ~] = planet_elements_and_sv(3, departure_Earth.year, departure_Earth.month, ...
+    departure_Earth.day, departure_Earth.hour, departure_Earth.minute, departure_Earth.second);
 
 %[~, r2_e2, v2_e2, ~] = planet_elements_and_sv(3, 2024, 03, 01, 18, 00, 00);
-[~, r2_e2, v2_e2, ~] = planet_elements_and_sv(3, 2032, 08, 01, 18, 00, 00);
+[~, r2_e2, v2_e2, ~] = planet_elements_and_sv(3, arrival_Earth.year, arrival_Earth.month, ...
+    arrival_Earth.day, arrival_Earth.hour, arrival_Earth.minute, arrival_Earth.second);
 
 % Tempo di volo Terra-Terra
 t_EE = month2seconds(17);
@@ -118,7 +120,8 @@ coe_flyby(6) = deg2rad(TA_for_lambert);
 
 % Trovo la posizione e velocità di Giove
 % [~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2030, 04, 03, 00, 00, 00);
-[~, r2_j, v2_j, ~] = planet_elements_and_sv(5, 2036, 08, 01, 00, 00, 00);
+[~, r2_j, v2_j, ~] = planet_elements_and_sv(5, arrival_Jupiter.year, arrival_Jupiter.month, ...
+    arrival_Jupiter.day, arrival_Jupiter.hour, arrival_Jupiter.minute, arrival_Jupiter.second);
 % Definisco il tempo di volo dal punto scelto post flyby e Saturno
 t_EJ = year2seconds(4); % 'fS' = da punto post flyby a Saturno
 
@@ -169,11 +172,12 @@ delta_deg_Jupiter = rad2deg(delta_Jupiter);   % in gradi
 
 StateVector_JUPITER;
 
-%% Calcolo traiettoria di Lambert post Flyby su Saturno 
+%% Calcolo traiettoria di Lambert post Flyby su 
 
 % Trovo la posizione e velocità di Urano
 %[~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2036, 04, 03, 00, 00, 00);
-[~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2042, 12, 01, 00, 00, 00);
+[~, r2_u, v2_u, ~] = planet_elements_and_sv(7, arrival_Uranus.year, arrival_Uranus.month, ...
+    arrival_Uranus.day, arrival_Uranus.hour, arrival_Uranus.minute, arrival_Uranus.second);
 % Definisco il tempo di volo Saturno-Urano
 t_JU = year2seconds(6) + month2seconds(4);
 
