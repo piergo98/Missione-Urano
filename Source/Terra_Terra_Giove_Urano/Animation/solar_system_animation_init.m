@@ -2,7 +2,8 @@
 
 % time_vector, a row for each day of the mission
 %time_vector = ymd_gen([2022, 10, 01],[2036, 4, 3]);
-time_vector = ymd_gen([2031, 03, 01],[2042, 12, 01]);
+time_vector = ymd_gen([departure_Earth.year departure_Earth.month departure_Earth.day], ...
+[arrival_Uranus.year arrival_Uranus.month arrival_Uranus.day]);
 
 n_days = size(time_vector,1);
 

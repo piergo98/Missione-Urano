@@ -21,7 +21,7 @@ eu_days = TOF_Hohmann / (24*3600);
 [coe_u, ~, ~, ~] = planet_elements_and_sv(7, anno_a, mese_a, giorno_a, ora_a, min_a, sec_a);
 
 % Variazione di anomalia vera durante il trasferimento interplanetario
-Delta_TA_eu = rad2deg(coe_u(6) - coe_e(6));     %[deg]
+Delta_TA_eu = 180;     %[deg]
 
 % Minima variazione di anomalia vera in un giorno
 %dTA = Delta_TA_eu / (TOF_Hohmann * 60 * 60 * 24);
@@ -47,7 +47,7 @@ pos_spcr = [];
 %for t = 1:((TOF_Hohmann * 60 * 60 * 24)+1)
 for t = 1:1:(eu_days+1)
 %       Anomalia vera nel tempo
-    f = dTA * t + rad2deg(coe_e(6));
+    f = dTA * t;
 %       Legge oraria dello spacecraft in funzione dell'anomalia vera
     r = p / (1 + e*cosd(f));
 %       Converto in coordinate cartesiane

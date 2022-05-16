@@ -11,7 +11,7 @@ mu = 1.327*10^11;
 
 %% Earth to Jupiter
 % from day 1 (01/10/22) to Jupiter arrival/departure (01/07/2024)
-ej_days = datenum([2024 07 01]) - datenum([2022 10 01]);
+ej_days = datenum([2024 07 01]) - datenum([2022 07 21]);
 
 Delta_TA_ej = abs(TA2_ej - TA1_ej);
 % Variazione di anomalia vera in un giorno

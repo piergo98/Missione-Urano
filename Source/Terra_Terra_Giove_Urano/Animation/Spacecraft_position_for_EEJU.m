@@ -11,7 +11,7 @@ mu = 1.327*10^11;
 
 %% Earth to Earth
 % from day (01/10/22) to (01/03/2024)
-ee_days = datenum([2032 08 01]) - datenum([2031 03 01]);
+ee_days = datenum([arrival_Earth.year arrival_Earth.month arrival_Earth.day]) - datenum([departure_Earth.year departure_Earth.month departure_Earth.day]);
 
 Delta_TA_ee = abs(TA2_ee - TA1_ee);
 % Variazione di anomalia vera in un giorno
@@ -45,9 +45,7 @@ for t = 1:(ee_days)
 end
 
 %% Flyby orbit
-% from (1/3/2024) to (3/4/2024)
 % Giorni in cui lo spacecraft sta sull'orbita ottenuta dal flyby
-% fl_days = datenum([2024 4 3]) - datenum([2024 3 1]);
 fl_days = ceil(dT / days2seconds(1));
 
 Delta_TA_fl = abs(TA_for_lambert - TA_post_flyby);
@@ -80,8 +78,9 @@ for t = 1:(fl_days)
 end
 
 %% Earth to Jupiter
-% from (03/4/24) to (3/4/30)
-ej_days = datenum([2036 08 01]) - datenum([2032 08 01]);
+% from (1/8/32) to (1/8/36) (il flyby sulla terra impiega meno di un
+% giorno ???
+ej_days = datenum([arrival_Jupiter.year arrival_Jupiter.month arrival_Jupiter.day]) - datenum([arrival_Earth.year arrival_Earth.month arrival_Earth.day]);
 
 Delta_TA_ej = abs(TA2_ej - TA1_ej);
 %   Minima variazione di anomalia vera in un giorno
@@ -114,8 +113,9 @@ end
 
 
 %% Jupiter to Uranus
-% from (3/4/30) to (3/4/36)
-ju_days = datenum([2042 12 01])- datenum([2036 08 01]);
+% from (1/8/36) to (1/12/42) (il flyby sulla terra impiega meno di un
+% giorno ???
+ju_days = datenum([arrival_Uranus.year arrival_Uranus.month arrival_Uranus.day])- datenum([arrival_Jupiter.year arrival_Jupiter.month arrival_Jupiter.day]);
 
 Delta_TA_ju = abs(TA2_ju - TA1_ju);
 %   Minima variazione di anomalia vera in un giorno
