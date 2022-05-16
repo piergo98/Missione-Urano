@@ -23,6 +23,9 @@
     % Fly-by su Saturno
     flyby_Saturn_time;
 
+%% Flight totale
+
+    Solar_System_animation;
 %% Fase Saturno-Urano
 
     % Cattura su Urano

@@ -2,7 +2,7 @@
 % Dawn_spacecraft with respect to solar system 
  
 % Risolvo il problema di Lambert per tutta la missione (senza plot) 
-Earth_Venus_Saturn_Uranus; 
+%Earth_Venus_Saturn_Uranus; 
  
 % Dimensioni dello spacecraft 
 radius = 100; 
@@ -12,7 +12,7 @@ radius = 100;
 %% Earth to Venus 
 ev_days = datenum([2022 04 01]) - datenum([2022 01 01]); 
  
-Delta_TA_ev = abs(TA2_ev - TA1_ev); 
+Delta_TA_ev = abs(TA2_ev+360 - TA1_ev); 
 % Variazione di anomalia vera in un giorno 
 dTA = Delta_TA_ev / ev_days; 
  
@@ -45,7 +45,7 @@ end
  
  
 %% Venus to Saturn 
-vs_days = datenum([2028 4 1]) - datenum([2022 4 1]); 
+vs_days = datenum([2028 1 1]) - datenum([2022 4 1]); 
  
 Delta_TA_vs = abs(TA2_vs - TA1_vs); 
 %   Minima variazione di anomalia vera in un giorno 
@@ -78,7 +78,7 @@ end
  
  
 %% Saturn  to Uranus 
-su_days = datenum([2033 12 25])- datenum([2028 4 1]); 
+su_days = datenum([2033 12 25])- datenum([2028 1 1]); 
  
 Delta_TA_su = abs(TA2_su - TA1_su); 
 %   Minima variazione di anomalia vera in un giorno 

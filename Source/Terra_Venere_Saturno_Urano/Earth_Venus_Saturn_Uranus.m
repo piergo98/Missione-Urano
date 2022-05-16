@@ -27,10 +27,12 @@ coe_ev = coe_from_sv(r2_v, v2_l_v, mu_Sun);
 % Anomalia vera alla fine della missione Terra-Venere
 TA2_ev = rad2deg(coe_ev(6));
 
-color = 'r';
-plot_traiettoria_spacecraft(coe_ev, TA1_ev, TA2_ev+360,color);
-plot_orbit(2,2022);
-plot_orbit(3,2022);
+% color = 'r';
+% plot_traiettoria_spacecraft(coe_ev, TA1_ev, TA2_ev+360,color);
+% plot_orbit(2,2022);
+% plot_orbit(3,2022);
+% plot_SOI_Venus;
+% plot_SOI_Earth;
 
 % Variazione angolo di anomalia vera
 d_theta = abs(TA2_ev - TA1_ev);
@@ -66,11 +68,13 @@ StateVector_Venus;
 %% Calcolo traiettoria di Lambert post Flyby su Venere 
 
 % Trovo la posizione e velocità della Saturno
-[~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2028, 04, 01, 12, 00, 00);
+%[~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2028, 04, 01, 12, 00, 00);
+[~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2028, 01, 01, 12, 00, 00);
 
-% Definisco il tempo di volo Giove Saturno
+% Definisco il tempo di volo Venere Saturno
 t_Venus = datetime(2022, 04, 01, 12, 00, 00);
-t_Saturn = datetime(2028, 04, 01, 12, 00, 00);
+% t_Saturn = datetime(2028, 04, 01, 12, 00, 00);
+t_Saturn = datetime(2028, 01, 01, 12, 00, 00);
   
 time_diff = days(t_Saturn - t_Venus);
 t_VS = time_diff*24*3600;
@@ -92,8 +96,8 @@ TA2_vs = rad2deg(coe_vs(6));
 d_V_VS = v_fin_Venus - V1_l_v;    
 d_V_VS_norm = norm(d_V_VS);    % in norma
 
-plot_traiettoria_spacecraft(coe_vs, TA1_vs, TA2_vs,color);
-plot_orbit(6,2022);
+% plot_traiettoria_spacecraft(coe_vs, TA1_vs, TA2_vs,color);
+% plot_orbit(6,2022);
 
 %% Calcolo per risolvere flyby intorno a Saturno
 
@@ -126,7 +130,8 @@ StateVector_Saturn;
 [~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2033, 12, 25, 12, 00, 00);
 
 % Definisco il tempo di volo Saturno-Urano
-t_Saturn = datetime(2028, 04, 01, 12, 00, 00);
+%t_Saturn = datetime(2028, 04, 01, 12, 00, 00);
+t_Saturn = datetime(2028, 01, 01, 12, 00, 00);
 t_Uranus = datetime(2033, 12, 25, 12, 00, 00);
 
 time_diff = days(t_Uranus - t_Saturn);
@@ -149,5 +154,5 @@ TA2_su = rad2deg(coe_su(6));
 d_V_SU = v_fin_saturn - V1_l_s;    % 'fS' = da punto post flyby a Saturno     
 d_V_SU_norm = norm(d_V_SU);    % in norma
 
-plot_traiettoria_spacecraft(coe_su, TA1_su, TA2_su,color);
-plot_orbit(7,2022);
+% plot_traiettoria_spacecraft(coe_su, TA1_su, TA2_su,color);
+% plot_orbit(7,2022);
