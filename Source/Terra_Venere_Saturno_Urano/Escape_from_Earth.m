@@ -86,7 +86,7 @@ end
 % Hyperbolic orbit
 % Semilato retto
 f = 0:0.1:f_deg_escape_Earth;
-color = 'g';
+color = 'b';
 pos = [];
 for i = 1:length(f)
 %   Legge oraria dello spacecraft in funzione dell'anomalia vera

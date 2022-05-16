@@ -1,20 +1,16 @@
 %% Scelta data di partenza
 % A spanne sembra che il momento migliore sia ad agosto del 2022
 
-% Angolo in deg spazzato da Urano durante il TOF
-theta = 360 * (TOF_Hohmann/T_circolare_Uranus);
-
-% noto alpha e imponendo il vettore della terra mi calcolo il vettore
-% posizione dalla formula inversa del prodotto scalare, devo fare dei cicli
-% for per anno mese e giorno!
+% Angolo in rad che devo avere alla partenza tra Terra e Urano
+theta_Hohmann = pi * (1 - sqrt(((1 + r_iniziale_Hohmann / r_finale_Hohoman) / 2)^3));  % Formula (8.2) Mengali 
 
 % Data di partenza
-anno_d = 2023;
-mese_d = 2;
-giorno_d = 9;
-ora_d = 9;
-min_d = 8;
-sec_d = 35;
+anno_d = 2022;
+mese_d = 7;
+giorno_d = 16;
+ora_d = 23;
+min_d = 59;
+sec_d = 30;
 departure_date = [anno_d, mese_d, giorno_d, ora_d, min_d, sec_d];
 
 % Data di arrivo
@@ -43,27 +39,20 @@ sec_a = arrive_date(6);
 [coe_T, r_T, ~, ~] = planet_elements_and_sv(3, anno_d, mese_d, giorno_d, ora_d, min_d, sec_d);
 
 % % Vettore posizione di Urano alla partenza
-% [coe_U, r_U, ~, ~] = planet_elements_and_sv(7, anno_d, mese_d, giorno_d, ora_d, min_d, sec_d);
+[coe_U, r_Ud, ~, ~] = planet_elements_and_sv(7, anno_d, mese_d, giorno_d, ora_d, min_d, sec_d);
 
 % Vettore posizione di Urano all'arrivo
-[coe_U, ~, ~, ~] = planet_elements_and_sv(7, anno_a, mese_a, giorno_a, ora_a, min_a, sec_a);
+[coe_U_fin, r_Ua, ~, ~] = planet_elements_and_sv(7, anno_a, mese_a, giorno_a, ora_a, min_a, sec_a);
 
-% % Angolo relativo tra Terra e Urano alla partenza che devo averee NOOOO!!!!
-% % QUESTA È L'ANOMALIA VERA CHE URANO DEVE AVERE ALLA PARTENZA!!!!!
-% alpha =rad2deg(coe_T(6)) + 180 - theta;
 
-% Angolo tra i due vettori posizione
-% gamma = acosd( (r_T * r_U') / (norm(r_T)*norm(r_U)));
-
-% Anomalia vera di Urano all'arrivo
- gamma = rad2deg(coe_U(6));
+% Angolo effettivo tra Urano e Terra alla partenza calcolato dagli sv
+theta = acos(r_Ud * r_T' / (norm(r_Ud) * norm(r_T)));
 
 % Differenza tra l'angolo alla partenza richiesto dalla Hohmann e quello
 % che si ha nella data di partenza scelta
+error = theta_Hohmann - theta;
 
-% Anomalia vera che Urano deve avere all'arrivo meno quella calcolata
-% se zero la data di partenza è corretta
-error = rad2deg(coe_T(6) + pi) - gamma
+
 
 
 
