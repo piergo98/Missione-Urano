@@ -40,7 +40,7 @@ ax.GridColor = col_grid;
 color = 'g';
 
 if movie_mode == 2
-	warning('Note that a 1080p resolution is needed for movie_mode = 2')
+%	warning('Note that a 1080p resolution is needed for movie_mode = 2')
 	figh.WindowState = 'maximize';
 end
 

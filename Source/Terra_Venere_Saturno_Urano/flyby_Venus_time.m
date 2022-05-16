@@ -52,19 +52,15 @@ t_flyby_tot_hours_Venus = t_flyby_tot_Venus/3600;
 [years_V months_V days_V hours_V minutes_V seconds_V] = sec2date(t_flyby_tot_Venus);
 
 %...Output to the command window:
-fprintf('\n\n--------------------------------------------------------\n')
-fprintf('\n fly-by orbit Venus\n')
-fprintf('\n The initial position is [%g, %g, %g] (km).',...
+fprintf('\n Posizione iniziale [%g, %g, %g] (km).',...
                                                      r2_v(1), r2_v(2), r2_v(3))
-fprintf('\n The initial velocity is [%g, %g, %g] (km/s).',...
+fprintf('\n Velocità iniziale [%g, %g, %g] (km/s).',...
                                                      v2_l_v(1), v2_l_v(2), v2_l_v(3))
-fprintf('\n The minimum altitude is %g km', r_p_flyby_Venus)
-fprintf('\n The final position is [%g, %g, %g] (km).',...
-                                                     r2_fin_v(1), r2_fin_v(2), r2_fin_v(3))
-fprintf('\n The final velocity is [%g, %g, %g] (km/s).',...
-                                                     v_fin_Venus(1), v_fin_Venus(2), v_fin_Venus(3))
-fprintf('\n Time of flyby [%g Y, %g M, %g D, %g h, %g m, %g s] (km/s).',years_V, months_V, days_V, hours_V, minutes_V, seconds_V)
-
+fprintf('\n Altezza minima passaggio su Venere %g km', r_p_flyby_Venus)
+fprintf('\n Posizione finale [%g, %g, %g] (km).', r2_fin_v(1), r2_fin_v(2), r2_fin_v(3))
+fprintf('\n Velocità finale [%g, %g, %g] (km/s).', v_fin_Venus(1), v_fin_Venus(2), v_fin_Venus(3))
+fprintf('\n Tempo di volo nella sfera di influenza di Venere [%g Y, %g M, %g D, %g h, %g m, %g s] (km/s).' ...
+    ,years_V, months_V, days_V, hours_V, minutes_V, seconds_V)
 fprintf('\n--------------------------------------------------------\n\n')
 
 plot_flyby(r_Venus, R_SOI_Venus, e_flyby_Venus, p_Venus, f_in_Venus_deg, r_p_flyby_Venus, 'V');
