@@ -8,7 +8,7 @@
 
 
 
-[~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2038, 07, 01, 12, 00, 00);
+[~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2042, 04, 01, 12, 00, 00);
 
 
 %definisco il tempo di volo
@@ -17,7 +17,7 @@ t = year2seconds(6) ;
 
 %definisco velocità finale (opzionale se l'ho definita in precedenza)
 
-v2_l_j = [7.259838e+00 5.674288e+00 1.356274e+00];
+v2_l_j = [-8.123309e+00 -1.354161e+00 1.149054e-01];
 
 
 
@@ -71,7 +71,7 @@ for i = 1:length(Ta_for_lambert)
         %faccio lambert
     dT = time_post_flyby(Ta_post_flyby, Ta_for_lambert(i), coe_flyby(7), ...
            coe_flyby(2), mu); 
-    if d_V_norm < 17.2 && dT < month2seconds(6) % condizione di minimo deltaV
+    if d_V_norm < 4 && dT < month2seconds(6) % condizione di minimo deltaV
        
         % tempo riscritto 
         [years, months, days, hours, minutes, seconds] = sec2date(abs(dT));

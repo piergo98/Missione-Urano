@@ -68,4 +68,5 @@ fprintf('\n Time of flyby [%g Y, %g M, %g D, %g h, %g m, %g s] (km/s).',years_E,
 fprintf('\n--------------------------------------------------------\n\n')
 
 
-plot_flyby(r_Earth, R_SOI_Earth, e_flyby_Earth, p_Earth, f_in_Earth_deg, r_p_flyby_Earth, 'E');
+
+ 

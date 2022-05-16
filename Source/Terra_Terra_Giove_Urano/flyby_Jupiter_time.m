@@ -68,5 +68,6 @@ fprintf('\n Time of flyby [%g Y, %g M, %g D, %g h, %g m, %g s] (km/s).',years_J,
 
 fprintf('\n--------------------------------------------------------\n\n')
 
-plot_flyby(r_Jupiter, R_SOI_Jupiter, e_flyby_Jupiter, p_Jupiter, f_in_Jupiter_deg, r_p_flyby_Jupiter, 'J');
+plot_flyby(r_Jupiter, R_SOI_Jupiter, e_flyby_Jupiter, p_Jupiter, f_in_Jupiter_deg, r_p_flyby_Jupiter);
+
 

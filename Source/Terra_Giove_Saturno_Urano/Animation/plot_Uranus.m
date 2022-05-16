@@ -7,9 +7,9 @@ space_color = 'k';
 figure('Color', space_color);
 hold on;
 % Turn off the normal axes
-set(gca, 'NextPlot','add', 'Visible','off');
-%axis equal;
-axis auto;
+ set(gca, 'NextPlot','add', 'Visible','off');
+ axis equal;
+ axis auto;
 % Set initial view
 view(0,30);
 axis vis3d;

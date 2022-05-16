@@ -27,7 +27,7 @@ V_escape_perigee = sqrt(v_infp_escape_Earth_mod^2 + (2*mu_Earth/r_orbit));
 deltaV_escape_Earth = V_escape_perigee - V_park_e;
 
 % Calcolo anomalia eccentrica
-E_2_escape_Earth = atanh(sqrt((e_escape_Earth-1)/(e_escape_Earth+1))*tan(f_escape_Earth/2)); 
+E_2_escape_Earth = atanh(sqrt((e_escape_Earth-1)/(e_escape_Earth+1))*tan(f1_escape_Earth/2)); 
 E_escape_Earth = E_2_escape_Earth/2;
 E_deg_escape_Earth = rad2deg(E_escape_Earth);   % In gradi 
 
@@ -48,12 +48,10 @@ fprintf('\n -----------------------------------------------------------\n')
 
 %% Plot escape
 % Plot planet
-%hold on
-% [xx, yy, zz] = sphere(100);
-% surf(r_Earth*xx, r_Earth*yy, r_Earth*zz, 'EdgeColor','green','FaceColor','green',...
-%     'FaceAlpha','1');
-% 
-plot_Earth;
+hold on
+[xx, yy, zz] = sphere(100);
+surf(r_Earth*xx, r_Earth*yy, r_Earth*zz, 'EdgeColor','green','FaceColor','green',...
+    'FaceAlpha','1');
 % colormap light_gray
 % caxis([-r_uranus/100 r_uranus/100])
 % shading interp
@@ -77,7 +75,7 @@ for i = 1:length(f)
     Q_pX = perifocal2helio(0, 0, 0);
     pos = Q_pX * [x y z]';
     if i == 1 
-        ra = animatedline(pos(1), pos(2), pos(3), "Color", color,'LineWidth',3);
+        ra = animatedline(pos(1), pos(2), pos(3), "Color", color,'LineWidth',1);
     end
     addpoints(ra, pos(1), pos(2), pos(3));
     drawnow;
@@ -86,7 +84,7 @@ end
 % Hyperbolic orbit
 % Semilato retto
 f = 0:0.1:f_deg_escape_Earth;
-color = 'b';
+color = 'r';
 pos = [];
 for i = 1:length(f)
 %   Legge oraria dello spacecraft in funzione dell'anomalia vera
@@ -101,18 +99,18 @@ for i = 1:length(f)
 %     pos = [x y z];
 
     if i == 1
-        ra = animatedline(pos(1), pos(2), pos(3), "Color", color,'LineWidth',3);
+        ra = animatedline(pos(1), pos(2), pos(3), "Color", color,'LineWidth',1);
     end
     addpoints(ra, pos(1), pos(2), pos(3));
     drawnow;
 end
 
 % Plot SOI Earth
-% [X,Y,Z] = sphere;
- %figure()
-% surface(R_SOI_Earth*X,R_SOI_Earth*Y,...
-%     R_SOI_Earth*Z,'EdgeColor','cyan','FaceColor','cyan',...
-%     'FaceAlpha','0');
+[X,Y,Z] = sphere;
+figure(1)
+surface(R_SOI_Earth*X,R_SOI_Earth*Y,...
+    R_SOI_Earth*Z,'EdgeColor','cyan','FaceColor','cyan',...
+    'FaceAlpha','0');
 
   
 xlim([-1e5 1e5])

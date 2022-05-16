@@ -17,6 +17,10 @@ function plot_flyby(r_planet, r_SOI, e_flyby, p_flyby, f_deg, r_p_flyby, who_plo
         pos = [x y z] + [r_p_flyby 0 0];
         
         if i == 1 
+            xlim([-r_SOI r_SOI])
+            ylim([-r_SOI r_SOI])
+            zlim([-r_SOI r_SOI])
+
             switch who_plot
                 case 'E'
                     r_Earth = r_planet;
@@ -24,11 +28,9 @@ function plot_flyby(r_planet, r_SOI, e_flyby, p_flyby, f_deg, r_p_flyby, who_plo
                 case 'J'
                     r_Jupiter = r_planet;
                     plot_Jupiter;
-                    r_limit = r_p_flyby+10000000;
                 case 'S'
                     r_Saturn = r_planet;
                     plot_Saturn;
-                    r_limit = r_p_flyby+10000000;
                 otherwise
                     r_Uranus = r_planet;
                     plot_Uranus;
@@ -43,15 +45,15 @@ function plot_flyby(r_planet, r_SOI, e_flyby, p_flyby, f_deg, r_p_flyby, who_plo
         drawnow;
         
     end
-%    axis equal
+    axis equal
   
 %     xlim([-r_SOI r_SOI])
 %     ylim([-r_SOI r_SOI])
 %     zlim([-r_SOI r_SOI])
 
-    xlim([-r_limit r_limit])
-    ylim([-r_limit r_limit])
-    zlim([-r_limit r_limit])
+    xlim([-(r_p_flyby+100000) r_p_flyby+100000])
+    ylim([-(r_p_flyby+100000) r_p_flyby+100000])
+    zlim([-(r_p_flyby+100000) r_p_flyby+100000])
 
     xlabel('x (km)')
     ylabel('y (km)')

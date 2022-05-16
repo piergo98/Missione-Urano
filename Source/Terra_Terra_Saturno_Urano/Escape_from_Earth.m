@@ -44,16 +44,15 @@ fprintf('\n\n Results escape computation:')
 fprintf('\n   Velocità di fuga al perigeo (km/s)  = %g', V_escape_perigee)
 fprintf('\n   Velocità orbita di parcheggio (km/s) = %g', V_park_e)
 fprintf('\n   DeltaV fuga (km/s) = %g', deltaV_escape_Earth)
+fprintf('\n   DeltaT fuga (hours) = %g', t_tot_hours_escape_Earth)
 fprintf('\n -----------------------------------------------------------\n')
 
 %% Plot escape
 % Plot planet
-%hold on
-% [xx, yy, zz] = sphere(100);
-% surf(r_Earth*xx, r_Earth*yy, r_Earth*zz, 'EdgeColor','green','FaceColor','green',...
-%     'FaceAlpha','1');
-% 
-plot_Earth;
+hold on
+[xx, yy, zz] = sphere(100);
+surf(r_Earth*xx, r_Earth*yy, r_Earth*zz, 'EdgeColor','green','FaceColor','green',...
+    'FaceAlpha','1');
 % colormap light_gray
 % caxis([-r_uranus/100 r_uranus/100])
 % shading interp
@@ -77,7 +76,7 @@ for i = 1:length(f)
     Q_pX = perifocal2helio(0, 0, 0);
     pos = Q_pX * [x y z]';
     if i == 1 
-        ra = animatedline(pos(1), pos(2), pos(3), "Color", color,'LineWidth',3);
+        ra = animatedline(pos(1), pos(2), pos(3), "Color", color,'LineWidth',1);
     end
     addpoints(ra, pos(1), pos(2), pos(3));
     drawnow;
@@ -86,7 +85,7 @@ end
 % Hyperbolic orbit
 % Semilato retto
 f = 0:0.1:f_deg_escape_Earth;
-color = 'b';
+color = 'r';
 pos = [];
 for i = 1:length(f)
 %   Legge oraria dello spacecraft in funzione dell'anomalia vera
@@ -101,18 +100,18 @@ for i = 1:length(f)
 %     pos = [x y z];
 
     if i == 1
-        ra = animatedline(pos(1), pos(2), pos(3), "Color", color,'LineWidth',3);
+        ra = animatedline(pos(1), pos(2), pos(3), "Color", color,'LineWidth',1);
     end
     addpoints(ra, pos(1), pos(2), pos(3));
     drawnow;
 end
 
 % Plot SOI Earth
-% [X,Y,Z] = sphere;
- %figure()
-% surface(R_SOI_Earth*X,R_SOI_Earth*Y,...
-%     R_SOI_Earth*Z,'EdgeColor','cyan','FaceColor','cyan',...
-%     'FaceAlpha','0');
+[X,Y,Z] = sphere;
+figure(1)
+surface(R_SOI_Earth*X,R_SOI_Earth*Y,...
+    R_SOI_Earth*Z,'EdgeColor','cyan','FaceColor','cyan',...
+    'FaceAlpha','0');
 
   
 xlim([-1e5 1e5])
