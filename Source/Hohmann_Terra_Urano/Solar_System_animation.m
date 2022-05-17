@@ -6,15 +6,13 @@
 %In this first version it will plot only planets and Sun.
 
 %% intro
-clc; 
+%clc; 
 % clear;
 
 movie_mode = 2;	% 1 for movie writing, 2 for HD movie, 0 for only matlab animation
 
-addpath(genpath("Script matlab"));
-addpath(genpath("Animation"));
-
-
+% addpath(genpath("Script matlab"));
+% addpath(genpath("Animation"));
 
 % Init all par, constants and plot parameters
 solar_system_animation_init
@@ -34,7 +32,7 @@ spinlon = -45;				% how much view angle change long [grad]
 spinlat = -29;				% how much view angle change lat [grad]
 
 %% Solar System Plot and Animation
-figh = figure(3);
+figh = figure();
 clf 
 set(gcf, 'Renderer', 'zbuffer');
 set(gca, 'color', col_bkgnd)
@@ -44,7 +42,7 @@ ax.GridColor = col_grid;
 color = 'g';
 
 if movie_mode == 2
-	warning('Note that a 1080p resolution is needed for movie_mode = 2')
+%	warning('Note that a 1080p resolution is needed for movie_mode = 2')
 	figh.WindowState = 'maximize';
 end
 
@@ -196,13 +194,3 @@ for d = 1:fr_skip:n_days			% speed
 		k = k+1;
 	end
 end
-
-% %% Video stuff
-% if movie_mode
-% 	movie = VideoWriter('movie_heliocentric', 'MPEG-4');
-% 	movie.FrameRate = movie_fps;
-% 
-% 	open(movie);
-% 	writeVideo(movie, movieVector);
-% 	close(movie);
-% end
