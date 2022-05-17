@@ -22,7 +22,7 @@ RA = coe_ev(3);        % Ascensione retta
 incl = coe_ev(4); 
 w = coe_ev(5); 
  
-p = h^2 / mu_Sun;       % Semilato retto     
+p = h^2 / mu;       % Semilato retto     
  
 % Passaggio da perifocale a eliocentrico per rappresentare l'orbita in 3D 
 % il centro è sempre il sole 
@@ -57,7 +57,7 @@ RA = coe_vs(3);        % Ascensione retta
 incl = coe_vs(4); 
 w = coe_vs(5); 
  
-p = h^2 / mu_Sun;       % Semilato retto     
+p = h^2 / mu;       % Semilato retto     
  
 % Passaggio da perifocale a eliocentrico per rappresentare l'orbita in 3D 
 % il centro è sempre il sole 
@@ -91,7 +91,7 @@ incl = coe_su(4);
 w = coe_su(5); 
 a = coe_su(7); 
  
-p = h^2 / mu_Sun;       % Semilato retto     
+p = h^2 / mu;       % Semilato retto     
  
 % Passaggio da perifocale a eliocentrico per rappresentare l'orbita in 3D 
 % il centro è sempre il sole 

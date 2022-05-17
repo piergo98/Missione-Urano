@@ -3,11 +3,11 @@ addpath(genpath("Animation"));
 
 %% Inizializzo dati utili
 
-global mu_Sun;
+global mu;
 global m_Sun;
 global G;
 
-mu_Sun = 1.327*10^11;   % mu sun (km^3/s^2)
+mu = 1.327*10^11;   % mu sun (km^3/s^2)
 m_Sun = 1.989e+30;  % Sun mass in kg
 G = 6.6742e-20; % Costante gravitazionale
 
