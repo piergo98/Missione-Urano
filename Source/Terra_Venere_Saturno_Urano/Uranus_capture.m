@@ -15,8 +15,8 @@ V_hyp_perigee = sqrt(norm(V_inf_sp_uranus) + (2*mu_Uranus/r_orbit_u));
 % Delta V
 deltaV_uranus_capture = V_hyp_perigee - V_uranus_park;
 
-fprintf('\n  Velocità iperbole al perigeo (km/s)  = %g', V_hyp_perigee)
-fprintf('\n  Velocità orbita di parcheggio (km/s) = %g', V_uranus_park)
+fprintf('\n Velocità iperbole al perigeo (km/s)  = %g', V_hyp_perigee)
+fprintf('\n Velocità orbita di parcheggio (km/s) = %g', V_uranus_park)
 fprintf('\n -----------------------------------------------------------\n')
 
 %% Plot capture
