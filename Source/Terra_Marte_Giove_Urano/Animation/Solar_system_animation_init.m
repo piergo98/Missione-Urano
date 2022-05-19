@@ -2,7 +2,7 @@
 
 % time_vector, a row for each day of the mission
 %time_vector = ymd_gen([2022, 10, 01],[2036, 4, 3]); %vecchio
-time_vector = ymd_gen([2022 09 01],[2034, 10, 01]);
+time_vector = ymd_gen([2027 05 01],[2038 07 01]);
 
 n_days = size(time_vector,1);
 

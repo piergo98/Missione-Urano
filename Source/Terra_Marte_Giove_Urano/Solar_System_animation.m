@@ -13,16 +13,16 @@ addpath(genpath("Script matlab"));
 addpath(genpath("Animation"));
 
 % Init all par, constants and plot parameters
-solar_system_animation_init
+Solar_system_animation_init
 
 % Computes the position of the spacecraft for each day of the mission
-Spacecraft_position_for_EESU
+Spacecraft_position_for_EMJU
 
 %% Editable animation parameters
 
 % Animation rates
 time_pause = 0;		% time [s] after each drawing. Set to zero to avoid pausing
-fr_skip = 6;		% frame skip between each drawing
+fr_skip = 1;		% frame skip between each drawing
 
 % View angles
 View = [90 90];				% initial view
