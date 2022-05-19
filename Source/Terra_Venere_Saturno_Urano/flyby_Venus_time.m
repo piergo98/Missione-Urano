@@ -1,7 +1,5 @@
 %Calcolo il tempo t di flyby Venere usando l'equazione di keplero
 
-%Earth_Venus_Saturn_Uranus;
-
 %velocità in uscita da Venus
 v_inf_down_Venus = v2_l_v - v2_v;  
 v_inf_down_norm_Venus = norm(v_inf_down_Venus); 

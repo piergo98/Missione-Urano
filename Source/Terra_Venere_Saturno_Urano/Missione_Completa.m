@@ -1,4 +1,4 @@
-%% MISSIONE COMPLETA: Terra-Terra-Saturno-Urano
+%% MISSIONE COMPLETA: Terra-Venere-Saturno-Urano
 
     % Inizializzo la missione
     init_Terra_Venere_Saturno_Urano;
@@ -6,7 +6,7 @@
     % Calcolo le Traiettorie di Lambert
     Earth_Venus_Saturn_Uranus;
 
-%% Fase Terra-Terra
+%% Fase Terra-Venere
 
     fprintf("\n Partenza dall'orbita di parcheggio sulla Terra il 2022/01/01 ore 12:00:00 \n");
 
@@ -15,8 +15,6 @@
 
     % Fuga dalla SOI della Terra
     Escape_from_Earth;
-
-%% Fase Terra-Giove
 
     fprintf('\n Ingresso nella sfera di influenza di Venere il 2022/04/01 ore 12:00:00 \n');
 

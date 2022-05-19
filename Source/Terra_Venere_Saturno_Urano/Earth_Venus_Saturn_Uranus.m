@@ -1,7 +1,7 @@
 %% calcolo Lambert fra posizione iniziale Terra e posizione finale Venere
 
 % Dati per posizione e velocità Terra alla partenza della spedizione e al
-% momento della cattura su Giove
+% momento della cattura su Venere
 
 [~, r1_e1, v1_e1, ~] = planet_elements_and_sv(3, 2022, 01, 01, 12, 00, 00);
 
@@ -61,7 +61,7 @@ StateVector_Venus;
 % Trovo la posizione e velocità della Saturno
 [~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2028, 01, 01, 12, 00, 00);
 
-% Definisco il tempo di volo Venere Saturno
+% Definisco il tempo di volo Venere-Saturno
 t_Venus = datetime(2022, 04, 01, 12, 00, 00);
 t_Saturn = datetime(2028, 01, 01, 12, 00, 00);
    
@@ -122,17 +122,17 @@ t_Uranus = datetime(2033, 12, 25, 12, 00, 00);
 time_diff = days(t_Uranus - t_Saturn);
 t_SU = time_diff*24*3600;
 
-% Calcolo la traiettoria di Lambert Terra-Terra
+% Calcolo la traiettoria di Lambert Saturno-Urano
 [V1_l_s, V2_l_u] = lambert(r2_fin_s, r2_u, t_SU, 'pro'); % '1' = partenza, '2' = arrivo
 
 % Estrazione elementi orbitali dall'orbita ottenuta con Lambert(partenza)
 coe_su = coe_from_sv(r2_fin_s, V1_l_s, mu);
-% Anomalia vera alla partenza della missione Terra-Terra
+% Anomalia vera alla partenza della missione Saturno-Urano
 TA1_su = rad2deg(coe_su(6));
 
 % Estrazione elementi orbitali dall'orbita ottenuta con Lambert(arrivo)
 coe_su = coe_from_sv(r2_u, V2_l_u, mu);
-% Anomalia vera alla fine della missione Terra-Terra
+% Anomalia vera alla fine della missione Saturno-Urano
 TA2_su = rad2deg(coe_su(6));
 
 % Delta V necessario per portarmi sulla traiettoria di Lambert

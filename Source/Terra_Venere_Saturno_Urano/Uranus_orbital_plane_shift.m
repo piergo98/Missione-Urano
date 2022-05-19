@@ -1,9 +1,7 @@
 %% Orbit plane change with three pulse maneuver on Uranus from ecliptical 
 % plane (0 deg) to equatorial plane (97.77 deg)
-%clear, clc
-%r_uranus = 25362;
-r_orbit_u = r_Uranus + 1000;
-%mu_u = 5.7939*10^6;
+
+r_orbit_u = r_Uranus + 1000; 
 
 plot_Uranus;
 
@@ -55,11 +53,6 @@ for j = r_orbit_u:1e5:5e7
         end
     end
 end
-% fprintf('\n\n Results:')
-% fprintf('\n   rho  = %g', rho_ottimo)
-% fprintf('\n   DeltaV_tot (km/s)     = %g', deltaV_ottimo)
-% fprintf('\n   TOF (days)            = %g', deltaT_min/(24*3600))
-% fprintf('\n -----------------------------------------------------------\n');
 
 % Plot orbital plane shift
 hold on
@@ -79,7 +72,6 @@ for i = 1:length(f)
 %   Cambio di coordinate il vettore posizione per plottarlo
     Q_pX = perifocal2helio(0, 0, 0);
     pos = Q_pX * [x y z]';
-%     pos = [x y z];
 
     if i == 1
         ra = animatedline(pos(1), pos(2), pos(3), "Color", color,'LineWidth',2);
@@ -102,7 +94,6 @@ for i = 1:length(f)
 %   Cambio di coordinate il vettore posizione per plottarlo
     Q_pX = perifocal2helio(RA_tf_1, i_tf_1, w_tf_1);
     pos = Q_pX * [x y z]';
-%     pos = [x y z];
 
     if i == 1
         ra = animatedline(pos(1), pos(2), pos(3), "Color", color,'LineWidth',2);
@@ -151,7 +142,6 @@ for i = 1:length(f)
 %   Cambio di coordinate il vettore posizione per plottarlo
     Q_pX = perifocal2helio(RA_tf_2, i_tf_2, w_tf_2);
     pos = Q_pX * [x y z]';
-%     pos = [x y z];
 
     if i == 1
         ra = animatedline(pos(1), pos(2), pos(3), "Color", color,'LineWidth',2);
@@ -167,9 +157,6 @@ axis equal
 xlim([-1e5 1e5])
 ylim([-1e5 1e5])
 zlim([-1e5 1e5])
-% xlabel('x (km)')
-% ylabel('y (km)')
-% zlabel('z (km)')
  view([1, 1, 0])
    
 
