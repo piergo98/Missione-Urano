@@ -55,19 +55,15 @@ t_flyby_tot_hours_Earth = t_flyby_tot_Earth/3600;
 [years_E months_E days_E hours_E minutes_E seconds_E] = sec2date(t_flyby_tot_Earth); 
 
 %...Output to the command window:
-fprintf('\n\n--------------------------------------------------------\n')
-fprintf('\n fly-by orbit Earth\n')
-fprintf('\n The initial position is [%g, %g, %g] (km).',...
+fprintf('\n Posizione iniziale [%g, %g, %g] (km).',...
                                                      r2_e2(1), r2_e2(2), r2_e2(3))
-fprintf('\n The initial velocity is [%g, %g, %g] (km/s).',...
+fprintf('\n Velocità iniziale [%g, %g, %g] (km/s).',...
                                                      v2_l_e2(1), v2_l_e2(2), v2_l_e2(3))
-fprintf('\n The minimum altitude is %g km', r_p_flyby_Earth)
-fprintf('\n The final position is [%g, %g, %g] (km).',...
-                                                     r2_fin_e(1), r2_fin_e(2), r2_fin_e(3))
-fprintf('\n The final velocity is [%g, %g, %g] (km/s).',...
-                                                     v_fin_Earth(1), v_fin_Earth(2), v_fin_Earth(3))
-fprintf('\n Time of flyby [%g Y, %g M, %g D, %g h, %g m, %g s] (km/s).',years_E, months_E, days_E, hours_E, minutes_E, seconds_E)
-
+fprintf('\n Altezza minima passaggio su Terra %g km', r_p_flyby_Earth)
+fprintf('\n Posizione finale [%g, %g, %g] (km).', r2_fin_e(1), r2_fin_e(2), r2_fin_e(3))
+fprintf('\n Velocità finale [%g, %g, %g] (km/s).', v_fin_Earth(1), v_fin_Earth(2), v_fin_Earth(3))
+fprintf('\n Tempo di volo nella sfera di influenza della Terra [%g Y, %g M, %g D, %g h, %g m, %g s] (km/s).' ...
+    ,years_E, months_E, days_E, hours_E, minutes_E, seconds_E)
 fprintf('\n--------------------------------------------------------\n\n')
 
 

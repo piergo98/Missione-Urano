@@ -40,23 +40,13 @@ t_escape_Earth = M_escape_Earth*sqrt(-a_escape_Earth^3/mu_Earth); %in secondi
 t_tot_escape_Earth = 2*t_escape_Earth;  
 t_tot_hours_escape_Earth = t_tot_escape_Earth/3600; 
 
-fprintf('\n\n Results escape computation:')
-fprintf('\n   Velocità di fuga al perigeo (km/s)  = %g', V_escape_perigee)
-fprintf('\n   Velocità orbita di parcheggio (km/s) = %g', V_park_e)
-fprintf('\n   DeltaV fuga (km/s) = %g', deltaV_escape_Earth)
+fprintf('\n Velocità di fuga al perigeo (km/s)  = %g', V_escape_perigee)
+fprintf('\n Velocità orbita di parcheggio (km/s) = %g', V_park_e)
 fprintf('\n -----------------------------------------------------------\n')
 
 %% Plot escape
 % Plot planet
-%hold on
-% [xx, yy, zz] = sphere(100);
-% surf(r_Earth*xx, r_Earth*yy, r_Earth*zz, 'EdgeColor','green','FaceColor','green',...
-%     'FaceAlpha','1');
-% 
 plot_Earth;
-% colormap light_gray
-% caxis([-r_uranus/100 r_uranus/100])
-% shading interp
 
 % Circular parking orbit
 f = 0:1:360;
@@ -98,7 +88,6 @@ for i = 1:length(f)
 %   Cambio di coordinate il vettore posizione per plottarlo
     Q_pX = perifocal2helio(0, 0, 0);
     pos = Q_pX * [x y z]';
-%     pos = [x y z];
 
     if i == 1
         ra = animatedline(pos(1), pos(2), pos(3), "Color", color,'LineWidth',3);
@@ -107,20 +96,3 @@ for i = 1:length(f)
     drawnow;
 end
 
-% Plot SOI Earth
-% [X,Y,Z] = sphere;
- %figure()
-% surface(R_SOI_Earth*X,R_SOI_Earth*Y,...
-%     R_SOI_Earth*Z,'EdgeColor','cyan','FaceColor','cyan',...
-%     'FaceAlpha','0');
-
-  
-xlim([-1e5 1e5])
-ylim([-1e5 1e5])
-zlim([-1e5 1e5])
-xlabel('x (km)')
-ylabel('y (km)')
-zlabel('z (km)')
-view([0 0 1])
-
- 

@@ -3,14 +3,9 @@
 % The animation works by plotting each day the position of planets, Sun,
 % and the spacecraft.
 
-%In this first version it will plot only planets and Sun.
-
 %% intro
 
 movie_mode = 2;	% 1 for movie writing, 2 for HD movie, 0 for only matlab animation
-
-addpath(genpath("Script matlab"));
-addpath(genpath("Animation"));
 
 % Init all par, constants and plot parameters
 solar_system_animation_init
@@ -40,7 +35,7 @@ ax.GridColor = col_grid;
 color = 'g';
 
 if movie_mode == 2
-	warning('Note that a 1080p resolution is needed for movie_mode = 2')
+%	warning('Note that a 1080p resolution is needed for movie_mode = 2')
 	figh.WindowState = 'maximize';
 end
 
