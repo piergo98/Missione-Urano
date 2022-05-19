@@ -1,9 +1,7 @@
 %% Orbit plane change with three pulse maneuver on Uranus from ecliptical 
 % plane (0 deg) to equatorial plane (97.77 deg)
-%clear, clc
-%r_uranus = 25362;
+
 r_orbit_u = r_Uranus + 1000;
-%mu_u = 5.7939*10^6;
 
 plot_Uranus;
 
@@ -55,11 +53,6 @@ for j = r_orbit_u:1e5:5e7
         end
     end
 end
-% fprintf('\n\n Results:')
-% fprintf('\n   rho  = %g', rho_ottimo)
-% fprintf('\n   DeltaV_tot (km/s)     = %g', deltaV_ottimo)
-% fprintf('\n   TOF (days)            = %g', deltaT_min/(24*3600))
-% fprintf('\n -----------------------------------------------------------\n');
 
 % Plot orbital plane shift
 hold on
@@ -167,9 +160,6 @@ axis equal
 xlim([-1e5 1e5])
 ylim([-1e5 1e5])
 zlim([-1e5 1e5])
-% xlabel('x (km)')
-% ylabel('y (km)')
-% zlabel('z (km)')
  view([1, 1, 0])
    
 
