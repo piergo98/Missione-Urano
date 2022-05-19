@@ -94,27 +94,28 @@ StateVector_Mars;
 % % Flyby, variando l'anomalia vera. 
 %  
 % % Elementi orbitali dell'orbita dopo il flyby 
-% coe_flyby = coe_from_sv(r2_fin_m,v_fin_Mars,mu); 
-%  
-% % Anomalia vera in partenza dalla SOI della Terra 
-% TA_post_flyby = rad2deg(coe_flyby(6)); 
-%  
-% % Anomalia vera nel punto di partenza della traiettoria di Lambert fra la 
-% % Terra e Saturno 
-% %TA_for_lambert = TA_post_flyby + 90; %vecchio 
-% TA_for_lambert = TA_post_flyby + 20*pi/180;  
-%  
-% % Calcolo delta T su traiettoria ellissoidale 
-% a = coe_flyby(7); 
-% e = coe_flyby(2); 
-% dT = time_post_flyby(TA_post_flyby, TA_for_lambert, a, e, mu); 
-%  
-% % Aggiorno il valore dell'anomalia vera per ottenere i coe prima del dV 
-% coe_flyby(6) = deg2rad(TA_for_lambert); 
+coe_flyby = coe_from_sv(r2_fin_m,v_fin_Mars,mu); 
+ 
+% Anomalia vera in partenza dalla SOI della Terra 
+TA_post_flyby = rad2deg(coe_flyby(6)); 
+ 
+% Anomalia vera nel punto di partenza della traiettoria di Lambert fra la 
+% Terra e Saturno 
+%TA_for_lambert = TA_post_flyby + 90; %vecchio 
+TA_for_lambert = TA_post_flyby;  
+ 
+% Calcolo delta T su traiettoria ellissoidale 
+a = coe_flyby(7); 
+e = coe_flyby(2); 
+dT = time_post_flyby(TA_post_flyby, TA_for_lambert, a, e, mu); 
+ 
+% Aggiorno il valore dell'anomalia vera per ottenere i coe prima del dV 
+coe_flyby(6) = deg2rad(TA_for_lambert); 
 %  
 %% Calcolo traiettoria lambert post flyby terra con arrivo su saturno 
  
 % Trovo la posizione e velocità di Saturno 
+
 %[~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2030, 04, 03, 00, 00, 00); %vecchio 
 [~, r2_j, v2_j, ~] = planet_elements_and_sv(5, 2032, 07, 01, 00, 00, 00); 
  
@@ -122,7 +123,7 @@ StateVector_Mars;
 t_mj = year2seconds(3) + month2seconds(9); % 'fS' = da punto post flyby a Saturno 6anni-il tempo trascorso sull'orbita eliocentrica 
  
 % Estraggo il vettore di stato con i coe aggiornati all'ultima posizione 
-%[r, v] = sv_from_coe(coe_flyby, mu); 
+[r, v] = sv_from_coe(coe_flyby, mu); 
 % Risolvo Lambert per arrivare su Saturno 
 [V1_l_m, V2_l_j] = lambert(r2_m, r2_j, t_mj, 'pro'); 
  
@@ -137,12 +138,12 @@ coe_mj = coe_from_sv(r2_m, V1_l_m, mu);
 TA1_mj= rad2deg(coe_mj(6)); 
  
 % Estrazione elementi orbitali dall'orbita ottenuta con Lambert(arrivo) 
-coe_mj = coe_from_sv(r2_m, V2_l_j, mu); 
+coe_mj = coe_from_sv(r2_j, V2_l_j, mu); 
 % Anomalia vera alla fine della missione r-Saturno 
 TA2_mj = rad2deg(coe_mj(6)); 
- plot_traiettoria_spacecraft(coe, TA1_mj, TA2_mj, 'g')
-          plot_orbit(4,2023)
-          plot_orbit(5,2030)
+%  plot_traiettoria_spacecraft(coe_mj, TA1_mj, TA2_mj, 'g')
+%           plot_orbit(4,2023)
+%           plot_orbit(5,2030)
  
  
 %% Calcolo per risolvere flyby intorno a Saturno 
