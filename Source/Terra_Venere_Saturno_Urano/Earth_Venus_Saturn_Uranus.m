@@ -3,7 +3,7 @@
 % Dati per posizione e velocità Terra alla partenza della spedizione e al
 % momento della cattura su Venere
 
-[~, r1_e1, v1_e1, ~] = planet_elements_and_sv(3, 2022, 01, 01, 12, 00, 00);
+[~, r1_e1, v1_e1, ~] = planet_elements_and_sv(3, departure_Earth.year, 01, 01, 12, 00, 00);
 
 [~, r2_v, v2_v, ~] = planet_elements_and_sv(2, 2022, 04, 01, 12, 00, 00);
 

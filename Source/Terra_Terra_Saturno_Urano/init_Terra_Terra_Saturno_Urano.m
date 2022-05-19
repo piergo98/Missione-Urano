@@ -45,3 +45,39 @@ d_Uranus2Sun = 2857319330;    %distance Uranus-Sun in km
 r_Uranus = 2.5362e+4;
 R_SOI_Uranus = d_Uranus2Sun*(m_Uranus/m_Sun)^(2/5);
 
+%% Departing and Arriving date for Lambert
+
+% departure_planet:
+%   year = year at the depart from the planet "planet"
+%   month = month at the depart from the planet "planet"
+%   day = day at the depart from the planet "planet"
+%   hour = hour at the depart from the planet "planet"
+%   minute = minute at the depart from the planet "planet"
+%   second = second at the depart from the planet "planet"
+
+% arrival_planet:
+%   year = year at the arrive from the planet "planet"
+%   month = month at the arrive from the planet "planet"
+%   day = day at the arrive from the planet "planet"
+%   hour = hour at the arrive from the planet "planet"
+%   minute = minute at the arrive from the planet "planet"
+%   second = second at the arrive from the planet "planet"
+
+% Matlab syntax: departure_Earth = struct('year', 2031, 'month', 03, 'day', 01, ...
+%     'hour', 18, 'minute', 00, 'second', 00);
+
+% Departure from Earth
+departure_Earth = struct('year', 2023, 'month', 03, 'day', 01, ...
+    'hour', 18, 'minute', 00, 'second', 00);
+
+% Arrival to Earth
+arrival_Earth = struct('year', 2024, 'month', 08, 'day', 01, ...
+    'hour', 18, 'minute', 00, 'second', 00);
+
+% Arrival to Saturn
+arrival_Saturn = struct('year', 2030, 'month', 08, 'day', 01, ...
+    'hour', 00, 'minute', 00, 'second', 00);
+
+% Arrival to Uranus
+arrival_Uranus = struct('year', 2036, 'month', 08, 'day', 01, ...
+    'hour', 00, 'minute', 00, 'second', 00);

@@ -56,3 +56,12 @@ d_Uranus2Sun = 2857319330;    %distance Earth-Sun in km
 r_Uranus = 2.5362e+4;
 R_SOI_Uranus = d_Uranus2Sun*(m_Uranus/m_Sun)^(2/5);
 
+%% Departure and arrival date
+% Departure from Earth
+departure_Earth = struct('year', 2022, 'month', 01, 'day', 01, ...
+    'hour', 12, 'minute', 00, 'second', 00);
+
+% Arrival to Venus
+arrival_Venus = struct('year', 2022, 'month', 04, 'day', 01, ...
+    'hour', 12, 'minute', 00, 'second', 00);
+

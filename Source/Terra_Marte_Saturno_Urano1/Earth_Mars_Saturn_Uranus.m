@@ -45,7 +45,7 @@ v_inf_down_norm_Mars = norm(v_inf_down_Mars); % in norma
 a_flyby_Mars = - mu_Mars/((v_inf_down_norm_Mars)^2); 
  
 % Distanza minima fra traiettoria di flyby e pianeta(km)  
-r_p_flyby_Mars = 6000;   
+r_p_flyby_Mars = 36000;   
  
 % Eccentricità traiettoria di flyby 
 e_flyby_Mars = 1-(r_p_flyby_Mars/a_flyby_Mars);  
@@ -70,7 +70,7 @@ TA_post_flyby = rad2deg(coe_flyby(6));
  
 % Anomalia vera nel punto di partenza della traiettoria di Lambert fra la 
 % Marte e Saturno 
-TA_for_lambert = TA_post_flyby + 20;  
+TA_for_lambert = TA_post_flyby + 0;  
  
 % Calcolo delta T su traiettoria ellissoidale 
 a = coe_flyby(7); 
@@ -86,7 +86,7 @@ coe_flyby(6) = deg2rad(TA_for_lambert);
 [~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2028, 10, 01, 00, 00, 00); 
  
 % Definisco il tempo di volo dal punto scelto post flyby e Saturno 
-t_fS = year2seconds(5) - month2seconds(1)- days2seconds(16); % 'fS' = da punto post flyby a Saturno 6anni-il tempo trascorso sull'orbita eliocentrica 
+t_fS = year2seconds(5); % 'fS' = da punto post flyby a Saturno 6anni-il tempo trascorso sull'orbita eliocentrica 
  
 % Estraggo il vettore di stato con i coe aggiornati all'ultima posizione 
 [r, v] = sv_from_coe(coe_flyby, mu); 
@@ -103,7 +103,7 @@ coe_ms = coe_from_sv(r, V1_l_f, mu);
 TA1_ms = rad2deg(coe_ms(6)); 
  
 % Estrazione elementi orbitali dall'orbita ottenuta con Lambert(arrivo) 
-coe_ms = coe_from_sv(r2_m, V2_l_s, mu); 
+coe_ms = coe_from_sv(r2_s, V2_l_s, mu); 
 % Anomalia vera alla fine della missione r-Saturno 
 TA2_ms = rad2deg(coe_ms(6)); 
  

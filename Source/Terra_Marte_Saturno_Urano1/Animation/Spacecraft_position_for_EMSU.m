@@ -2,7 +2,7 @@
 % Dawn_spacecraft with respect to solar system 
  
 % Risolvo il problema di Lambert per tutta la missione (senza plot) 
-%Earth_Mars_Saturn_Uranus 
+% Earth_Mars_Saturn_Uranus 
  
 % Dimensioni dello spacecraft 
 radius = 100; 
@@ -31,7 +31,7 @@ Q_pX = perifocal2helio(RA, incl, w);
  
 pos_spcr = []; 
  
-for t = 1:(em_days) 
+for t = 1:(em_days+1) 
 %       Anomalia vera nel tempo 
     f = dTA * t + TA1_em; 
 %       Legge oraria dello spacecraft in funzione dell'anomalia vera 
@@ -65,7 +65,7 @@ p = h^2 / mu;           % Semilato retto
 % il centro è sempre il sole 
 Q_pX = perifocal2helio(RA, incl, w);   
  
-for t = 1:(fl_days) 
+for t = 1:(fl_days+1) 
 %       Anomalia vera nel tempo 
     f = dTA * t + TA_post_flyby; 
 %       Legge oraria dello spacecraft in funzione dell'anomalia vera 
@@ -79,7 +79,7 @@ for t = 1:(fl_days)
 end 
  
 %% Mars to Saturn 
-ms_days = datenum([2028 10 01]) - datenum([2023 10 17]); 
+ms_days = datenum([2028 10 01]) - datenum([2023 10 01]); 
  
 Delta_TA_ms = abs(TA2_ms - TA1_ms); 
 %   Minima variazione di anomalia vera in un giorno 

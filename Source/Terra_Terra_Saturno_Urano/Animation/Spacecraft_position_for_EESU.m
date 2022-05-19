@@ -10,9 +10,10 @@ radius = 100;
 mu = 1.327*10^11; 
 
 %% Earth to Earth
-% from day (01/10/22) to (01/03/2024)
+% from day (01/3/23) to (01/08/2024)
 %ee_days = datenum([2024 03 01]) - datenum([2022 10 01]);
-ee_days = datenum([2024 08 01]) - datenum([2023 03 01]);
+ee_days = datenum([arrival_Earth.year arrival_Earth.month arrival_Earth.day]) - ...
+    datenum([departure_Earth.year departure_Earth.month departure_Earth.day]);
 
 
 Delta_TA_ee = abs(TA2_ee - TA1_ee);
@@ -33,7 +34,7 @@ Q_pX = perifocal2helio(RA, incl, w);
 
 pos_spcr = [];
 
-for t = 1:(ee_days)
+for t = 1:(ee_days+1)
 %       Anomalia vera nel tempo
     f = dTA * t + TA1_ee;
 %       Legge oraria dello spacecraft in funzione dell'anomalia vera
@@ -46,45 +47,11 @@ for t = 1:(ee_days)
     pos_spcr(:,t) = Q_pX * [x y z]';
 end
 
-%% Flyby orbit
-% from (1/3/2024) to (3/4/2024)
-% Giorni in cui lo spacecraft sta sull'orbita ottenuta dal flyby
-fl_days = datenum([2024 4 3]) - datenum([2024 3 1]);
-%fl_days = ceil(dT / days2seconds(1));
-
-Delta_TA_fl = abs(TA_for_lambert - TA_post_flyby);
-% Variazione di anomalia vera in un giorno
-dTA = Delta_TA_fl/ fl_days;
-
-h = coe_flyby(1);          % Momento angolare
-e = coe_flyby(2);          % Eccentricità
-RA = coe_flyby(3);         % Ascensione retta
-incl = coe_flyby(4);       % Inclinazione orbita di trasferimento
-w = coe_flyby(5);          % Argomento del periasse
-
-p = h^2 / mu;           % Semilato retto
-
-% Passaggio da perifocale a eliocentrico per rappresentare l'orbita in 3D
-% il centro è sempre il sole
-Q_pX = perifocal2helio(RA, incl, w);  
-
-for t = 1:(fl_days)
-%       Anomalia vera nel tempo
-    f = dTA * t + TA_post_flyby;
-%       Legge oraria dello spacecraft in funzione dell'anomalia vera
-    r = p / (1 + e*cosd(f));
-%       Converto in coordinate cartesiane
-    x = r*cosd(f);
-    y = r*sind(f);
-    z = 0;
-%       Cambio di coordinate il vettore posizione
-    pos_spcr(:,t+ee_days) = Q_pX * [x y z]';
-end
-
 %% Earth to Saturn
-% from (03/4/24) to (3/4/30)
+% from (01/8/24) to (1/8/30)
 %es_days = datenum([2030 04 03]) - datenum([2024 03 01]); %vecchio
-es_days = datenum([2030 08 01]) - datenum([2024 08 01]);
+es_days = datenum([arrival_Saturn.year arrival_Saturn.month arrival_Saturn.day]) - ...
+    datenum([arrival_Earth.year arrival_Earth.month arrival_Earth.day]);
 
 Delta_TA_es = abs(TA2_es - TA1_es);
 %   Minima variazione di anomalia vera in un giorno
@@ -102,7 +69,7 @@ p = h^2 / mu;       % Semilato retto
 % il centro è sempre il sole
 Q_pX = perifocal2helio(RA, incl, w);
 
-for t = 1:(es_days)
+for t = 1:(es_days+1)
 %       Anomalia vera nel tempo
     f = dTA * t + TA1_es;
 %       Legge oraria dello spacecraft in funzione dell'anomalia vera
@@ -118,9 +85,10 @@ end
 
 
 %% Saturn to Uranus
-% from (3/4/30) to (3/4/36)
+% from (1/8/30) to (1/8/36)
 %su_days = datenum([2036 04 03])- datenum([2030 04 03]); %vecchio
-su_days = datenum([2036 08 01])- datenum([2030 08 01]);
+su_days = datenum([arrival_Uranus.year arrival_Uranus.month arrival_Uranus.day])- ...
+    datenum([arrival_Saturn.year arrival_Saturn.month arrival_Saturn.day]);
 
 Delta_TA_su = abs(TA2_su - TA1_su);
 %   Minima variazione di anomalia vera in un giorno
