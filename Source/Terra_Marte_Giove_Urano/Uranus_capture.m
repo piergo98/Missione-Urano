@@ -16,24 +16,12 @@ V_hyp_perigee = sqrt(norm(V_inf_sp_uranus) + (2*mu_Uranus/r_orbit_u));
 % Delta V
 deltaV_uranus_capture = V_hyp_perigee - V_uranus_park;
 
-fprintf('\n\n Results:')
-fprintf('\n   Velocità iperbole al perigeo (km/s)  = %g', V_hyp_perigee)
-fprintf('\n   Velocità orbita di parcheggio (km/s) = %g', V_uranus_park)
-fprintf('\n   DeltaV cattura (km/s) = %g', deltaV_uranus_capture)
+fprintf('\n Velocità iperbole al perigeo (km/s)  = %g', V_hyp_perigee)
+fprintf('\n Velocità orbita di parcheggio (km/s) = %g', V_uranus_park)
 fprintf('\n -----------------------------------------------------------\n')
 
 %% Plot capture 
-%%
 plot_Uranus; 
-% %Plot SOI Uranus 
-% hold on;
-% [X,Y,Z] = sphere; 
-% %figure() 
-% surface(R_SOI_Uranus*X,R_SOI_Uranus*Y,... 
-%     R_SOI_Uranus*Z,'EdgeColor','cyan','FaceColor','cyan',... 
-%     'FaceAlpha','0'); 
-
-%%  
  
 % Hyperbolic orbit
 % Semilato retto
@@ -92,22 +80,3 @@ for i = 1:length(f)
     addpoints(ra, pos(1), pos(2), pos(3));
     drawnow;
 end
-
-% Plot planet
-% hold on
-% [xx, yy, zz] = sphere(100);
-% surf(r_uranus*xx, r_uranus*yy, r_uranus*zz, 'EdgeColor','blue','FaceColor','blue',...
-%     'FaceAlpha','1');
-% colormap light_gray
-% caxis([-r_uranus/100 r_uranus/100])
-% shading interp
-  
-% xlim([-1e5 1e5])
-% ylim([-1e5 1e5])
-% zlim([-1e5 1e5])
-% xlabel('x (km)')
-% ylabel('y (km)')
-% zlabel('z (km)')
-
-% Change plane
-%Uranus_orbital_plane_shift
