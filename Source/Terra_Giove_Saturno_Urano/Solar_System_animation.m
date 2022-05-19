@@ -25,7 +25,7 @@ time_pause = 0;		% time [s] after each drawing. Set to zero to avoid pausing
 fr_skip = 6;		% frame skip between each drawing
 
 % View angles
-View = [90 35];				% initial view
+View = [90 90];				% initial view
 spinlon = -45;				% how much view angle change long [grad]
 spinlat = -29;				% how much view angle change lat [grad]
 
