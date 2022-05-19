@@ -29,13 +29,19 @@ p = h^2 / mu;           % Semilato retto
  
 % Passaggio da perifocale a eliocentrico per rappresentare l'orbita in 3D 
 % il centro è sempre il sole 
-Q_pX = perifocal2helio(RA, incl, w);   
+Q_pX = perifocal2helio(RA, incl, w);  
+
+%  if TA1_em >= TA2_em
+%        f = TA1_em:dTA:TA2_em+360; 
+%     else
+%         f = TA1_em:dTA:TA2_em;
+%     end
  
 pos_spcr = []; 
  
-for t = 1:(em_days) 
+for t = 1:(mj_days) 
 %       Anomalia vera nel tempo 
-    f = dTA * t + TA1_em; 
+    f = 2*dTA * t + TA1_mj; 
 %       Legge oraria dello spacecraft in funzione dell'anomalia vera 
     r = p / (1 + e*cosd(f)); 
 %       Converto in coordinate cartesiane 

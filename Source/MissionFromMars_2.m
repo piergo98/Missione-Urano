@@ -164,7 +164,7 @@ mu = 1.327*10^11;                   % mu sun (km^3/s^2)
     norm(v1_l_m)
     
     % Estrazione elementi orbitali orbita di trasferimento (using r1 and v1):
-    coe_m = coe_from_sv(r1_m, v1_l_m, mu);
+    coe_m = coe_from_sv(r2_m, v1_l_m, mu);
     % Initial true anomaly:
     TA1_m = rad2deg(coe_m(6));
     
@@ -172,6 +172,6 @@ mu = 1.327*10^11;                   % mu sun (km^3/s^2)
     coe_m = coe_from_sv(r2_s, v2_l_s, mu);
     % Final true anomaly:
     TA2_m = rad2deg(coe_m(6));
-%  plot_traiettoria_spacecraft(coe, TA1, TA2, 'g')
-%           plot_orbit(4,2023)
-%           plot_orbit(5,2030)
+ plot_traiettoria_spacecraft(coe_m, TA1, TA2, 'g')
+          plot_orbit(4,2023)
+          plot_orbit(5,2030)
