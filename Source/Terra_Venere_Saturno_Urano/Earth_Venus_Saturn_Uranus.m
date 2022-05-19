@@ -43,7 +43,7 @@ v_inf_down_norm_Venus = norm(v_inf_down_Venus); % in norma
 a_flyby_Venus = - mu_Venus / ((v_inf_down_norm_Venus)^2);
 
 % Distanza minima fra traiettoria di flyby e pianeta(km) 
-r_p_flyby_Venus = r_Venus + 8000;   
+r_p_flyby_Venus = 49000;   
 
 % Eccentricità traiettoria di flyby
 e_flyby_Venus = 1-(r_p_flyby_Venus/a_flyby_Venus); 
@@ -97,7 +97,7 @@ v_inf_down_norm_saturn = norm(v_inf_down_saturn); % in norma
 a_flyby_saturn = - mu_Saturn/((v_inf_down_norm_saturn)^2);
 
 % Distanza minima fra traiettoria di flyby e pianeta(km) 
-r_p_flyby_saturn = 2e6;
+r_p_flyby_saturn = 400000;
 
 % Eccentricità traiettoria di flyby
 e_flyby_saturn = 1-(r_p_flyby_saturn/a_flyby_saturn); 

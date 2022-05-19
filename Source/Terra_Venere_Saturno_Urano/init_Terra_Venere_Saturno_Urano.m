@@ -19,7 +19,7 @@ Epark_inclination = 0;	%[rad]
 Upark_radius = 1000;        %[km]
 Upark_inclination = 97.7;    %[deg]  
 
-%% Compute the ray of SOI_Earth
+%% Compute the ray of SOI_Venus
 mu_Venus = 324859; %[km^3/s^2] 
 m_Venus = 4.8675e+24;    %Earth mass in kg
 r_Venus = 6051.8;
