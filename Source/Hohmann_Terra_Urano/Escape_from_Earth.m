@@ -3,7 +3,7 @@
 % Recupero dati Terra
 [~, ~, v1_e1, ~] = planet_elements_and_sv(3, 2022, 7, 16, 23, 59, 30);
 
-v_infp_escape_Earth = v_p_Hohmann - v1_e1;   % Differenza fra velocità necessaria per Lambert e velocità del pianeta    
+v_infp_escape_Earth = v_p_Hohmann - norm(v1_e1);   % Differenza fra velocità necessaria per Lambert e velocità del pianeta    
 v_infp_escape_Earth_mod = norm(v_infp_escape_Earth);  % In norma
 
 % Raggio orbita di parcheggio intorno alla Terra(km)

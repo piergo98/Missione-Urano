@@ -34,11 +34,17 @@ deltaV_p = v_p_Hohmann - v_circolare_Earth;
 % Velocità apocentro orbita di trasferimento (ricavata da eq dell'Ener)
 v_a_Hohmann = sqrt((mu/r_finale_Hohoman)*(2 - (2*r_finale_Hohoman/r_iniziale_Hohmann)/(1 + r_finale_Hohoman/r_iniziale_Hohmann))); 
 
-% DeltaV del secondo impulso (apocentro)
-deltaV_a = v_circolare_Uranus - v_a_Hohmann;
+%% Le calcolo a partire dall'orbita di parcheggio terrestre, 
+% imponendo che la v_inf della parabola di fuga più la velocità della terra
+% sia uguale alla V_p_Hohmann, faccio lp stesso per il secondo deltaV 
 
-% DeltaV totale di Hohmann
-deltaV_Hohmann = deltaV_p + deltaV_a;
+% % DeltaV del secondo impulso (apocentro)
+% deltaV_a = v_circolare_Uranus - v_a_Hohmann;
+% 
+% % DeltaV totale di Hohmann
+% deltaV_Hohmann = deltaV_p + deltaV_a;
+
+%% TOF_Hohmann
 
 % Tempo necessario per effettuare la Manovra di Hohmann (metà periodo
 % orbita di trasferimento)

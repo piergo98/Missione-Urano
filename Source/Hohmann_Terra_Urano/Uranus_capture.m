@@ -8,7 +8,7 @@ r_orbit_u = r_Uranus + Upark_radius;
 [~, ~, v2_u, ~] = planet_elements_and_sv(7, 2038, 6, 29, 3, 16, 11);
 
 % V_spacecraft respect to Uranus
-V_inf_sp_uranus = v_a_Hohmann - v2_u;
+V_inf_sp_uranus = v_a_Hohmann - norm(v2_u);
 % Semimajor axis hyperbola
 a_hyp_u = - mu_Uranus / norm(V_inf_sp_uranus)^2;
 % Eccentricity hyperbola
@@ -37,7 +37,7 @@ f = -f_deg_Uranus:0.1:0;
 radius = 10;
 color = 'b';
 pos = [];
-for i = 1:length(f)
+for i = 1:10:length(f)
 %   Legge oraria dello spacecraft in funzione dell'anomalia vera
     r = p_hyp_u / (1 + e_hyp_u*cosd(f(i)));
 %       Converto in coordinate cartesiane
