@@ -31,18 +31,18 @@ p_Mars = r_p_flyby_Mars*(1+e_flyby_Mars*cos(f_Mars));
 % Distanza per la quale voglio calcolare il tempo di volo 
 r = 5.77e5;  
  
-% Calcolo anomalia vera per r  
-f_in_Mars = acos((1/e_flyby_Mars)*((p_Mars/r)-1));  
-f_in_Mars_deg = rad2deg(f_in_Mars);   % in gradi 
- 
-% Calcolo anomalia eccentrica 
-E_2_Mars = atanh(sqrt((e_flyby_Mars-1)/(e_flyby_Mars+1))*tan(f_in_Mars/2));  
-E_Mars = E_2_Mars/2; 
-E_deg_Mars = rad2deg(E_Mars); % in gradi  
- 
-% Trovo anomalia media M  
-M_Mars = e_flyby_Mars*sinh(E_Mars)-E_Mars;  
-M_deg_Mars = rad2deg(M_Mars); % in gradi 
+% Calcolo anomalia vera per r (in ingresso alla SOI) 
+f_in_Mars = acos((1/e_flyby_Mars)*((p_Mars/r)-1)); 
+f_in_Mars_deg = rad2deg(f_in_Mars);   % in gradi
+cosh_F_Mars = (e_flyby_Mars+cos(f_in_Mars))/(e_flyby_Mars*cos(f_in_Mars)+1);
+
+% Calcolo anomalia eccentrica
+F_Mars = log(cosh_F_Mars+sqrt((cosh_F_Mars)^2-1));
+F_Mars_deg = rad2deg(F_Mars);
+
+% Trovo anomalia media M 
+M_Mars = e_flyby_Mars*sinh(F_Mars)-F_Mars;
+M_Mars_deg = rad2deg(M_Mars);  % in gradi 
   
 % Trovo il tempo  
 t_flyby_Mars = M_Mars*sqrt(-a_flyby_Mars^3/mu_Mars); % in secondi  

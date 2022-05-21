@@ -7,9 +7,6 @@
 
 movie_mode = 2;	% 1 for movie writing, 2 for HD movie, 0 for only matlab animation
 
-addpath(genpath("Script matlab"));
-addpath(genpath("Animation"));
-
 % Init all par, constants and plot parameters
 Solar_system_animation_init
 
@@ -20,7 +17,7 @@ Spacecraft_position_for_EMJU
 
 % Animation rates
 time_pause = 0;		% time [s] after each drawing. Set to zero to avoid pausing
-fr_skip = 12;		% frame skip between each drawing
+fr_skip = 6;		% frame skip between each drawing
 
 % View angles
 View = [90 90];				% initial view
@@ -149,17 +146,3 @@ for d = 1:fr_skip:n_days			% speed
 		k = k+1;
 	end
 end
-
-% %% Video stuff
-% if movie_mode
-% 	movie = VideoWriter('movie_heliocentric', 'MPEG-4');
-% 	movie.FrameRate = movie_fps;
-% 
-% 	open(movie);
-% 	writeVideo(movie, movieVector);
-% 	close(movie);
-% end
-
-
-%% Plot cambio piano finale e calcolo dei deltaV 
-%DeltaV;

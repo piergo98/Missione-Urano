@@ -12,7 +12,7 @@ DeltaV_tot = DeltaV_tot + deltaV_escape_Earth;
 
 %% Delta V necessario per entrare in orbita di Lambert dalla Marte a Giove
 
-DeltaV_tot = DeltaV_tot + d_V_fS_norm;
+DeltaV_tot = DeltaV_tot + d_V_mj_norm;
 
 %% Delta V necessario per entrare in orbita di Lambert da Giove a Urano
 
@@ -29,7 +29,7 @@ DeltaV_tot = DeltaV_tot + deltaV_ottimo;
 fprintf("\n DeltaV totale missione = %d \n",DeltaV_tot);
 fprintf("\n DeltaV cambio piano Terra = %g",deltaV_orbit_e);
 fprintf("\n DeltaV Terra-Marte = %g",deltaV_escape_Earth);
-fprintf("\n DeltaV Marte-Giove = %g",d_V_fS_norm);
+fprintf("\n DeltaV Marte-Giove = %g",d_V_mj_norm);
 fprintf("\n DeltaV Giove-Urano = %g",d_V_JU_norm);
 fprintf("\n DeltaV cattura su Urano = %g",deltaV_uranus_capture);
 fprintf("\n DeltaV cambio piano Urano = %g \n",deltaV_ottimo);

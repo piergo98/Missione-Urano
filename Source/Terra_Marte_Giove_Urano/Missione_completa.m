@@ -23,7 +23,7 @@
     
 %% Fase Terra-Giove
 
-    fprintf('\n Ingresso nella sfera di influenza di Saturno il 2032/07/01 ore 00:00:00 \n');
+    fprintf('\n Ingresso nella sfera di influenza di Giove il 2032/07/01 ore 00:00:00 \n');
     
     % Fly-by su Giove
     flyby_Jupiter_time;
