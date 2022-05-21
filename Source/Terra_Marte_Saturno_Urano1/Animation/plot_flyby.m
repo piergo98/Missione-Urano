@@ -24,11 +24,11 @@ function plot_flyby(r_planet, r_SOI, e_flyby, p_flyby, f_deg, r_p_flyby, who_plo
                 case 'J' 
                     r_Jupiter = r_planet; 
                     plot_Jupiter; 
-                    r_limit = r_p_flyby+10000000; 
+                    r_limit = r_p_flyby+100000; 
                 case 'S' 
                     r_Saturn = r_planet; 
                     plot_Saturn; 
-                    r_limit = r_p_flyby+10000000; 
+                    r_limit = r_p_flyby+3000000; 
                 case 'V' 
                     r_Venus = r_planet; 
                     plot_Venus; 
