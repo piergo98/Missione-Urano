@@ -29,7 +29,7 @@ f_deg_Mars = rad2deg(f_Mars); % in gradi
 p_Mars = r_p_flyby_Mars*(1+e_flyby_Mars*cos(f_Mars));  
  
 % Distanza per la quale voglio calcolare il tempo di volo 
-r = 5.77e5;  
+r = R_SOI_Mars;  
  
 % Calcolo anomalia vera per r  
 f_in_Mars = acos((1/e_flyby_Mars)*((p_Mars/r)-1));  
