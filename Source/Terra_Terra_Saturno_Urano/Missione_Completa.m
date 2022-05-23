@@ -4,6 +4,8 @@
     clear;
     clc;
 
+    close all; clear; clc;
+    
     % Inizializzo la missione
     init_Terra_Terra_Saturno_Urano;
 

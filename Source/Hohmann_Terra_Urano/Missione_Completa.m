@@ -1,5 +1,9 @@
-%% MISSIONE COMPLETA: Terra-Terra-Saturno-Urano
-
+%% MISSIONE COMPLETA: Hohmann
+    
+    close all
+    clear
+    clc
+    
     % Inizializzo la missione
     init_Hohmann;
 

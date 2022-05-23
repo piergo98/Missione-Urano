@@ -224,11 +224,11 @@ for j = r_orbit_u:1e5:5e7
         end
     end
 end
-fprintf('\n\n Results:')
-fprintf('\n   rho  = %g', rho_ottimo)
-fprintf('\n   DeltaV_tot (km/s)     = %g', deltaV_ottimo)
-fprintf('\n   TOF (days)            = %g', deltaT_min/(24*3600))
-fprintf('\n -----------------------------------------------------------\n');
+
+deltaT_min_hours = deltaT_min/(24*3600);
+fprintf('\n Cambio di piano su Urano:')
+fprintf("\n Tempo di cambio di piano su Urano = %g (ore) \n", deltaT_min_hours)
+fprintf('\n-----------------------------------------------------\n')
 
 % Plot orbital plane shift
 hold on

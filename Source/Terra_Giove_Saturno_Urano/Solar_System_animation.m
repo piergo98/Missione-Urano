@@ -40,7 +40,7 @@ ax.GridColor = col_grid;
 color = 'g';
 
 if movie_mode == 2
-	warning('Note that a 1080p resolution is needed for movie_mode = 2')
+% 	warning('Note that a 1080p resolution is needed for movie_mode = 2')
 	figh.WindowState = 'maximize';
 end
 
@@ -153,11 +153,11 @@ for d = 1:fr_skip:n_days			% speed
 end
 
 %% Video stuff
-if movie_mode
-	movie = VideoWriter('movie_heliocentric', 'MPEG-4');
-	movie.FrameRate = movie_fps;
-
-	open(movie);
-	writeVideo(movie, movieVector);
-	close(movie);
-end
+% if movie_mode
+% 	movie = VideoWriter('movie_heliocentric', 'MPEG-4');
+% 	movie.FrameRate = movie_fps;
+% 
+% 	open(movie);
+% 	writeVideo(movie, movieVector);
+% 	close(movie);
+% end

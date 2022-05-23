@@ -16,10 +16,35 @@ V_hyp_perigee = sqrt(norm(V_inf_sp_uranus) + (2*mu_Uranus/r_orbit_u));
 % Delta V
 deltaV_uranus_capture = V_hyp_perigee - V_uranus_park;
 
-fprintf('\n\n Results:')
-fprintf('\n   Velocità iperbole al perigeo (km/s)  = %g', V_hyp_perigee)
-fprintf('\n   Velocità orbita di parcheggio (km/s) = %g', V_uranus_park)
-fprintf('\n   DeltaV cattura (km/s) = %g', deltaV_uranus_capture)
+%% Calcolo tempo di volo
+
+% Trovo p semilato retto [km] 
+p_hyp_u = a_hyp_u * (1-e_hyp_u^2); 
+% Angolo tra gli asintoti 
+delta_capture_Uranus = 2 * asin(1/e_hyp_u);   
+delta_deg_capture_Uranus = rad2deg(delta_capture_Uranus); % in gradi 
+% Ricavo l'anomalia vera f
+f_hyp_u = acos((p_hyp_u-R_SOI_Uranus) / (e_hyp_u*R_SOI_Uranus)); 
+f_deg_capture_Uranus = rad2deg(f_hyp_u);
+cosh_F_Uranus = (e_hyp_u+cos(f_hyp_u))/(e_hyp_u*cos(f_hyp_u)+1);
+
+% Calcolo anomalia eccentrica
+F_hyp_u = log(cosh_F_Uranus+sqrt((cosh_F_Uranus)^2-1));
+F_capture_deg = rad2deg(F_hyp_u);
+
+% Trovo anomalia media M 
+M_capture_Uranus = e_hyp_u*sinh(F_hyp_u)-F_hyp_u; 
+M_deg_capture_Uranus = rad2deg(M_capture_Uranus);   % In gradi 
+
+% Trovo il tempo 
+t_capture_Uranus = M_capture_Uranus*sqrt(-a_hyp_u^3/mu_Uranus); %in secondi 
+t_tot_capture_Uranus = t_capture_Uranus;  
+t_tot_hours_capture_Uranus = t_tot_capture_Uranus/3600; 
+
+fprintf('\n Cattura su Urano:')
+fprintf('\n Raggio orbita di parcheggio (km)  = %g', Upark_radius)
+fprintf('\n Velocità orbita di parcheggio (km/s) = %g', V_uranus_park)
+fprintf('\n Tempo di volo nella SOI di Urano (ore)  = %g \n', t_tot_hours_capture_Uranus)
 fprintf('\n -----------------------------------------------------------\n')
 
 %% Plot capture 

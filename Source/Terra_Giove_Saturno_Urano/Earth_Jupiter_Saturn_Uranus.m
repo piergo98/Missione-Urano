@@ -1,33 +1,8 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % LAMBERT'S PROBLEM FROM EARTH TO JUPITER
 % ~~~~~~~~~~~~
-%{
- 
-  deg    - factor for converting between degrees and radians
-  pi     - 3.1415926...
-  mu     - gravitational parameter (km^3/s^2)
-  r1, r2 - initial and final position vectors (km)
-  dt     - time between r1 and r2 (s)
-  string - = 'pro' if the orbit is prograde
-           = 'retro if the orbit is retrograde
-  v1, v2 - initial and final velocity vectors (km/s)
-  coe    - orbital elements [h e RA incl w TA a]
-           where h    = angular momentum (km^2/s)
-                 e    = eccentricity
-                 RA   = right ascension of the ascending node (rad)
-                 incl = orbit inclination (rad)
-                 w    = argument of perigee (rad)
-                 TA   = true anomaly (rad)
-                 a    = semimajor axis (km)
-  TA1    - Initial true anomaly (rad)
-  TA2    - Final true anomaly (rad)
-  T      - period of an elliptic orbit (s)
 
-  User M-functions required: lambert, coe_from_sv
-%}
-% ---------------------------------------------
-
-init_Terra_Giove_Saturno_Urano;
+% init_Terra_Giove_Saturno_Urano;
 
 %% calcolo Lambert fra posizione iniziale Terra e posizione finale Giove
 
@@ -42,8 +17,8 @@ init_Terra_Giove_Saturno_Urano;
 t_Earth = datetime(2022,07,01,12,00,00);
 t_Jupiter = datetime(2024,07,01,12,00,00);
 
-time_diff = days(t_Jupiter - t_Earth);
-t_EJ = time_diff*24*3600;
+t_EJ_days = days(t_Jupiter - t_Earth);
+t_EJ = t_EJ_days*24*3600;
 
 string = 'pro'; %direzione lambert
 
@@ -100,8 +75,8 @@ StateVector_Jupiter;
 t_Jupiter = datetime(2024, 07, 01, 08, 14, 54);
 t_Saturn = datetime(2030, 09, 01, 12, 00, 00);
   
-time_diff = days(t_Saturn - t_Jupiter);
-t_JS = time_diff*24*3600;
+t_JS_days = days(t_Saturn - t_Jupiter);
+t_JS = t_JS_days*24*3600;
 
 % Calcolo la traiettoria di Lambert Giove-Saturno
 [V1_l_j, V2_l_s] = lambert(r2_fin_j, r2_s, t_JS, 'pro'); % '1' = partenza, '2' = arrivo
@@ -154,8 +129,8 @@ StateVector_Saturn;
 t_Saturn = datetime(2030, 9, 1, 15, 45, 41);
 t_Uranus = datetime(2035, 12, 25, 12, 00, 00);
 
-time_diff = days(t_Uranus - t_Saturn);
-t_SU = time_diff*24*3600;
+t_SU_days = days(t_Uranus - t_Saturn);
+t_SU = t_SU_days*24*3600;
 
 % Calcolo la traiettoria di Lambert Terra-Terra
 [V1_l_s, V2_l_u] = lambert(r2_fin_s, r2_u, t_SU, 'pro'); % '1' = partenza, '2' = arrivo

@@ -58,8 +58,8 @@ end
 
 deltaT_min_hours = deltaT_min/(24*3600);
 fprintf('\n Cambio di piano su Urano:')
-    fprintf("\n Tempo di cambio di piano su Urano = %g (ore) \n", deltaT_min_hours)
-    fprintf('\n-----------------------------------------------------\n')
+fprintf("\n Tempo di cambio di piano su Urano = %g (ore) \n", deltaT_min_hours)
+fprintf('\n-----------------------------------------------------\n')
 
 % Plot orbital plane shift
 hold on
