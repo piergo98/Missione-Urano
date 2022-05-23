@@ -49,20 +49,20 @@ t_flyby_Mars = M_Mars*sqrt(-a_flyby_Mars^3/mu_Mars); % in secondi
 t_flyby_tot_Mars = 2*t_flyby_Mars;   
 t_flyby_tot_hours_Mars = t_flyby_tot_Mars/3600;  
   
-[years_M months_M days_M hours_M minutes_M seconds_M] = sec2date(t_flyby_tot_Mars);  
+% [years_M months_M days_M hours_M minutes_M seconds_M] = sec2date(t_flyby_tot_Mars);  
  
 %...Output to the command window:
-fprintf('\n Posizione iniziale [%g, %g, %g] (km).',...
-                                                     r2_m(1), r2_m(2), r2_m(3))
-fprintf('\n Velocità iniziale [%g, %g, %g] (km/s).',...
-                                                     v2_l_m(1), v2_l_m(2), v2_l_m(3))
-fprintf('\n Altezza minima passaggio su Marte %g km', r_p_flyby_Mars)
-fprintf('\n Posizione finale [%g, %g, %g] (km).',...
-    r2_fin_m(1), r2_fin_m(2), r2_fin_m(3))
-fprintf('\n Velocità finale [%g, %g, %g] (km/s).',...
-    v_fin_Mars(1), v_fin_Mars(2), v_fin_Mars(3))
-fprintf('\n Tempo di volo nella sfera di influenza di Marte [%g Y, %g M, %g D, %g h, %g m, %g s] (km/s).',...
-    years_M, months_M, days_M, hours_M, minutes_M, seconds_M)
-fprintf('\n--------------------------------------------------------\n\n')
+% fprintf('\n Posizione iniziale [%g, %g, %g] (km).',...
+%                                                      r2_m(1), r2_m(2), r2_m(3))
+% fprintf('\n Velocità iniziale [%g, %g, %g] (km/s).',...
+%                                                      v2_l_m(1), v2_l_m(2), v2_l_m(3))
+% fprintf('\n Altezza minima passaggio su Marte %g km', r_p_flyby_Mars)
+% fprintf('\n Posizione finale [%g, %g, %g] (km).',...
+%     r2_fin_m(1), r2_fin_m(2), r2_fin_m(3))
+% fprintf('\n Velocità finale [%g, %g, %g] (km/s).',...
+%     v_fin_Mars(1), v_fin_Mars(2), v_fin_Mars(3))
+% fprintf('\n Tempo di volo nella sfera di influenza di Marte [%g Y, %g M, %g D, %g h, %g m, %g s] (km/s).',...
+%     years_M, months_M, days_M, hours_M, minutes_M, seconds_M)
+% fprintf('\n--------------------------------------------------------\n\n')
   
 plot_flyby(r_Mars, R_SOI_Mars, e_flyby_Mars, p_Mars, f_in_Mars_deg, r_p_flyby_Mars, 'M'); 
