@@ -18,17 +18,17 @@
 
 %% Fase Marte-Saturno
 
-    fprintf('\n Ingresso nella sfera di influenza di Venere il 2023/10/01 ore 18:00:00\n');
+    fprintf('\n Ingresso nella sfera di influenza di Marte il 2023/10/01 ore 18:00:00\n');
 
     % Fly-by su Marte
     flyby_Mars_time;
     
 %% Fase Marte-Saturno
 
-    [years, months, days, hours, minutes, seconds] = sec2date(dT_post_flyby);
-    fprintf('\n Continuo su una traiettoria eliocentrica per %g mesi, %g giorni, %g ore, %g minuti \n',...
-        months,days,hours,minutes);
-    fprintf('\n--------------------------------------------------------\n\n')
+%     [years, months, days, hours, minutes, seconds] = sec2date(dT_post_flyby);
+%     fprintf('\n Continuo su una traiettoria eliocentrica per %g mesi, %g giorni, %g ore, %g minuti \n',...
+%         months,days,hours,minutes);
+%     fprintf('\n--------------------------------------------------------\n\n')
 
     fprintf('\n Ingresso nella sfera di influenza di Saturno il 2028/10/01 ore 00:00:00\n');
 

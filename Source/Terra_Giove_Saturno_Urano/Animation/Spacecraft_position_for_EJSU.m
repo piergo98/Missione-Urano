@@ -11,7 +11,7 @@ mu = 1.327*10^11;
 
 %% Earth to Jupiter
 % from day 1 (01/10/22) to Jupiter arrival/departure (01/07/2024)
-ej_days = datenum([2024 07 01]) - datenum([2022 07 21]);
+ej_days = datenum([2024 07 01]) - datenum([2022 07 1]);
 
 Delta_TA_ej = abs(TA2_ej - TA1_ej);
 % Variazione di anomalia vera in un giorno
@@ -47,7 +47,7 @@ end
 
 %% Jupiter to Saturn
 % from (03/7/24) to (1/4/31)
-js_days = datenum([2031 4 1]) - datenum([2024 7 1]);
+js_days = datenum([2030 9 1]) - datenum([2024 7 1]);
 
 Delta_TA_js = abs(TA2_js - TA1_js);
 %   Minima variazione di anomalia vera in un giorno
@@ -81,7 +81,7 @@ end
 
 %% Saturn  to Uranus
 % from (1/4/31) to (25/12/35)
-su_days = datenum([2035 12 25])- datenum([2031 4 1]);
+su_days = datenum([2035 12 25])- datenum([2030 9 1]);
 
 Delta_TA_su = abs(TA2_su - TA1_su);
 %   Minima variazione di anomalia vera in un giorno

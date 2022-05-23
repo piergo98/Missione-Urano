@@ -1,8 +1,7 @@
 %% Constants
 
 % time_vector, a row for each day of the mission
-%time_vector = ymd_gen([2022, 10, 01],[2036, 4, 3]); %vecchio
-time_vector = ymd_gen([2027 05 01],[2038 07 01]);
+time_vector = ymd_gen([2027 05 01],[2038 06 01]);
 
 n_days = size(time_vector,1);
 
@@ -10,17 +9,9 @@ n_days = size(time_vector,1);
 %{
     The mission is subdivided in three parts:
     - Earth to Earth;
-    - Earth to Saturn;
-    - Saturn tu Uranus;
+    - Earth to Jupiter;
+    - Jupiter tu Uranus;
     Variables for each part have the same name but different suffix.
-    
-    Da definire ancora:
-    %%Planet configurations have the following numerical indications:
-    %%- 0: at Earth departure (to Mars) -> 27/9/07
-    %%- 1: at Mars arrival/departure (from Earth, to Vesta) -> 17/2/09
-    %%- 2: at Vesta arrival (from Mars) -> 16/7/11
-    %%- 3: at Vesta departure (to Ceres) -> 5/9/12
-    %%- 4: at Ceres arrival (from Vesta) -> 5/3/15
 %}
 %% Plots Parameters
 
@@ -56,10 +47,10 @@ col_uran    = col(7);   % Uranus
 col_spcr	= [0,	196, 255]	/255;	% spacecraft
 
 % dimension of objects
-dim_sun		= 24;
+dim_sun		= 18;
 dim_earth	= 8;
 dim_mars	= 8;
-dim_jupiter = 14;
+dim_jupiter = 13;
 dim_saturn  = 12;
 dim_uran    = 10;
 dim_spcr	= 2;

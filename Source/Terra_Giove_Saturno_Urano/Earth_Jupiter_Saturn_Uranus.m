@@ -40,7 +40,7 @@ init_Terra_Giove_Saturno_Urano;
 
 % Tempo di volo Terra-Giove
 t_Earth = datetime(2022,07,01,12,00,00);
-t_Jupiter = datetime(2024,07,21,12,00,00);
+t_Jupiter = datetime(2024,07,01,12,00,00);
 
 time_diff = days(t_Jupiter - t_Earth);
 t_EJ = time_diff*24*3600;
@@ -94,11 +94,11 @@ StateVector_Jupiter;
 %% Calcolo traiettoria di Lambert post Flyby su Giove 
 
 % Trovo la posizione e velocità di Saturno
-[~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2030, 9, 15, 12, 00, 00);
+[~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2030, 9, 1, 12, 00, 00);
 
 % Definisco il tempo di volo Giove Saturno
-t_Jupiter = datetime(2024, 07, 24, 08, 14, 54);
-t_Saturn = datetime(2030, 9, 15, 12, 00, 00);
+t_Jupiter = datetime(2024, 07, 01, 08, 14, 54);
+t_Saturn = datetime(2030, 09, 01, 12, 00, 00);
   
 time_diff = days(t_Saturn - t_Jupiter);
 t_JS = time_diff*24*3600;
@@ -151,7 +151,7 @@ StateVector_Saturn;
 [~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2035, 12, 25, 12, 00, 00);
 
 % Definisco il tempo di volo Saturno-Urano
-t_Saturn = datetime(2031, 04, 04, 15, 45, 41);
+t_Saturn = datetime(2030, 9, 1, 15, 45, 41);
 t_Uranus = datetime(2035, 12, 25, 12, 00, 00);
 
 time_diff = days(t_Uranus - t_Saturn);
