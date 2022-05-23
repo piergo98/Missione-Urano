@@ -40,7 +40,7 @@ init_Terra_Giove_Saturno_Urano;
 
 % Tempo di volo Terra-Giove
 t_Earth = datetime(2022,07,01,12,00,00);
-t_Jupiter = datetime(2024,01,01,12,00,00);
+t_Jupiter = datetime(2024,07,01,12,00,00);
 
 time_diff = days(t_Jupiter - t_Earth);
 t_EJ = time_diff*24*3600;
@@ -97,8 +97,8 @@ StateVector_Jupiter;
 [~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2030, 9, 1, 12, 00, 00);
 
 % Definisco il tempo di volo Giove Saturno
-t_Jupiter = datetime(2024, 1, 1, 08, 14, 54);
-t_Saturn = datetime(2030, 9, 1, 12, 00, 00);
+t_Jupiter = datetime(2024, 07, 01, 08, 14, 54);
+t_Saturn = datetime(2030, 09, 01, 12, 00, 00);
   
 time_diff = days(t_Saturn - t_Jupiter);
 t_JS = time_diff*24*3600;

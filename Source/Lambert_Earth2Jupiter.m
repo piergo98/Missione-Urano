@@ -43,13 +43,13 @@ dt = year2seconds(2);
 
 % for i = 1:length(dt)
     % Position of Earth at the departure (km)
-    [coe1_e, r1_e, v1_e, jd1_e] = planet_elements_and_sv(3, 2023, 12, 01, 18, 00, 00);
+    [coe1_e, r1_e, v1_e, jd1_e] = planet_elements_and_sv(3, 2022, 02, 01, 18, 00, 00);
     
     
     % Position of Jupiter at the arrival  (km)     
-    [coe2_j, r2_j, v2_j, jd2_j] = planet_elements_and_sv(5, 2025, 12, 01, 18, 00, 00);
+    [coe2_j, r2_j, v2_j, jd2_j] = planet_elements_and_sv(5, 2024, 02, 01, 18, 00, 00);
     
-    string = 'pro';
+    string = 'retro';
     %...
     %dt = year2seconds(3)+ month2seconds(2)+days2seconds(9);     % Total TOF (speriamo)
     %...Algorithm 5.2:
@@ -78,7 +78,7 @@ dt = year2seconds(2);
 %         fprintf('\n-----------------------------------------------------\n')
 %     end
 % end
-
+plot_traiettoria_spacecraft(coe,TA1,TA2,'g')
 plot_orbit(5, 2024)
 plot_orbit(3, 2022)
 
