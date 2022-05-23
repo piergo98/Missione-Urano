@@ -77,10 +77,10 @@ for i = 1:length(f)
     drawnow;
 end
 
-fprintf('\n\n Results Earth plane shift:')
-fprintf('\n   deltaV cambio piano orbita terrestre (km/s)     = %g', deltaV_orbit_e)
-% fprintf('\n   TOF (days)            = %g', deltaT_min/(24*3600))
-fprintf('\n -----------------------------------------------------------\n');
+% fprintf('\n\n Results Earth plane shift:')
+% fprintf('\n   deltaV cambio piano orbita terrestre (km/s)     = %g', deltaV_orbit_e)
+% % fprintf('\n   TOF (days)            = %g', deltaT_min/(24*3600))
+% fprintf('\n -----------------------------------------------------------\n');
 
   
 % xlim([-1e5 1e5])

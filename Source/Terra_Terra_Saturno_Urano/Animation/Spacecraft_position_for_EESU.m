@@ -2,19 +2,11 @@
 % Dawn_spacecraft with respect to solar system
 
 % Risolvo il problema di Lambert per tutta la missione (senza plot)
-Earth_Earth_Saturn_Uranus
-
-% Dimensioni dello spacecraft
-radius = 100;
-% Mu sun (km^2/s^3)
-mu = 1.327*10^11; 
+radius = 100; 
 
 %% Earth to Earth
-% from day (01/3/23) to (01/08/2024)
 %ee_days = datenum([2024 03 01]) - datenum([2022 10 01]);
-ee_days = datenum([arrival_Earth.year arrival_Earth.month arrival_Earth.day]) - ...
-    datenum([departure_Earth.year departure_Earth.month departure_Earth.day]);
-
+ee_days = datenum([2024 08 01]) - datenum([2023 3 01]);
 
 Delta_TA_ee = abs(TA2_ee - TA1_ee);
 % Variazione di anomalia vera in un giorno
@@ -50,8 +42,7 @@ end
 %% Earth to Saturn
 % from (01/8/24) to (1/8/30)
 %es_days = datenum([2030 04 03]) - datenum([2024 03 01]); %vecchio
-es_days = datenum([arrival_Saturn.year arrival_Saturn.month arrival_Saturn.day]) - ...
-    datenum([arrival_Earth.year arrival_Earth.month arrival_Earth.day]);
+es_days = datenum([2030 08 01]) - datenum([2024 8 1]);
 
 Delta_TA_es = abs(TA2_es - TA1_es);
 %   Minima variazione di anomalia vera in un giorno
@@ -87,8 +78,7 @@ end
 %% Saturn to Uranus
 % from (1/8/30) to (1/8/36)
 %su_days = datenum([2036 04 03])- datenum([2030 04 03]); %vecchio
-su_days = datenum([arrival_Uranus.year arrival_Uranus.month arrival_Uranus.day])- ...
-    datenum([arrival_Saturn.year arrival_Saturn.month arrival_Saturn.day]);
+su_days = datenum([2036 08 01])- datenum([2030 08 01]); %vecchio
 
 Delta_TA_su = abs(TA2_su - TA1_su);
 %   Minima variazione di anomalia vera in un giorno

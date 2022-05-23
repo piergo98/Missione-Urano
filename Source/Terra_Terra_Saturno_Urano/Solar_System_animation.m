@@ -7,14 +7,6 @@
 
 movie_mode = 2;	% 1 for movie writing, 2 for HD movie, 0 for only matlab animation
 
-<<<<<<< Updated upstream
-=======
-addpath(genpath("Script matlab"));
-addpath(genpath("Animation"));
-
-init_Terra_Terra_Saturno_Urano
-
->>>>>>> Stashed changes
 % Init all par, constants and plot parameters
 solar_system_animation_init
 

@@ -13,9 +13,6 @@ G = 6.6742e-20; % Costante gravitazionale
 
 deg = pi/180;
 
-%Masses
-Sun_mass = 1.989*10^30;		%[kg]
-
 %Parking orbits (not considering body radius)
 Epark_radius = 200;		    %[km]
 Epark_inclination = 0;	    %[rad]
@@ -28,7 +25,6 @@ m_Earth = 5.972e+24;    %Earth mass in kg
 r_Earth = 6.371e+3;
 d_Earth2Sun = 152104285;    %distance Earth-Sun in km
 R_SOI_Earth = d_Earth2Sun*(m_Earth/m_Sun)^(2/5);   
-
 
 %% Compute the ray of SOI_Saturn
 mu_Saturn = 37931187; %[km^3/s^2] 

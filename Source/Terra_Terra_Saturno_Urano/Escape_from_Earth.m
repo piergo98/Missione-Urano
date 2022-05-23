@@ -21,27 +21,30 @@ delta_deg_escape_Earth = rad2deg(delta_escape_Earth); % in gradi
 % Ricavo l'anomalia vera f
 f_escape_Earth = acos((p_escape_Earth-R_SOI_Earth) / (e_escape_Earth*R_SOI_Earth)); 
 f_deg_escape_Earth = rad2deg(f_escape_Earth);
+cosh_F_Earth = (e_escape_Earth+cos(f_escape_Earth))/(e_escape_Earth*cos(f_escape_Earth)+1);
+
 % Velocità al perigeo dell'iperbole
 V_escape_perigee = sqrt(v_infp_escape_Earth_mod^2 + (2*mu_Earth/r_orbit));
 % Delta V
 deltaV_escape_Earth = V_escape_perigee - V_park_e;
 
 % Calcolo anomalia eccentrica
-E_2_escape_Earth = atanh(sqrt((e_escape_Earth-1)/(e_escape_Earth+1))*tan(f_escape_Earth/2)); 
-E_escape_Earth = E_2_escape_Earth/2;
-E_deg_escape_Earth = rad2deg(E_escape_Earth);   % In gradi 
+F_escape_Earth = log(cosh_F_Earth+sqrt((cosh_F_Earth)^2-1));
+F_escape_deg = rad2deg(F_escape_Earth);
 
 % Trovo anomalia media M 
-M_escape_Earth = e_escape_Earth*sinh(E_escape_Earth)-E_escape_Earth; 
+M_escape_Earth = e_escape_Earth*sinh(F_escape_Earth)-F_escape_Earth; 
 M_deg_escape_Earth = rad2deg(M_escape_Earth);   % In gradi 
 
 % Trovo il tempo 
 t_escape_Earth = M_escape_Earth*sqrt(-a_escape_Earth^3/mu_Earth); %in secondi 
-t_tot_escape_Earth = 2*t_escape_Earth;  
+t_tot_escape_Earth = t_escape_Earth;  
 t_tot_hours_escape_Earth = t_tot_escape_Earth/3600; 
 
-fprintf('\n Velocità di fuga al perigeo (km/s)  = %g', V_escape_perigee)
-fprintf('\n Velocità orbita di parcheggio (km/s) = %g', V_park_e)
+fprintf('\n Fuga dalla Terra:')
+fprintf('\n Raggio orbita di parcheggio = %g (km)', Epark_radius)
+fprintf('\n Velocità orbita di parcheggio = %g (km/s)\n', V_park_e)
+fprintf('\n Tempo di fuga dalla Terra = %g (ore)\n', t_tot_hours_escape_Earth)
 fprintf('\n -----------------------------------------------------------\n')
 
 %% Plot escape

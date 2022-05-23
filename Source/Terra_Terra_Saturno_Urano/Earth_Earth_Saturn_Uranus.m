@@ -27,20 +27,17 @@
 %}
 % ---------------------------------------------
 
-init_Terra_Terra_Saturno_Urano;
-
 %% calcolo Lambert fra posizione iniziale Terra e posizione finale terra al momento del flyby
 
 % Dati per posizione e velocità Terra alla partenza della spedizione e al
 % momento della cattura per il primo flyby
 
 %[~, r1_e1, v1_e1, ~] = planet_elements_and_sv(3, 2022, 10, 01, 18, 00, 00); %date vecchie
-[~, r1_e1, v1_e1, ~] = planet_elements_and_sv(3, departure_Earth.year, departure_Earth.month, ...
-    departure_Earth.day, departure_Earth.hour, departure_Earth.minute, departure_Earth.second);
+[~, r1_e1, v1_e1, ~] = planet_elements_and_sv(3, 2023, 03, 01, 18, 00, 00);
 
 %[~, r2_e2, v2_e2, ~] = planet_elements_and_sv(3, 2024, 03, 01, 18, 00, 00); %date vecchie
-[~, r2_e2, v2_e2, ~] = planet_elements_and_sv(3, arrival_Earth.year, arrival_Earth.month, ...
-    arrival_Earth.day, arrival_Earth.hour, arrival_Earth.minute, arrival_Earth.second);
+[~, r2_e2, v2_e2, ~] = planet_elements_and_sv(3, 2024, 08, 01, 18, 00, 00);
+
 % Tempo di volo Terra-Terra
 t_EE = month2seconds(17);
 
@@ -118,8 +115,7 @@ coe_flyby(6) = deg2rad(TA_for_lambert);
 
 % Trovo la posizione e velocità di Saturno
 %[~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2030, 04, 03, 00, 00, 00); %vecchio
-[~, r2_s, v2_s, ~] = planet_elements_and_sv(6, arrival_Saturn.year, arrival_Saturn.month, ...
-    arrival_Saturn.day, arrival_Saturn.hour, arrival_Saturn.minute, arrival_Saturn.second);
+[~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2030, 08, 01, 00, 00, 00);
 
 % Definisco il tempo di volo dal punto scelto post flyby e Saturno
 t_fS = year2seconds(6); % 'fS' = da punto post flyby a Saturno 6anni-il tempo trascorso sull'orbita eliocentrica
@@ -175,8 +171,7 @@ StateVector_Saturn;
 
 % Trovo la posizione e velocità di Urano
 %[~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2036, 04, 03, 00, 00, 00); %vecchio
-[~, r2_u, v2_u, ~] = planet_elements_and_sv(7, arrival_Uranus.year, arrival_Uranus.month, ...
-    arrival_Uranus.day, arrival_Uranus.hour, arrival_Uranus.minute, arrival_Uranus.second);
+[~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2036, 08, 01, 00, 00, 00);
 
 % Definisco il tempo di volo Saturno-Urano
 t_SU = year2seconds(6);
