@@ -40,8 +40,6 @@
     fprintf('\n--------------------------------------------------------\n')
 %% Fase Giove-Saturno
     
-    % Ai fini dei calcoli è possibile trascurare i tempi di fuga, cattura e
-    % flyby
     ingresso_SOI_Saturno = ingresso_SOI_Giove + seconds(t_JS)+ seconds(t_flyby_tot_Jupiter);
     str_ingresso_SOI_Saturno = datestr(ingresso_SOI_Saturno);
 
@@ -63,11 +61,10 @@
 
 %% Fase Saturno-Urano
     
-    % Ai fini dei calcoli è possibile trascurare i tempi di fuga, cattura e
-    % flyby
     ingresso_SOI_Urano = ingresso_SOI_Saturno + seconds(t_SU) + seconds(t_flyby_tot_Saturn);
     str_ingresso_SOI_Urano = datestr(ingresso_SOI_Urano);
-
+    
+    fprintf("\n Fase Saturno-Urano:")
     fprintf('\n Tempo di volo trascorso da Saturno a Urano %g (giorni)\n',t_SU_days);
     fprintf('\n Data di ingresso nella sfera di influenza di Urano = %s \n', str_ingresso_SOI_Urano);
     fprintf('\n-----------------------------------------------------\n')
