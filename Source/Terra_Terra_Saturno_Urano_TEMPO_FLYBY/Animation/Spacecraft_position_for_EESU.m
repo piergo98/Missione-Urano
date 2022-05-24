@@ -114,17 +114,21 @@ for t = 1:(es_days+1)
 end
 
 %% SOI Saturn
-s_soi_days = datenum([DateVector_Saturn(1) DateVector_Saturn(2) DateVector_Saturn(3)]) - datenum([2030 08 01]);
+s_soi_days = datenum([DateVector_Saturn(1), DateVector_Saturn(2), DateVector_Saturn(3)]) - datenum([2030 08 01]);
 
-Delta_TA_s_soi = abs(TA2_s_soi - TA2_es);
+TA1_s = rad2deg(coe_s(6));
+[coe_s, ~, ~,  ~] = planet_elements_and_sv(6, DateVector_Saturn(1), DateVector_Saturn(2), ...
+    DateVector_Saturn(3), 00, 00, 00);
+TA2_s = rad2deg(coe_s(6));
+Delta_TA_s_soi = abs(TA2_s - TA1_s);
 % Variazione di anomalia vera in un giorno
 dTA = Delta_TA_s_soi / s_soi_days;
 
-h = coe_s_new(1);          % Momento angolare
-e = coe_s_new(2);          % Eccentricità
-RA = coe_s_new(3);         % Ascensione retta
-incl = coe_s_new(4);       % Inclinazione orbita di trasferimento
-w = coe_s_new(5);          % Argomento del periasse
+h = coe_s(1);          % Momento angolare
+e = coe_s(2);          % Eccentricità
+RA = coe_s(3);         % Ascensione retta
+incl = coe_s(4);       % Inclinazione orbita di trasferimento
+w = coe_s(5);          % Argomento del periasse
 % h = coe_s_SOI(1);          % Momento angolare
 % e = coe_s_SOI(2);          % Eccentricità
 % RA = coe_s_SOI(3);         % Ascensione retta
@@ -141,7 +145,7 @@ Q_pX = perifocal2helio(RA, incl, w);
 
 for t = 1:(s_soi_days+1)
 %       Anomalia vera nel tempo
-    f = dTA * t + TA2_es;
+    f = dTA * t + TA1_s;
 %       Legge oraria dello spacecraft in funzione dell'anomalia vera
     r = p / (1 + e*cosd(f));
 %       Converto in coordinate cartesiane

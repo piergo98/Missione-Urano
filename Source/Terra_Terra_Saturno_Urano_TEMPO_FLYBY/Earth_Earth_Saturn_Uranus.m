@@ -118,7 +118,7 @@ StateVector_Earth;
 
 % Trovo la posizione e velocità di Saturno
 %[~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2030, 04, 03, 00, 00, 00); %vecchio
-[~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2030, 08, 01, 00, 00, 00);
+[coe_s, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2030, 08, 01, 00, 00, 00);
 
 % Definisco il tempo di volo dal punto scelto post flyby e Saturno
 %t_fS = year2seconds(6); % 'fS' = da punto post flyby a Saturno 6anni-il tempo trascorso sull'orbita eliocentrica

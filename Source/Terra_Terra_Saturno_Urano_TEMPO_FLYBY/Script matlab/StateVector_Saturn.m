@@ -23,12 +23,7 @@ DateVector_Saturn = datevec(date_post_flyby_Saturn);
 
 [coe_s_new , r2_s_new, v2_s_new, ~] = planet_elements_and_sv(6, DateVector_Saturn(1),...
     DateVector_Saturn(2), DateVector_Saturn(3), DateVector_Saturn(4), DateVector_Saturn(5), DateVector_Saturn(6));
-%TA2_s_soi = rad2deg(coe_s_new(6));
 
-% Estrazione elementi orbitali dall'orbita ottenuta nella SOI
-coe_s_SOI = coe_from_sv(r2_s_new, v2_s_new, mu);
-% Anomalia vera alla fine della missione Terra-Venere
-TA2_s_soi = rad2deg(coe_s_SOI(6));
 
 %r2_fin_s = r2_s_new + R_SOI_Saturn;
 
