@@ -13,10 +13,10 @@ addpath(genpath("Script matlab"));
 addpath(genpath("Animation"));
 
 % Init all par, constants and plot parameters
-solar_system_animation_init
+Solar_system_animation_init
 
 % Computes the position of the spacecraft for each day of the mission
-Spacecraft_position_for_EESU
+Spacecraft_position_for_EMSU
 
 %% Editable animation parameters
 
@@ -40,7 +40,7 @@ ax.GridColor = col_grid;
 color = 'g';
 
 if movie_mode == 2
-	warning('Note that a 1080p resolution is needed for movie_mode = 2')
+% 	warning('Note that a 1080p resolution is needed for movie_mode = 2')
 	figh.WindowState = 'maximize';
 end
 
@@ -161,7 +161,3 @@ end
 % 	writeVideo(movie, movieVector);
 % 	close(movie);
 % end
-
-
-%% Plot cambio piano finale e calcolo dei deltaV 
-%DeltaV;

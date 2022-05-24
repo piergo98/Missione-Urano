@@ -27,7 +27,7 @@
 %} 
 % --------------------------------------------- 
 addpath './Script matlab' 
-init_Terra_Terra_Saturno_Urano; 
+% init_Terra_Terra_Saturno_Urano; 
  
 %% calcolo Lambert fra posizione iniziale Terra e Marte al momento del flyby 
  
@@ -38,14 +38,18 @@ init_Terra_Terra_Saturno_Urano;
 [~, r1_e, v1_e, ~] = planet_elements_and_sv(3, 2022, 09, 01, 18, 00, 00); 
  
 %[~, r2_e2, v2_e2, ~] = planet_elements_and_sv(3, 2024, 03, 01, 18, 00, 00); %date vecchie 
-[~, r2_m, v2_m, ~] = planet_elements_and_sv(4, 2023, 10, 01, 18, 00, 00); 
-% Tempo di volo Terra-Terra 
-t_EE = month2seconds(25); 
+[~, r2_m, v2_m, ~] = planet_elements_and_sv(4, 2023, 10, 01, 18, 00, 00);
+
+% Tempo di volo Terra-Terra
+t_E = datetime(2022, 9, 1, 18, 0, 0);
+t_M = datetime(2023, 10, 1, 18, 0, 0);
+t_EM_days = days(t_M - t_E);
+t_EM = month2seconds(25); 
  
 string = 'pro'; %direzione lambert 
  
 % Calcolo la traiettoria di Lambert Terra-Terra 
-[v1_l_e, v2_l_m] = lambert(r1_e, r2_m, t_EE, string); % '1' = partenza, '2' = arrivo 
+[v1_l_e, v2_l_m] = lambert(r1_e, r2_m, t_EM, string); % '1' = partenza, '2' = arrivo 
  
 % Estrazione elementi orbitali dall'orbita ottenuta con Lambert(partenza) 
 coe_em = coe_from_sv(r1_e, v1_l_e, mu); 
@@ -119,12 +123,14 @@ coe_flyby(6) = deg2rad(TA_for_lambert);
 [~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2028, 10, 01, 00, 00, 00); 
  
 % Definisco il tempo di volo dal punto scelto post flyby e Saturno 
-t_fS = year2seconds(5) - month2seconds(1)- days2seconds(16); % 'fS' = da punto post flyby a Saturno 6anni-il tempo trascorso sull'orbita eliocentrica 
+t_S = datetime(2028, 10, 1, 0, 0, 0);
+t_MS_days = days(t_S - t_M);
+t_MS = year2seconds(5) - month2seconds(1)- days2seconds(16); % 'fS' = da punto post flyby a Saturno 6anni-il tempo trascorso sull'orbita eliocentrica 
  
 % Estraggo il vettore di stato con i coe aggiornati all'ultima posizione 
 [r, v] = sv_from_coe(coe_flyby, mu); 
 % Risolvo Lambert per arrivare su Saturno 
-[V1_l_f, V2_l_s] = lambert(r, r2_s, t_fS, 'pro'); 
+[V1_l_f, V2_l_s] = lambert(r, r2_s, t_MS, 'pro'); 
  
 % Delta V necessario per portarmi sulla traiettoria di Lambert 
 d_V_fS = v - V1_l_f;    % 'fS' = da punto post flyby a Saturno      
@@ -175,6 +181,8 @@ StateVector_Saturn;
 [~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2034, 10, 01, 00, 00, 00); 
  
 % Definisco il tempo di volo Saturno-Urano 
+t_U = datetime(2034, 10, 1, 0, 0, 0);
+t_SU_days = days(t_U - t_S);
 t_SU = year2seconds(6); 
  
 % Calcolo la traiettoria di Lambert Terra-Terra 

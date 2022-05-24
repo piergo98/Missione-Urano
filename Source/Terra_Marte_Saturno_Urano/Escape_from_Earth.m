@@ -2,7 +2,7 @@
 
 % Recupero dati Terra
 % Earth_Earth_Saturn_Uranus;
-v_infp_escape_Earth = v1_l_e1 - v1_e1;   % Differenza fra velocità necessaria per Lambert e velocità del pianeta    
+v_infp_escape_Earth = v1_l_e - v1_e;   % Differenza fra velocità necessaria per Lambert e velocità del pianeta    
 v_infp_escape_Earth_mod = norm(v_infp_escape_Earth);  % In norma
 
 % Raggio orbita di parcheggio intorno alla Terra(km)

@@ -1,7 +1,8 @@
 %% COMPUTE THE ANGLE AND TRAJECTORY TO THE ESCAPE FROM EARTH SOI
 
 % Recupero dati Terra
-v_infp_escape_Earth = v1_l_e1 - v1_e1;   % Differenza fra velocità necessaria per Lambert e velocità del pianeta    
+% Earth_Earth_Saturn_Uranus;
+v_infp_escape_Earth = v1_l_e - v1_e;   % Differenza fra velocità necessaria per Lambert e velocità del pianeta    
 v_infp_escape_Earth_mod = norm(v_infp_escape_Earth);  % In norma
 
 % Raggio orbita di parcheggio intorno alla Terra(km)
@@ -21,7 +22,6 @@ delta_deg_escape_Earth = rad2deg(delta_escape_Earth); % in gradi
 f_escape_Earth = acos((p_escape_Earth-R_SOI_Earth) / (e_escape_Earth*R_SOI_Earth)); 
 f_deg_escape_Earth = rad2deg(f_escape_Earth);
 cosh_F_Earth = (e_escape_Earth+cos(f_escape_Earth))/(e_escape_Earth*cos(f_escape_Earth)+1);
-
 % Velocità al perigeo dell'iperbole
 V_escape_perigee = sqrt(v_infp_escape_Earth_mod^2 + (2*mu_Earth/r_orbit));
 % Delta V
@@ -48,7 +48,15 @@ fprintf('\n -----------------------------------------------------------\n')
 
 %% Plot escape
 % Plot planet
+%hold on
+% [xx, yy, zz] = sphere(100);
+% surf(r_Earth*xx, r_Earth*yy, r_Earth*zz, 'EdgeColor','green','FaceColor','green',...
+%     'FaceAlpha','1');
+% 
 plot_Earth;
+% colormap light_gray
+% caxis([-r_uranus/100 r_uranus/100])
+% shading interp
 
 % Circular parking orbit
 f = 0:1:360;
@@ -90,6 +98,7 @@ for i = 1:length(f)
 %   Cambio di coordinate il vettore posizione per plottarlo
     Q_pX = perifocal2helio(0, 0, 0);
     pos = Q_pX * [x y z]';
+%     pos = [x y z];
 
     if i == 1
         ra = animatedline(pos(1), pos(2), pos(3), "Color", color,'LineWidth',3);
@@ -98,3 +107,20 @@ for i = 1:length(f)
     drawnow;
 end
 
+% Plot SOI Earth
+% [X,Y,Z] = sphere;
+ %figure()
+% surface(R_SOI_Earth*X,R_SOI_Earth*Y,...
+%     R_SOI_Earth*Z,'EdgeColor','cyan','FaceColor','cyan',...
+%     'FaceAlpha','0');
+
+  
+xlim([-1e5 1e5])
+ylim([-1e5 1e5])
+zlim([-1e5 1e5])
+xlabel('x (km)')
+ylabel('y (km)')
+zlabel('z (km)')
+view([0 0 1])
+
+ 

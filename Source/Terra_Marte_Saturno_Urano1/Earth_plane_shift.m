@@ -12,13 +12,19 @@ theta_e = acosd(cos_theta_e);
 % Raggio orbita di parcheggio intorno alla Terra(km)
 r_orbit = r_Earth + Epark_radius;
 
-v_orbit_e = sqrt(mu_Earth / r_orbit);     % orbit velocity (km/s)
+mu_e = 3.986*10^5;    % mu Earth (km^3/s^2)
+
+v_orbit_e = sqrt(mu_e / r_orbit);     % orbit velocity (km/s)
 
 deltaV_orbit_e = 2*v_orbit_e*sind(theta_e/2);    % delta v to ecliptical orbit
 
 % Plot orbital plane shift
 
 % Plot planet
+% figure(1)
+% [xx, yy, zz] = sphere(100);
+% surf(r_Earth*xx, r_Earth*yy, r_Earth*zz, 'EdgeColor','green','FaceColor','green',...
+%     'FaceAlpha','1');
 plot_Earth;
 
 % Circlar initial orbit
@@ -37,6 +43,7 @@ for i = 1:length(f)
 %   Cambio di coordinate il vettore posizione per plottarlo
     Q_pX = perifocal2helio(RAAN1_e, deg2rad(i1_e), 0);
     pos = Q_pX * [x y z]';
+%     pos = [x y z];
 
     if i == 1
         ra = animatedline(pos(1), pos(2), pos(3), "Color", color,'LineWidth',3);
@@ -61,6 +68,7 @@ for i = 1:length(f)
 %   Cambio di coordinate il vettore posizione per plottarlo
     Q_pX = perifocal2helio(RAAN2_e, deg2rad(i2_e), 0);
     pos = Q_pX * [x y z]';
+%     pos = [x y z];
 
     if i == 1
         ra = animatedline(pos(1), pos(2), pos(3), "Color", color,'LineWidth',3);
@@ -68,3 +76,15 @@ for i = 1:length(f)
     addpoints(ra, pos(1), pos(2), pos(3));
     drawnow;
 end
+
+
+  
+% xlim([-1e5 1e5])
+% ylim([-1e5 1e5])
+% zlim([-1e5 1e5])
+% xlabel('x (km)')
+% ylabel('y (km)')
+% zlabel('z (km)')
+%view([0 0 1])
+
+%Escape_from_Earth

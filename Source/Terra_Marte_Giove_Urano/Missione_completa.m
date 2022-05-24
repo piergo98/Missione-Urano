@@ -64,7 +64,7 @@
     str_ingresso_SOI_Urano = datestr(ingresso_SOI_Urano);
     
     fprintf("\n Fase Giove-Urano:")
-    fprintf('\n Tempo di volo trascorso da Saturno a Urano %g (giorni)\n',t_JU_days);
+    fprintf('\n Tempo di volo trascorso da Giove a Urano %g (giorni)\n',t_JU_days);
     fprintf('\n Data di ingresso nella sfera di influenza di Urano = %s \n', str_ingresso_SOI_Urano);
     fprintf('\n-----------------------------------------------------\n')
 
