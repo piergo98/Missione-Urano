@@ -10,9 +10,9 @@ hold on;
 set(gca, 'NextPlot','add', 'Visible','off');
 %  axis equal;
 %  axis auto;
-xlim([-inf inf])
-ylim([-inf inf])
-zlim([-inf inf])
+% xlim([-inf inf])
+% ylim([-inf inf])
+% zlim([-inf inf])
 % Set initial view
 view(0,30);
 axis vis3d;
@@ -21,6 +21,8 @@ axis vis3d;
 
 [x, y, z] = sphere(1000);
 globe = surf(r_Earth*x, r_Earth*y, r_Earth*(-z));
+direction = [1 0 0];
+rotate(globe,direction,-23.5)
 
 %% Texturemap the globe
 % Load Earth image for texture map
@@ -28,3 +30,4 @@ cdata = imread(image_file);
 % Set image as color data (cdata) property, and set face color to indicate
 % a texturemap, which Matlab expects to be in cdata. Turn off the mesh edges.
 set(globe, 'FaceColor', 'texturemap', 'CData', cdata, 'FaceAlpha', alpha, 'EdgeColor', 'none');
+
