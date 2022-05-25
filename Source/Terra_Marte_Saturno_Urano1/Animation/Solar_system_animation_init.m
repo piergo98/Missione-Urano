@@ -1,7 +1,7 @@
 %% Constants
 
 % time_vector, a row for each day of the mission
-time_vector = ymd_gen([2022 09 01],[2034, 10, 01]);
+time_vector = ymd_gen([2022 09 01],[2034, 11, 01]);
 
 n_days = size(time_vector,1);
 

@@ -33,7 +33,7 @@ pos_spcr = [];
  
 for t = 1:(em_days+1) 
 %       Anomalia vera nel tempo 
-    f = dTA * t + TA1_em; 
+    f = 1.7*dTA * t + TA1_em; 
 %       Legge oraria dello spacecraft in funzione dell'anomalia vera 
     r = p / (1 + e*cosd(f)); 
 %       Converto in coordinate cartesiane 
@@ -46,40 +46,40 @@ end
  
 %% Flyby orbit 
 % Giorni in cui lo spacecraft sta sull'orbita ottenuta dal flyby 
-[years, months, days, hours, minutes, seconds] = sec2date(dT_post_flyby);
-fl_days = days + (months * 30);
-
-Delta_TA_fl = abs(TA_for_lambert - TA_post_flyby); 
-% Variazione di anomalia vera in un giorno 
-dTA = Delta_TA_fl/ fl_days; 
- 
-h = coe_flyby(1);          % Momento angolare 
-e = coe_flyby(2);          % Eccentricità 
-RA = coe_flyby(3);         % Ascensione retta 
-incl = coe_flyby(4);       % Inclinazione orbita di trasferimento 
-w = coe_flyby(5);          % Argomento del periasse 
- 
-p = h^2 / mu;           % Semilato retto 
- 
-% Passaggio da perifocale a eliocentrico per rappresentare l'orbita in 3D 
-% il centro è sempre il sole 
-Q_pX = perifocal2helio(RA, incl, w);   
- 
-for t = 1:(fl_days+1) 
-%       Anomalia vera nel tempo 
-    f = dTA * t + TA_post_flyby; 
-%       Legge oraria dello spacecraft in funzione dell'anomalia vera 
-    r = p / (1 + e*cosd(f)); 
-%       Converto in coordinate cartesiane 
-    x = r*cosd(f); 
-    y = r*sind(f); 
-    z = 0; 
-%       Cambio di coordinate il vettore posizione 
-    pos_spcr(:,t+em_days) = Q_pX * [x y z]'; 
-end 
+% [years, months, days, hours, minutes, seconds] = sec2date(dT_post_flyby);
+% fl_days = days + (months * 30);
+% 
+% Delta_TA_fl = abs(TA_for_lambert - TA_post_flyby); 
+% % Variazione di anomalia vera in un giorno 
+% dTA = Delta_TA_fl/ fl_days; 
+%  
+% h = coe_flyby(1);          % Momento angolare 
+% e = coe_flyby(2);          % Eccentricità 
+% RA = coe_flyby(3);         % Ascensione retta 
+% incl = coe_flyby(4);       % Inclinazione orbita di trasferimento 
+% w = coe_flyby(5);          % Argomento del periasse 
+%  
+% p = h^2 / mu;           % Semilato retto 
+%  
+% % Passaggio da perifocale a eliocentrico per rappresentare l'orbita in 3D 
+% % il centro è sempre il sole 
+% Q_pX = perifocal2helio(RA, incl, w);   
+%  
+% for t = 1:(fl_days+1) 
+% %       Anomalia vera nel tempo 
+%     f = dTA * t + TA_post_flyby; 
+% %       Legge oraria dello spacecraft in funzione dell'anomalia vera 
+%     r = p / (1 + e*cosd(f)); 
+% %       Converto in coordinate cartesiane 
+%     x = r*cosd(f); 
+%     y = r*sind(f); 
+%     z = 0; 
+% %       Cambio di coordinate il vettore posizione 
+%     pos_spcr(:,t+em_days) = Q_pX * [x y z]'; 
+% end 
  
 %% Mars to Saturn 
-ms_days = datenum([2028 10 01]) - datenum([2023 10 01]); 
+ms_days = datenum([2028 11 01]) - datenum([2023 10 01]); 
  
 Delta_TA_ms = abs(TA2_ms - TA1_ms); 
 %   Minima variazione di anomalia vera in un giorno 
@@ -99,7 +99,7 @@ Q_pX = perifocal2helio(RA, incl, w);
  
 for t = 1:(ms_days) 
 %       Anomalia vera nel tempo 
-    f = dTA * t + TA1_ms; 
+    f = 1.07*dTA * t + TA1_ms; 
 %       Legge oraria dello spacecraft in funzione dell'anomalia vera 
     r = p / (1 + e*cosd(f)); 
 %       Converto in coordinate cartesiane 
@@ -113,7 +113,7 @@ end
  
  
 %% Saturn to Uranus 
-su_days = datenum([2034 10 01])- datenum([2028 10 01]); 
+su_days = datenum([2034 11 01])- datenum([2028 11 01]); 
  
 Delta_TA_su = abs(TA2_su - TA1_su); 
 %   Minima variazione di anomalia vera in un giorno 
