@@ -1,10 +1,15 @@
 %% MISSIONE COMPLETA: Terra-Venere-Saturno-Urano
 
+    close all; clear; clc
+
     % Inizializzo la missione
     init_Terra_Venere_Saturno_Urano;
 
     % Calcolo le Traiettorie di Lambert
     Earth_Venus_Saturn_Uranus;
+
+    fprintf("\n MISSIONE TERRA-TERRA-SATURNO-URANO \n");
+    fprintf('\n-----------------------------------------------------\n')
 
 %% Fase Terra-Venere
 
@@ -42,6 +47,11 @@
     % Cambio piano da Eclittica a Equatoriale
     Uranus_orbital_plane_shift;
 
+    arrivo = datetime(2033, 12, 25, 12, 00, 00) + ...
+        seconds(t_tot_capture_Uranus) + seconds(deltaT_min);
+    str_arrivo = datestr(arrivo);
+    fprintf("\n Data di fine missione = %s \n", str_arrivo)
+    
 %% Cacolo Delta Velocita' totale
 
     DeltaV;

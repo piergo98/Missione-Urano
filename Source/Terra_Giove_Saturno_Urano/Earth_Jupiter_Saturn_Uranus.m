@@ -1,9 +1,3 @@
-% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-% LAMBERT'S PROBLEM FROM EARTH TO JUPITER
-% ~~~~~~~~~~~~
-
-% init_Terra_Giove_Saturno_Urano;
-
 %% calcolo Lambert fra posizione iniziale Terra e posizione finale Giove
 
 % Dati per posizione e velocità Terra alla partenza della spedizione e al

@@ -9,9 +9,6 @@
 
 movie_mode = 2;	% 1 for movie writing, 2 for HD movie, 0 for only matlab animation
 
-addpath(genpath("Script matlab"));
-addpath(genpath("Animation"));
-
 % Init all par, constants and plot parameters
 solar_system_animation_init
 

@@ -13,9 +13,6 @@ G = 6.6742e-20; % Costante gravitazionale
 
 deg = pi/180;
 
-%Masses
-Sun_mass = 1.989*10^30;		%[kg]
-
 %Parking orbits (not considering body radius)
 Epark_radius = 200;		%[km]
 Epark_inclination = 0;	%[rad]

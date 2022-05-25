@@ -4,7 +4,6 @@
 % and the spacecraft.
 
 %% intro
-addpath Animation/
 movie_mode = 2;	% 1 for movie writing, 2 for HD movie, 0 for only matlab animation
 
 % Init all par, constants and plot parameters

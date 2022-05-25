@@ -1,7 +1,6 @@
 %% COMPUTE THE ANGLE AND TRAJECTORY TO THE ESCAPE FROM EARTH SOI
 
 % Recupero dati Terra
-% Earth_Earth_Saturn_Uranus;
 v_infp_escape_Earth = v1_l_e1 - v1_e1;   % Differenza fra velocità necessaria per Lambert e velocità del pianeta    
 v_infp_escape_Earth_mod = norm(v_infp_escape_Earth);  % In norma
 
@@ -79,7 +78,7 @@ end
 % Hyperbolic orbit
 % Semilato retto
 f = 0:0.1:f_deg_escape_Earth;
-color = 'g';
+color = 'b';
 pos = [];
 for i = 1:length(f)
 %   Legge oraria dello spacecraft in funzione dell'anomalia vera
@@ -99,21 +98,5 @@ for i = 1:length(f)
     addpoints(ra, pos(1), pos(2), pos(3));
     drawnow;
 end
-
-% Plot SOI Earth
-% [X,Y,Z] = sphere;
- %figure()
-% surface(R_SOI_Earth*X,R_SOI_Earth*Y,...
-%     R_SOI_Earth*Z,'EdgeColor','cyan','FaceColor','cyan',...
-%     'FaceAlpha','0');
-
-  
-xlim([-1e5 1e5])
-ylim([-1e5 1e5])
-zlim([-1e5 1e5])
-xlabel('x (km)')
-ylabel('y (km)')
-zlabel('z (km)')
-view([0 0 1])
 
  

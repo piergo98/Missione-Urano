@@ -161,7 +161,7 @@ axis equal
 xlim([-1e5 1e5])
 ylim([-1e5 1e5])
 zlim([-1e5 1e5])
- view([1, 1, 0])
+view([1, 1, 0])
    
 
 

@@ -13,7 +13,7 @@ radius = 100;
 em_days = datenum([2023 10 01]) - datenum([2022 09 01]); 
  
  
-Delta_TA_em = abs(TA2_em - TA1_em); 
+Delta_TA_em = abs(TA2_em + 360 - TA1_em); 
 % Variazione di anomalia vera in un giorno 
 dTA = Delta_TA_em / em_days; 
  
@@ -33,7 +33,8 @@ pos_spcr = [];
  
 for t = 1:(em_days+1) 
 %       Anomalia vera nel tempo 
-    f = 1.7*dTA * t + TA1_em; 
+   % f = 1.7*dTA * t + TA1_em; 
+   f = dTA * t + TA1_em;
 %       Legge oraria dello spacecraft in funzione dell'anomalia vera 
     r = p / (1 + e*cosd(f)); 
 %       Converto in coordinate cartesiane 
@@ -81,7 +82,7 @@ end
 %% Mars to Saturn 
 ms_days = datenum([2028 11 01]) - datenum([2023 10 01]); 
  
-Delta_TA_ms = abs(TA2_ms - TA1_ms); 
+Delta_TA_ms = abs(TA2_ms +  360- TA1_ms); 
 %   Minima variazione di anomalia vera in un giorno 
 dTA = Delta_TA_ms / ms_days; 
  
@@ -99,7 +100,8 @@ Q_pX = perifocal2helio(RA, incl, w);
  
 for t = 1:(ms_days) 
 %       Anomalia vera nel tempo 
-    f = 1.07*dTA * t + TA1_ms; 
+    %f = 1.07*dTA * t + TA1_ms; 
+    f = dTA * t + TA1_ms; 
 %       Legge oraria dello spacecraft in funzione dell'anomalia vera 
     r = p / (1 + e*cosd(f)); 
 %       Converto in coordinate cartesiane 
@@ -108,7 +110,7 @@ for t = 1:(ms_days)
     z = 0; 
 %       Cambio di coordinate il vettore posizione 
 %    pos_spcr(:,t+ee_days+fl_days) = Q_pX * [x y z]'; %vecchio 
-    pos_spcr(:,t+em_days+fl_days) = Q_pX * [x y z]'; 
+    pos_spcr(:,t+em_days) = Q_pX * [x y z]'; 
 end 
  
  
@@ -143,6 +145,6 @@ for t = 1:(su_days+1)
     z = 0; 
 %       Cambio di coordinate il vettore posizione 
 %    pos_spcr(:,t+ee_days+fl_days+es_days) = Q_pX * [x y z]'; %vecchia 
-    pos_spcr(:,t+em_days+fl_days+ms_days) = Q_pX * [x y z]'; 
+    pos_spcr(:,t+em_days+ms_days) = Q_pX * [x y z]'; 
 end 
  

@@ -1,12 +1,11 @@
 % This script calculates a vector containing each row position of
 % Dawn_spacecraft with respect to solar system
 
-% Risolvo il problema di Lambert per tutta la missione (senza plot)
 radius = 100; 
 
 %% Earth to Earth
 %ee_days = datenum([2024 03 01]) - datenum([2022 10 01]);
-ee_days = datenum([2024 08 01]) - datenum([2023 3 01]);
+ee_days = datenum([2024 08 01 18 00 00]) - datenum([2023 3 01 18 00 00]);
 
 Delta_TA_ee = abs(TA2_ee - TA1_ee);
 % Variazione di anomalia vera in un giorno
@@ -40,12 +39,14 @@ for t = 1:(ee_days+1)
 end
 
 %% SOI Earth
-e_soi_days = datenum([DateVector_Earth(1) DateVector_Earth(2) DateVector_Earth(3)]) - datenum([2024 08 01]);
+e_soi_days = datenum([ DateVector_Earth(1),...
+    DateVector_Earth(2), DateVector_Earth(3)]) - datenum([2024 08 01]);
 
 % Delta_TA_e_soi = abs(TA2_e_soi - TA2_ee);
 TA1_e = rad2deg(coe_e(6));
-[coe_e, ~, ~,  ~] = planet_elements_and_sv(3, DateVector_Earth(1), DateVector_Earth(2), ...
-    DateVector_Earth(3), 00, 00, 00);
+[coe_e, ~, ~,  ~] = planet_elements_and_sv(3,  DateVector_Earth(1),...
+    DateVector_Earth(2), DateVector_Earth(3), DateVector_Earth(4),...
+    DateVector_Earth(5), DateVector_Earth(6));
 TA2_e = rad2deg(coe_e(6));
 Delta_TA_e_soi = abs(TA2_e - TA1_e);
 
@@ -83,7 +84,7 @@ end
 
 %versione con tempo flyby
 %es_days = datenum([2030 08 01]) - datenum([2024 8 2]);
-es_days = datenum([2030 08 01]) - datenum([DateVector_Earth(1),...
+es_days = datenum([2030 08 01]) - datenum([ DateVector_Earth(1),...
     DateVector_Earth(2), DateVector_Earth(3)]);
 
 %Delta_TA_es = abs(TA2_es - TA1_es);
@@ -120,11 +121,13 @@ for t = 1:(es_days+1)
 end
 
 %% SOI Saturn
-s_soi_days = datenum([DateVector_Saturn(1), DateVector_Saturn(2), DateVector_Saturn(3)]) - datenum([2030 08 01]);
+s_soi_days = datenum([ DateVector_Saturn(1),...
+    DateVector_Saturn(2), DateVector_Saturn(3)]) - datenum([2030 08 01]);
 
 TA1_s = rad2deg(coe_s(6));
-[coe_s, ~, ~,  ~] = planet_elements_and_sv(6, DateVector_Saturn(1), DateVector_Saturn(2), ...
-    DateVector_Saturn(3), 00, 00, 00);
+[coe_s, ~, ~,  ~] = planet_elements_and_sv(6,  DateVector_Saturn(1),...
+    DateVector_Saturn(2), DateVector_Saturn(3), DateVector_Saturn(4),...
+    DateVector_Saturn(5), DateVector_Saturn(6));
 TA2_s = rad2deg(coe_s(6));
 Delta_TA_s_soi = abs(TA2_s - TA1_s);
 % Variazione di anomalia vera in un giorno
@@ -160,7 +163,7 @@ end
 %% Saturn to Uranus
 %su_days = datenum([2036 04 03])- datenum([2030 04 03]); %vecchio
 %su_days = datenum([2036 08 01])- datenum([2030 08 01]); 
-su_days = datenum([2036 08 01])- datenum([DateVector_Saturn(1),...
+su_days = datenum([2036 08 01])- datenum([ DateVector_Saturn(1),...
     DateVector_Saturn(2), DateVector_Saturn(3)]); %con flyby
 
 Delta_TA_su = abs(TA2_su - TA1_su);

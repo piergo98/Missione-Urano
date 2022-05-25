@@ -1,7 +1,6 @@
 %% Calcolo il tempo t di flyby Saturn usando l'equazione di keplero
 
 % Recupero dati pianeta attorno al quale faccio il flyby
-Earth_Jupiter_Saturn_Uranus;
 v_inf_down_Saturn = V2_l_s - v2_s; % velocità in ingresso al flyby     
 v_inf_down_norm_Saturn = norm(v_inf_down_Saturn); % in norma  
 
@@ -42,6 +41,7 @@ F_saturn_deg = rad2deg(F_saturn);
 
 % Trovo anomalia media M 
 M_Saturn=e_flyby_Saturn*sinh(F_saturn)-F_saturn;
+M_deg_Saturn=rad2deg(M_Saturn); 
  
 % Trovo il tempo 
 t_flyby_Saturn = M_Saturn*sqrt(-a_flyby_Saturn^3/mu_Saturn); % In secondi 
