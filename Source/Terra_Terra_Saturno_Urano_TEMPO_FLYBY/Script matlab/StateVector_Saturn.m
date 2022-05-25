@@ -15,7 +15,6 @@ delta_V_Saturn = V2_l_s - v_fin_Saturn;
 norm_delta_V_saturn = norm(delta_V_Saturn);
 
 % Posizione dopo flyby
-%r2_fin_s = r2_s;
 
 %versione con tempo di flyby
 date_post_flyby_Saturn = datetime(2030, 08, 01, 00, 00, 00) + seconds(t_flyby_tot_Saturn);

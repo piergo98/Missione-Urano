@@ -36,7 +36,7 @@
 [~, r1_e1, v1_e1, ~] = planet_elements_and_sv(3, 2023, 03, 01, 18, 00, 00);
 
 %[~, r2_e2, v2_e2, ~] = planet_elements_and_sv(3, 2024, 03, 01, 18, 00, 00); %date vecchie
-[~, r2_e2, v2_e2, ~] = planet_elements_and_sv(3, 2024, 08, 01, 18, 00, 00);
+[coe_e, r2_e2, v2_e2, ~] = planet_elements_and_sv(3, 2024, 08, 01, 18, 00, 00);
 
 % Tempo di volo Terra-Terra
 t_EE_days = datenum([2024 08 01]) - datenum([2023 3 01]);

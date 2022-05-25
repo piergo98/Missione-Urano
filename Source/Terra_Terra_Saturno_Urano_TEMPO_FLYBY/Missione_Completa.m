@@ -22,7 +22,7 @@
     % Fuga dalla SOI della Terra
     Escape_from_Earth;
     
-    fprintf('\n Tempo di volo da Terra a Terra %g (giorni)\n',t_EE/(60*60*24));
+    fprintf('\n Tempo di volo da Terra a Terra %g (giorni)\n',t_EE_days);
     fprintf('\n Ingresso nella sfera di influenza della Terra il 2024/03/01 ore 18:00:00 \n');
     fprintf('\n-----------------------------------------------------\n')
 
@@ -45,7 +45,7 @@
 
 %% Fase Terra-Saturno
 
-    fprintf('\n Tempo di volo da Terra a Saturno %g (giorni)\n',t_fS/(60*60*24));
+    fprintf('\n Tempo di volo da Terra a Saturno %g (giorni)\n',t_fS_days);
     fprintf('\n Ingresso nella sfera di influenza di Saturno il 2030/08/01 ore 00:00:00 \n');
     fprintf('\n-----------------------------------------------------\n')
 
@@ -74,7 +74,7 @@
 
 %% Fase Saturno-Urano
 
-    fprintf('\n Tempo di volo da Saturno a Urano %g (giorni)\n',t_SU/(60*60*24));
+    fprintf('\n Tempo di volo da Saturno a Urano %g (giorni)\n',t_SU_days);
     fprintf('\n Ingresso nella sfera di influenza di Urano il 2036/08/01 ore 00:00:00');
     fprintf('\n-----------------------------------------------------\n')
 

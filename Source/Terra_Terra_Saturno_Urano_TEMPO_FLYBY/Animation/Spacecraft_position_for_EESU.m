@@ -42,7 +42,13 @@ end
 %% SOI Earth
 e_soi_days = datenum([DateVector_Earth(1) DateVector_Earth(2) DateVector_Earth(3)]) - datenum([2024 08 01]);
 
-Delta_TA_e_soi = abs(TA2_e_soi - TA2_ee);
+% Delta_TA_e_soi = abs(TA2_e_soi - TA2_ee);
+TA1_e = rad2deg(coe_e(6));
+[coe_e, ~, ~,  ~] = planet_elements_and_sv(3, DateVector_Earth(1), DateVector_Earth(2), ...
+    DateVector_Earth(3), 00, 00, 00);
+TA2_e = rad2deg(coe_e(6));
+Delta_TA_e_soi = abs(TA2_e - TA1_e);
+
 % Variazione di anomalia vera in un giorno
 dTA = Delta_TA_e_soi / e_soi_days;
 
@@ -129,11 +135,6 @@ e = coe_s(2);          % Eccentricità
 RA = coe_s(3);         % Ascensione retta
 incl = coe_s(4);       % Inclinazione orbita di trasferimento
 w = coe_s(5);          % Argomento del periasse
-% h = coe_s_SOI(1);          % Momento angolare
-% e = coe_s_SOI(2);          % Eccentricità
-% RA = coe_s_SOI(3);         % Ascensione retta
-% incl = coe_s_SOI(4);       % Inclinazione orbita di trasferimento
-% w = coe_s_SOI(5);          % Argomento del periasse
 
 p = h^2 / mu;           % Semilato retto
 
