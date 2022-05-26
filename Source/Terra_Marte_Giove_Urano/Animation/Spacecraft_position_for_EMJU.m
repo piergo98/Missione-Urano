@@ -9,7 +9,7 @@ radius = 100;
 %% Earth to Mars 
 em_days = datenum([2028 10 01]) - datenum([2027 05 01]); 
   
-Delta_TA_em = abs(TA2_em - TA1_em); 
+Delta_TA_em = abs(TA2_em+360 - TA1_em); 
 % Variazione di anomalia vera in un giorno 
 dTA = Delta_TA_em / em_days; 
  
@@ -29,7 +29,8 @@ pos_spcr = [];
  
 for t = 1:(em_days) 
 %       Anomalia vera nel tempo 
-    f = 2*dTA * t + TA1_mj; 
+    %f = 2*dTA * t + TA1_mj;
+    f = dTA * t + TA1_em;
 %       Legge oraria dello spacecraft in funzione dell'anomalia vera 
     r = p / (1 + e*cosd(f)); 
 %       Converto in coordinate cartesiane 
@@ -111,7 +112,7 @@ end
 %% Saturn to Uranus 
 ju_days = datenum([2038 07 01])- datenum([2032 07 01]); 
  
-Delta_TA_ju = abs(TA2_ju - TA1_ju); 
+Delta_TA_ju = abs(TA2_ju+360 - TA1_ju); 
 %   Minima variazione di anomalia vera in un giorno 
 dTA = Delta_TA_ju / ju_days; 
  

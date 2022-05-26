@@ -83,9 +83,8 @@ StateVector_Saturn;
 [~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2034, 11, 01, 00, 00, 00); 
  
 % Definisco il tempo di volo Saturno-Urano 
-t_SU_days = datenum([2034 11 01 00 00 00])- datenum([DateVector_Saturn(1),...
-    DateVector_Saturn(2), DateVector_Saturn(3), DateVector_Saturn(4),...
-    DateVector_Saturn(5), DateVector_Saturn(6)]);
+t_SU_days = datenum([2034 11 01])- datenum([DateVector_Saturn(1),...
+    DateVector_Saturn(2), DateVector_Saturn(3)]);
 t_SU = t_SU_days * 24 * 60 * 60;
 
 % Calcolo la traiettoria di Lambert Terra-Terra 

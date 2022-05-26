@@ -86,13 +86,13 @@ coe_flyby(6) = deg2rad(TA_for_lambert);
  
 % Trovo la posizione e velocità di Giove 
 
-[~, r2_j, v2_j, ~] = planet_elements_and_sv(5, 2032, 07, 01, 00, 00, 00); 
+[~, r2_j, v2_j, ~] = planet_elements_and_sv(5, 2032, 07, 01, 18, 00, 00); 
  
 % Definisco il tempo di volo dal punto scelto post flyby e Giove 
-t_J = datetime(2032, 7, 1, 0, 0, 0);
+t_J = datetime(2032, 7, 1, 18, 0, 0);
 t_MJ_days = days(t_J - t_M);
-t_MJ = year2seconds(3) + month2seconds(9); % 'fS' = da punto post flyby a Giove 6anni-il tempo trascorso sull'orbita eliocentrica
- 
+t_MJ = t_MJ_days * 24 * 60 * 60; % 'MJ' = da punto post flyby a Giove 
+
 % Estraggo il vettore di stato con i coe aggiornati all'ultima posizione 
 [r, v] = sv_from_coe(coe_flyby, mu); 
 % Risolvo Lambert per arrivare su Giove 
@@ -141,10 +141,10 @@ StateVector_JUPITER;
  
 % Trovo la posizione e velocità di Urano 
 %[~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2036, 04, 03, 00, 00, 00); %vecchio 
-[~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2038, 07, 01, 00, 00, 00); 
+[~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2038, 07, 01, 18, 00, 00); 
  
 % Definisco il tempo di volo Giove-Urano
-t_U = datetime(2038, 7, 1, 0, 0, 0);
+t_U = datetime(2038, 7, 1, 18, 0, 0);
 t_JU_days = days(t_U - t_J);
 t_JU = year2seconds(6); 
  
