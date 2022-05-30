@@ -1,5 +1,7 @@
 %% COMPUTATION OF LAUNCH DATA FROM KOUROU BASE
 
+addpath("./Script matlab/")
+
 hour = 0:1:24;
 
 lst_min = LST(2022, 01, 01, hour, -52.8); % sidereal time 1/1/2022
