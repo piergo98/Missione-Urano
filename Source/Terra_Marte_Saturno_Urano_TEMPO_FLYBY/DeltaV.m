@@ -28,8 +28,8 @@ DeltaV_tot = DeltaV_tot + deltaV_ottimo;
 
 fprintf('\n-----------------------------------------------------\n')
 fprintf("\n DeltaV cambio piano Terra = %g",deltaV_orbit_e);
-fprintf("\n DeltaV Terra-Terra = %g",deltaV_escape_Earth);
-fprintf("\n DeltaV Terra-Saturno = %g",d_V_MS_norm);
+fprintf("\n DeltaV Terra-Marte = %g",deltaV_escape_Earth);
+fprintf("\n DeltaV Marte-Saturno = %g",d_V_MS_norm);
 fprintf("\n DeltaV Saturno-Urano = %g",d_V_SU_norm);
 fprintf("\n DeltaV cattura su Urano = %g",deltaV_uranus_capture);
 fprintf("\n DeltaV cambio piano Urano = %g \n",deltaV_ottimo);

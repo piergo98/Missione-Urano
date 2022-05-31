@@ -43,7 +43,7 @@ t_tot_hours_capture_Uranus = t_tot_capture_Uranus/3600;
 fprintf('\n Cattura su Urano:')
 fprintf('\n Raggio orbita di parcheggio (km)  = %g', Upark_radius)
 fprintf('\n Velocità orbita di parcheggio (km/s) = %g', V_uranus_park)
-fprintf('\n Tempo di volo nella SOI di Urano (ore)  = %g \n', t_tot_hours_capture_Uranus)
+fprintf('\n Tempo di volo nella SOI di Urano (giorni)  = %g \n', t_tot_hours_capture_Uranus/24)
 fprintf('\n -----------------------------------------------------------\n')
 
 %% Plot capture

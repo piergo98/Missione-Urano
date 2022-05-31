@@ -60,7 +60,7 @@
     
     % Fly-by su Giove
     fprintf("\n Fase Marte-Giove:")
-    fprintf('\n Tempo di volo trascorso da Terra a Giove %g (giorni)\n', t_MJ_days);
+    fprintf('\n Tempo di volo trascorso da Marte a Giove %g (giorni)\n', t_MJ_days);
     fprintf('\n Data di ingresso nella sfera di influenza di Giove = %s \n', str_ingresso_SOI_Giove);
 
     plot_flyby(r_Jupiter, R_SOI_Jupiter, e_flyby_Jupiter, p_Jupiter, f_in_Jupiter_deg, r_p_flyby_Jupiter, 'J'); 

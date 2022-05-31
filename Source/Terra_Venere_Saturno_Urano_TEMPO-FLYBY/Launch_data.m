@@ -23,7 +23,7 @@ ylabel('LST_28_02_2022')
 grid on
 
 %% Launch data sidereal time
-lst_launch = LST(2022, 02, 01, hour, -52.8);
+lst_launch = LST(2022, 01, 01, hour, -52.8);
 ninety = 90 + 0*hour;  % desired sidereal time
 figure(2)
 plot(hour, lst_launch, hour, ninety);

@@ -33,4 +33,4 @@ fprintf("\n DeltaV Venere-Saturno = %g",d_V_VS_norm);
 fprintf("\n DeltaV Saturno-Urano = %g",d_V_SU_norm);
 fprintf("\n DeltaV cattura su Urano = %g",deltaV_uranus_capture);
 fprintf("\n DeltaV cambio piano Urano = %g \n",deltaV_ottimo);
-fprintf("\n DeltaV totale missione = %d \n",DeltaV_tot);
+fprintf("\n DeltaV totale missione = %g \n",DeltaV_tot);

@@ -8,7 +8,7 @@
     % Calcolo le Traiettorie di Lambert
     Earth_Mars_Saturn_Uranus;
 
-    fprintf("\n MISSIONE TERRA-MARTE-SaturnO-URANO \n");
+    fprintf("\n MISSIONE TERRA-MARTE-SATURNOO-URANO \n");
     fprintf('\n-----------------------------------------------------\n')
 
 %% Fase Fase Sfera di influenza Terra
@@ -63,7 +63,7 @@
     % Fly-by su Saturno
 
     fprintf("\n Fase Marte-Saturno:")
-    fprintf('\n Tempo di volo trascorso da Terra a Saturno %g (giorni)\n', t_MS_days);
+    fprintf('\n Tempo di volo trascorso da Marte a Saturno %g (giorni)\n', t_MS_days);
     fprintf('\n Data di ingresso nella sfera di influenza di Saturno = %s \n', str_ingresso_SOI_Saturno);
 
     plot_flyby(r_Saturn, R_SOI_Saturn, e_flyby_Saturn, p_Saturn, f_in_Saturn_deg, r_p_flyby_Saturn, 'S');

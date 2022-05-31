@@ -3,10 +3,8 @@
 % Dati per posizione e velocità Terra alla partenza della spedizione e al
 % momento della cattura per il primo flyby
 
-%[~, r1_e1, v1_e1, ~] = planet_elements_and_sv(3, 2022, 10, 01, 18, 00, 00); %date vecchie
 [~, r1_e1, v1_e1, ~] = planet_elements_and_sv(3, 2023, 03, 01, 18, 00, 00);
 
-%[~, r2_e2, v2_e2, ~] = planet_elements_and_sv(3, 2024, 03, 01, 18, 00, 00); %date vecchie
 [coe_e, r2_e2, v2_e2, ~] = planet_elements_and_sv(3, 2024, 08, 01, 18, 00, 00);
 
 % Tempo di volo Terra-Terra
@@ -45,7 +43,6 @@ StateVector_Earth;
 %% Calcolo traiettoria lambert post flyby terra con arrivo su saturno
 
 % Trovo la posizione e velocità di Saturno
-%[~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2030, 04, 03, 00, 00, 00); %vecchio
 [coe_s, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2030, 08, 01, 18, 00, 00);
 
 % Definisco il tempo di volo dal punto scelto post flyby e Saturno
@@ -86,7 +83,6 @@ StateVector_Saturn;
 %% Calcolo traiettoria di Lambert post Flyby su Saturno e arrivo su Urano
 
 % Trovo la posizione e velocità di Urano
-%[~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2036, 04, 03, 00, 00, 00); %vecchio
 [~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2036, 08, 01, 18, 00, 00);
 
 % Definisco il tempo di volo Saturno-Urano

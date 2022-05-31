@@ -44,7 +44,7 @@
     fprintf('\n Altezza minima passaggio su Giove %g km', r_p_flyby_Jupiter)
     fprintf('\n Posizione finale [%g, %g, %g] (km).',...
         r2_fin_j(1), r2_fin_j(2), r2_fin_j(3))
-    fprintf('\n velocità finale [%g, %g, %g] (km/s).',...
+    fprintf('\n Velocità finale [%g, %g, %g] (km/s).',...
         v_fin_Jupiter(1), v_fin_Jupiter(2), v_fin_Jupiter(3))
     fprintf('\n Tempo di volo nella sfera di influenza di Giove [%g Y, %g M, %g D, %g h, %g m, %g s].',...
         years_J, months_J, days_J, hours_J, minutes_J, seconds_J)
@@ -77,10 +77,6 @@
     fprintf('\n Tempo di volo nella sfera di influenza di Saturno [%g Y, %g M, %g D, %g h, %g m, %g s].',...
         years_S, months_S, days_S, hours_S, minutes_S, seconds_S)
     fprintf('\n--------------------------------------------------------\n\n')
-
-%     fprintf('\n Quota minima del flyby su Saturno = %g (km)', r_p_flyby_Saturn)
-%     fprintf('\n Durata flyby Saturno = %g (ore).',t_flyby_tot_hours_Saturn)    
-%     fprintf('\n--------------------------------------------------------\n')
 
 %% Flight totale
 

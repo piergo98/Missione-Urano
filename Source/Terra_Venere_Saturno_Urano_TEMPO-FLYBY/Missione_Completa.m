@@ -8,9 +8,15 @@
     % Calcolo le Traiettorie di Lambert
     Earth_Venus_Saturn_Uranus;
 
-%% Fase Terra-Venere
+    fprintf("\n MISSIONE TERRA-VENERE-SATURNO-URANO \n");
+    fprintf('\n-----------------------------------------------------\n')
 
-    fprintf("\n Partenza dall'orbita di parcheggio sulla Terra il 2022/01/01 ore 12:00:00 \n");
+%% Fase Fase Sfera di influenza Terra
+    
+    partenza = datetime(2022, 01, 01, 12, 00, 00);
+    str_partenza = datestr(partenza);
+    fprintf("\n Data di partenza dall'orbita di parcheggio sulla Terra = %s \n", str_partenza);
+    fprintf('\n-----------------------------------------------------\n')
 
     % Cambio Piano da Equatoriale ad Eclittica
     Earth_plane_shift;
@@ -18,10 +24,18 @@
     % Fuga dalla SOI della Terra
     Escape_from_Earth;
 
-    fprintf('\n Ingresso nella sfera di influenza di Venere il 2022/04/01 ore 12:00:00 \n');
+%% Fase Terra-Venere
+
+    ingresso_SOI_Venere = partenza + seconds(t_EV) + seconds(t_tot_escape_Earth);
+    str_ingresso_SOI_Venere = datestr(ingresso_SOI_Venere);
+
+    %fprintf('\n Ingresso nella sfera di influenza di Venere il 2022/04/01 ore 12:00:00 \n');
 
     % Fly-by su Venere
-  
+    fprintf("\n Fase Terra-Venere:")
+    fprintf('\n Tempo di volo trascorso da Terra a Venere %g (giorni)\n', t_EV_days);
+    fprintf('\n Data di ingresso nella sfera di influenza di Venere = %s \n', str_ingresso_SOI_Venere);
+
     plot_flyby(r_Venus, R_SOI_Venus, e_flyby_Venus, p_Venus, f_in_Venus_deg, r_p_flyby_Venus, 'V');
 
     fprintf('\n Posizione iniziale [%g, %g, %g] (km).',...
@@ -39,7 +53,13 @@
 
     fprintf('\n Ingresso nella sfera di influenza di Saturno il 2028/01/01 ore 12:00:00 \n');
 
+    ingresso_SOI_Saturno = ingresso_SOI_Venere + seconds(t_VS)+ seconds(t_flyby_tot_Venus);
+    str_ingresso_SOI_Saturno = datestr(ingresso_SOI_Saturno);
+
     % Fly-by su Saturno
+    fprintf("\n Fase Venere-Saturno:")
+    fprintf('\n Tempo di volo trascorso da Venere a Saturno = %g (giorni)\n', t_VS_days)
+    fprintf('\n Data di ingresso nella sfera di influenza di Saturno = %s \n', str_ingresso_SOI_Saturno)
     
     plot_flyby(r_Saturn, R_SOI_Saturn, e_flyby_Saturn, p_Saturn, f_in_Saturn_deg, r_p_flyby_Saturn, 'S');
 
@@ -63,7 +83,13 @@
 
 %% Fase Saturno-Urano
 
-    fprintf('\n Ingresso nella sfera di influenza di Urano il 2033/12/25 ore 12:00:00');
+    ingresso_SOI_Urano = ingresso_SOI_Saturno + seconds(t_SU) + seconds(t_flyby_tot_Saturn);
+    str_ingresso_SOI_Urano = datestr(ingresso_SOI_Urano);
+    
+    fprintf("\n Fase Saturno-Urano:")
+    fprintf('\n Tempo di volo trascorso da Saturno a Urano %g (giorni)\n',t_SU_days);
+    fprintf('\n Data di ingresso nella sfera di influenza di Urano = %s \n', str_ingresso_SOI_Urano);
+    fprintf('\n-----------------------------------------------------\n')
 
     % Cattura su Urano
     Uranus_capture;
@@ -71,7 +97,7 @@
     % Cambio piano da Eclittica a Equatoriale
     Uranus_orbital_plane_shift;
 
-    arrivo = datetime(2033, 12, 25, 12, 00, 00) + ...
+    arrivo = ingresso_SOI_Urano + ...
         seconds(t_tot_capture_Uranus) + seconds(deltaT_min);
     str_arrivo = datestr(arrivo);
     fprintf("\n Data di fine missione = %s \n", str_arrivo)

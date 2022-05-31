@@ -44,7 +44,7 @@ t_tot_hours_escape_Earth = t_tot_escape_Earth/3600;
 fprintf('\n Fuga dalla Terra:')
 fprintf('\n Raggio orbita di parcheggio = %g (km)', Epark_radius)
 fprintf('\n Velocità orbita di parcheggio = %g (km/s)\n', V_park_e)
-fprintf('\n Tempo di fuga dalla Terra = %g (ore)\n', t_tot_hours_escape_Earth)
+fprintf('\n Tempo di fuga dalla Terra = %g (giorni)\n', t_tot_hours_escape_Earth/24)
 fprintf('\n -----------------------------------------------------------\n')
 
 %% Plot escape
