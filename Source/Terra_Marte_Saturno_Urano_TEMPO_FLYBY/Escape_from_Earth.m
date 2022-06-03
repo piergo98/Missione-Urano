@@ -1,3 +1,7 @@
+%% Movie
+% k = 1;
+% movie_fps = 60;
+
 %% COMPUTE THE ANGLE AND TRAJECTORY TO THE ESCAPE FROM EARTH SOI
 
 % Recupero dati Terra
@@ -47,16 +51,7 @@ fprintf('\n Tempo di fuga dalla Terra = %g (giorni)\n', t_tot_hours_escape_Earth
 fprintf('\n -----------------------------------------------------------\n')
 
 %% Plot escape
-% Plot planet
-%hold on
-% [xx, yy, zz] = sphere(100);
-% surf(r_Earth*xx, r_Earth*yy, r_Earth*zz, 'EdgeColor','green','FaceColor','green',...
-%     'FaceAlpha','1');
-% 
 plot_Earth;
-% colormap light_gray
-% caxis([-r_uranus/100 r_uranus/100])
-% shading interp
 
 % Circular parking orbit
 f = 0:1:360;
@@ -81,6 +76,11 @@ for i = 1:length(f)
     end
     addpoints(ra, pos(1), pos(2), pos(3));
     drawnow;
+
+    % Write video    
+%     movieVector(k) = getframe(gcf);
+%     k = k+1;
+
 end
 
 % Hyperbolic orbit
@@ -105,15 +105,12 @@ for i = 1:length(f)
     end
     addpoints(ra, pos(1), pos(2), pos(3));
     drawnow;
+
+    % Write video    
+%     movieVector(k) = getframe(gcf);
+%     k = k+1;
+
 end
-
-% Plot SOI Earth
-% [X,Y,Z] = sphere;
- %figure()
-% surface(R_SOI_Earth*X,R_SOI_Earth*Y,...
-%     R_SOI_Earth*Z,'EdgeColor','cyan','FaceColor','cyan',...
-%     'FaceAlpha','0');
-
   
 xlim([-1e5 1e5])
 ylim([-1e5 1e5])
@@ -124,3 +121,12 @@ zlabel('z (km)')
 view([0 0 1])
 
  
+%% Video stuff
+% movie = VideoWriter('Escape_from_Earth', 'MPEG-4');
+% movie.FrameRate = movie_fps;
+% 
+% open(movie);
+% writeVideo(movie, movieVector);
+% close(movie);
+% 
+

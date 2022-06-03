@@ -8,7 +8,7 @@
 radius = 100; 
  
 %% Earth to Venus 
-ev_days = datenum([2022 04 01 12 00 00]) - datenum([2022 01 01 12 00 00]); 
+ev_days = datenum([2022 04 01 12 00 00]) - datenum([2022 01 02 12 00 00]); 
  
 Delta_TA_ev = abs(TA2_ev+360 - TA1_ev); 
 % Variazione di anomalia vera in un giorno 

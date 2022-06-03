@@ -1,3 +1,7 @@
+%% Movie
+% k = 1;
+% movie_fps = 60;
+ 
 %% Capture trajectory
 % Transfer between hyperbolic capture to a parking orbit
 % R_hyperbola_perigee = R_parking_orbit
@@ -49,16 +53,7 @@ fprintf('\n -----------------------------------------------------------\n')
 
 %% Plot capture 
 plot_Uranus; 
-% %Plot SOI Uranus 
-% hold on;
-% [X,Y,Z] = sphere; 
-% %figure() 
-% surface(R_SOI_Uranus*X,R_SOI_Uranus*Y,... 
-%     R_SOI_Uranus*Z,'EdgeColor','cyan','FaceColor','cyan',... 
-%     'FaceAlpha','0'); 
 
-
- 
 % Hyperbolic orbit
 % Semilato retto
 p_hyp_u = a_hyp_u * (1 - e_hyp_u^2);
@@ -67,7 +62,7 @@ f = -f_deg_Uranus:0.1:0;
 radius = 10;
 color = 'b';
 pos = [];
-for i = 1:length(f)
+for i = 1:10:length(f)
 %   Legge oraria dello spacecraft in funzione dell'anomalia vera
     r = p_hyp_u / (1 + e_hyp_u*cosd(f(i)));
 %       Converto in coordinate cartesiane
@@ -84,6 +79,11 @@ for i = 1:length(f)
     end
     addpoints(ra, pos(1), pos(2), pos(3));
     drawnow;
+
+    % Write video    
+%     movieVector(k) = getframe(gcf);
+%     k = k+1;
+
 end
 
 xlim([-1e5 1e5])
@@ -115,23 +115,17 @@ for i = 1:length(f)
     end
     addpoints(ra, pos(1), pos(2), pos(3));
     drawnow;
+
+    % Write video    
+%     movieVector(k) = getframe(gcf);
+%     k = k+1;
+
 end
 
-% Plot planet
-% hold on
-% [xx, yy, zz] = sphere(100);
-% surf(r_uranus*xx, r_uranus*yy, r_uranus*zz, 'EdgeColor','blue','FaceColor','blue',...
-%     'FaceAlpha','1');
-% colormap light_gray
-% caxis([-r_uranus/100 r_uranus/100])
-% shading interp
-  
-% xlim([-1e5 1e5])
-% ylim([-1e5 1e5])
-% zlim([-1e5 1e5])
-% xlabel('x (km)')
-% ylabel('y (km)')
-% zlabel('z (km)')
-
-% Change plane
-%Uranus_orbital_plane_shift
+%% Video stuff
+% movie = VideoWriter('Uranus_capture', 'MPEG-4');
+% movie.FrameRate = movie_fps;
+% 
+% open(movie);
+% writeVideo(movie, movieVector);
+% close(movie);

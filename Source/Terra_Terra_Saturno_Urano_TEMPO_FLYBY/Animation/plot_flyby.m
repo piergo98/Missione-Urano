@@ -1,5 +1,5 @@
 function plot_flyby(r_planet, r_SOI, e_flyby, p_flyby, f_deg, r_p_flyby, who_plot)
-    
+
     color = 'b';
     radius = 6000;
 
@@ -42,13 +42,11 @@ function plot_flyby(r_planet, r_SOI, e_flyby, p_flyby, f_deg, r_p_flyby, who_plo
         c.Position(1) = pos(1) - radius;
         c.Position(2) = pos(2) - radius;
         drawnow;
-        
+
+        %%    Write video    
+%         movieVector(k) = getframe(gcf);
+%         k = k+1;
     end
-%    axis equal
-  
-%     xlim([-r_SOI r_SOI])
-%     ylim([-r_SOI r_SOI])
-%     zlim([-r_SOI r_SOI])
 
     xlim([-r_limit r_limit])
     ylim([-r_limit r_limit])
@@ -59,4 +57,12 @@ function plot_flyby(r_planet, r_SOI, e_flyby, p_flyby, f_deg, r_p_flyby, who_plo
     zlabel('z (km)')
     view([0, 0, 1])
    
+    %% Video stuff
+%     movie = VideoWriter('flyby_Saturn', 'MPEG-4');
+%     movie.FrameRate = movie_fps;
+%     
+%     open(movie);
+%     writeVideo(movie, movieVector);
+%     close(movie);
+
 end

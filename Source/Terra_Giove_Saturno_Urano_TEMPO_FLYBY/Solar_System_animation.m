@@ -150,11 +150,9 @@ for d = 1:fr_skip:n_days			% speed
 end
 
 %% Video stuff
-% if movie_mode
-% 	movie = VideoWriter('movie_heliocentric', 'MPEG-4');
-% 	movie.FrameRate = movie_fps;
-% 
-% 	open(movie);
-% 	writeVideo(movie, movieVector);
-% 	close(movie);
-% end
+movie = VideoWriter('Missione_Completa', 'MPEG-4');
+movie.FrameRate = movie_fps;
+
+open(movie);
+writeVideo(movie, movieVector);
+close(movie);

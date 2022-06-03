@@ -1,7 +1,7 @@
 %% Constants
 
 % time_vector, a row for each day of the mission
-time_vector = ymd_gen([2022, 01, 01],[2033, 12, 25]);
+time_vector = ymd_gen([2022, 01, 02],[2033, 12, 25]);
 n_days = size(time_vector,1);
 
 %% Plots Parameters
@@ -56,4 +56,5 @@ width_spcr  = 1;
 
 % init of frame counter
 k = 1;
-movie_fps = 20;
+movie_fps = 60;
+

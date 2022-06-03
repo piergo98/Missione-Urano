@@ -13,7 +13,7 @@
 
 %% Fase Fase Sfera di influenza Terra
     
-    partenza = datetime(2022, 01, 01, 12, 00, 00);
+    partenza = datetime(2022, 01, 02, 12, 00, 00);
     str_partenza = datestr(partenza);
     fprintf("\n Data di partenza dall'orbita di parcheggio sulla Terra = %s \n", str_partenza);
     fprintf('\n-----------------------------------------------------\n')

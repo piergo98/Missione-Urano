@@ -147,16 +147,10 @@ for d = 1:fr_skip:n_days			% speed
 	end
 end
 
-% %% Video stuff
-% if movie_mode
-% 	movie = VideoWriter('movie_heliocentric', 'MPEG-4');
-% 	movie.FrameRate = movie_fps;
+%% Video stuff
+% movie = VideoWriter('Missione_Completa', 'MPEG-4');
+% movie.FrameRate = movie_fps;
 % 
-% 	open(movie);
-% 	writeVideo(movie, movieVector);
-% 	close(movie);
-% end
-
-
-%% Plot cambio piano finale e calcolo dei deltaV 
-%DeltaV;
+% open(movie);
+% writeVideo(movie, movieVector);
+% close(movie);

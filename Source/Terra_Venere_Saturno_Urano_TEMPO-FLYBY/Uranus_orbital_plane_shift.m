@@ -1,3 +1,7 @@
+%% Movie
+% k = 1;
+% movie_fps = 60;
+
 %% Orbit plane change with three pulse maneuver on Uranus from ecliptical 
 % plane (0 deg) to equatorial plane (97.77 deg)
 
@@ -82,6 +86,11 @@ for i = 1:length(f)
     end
     addpoints(ra, pos(1), pos(2), pos(3));
     drawnow;
+
+    % Write video    
+%     movieVector(k) = getframe(gcf);
+%     k = k+1;
+
 end
 
 % First transfer orbit
@@ -104,6 +113,11 @@ for i = 1:length(f)
     end
     addpoints(ra, pos(1), pos(2), pos(3));
     drawnow;
+
+    % Write video    
+%     movieVector(k) = getframe(gcf);
+%     k = k+1;
+
 end
 
 % Second transfer orbit
@@ -127,6 +141,11 @@ for i = 1:length(f)
     end
     addpoints(ra, pos(1), pos(2), pos(3));
     drawnow;
+
+    % Write video    
+%     movieVector(k) = getframe(gcf);
+%     k = k+1;
+
 end
 
 % Final circular orbit
@@ -152,6 +171,11 @@ for i = 1:length(f)
     end
     addpoints(ra, pos(1), pos(2), pos(3));
     drawnow;
+
+    % Write video    
+%     movieVector(k) = getframe(gcf);
+%     k = k+1;
+
 end
 
 
@@ -161,8 +185,13 @@ axis equal
 xlim([-1e5 1e5])
 ylim([-1e5 1e5])
 zlim([-1e5 1e5])
- view([1, 1, 0])
+view([1, 1, 0])
    
-
-
-
+%% Video stuff
+% movie = VideoWriter('Uranus_orbital_plane_shift', 'MPEG-4');
+% movie.FrameRate = movie_fps;
+% 
+% open(movie);
+% writeVideo(movie, movieVector);
+% close(movie);
+% 

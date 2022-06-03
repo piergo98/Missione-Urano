@@ -194,3 +194,11 @@ for d = 1:fr_skip:n_days			% speed
 		k = k+1;
 	end
 end
+
+%% Video stuff
+% movie = VideoWriter('Missione_Completa', 'MPEG-4');
+% movie.FrameRate = movie_fps;
+% 
+% open(movie);
+% writeVideo(movie, movieVector);
+% close(movie);

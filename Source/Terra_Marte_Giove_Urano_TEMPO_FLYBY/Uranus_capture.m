@@ -58,7 +58,7 @@ f = -f_deg_Uranus:0.1:0;
 radius = 10;
 color = 'b';
 pos = [];
-for i = 1:length(f)
+for i = 1:10:length(f)
 %   Legge oraria dello spacecraft in funzione dell'anomalia vera
     r = p_hyp_u / (1 + e_hyp_u*cosd(f(i)));
 %       Converto in coordinate cartesiane

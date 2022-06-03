@@ -1,5 +1,9 @@
 %% Orbit plane change with single pulse maneuver on Earth from equatorial plane (-23.4 deg) to ecliptical plane (0 deg)
 
+%% Movie
+% k = 1;
+% movie_fps = 60;
+%%
 i1_e = -23.4;     % inclination parking orbit around Earth (deg)
 i2_e = 0;  % inclination parking orbit on the ecliptic plane (deg)
 
@@ -43,6 +47,11 @@ for i = 1:length(f)
     end
     addpoints(ra, pos(1), pos(2), pos(3));
     drawnow;
+
+    % Write video    
+%     movieVector(k) = getframe(gcf);
+%     k = k+1;
+
 end
 
 % Final circular orbit
@@ -67,4 +76,18 @@ for i = 1:length(f)
     end
     addpoints(ra, pos(1), pos(2), pos(3));
     drawnow;
+
+    % Write video    
+%     movieVector(k) = getframe(gcf);
+%     k = k+1;
+
+
 end
+
+%% Video stuff
+% movie = VideoWriter('Earth_plane_shift', 'MPEG-4');
+% movie.FrameRate = movie_fps;
+% 
+% open(movie);
+% writeVideo(movie, movieVector);
+% close(movie);

@@ -8,6 +8,7 @@ figure('Color', space_color);
 hold on;
 % Turn off the normal axes
 set(gca, 'NextPlot','add', 'Visible','off');
+%figh.WindowState = 'maximize';
 %  axis equal;
 %  axis auto;
 % xlim([-inf inf])

@@ -1,3 +1,7 @@
+%% Movie
+% k = 1;
+% movie_fps = 60;
+
 %% Capture trajectory
 % Transfer between hyperbolic capture to a parking orbit
 % R_hyperbola_perigee = R_parking_orbit
@@ -58,7 +62,7 @@ f = -f_deg_Uranus:0.1:0;
 radius = 10;
 color = 'b';
 pos = [];
-for i = 1:length(f)
+for i = 1:10:length(f)
 %   Legge oraria dello spacecraft in funzione dell'anomalia vera
     r = p_hyp_u / (1 + e_hyp_u*cosd(f(i)));
 %       Converto in coordinate cartesiane
@@ -74,6 +78,11 @@ for i = 1:length(f)
     end
     addpoints(ra, pos(1), pos(2), pos(3));
     drawnow;
+
+    % Write video    
+%     movieVector(k) = getframe(gcf);
+%     k = k+1;
+
 end
 
 xlim([-1e5 1e5])
@@ -104,4 +113,17 @@ for i = 1:length(f)
     end
     addpoints(ra, pos(1), pos(2), pos(3));
     drawnow;
+
+    % Write video    
+%     movieVector(k) = getframe(gcf);
+%     k = k+1;
+
 end
+
+%% Video stuff
+% movie = VideoWriter('Uranus_capture', 'MPEG-4');
+% movie.FrameRate = movie_fps;
+% 
+% open(movie);
+% writeVideo(movie, movieVector);
+% close(movie);

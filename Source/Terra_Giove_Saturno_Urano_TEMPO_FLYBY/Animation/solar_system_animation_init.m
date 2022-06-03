@@ -70,4 +70,4 @@ width_spcr  = 1;
 
 % init of frame counter
 k = 1;
-movie_fps = 20;
+movie_fps = 60;

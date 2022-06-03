@@ -1,3 +1,7 @@
+%% Movie
+% k = 1;
+% movie_fps = 60;
+
 %% Orbit plane change with single pulse maneuver on Earth from equatorial plane (-23.4 deg) to ecliptical plane (0 deg)
 
 i1_e = -23.4;     % inclination parking orbit around Earth (deg)
@@ -20,11 +24,6 @@ deltaV_orbit_e = 2*v_orbit_e*sind(theta_e/2);    % delta v to ecliptical orbit
 
 % Plot orbital plane shift
 
-% Plot planet
-% figure(1)
-% [xx, yy, zz] = sphere(100);
-% surf(r_Earth*xx, r_Earth*yy, r_Earth*zz, 'EdgeColor','green','FaceColor','green',...
-%     'FaceAlpha','1');
 plot_Earth;
 
 % Circlar initial orbit
@@ -50,6 +49,11 @@ for i = 1:length(f)
     end
     addpoints(ra, pos(1), pos(2), pos(3));
     drawnow;
+
+    % Write video    
+%     movieVector(k) = getframe(gcf);
+%     k = k+1;
+
 end
 
 % Final circular orbit
@@ -75,16 +79,17 @@ for i = 1:length(f)
     end
     addpoints(ra, pos(1), pos(2), pos(3));
     drawnow;
+
+    % Write video    
+%     movieVector(k) = getframe(gcf);
+%     k = k+1;
+
 end
 
-
-  
-% xlim([-1e5 1e5])
-% ylim([-1e5 1e5])
-% zlim([-1e5 1e5])
-% xlabel('x (km)')
-% ylabel('y (km)')
-% zlabel('z (km)')
-%view([0 0 1])
-
-%Escape_from_Earth
+% %% Video stuff
+% movie = VideoWriter('Earth_plane_shift', 'MPEG-4');
+% movie.FrameRate = movie_fps;
+% 
+% open(movie);
+% writeVideo(movie, movieVector);
+% close(movie);
