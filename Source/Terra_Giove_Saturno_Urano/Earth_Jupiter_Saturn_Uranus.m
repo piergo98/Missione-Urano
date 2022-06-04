@@ -66,7 +66,8 @@ StateVector_Jupiter;
 [~, r2_s, v2_s, ~] = planet_elements_and_sv(6, 2030, 9, 1, 12, 00, 00);
 
 % Definisco il tempo di volo Giove Saturno
-t_Jupiter = datetime(2024, 07, 01, 08, 14, 54);
+%t_Jupiter = datetime(2024, 07, 01, 08, 14, 54);
+t_Jupiter = datetime(2024,07,01,12,00,00);
 t_Saturn = datetime(2030, 09, 01, 12, 00, 00);
   
 t_JS_days = days(t_Saturn - t_Jupiter);
@@ -120,7 +121,8 @@ StateVector_Saturn;
 [~, r2_u, v2_u, ~] = planet_elements_and_sv(7, 2035, 12, 25, 12, 00, 00);
 
 % Definisco il tempo di volo Saturno-Urano
-t_Saturn = datetime(2030, 9, 1, 15, 45, 41);
+% t_Saturn = datetime(2030, 9, 1, 15, 45, 41);
+t_Saturn = datetime(2030, 09, 01, 12, 00, 00);
 t_Uranus = datetime(2035, 12, 25, 12, 00, 00);
 
 t_SU_days = days(t_Uranus - t_Saturn);

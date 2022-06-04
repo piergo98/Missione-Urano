@@ -2,12 +2,12 @@
 % Dawn_spacecraft with respect to solar system
 
 % Risolvo il problema di Lambert per tutta la missione (senza plot)
-Earth_Jupiter_Saturn_Uranus;
+%Earth_Jupiter_Saturn_Uranus;
 
 % Dimensioni dello spacecraft
 radius = 100;
 % Mu sun (km^2/s^3)
-mu = 1.327*10^11; 
+%mu = 1.327*10^11; 
 
 %% Earth to Jupiter
 % from day 1 (01/10/22) to Jupiter arrival/departure (01/07/2024)

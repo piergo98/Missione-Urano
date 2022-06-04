@@ -1,5 +1,6 @@
 function plot_flyby(r_planet, r_SOI, e_flyby, p_flyby, f_deg, r_p_flyby, who_plot)
-
+% k = 1;
+% movie_fps = 60;
     color = 'b';
     radius = 6000;
 
@@ -57,11 +58,11 @@ function plot_flyby(r_planet, r_SOI, e_flyby, p_flyby, f_deg, r_p_flyby, who_plo
     zlabel('z (km)')
     view([0, 0, 1])
     %% Video stuff
-%     movie = VideoWriter('Flyby_Saturn', 'MPEG-4');
+%     movie = VideoWriter('Flyby_Jupiter', 'MPEG-4');
 %     movie.FrameRate = movie_fps;
 %     
 %     open(movie);
 %     writeVideo(movie, movieVector);
 %     close(movie);
-%    
+   
 end

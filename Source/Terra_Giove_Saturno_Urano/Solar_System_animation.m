@@ -27,7 +27,7 @@ spinlon = -45;				% how much view angle change long [grad]
 spinlat = -29;				% how much view angle change lat [grad]
 
 %% Solar System Plot and Animation
-figh = figure(3);
+figh = figure();
 clf 
 set(gcf, 'Renderer', 'zbuffer');
 set(gca, 'color', col_bkgnd)

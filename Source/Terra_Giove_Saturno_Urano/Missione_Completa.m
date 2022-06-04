@@ -26,9 +26,11 @@
 
 %% Fase Terra-Giove
 
-    ingresso_SOI_Giove = partenza + seconds(t_EJ) + seconds(t_tot_escape_Earth);
+%     ingresso_SOI_Giove = partenza + seconds(t_EJ) + seconds(t_tot_escape_Earth);
+%     str_ingresso_SOI_Giove = datestr(ingresso_SOI_Giove);
+    ingresso_SOI_Giove = datetime(2024,07,01,12,00,00);
     str_ingresso_SOI_Giove = datestr(ingresso_SOI_Giove);
-    
+      
     % Fly-by su Giove
     flyby_Jupiter_time;
     fprintf("\n Fase Terra-Giove:")
@@ -40,7 +42,9 @@
     fprintf('\n--------------------------------------------------------\n')
 %% Fase Giove-Saturno
     
-    ingresso_SOI_Saturno = ingresso_SOI_Giove + seconds(t_JS)+ seconds(t_flyby_tot_Jupiter);
+%     ingresso_SOI_Saturno = ingresso_SOI_Giove + seconds(t_JS)+ seconds(t_flyby_tot_Jupiter);
+%     str_ingresso_SOI_Saturno = datestr(ingresso_SOI_Saturno);
+    ingresso_SOI_Saturno = datetime(2030, 09, 01, 12, 00, 00);
     str_ingresso_SOI_Saturno = datestr(ingresso_SOI_Saturno);
 
     % Fly-by su Saturno
@@ -61,7 +65,9 @@
 
 %% Fase Saturno-Urano
     
-    ingresso_SOI_Urano = ingresso_SOI_Saturno + seconds(t_SU) + seconds(t_flyby_tot_Saturn);
+%     ingresso_SOI_Urano = ingresso_SOI_Saturno + seconds(t_SU) + seconds(t_flyby_tot_Saturn);
+%     str_ingresso_SOI_Urano = datestr(ingresso_SOI_Urano);
+    ingresso_SOI_Urano = datetime(2035, 12, 25, 12, 00, 00);
     str_ingresso_SOI_Urano = datestr(ingresso_SOI_Urano);
     
     fprintf("\n Fase Saturno-Urano:")

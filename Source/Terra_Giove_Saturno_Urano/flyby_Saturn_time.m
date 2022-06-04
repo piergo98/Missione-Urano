@@ -48,7 +48,7 @@ t_flyby_Saturn = M_Saturn*sqrt(-a_flyby_Saturn^3/mu_Saturn); % In secondi
 t_flyby_tot_Saturn = 2*t_flyby_Saturn;  
 t_flyby_tot_hours_Saturn = t_flyby_tot_Saturn/3600; % In ore
  
-% [years_S months_S days_S hours_S minutes_S seconds_S] = sec2date(t_flyby_tot_Saturn); 
+[years_S months_S days_S hours_S minutes_S seconds_S] = sec2date(t_flyby_tot_Saturn); 
 
 %...Output to the command window:
 

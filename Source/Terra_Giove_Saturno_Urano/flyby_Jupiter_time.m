@@ -49,7 +49,7 @@ t_flyby_Jupiter = M_Jupiter*sqrt(-a_flyby_Jupiter^3/mu_Jupiter); %in secondi
 t_flyby_tot_Jupiter = 2*t_flyby_Jupiter;  
 t_flyby_tot_hours_Jupiter = t_flyby_tot_Jupiter/3600; 
  
-% [years_J months_J days_J hours_J minutes_J seconds_J] = sec2date(t_flyby_tot_Jupiter);
+[years_J months_J days_J hours_J minutes_J seconds_J] = sec2date(t_flyby_tot_Jupiter);
 
 %...Output to the command window:
 % fprintf('\n\n--------------------------------------------------------\n')

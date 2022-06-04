@@ -1,6 +1,6 @@
 %% Movie
-k = 1;
-movie_fps = 60;
+% k = 1;
+% movie_fps = 60;
 %% COMPUTE THE ANGLE AND TRAJECTORY TO THE ESCAPE FROM EARTH SOI
 
 % Recupero dati Terra
@@ -78,8 +78,8 @@ for i = 1:length(f)
     drawnow;
 
     % Write video    
-    movieVector(k) = getframe(gcf);
-    k = k+1;
+%     movieVector(k) = getframe(gcf);
+%     k = k+1;
 
 end
 
@@ -107,16 +107,16 @@ for i = 1:length(f)
     drawnow;
 
     % Write video    
-    movieVector(k) = getframe(gcf);
-    k = k+1;
+%     movieVector(k) = getframe(gcf);
+%     k = k+1;
 
 end
 
 %% Video stuff
-movie = VideoWriter('Escape_from_Earth', 'MPEG-4');
-movie.FrameRate = movie_fps;
-
-open(movie);
-writeVideo(movie, movieVector);
-close(movie);
-
+% movie = VideoWriter('Escape_from_Earth', 'MPEG-4');
+% movie.FrameRate = movie_fps;
+% 
+% open(movie);
+% writeVideo(movie, movieVector);
+% close(movie);
+% 
