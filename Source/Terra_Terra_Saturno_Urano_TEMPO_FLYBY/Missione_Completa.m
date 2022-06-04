@@ -39,7 +39,7 @@
     fprintf('\n Altezza minima passaggio su Terra %g km', r_p_flyby_Earth)
     fprintf('\n Posizione finale [%g, %g, %g] (km).', r2_fin_e(1), r2_fin_e(2), r2_fin_e(3))
     fprintf('\n Velocità finale [%g, %g, %g] (km/s).', v_fin_Earth(1), v_fin_Earth(2), v_fin_Earth(3))
-    fprintf('\n Tempo di volo nella sfera di influenza della Terra [%g Y, %g M, %g D, %g h, %g m, %g s] (km/s).' ...
+    fprintf('\n Tempo di volo nella sfera di influenza della Terra [%g Y, %g M, %g D, %g h, %g m, %g s].' ...
         ,years_E, months_E, days_E, hours_E, minutes_E, seconds_E)
     fprintf('\n--------------------------------------------------------\n\n')
 
@@ -64,7 +64,7 @@
         r2_fin_s(1), r2_fin_s(2), r2_fin_s(3))
     fprintf('\n Velocità finale [%g, %g, %g] (km/s).',...
         v_fin_Saturn(1), v_fin_Saturn(2), v_fin_Saturn(3))
-    fprintf('\n Tempo di volo nella sfera di influenza di Saturno [%g Y, %g M, %g D, %g h, %g m, %g s] (km/s).',...
+    fprintf('\n Tempo di volo nella sfera di influenza di Saturno [%g Y, %g M, %g D, %g h, %g m, %g s].',...
         years_S, months_S, days_S, hours_S, minutes_S, seconds_S)
     fprintf('\n--------------------------------------------------------\n\n')
 

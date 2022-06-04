@@ -45,13 +45,13 @@
     fprintf('\n Altezza minima passaggio su Venere %g km', r_p_flyby_Venus)
     fprintf('\n Posizione finale [%g, %g, %g] (km).', r2_fin_v(1), r2_fin_v(2), r2_fin_v(3))
     fprintf('\n Velocità finale [%g, %g, %g] (km/s).', v_fin_Venus(1), v_fin_Venus(2), v_fin_Venus(3))
-    fprintf('\n Tempo di volo nella sfera di influenza di Venere [%g Y, %g M, %g D, %g h, %g m, %g s] (km/s).' ...
+    fprintf('\n Tempo di volo nella sfera di influenza di Venere [%g Y, %g M, %g D, %g h, %g m, %g s].' ...
         ,years_V, months_V, days_V, hours_V, minutes_V, seconds_V)
     fprintf('\n--------------------------------------------------------\n\n')
 
 %% Fase Venere-Saturno
 
-    fprintf('\n Ingresso nella sfera di influenza di Saturno il 2028/01/01 ore 12:00:00 \n');
+%     fprintf('\n Ingresso nella sfera di influenza di Saturno il 2028/01/01 ore 12:00:00 \n');
 
     ingresso_SOI_Saturno = ingresso_SOI_Venere + seconds(t_VS)+ seconds(t_flyby_tot_Venus);
     str_ingresso_SOI_Saturno = datestr(ingresso_SOI_Saturno);
@@ -72,7 +72,7 @@
         r2_fin_s(1), r2_fin_s(2), r2_fin_s(3))
     fprintf('\n Velocità finale [%g, %g, %g] (km/s).',...
         v_fin_Saturn(1), v_fin_Saturn(2), v_fin_Saturn(3))
-    fprintf('\n Tempo di volo nella sfera di influenza di Saturno [%g Y, %g M, %g D, %g h, %g m, %g s] (km/s).',...
+    fprintf('\n Tempo di volo nella sfera di influenza di Saturno [%g Y, %g M, %g D, %g h, %g m, %g s].',...
         years_S, months_S, days_S, hours_S, minutes_S, seconds_S)
     fprintf('\n--------------------------------------------------------\n\n')
 
