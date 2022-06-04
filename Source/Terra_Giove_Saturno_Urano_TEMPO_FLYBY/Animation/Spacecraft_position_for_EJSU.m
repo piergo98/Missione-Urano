@@ -5,7 +5,7 @@
 radius = 100;
 
 %% Earth to Jupiter
-ej_days = datenum([2024 07 01]) - datenum([2022 07 1]);
+ej_days = datenum([2024 07 02]) - datenum([2022 07 1]);
 
 Delta_TA_ej = abs(TA2_ej - TA1_ej);
 % Variazione di anomalia vera in un giorno
