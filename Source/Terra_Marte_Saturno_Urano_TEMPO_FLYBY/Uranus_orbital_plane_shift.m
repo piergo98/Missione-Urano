@@ -146,8 +146,8 @@ for i = 1:length(f)
     drawnow;
 
     % Write video    
-    movieVector(k) = getframe(gcf);
-    k = k+1;
+%     movieVector(k) = getframe(gcf);
+%     k = k+1;
 
 end
 
