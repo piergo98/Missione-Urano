@@ -151,7 +151,7 @@ end
 
 %% Video stuff
 % if movie_mode
-% 	movie = VideoWriter('movie_heliocentric', 'MPEG-4');
+% 	movie = VideoWriter('Missione Completa', 'MPEG-4');
 % 	movie.FrameRate = movie_fps;
 % 
 % 	open(movie);
