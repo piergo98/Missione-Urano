@@ -11,9 +11,13 @@
     fprintf("\n MISSIONE TERRA-TERRA-SATURNO-URANO \n");
     fprintf('\n-----------------------------------------------------\n')
 
-%% Fase Terra-Terra
+%% Fase Fase Sfera di influenza Terra    
 
-    fprintf("\n Partenza dall'orbita di parcheggio sulla Terra il 2023/03/01 ore 18:00:00 \n");
+%     fprintf("\n Partenza dall'orbita di parcheggio sulla Terra il 2023/03/01 ore 18:00:00 \n");
+%     fprintf('\n-----------------------------------------------------\n')
+    partenza = datetime(2023, 03, 01, 18, 00, 00);
+    str_partenza = datestr(partenza);
+    fprintf("\n Data di partenza dall'orbita di parcheggio sulla Terra = %s \n", str_partenza);
     fprintf('\n-----------------------------------------------------\n')
 
     % Cambio Piano da Equatoriale ad Eclittica
@@ -21,15 +25,20 @@
 
     % Fuga dalla SOI della Terra
     Escape_from_Earth;
-    
-    fprintf('\n Tempo di volo da Terra a Terra %g (giorni)\n',t_EE_days);
-    fprintf('\n Ingresso nella sfera di influenza della Terra il 2024/03/01 ore 18:00:00 \n');
-    fprintf('\n-----------------------------------------------------\n')
 
-    fprintf('\n Flyby su Terra\n')
+%% Fase Terra-Terra
+    
+    ingresso_SOI_Terra = partenza + seconds(t_EE) + seconds(t_tot_escape_Earth);
+    str_ingresso_SOI_Terra = datestr(ingresso_SOI_Terra);
+
+%    fprintf('\n Tempo di volo da Terra a Terra %g (giorni)\n',t_EE_days);
+%    fprintf('\n Ingresso nella sfera di influenza della Terra il 2024/03/01 ore 18:00:00 \n');
+
+    fprintf("\n Fase Terra-Terra:")
+    fprintf('\n Tempo di volo trascorso da Terra a Terra %g (giorni)\n', t_EE_days);
+    fprintf('\n Data di ingresso nella sfera di influenza della Terra = %s \n', str_ingresso_SOI_Terra);
 
     % Fly-by sulla Terra
-   % flyby_Earth_time;
     plot_flyby(r_Earth, R_SOI_Earth, e_flyby_Earth, p_Earth, f_in_Earth_deg, r_p_flyby_Earth, 'E');
   
     fprintf('\n Posizione iniziale [%g, %g, %g] (km).',...
@@ -45,14 +54,19 @@
 
 %% Fase Terra-Saturno
 
-    fprintf('\n Tempo di volo da Terra a Saturno %g (giorni)\n',t_fS_days);
-    fprintf('\n Ingresso nella sfera di influenza di Saturno il 2030/08/01 ore 00:00:00 \n');
-    fprintf('\n-----------------------------------------------------\n')
+%     fprintf('\n Tempo di volo da Terra a Saturno %g (giorni)\n',t_fS_days);
+%     fprintf('\n Ingresso nella sfera di influenza di Saturno il 2030/08/01 ore 00:00:00 \n');
+%     fprintf('\n-----------------------------------------------------\n')
+%    fprintf('\n Flyby su Saturno\n')
 
-    fprintf('\n Flyby su Saturno\n')
+    ingresso_SOI_Saturno = ingresso_SOI_Terra + seconds(t_ES)+ seconds(t_flyby_tot_Earth);
+    str_ingresso_SOI_Saturno = datestr(ingresso_SOI_Saturno);
 
     % Fly-by su Saturno
- %   flyby_Saturn_time;
+    fprintf("\n Fase Terra-Saturno:")
+    fprintf('\n Tempo di volo trascorso da Terra a Saturno = %g (giorni)\n', t_ES_days)
+    fprintf('\n Data di ingresso nella sfera di influenza di Saturno = %s \n', str_ingresso_SOI_Saturno)
+
     plot_flyby(r_Saturn, R_SOI_Saturn, e_flyby_Saturn, p_Saturn, f_in_Saturn_deg, r_p_flyby_Saturn, 'S');
 
     fprintf('\n Posizione iniziale [%g, %g, %g] (km).',...
@@ -74,8 +88,15 @@
 
 %% Fase Saturno-Urano
 
-    fprintf('\n Tempo di volo da Saturno a Urano %g (giorni)\n',t_SU_days);
-    fprintf('\n Ingresso nella sfera di influenza di Urano il 2036/08/01 ore 00:00:00');
+    ingresso_SOI_Urano = ingresso_SOI_Saturno + seconds(t_SU) + seconds(t_flyby_tot_Saturn);
+    str_ingresso_SOI_Urano = datestr(ingresso_SOI_Urano);
+
+%     fprintf('\n Tempo di volo da Saturno a Urano %g (giorni)\n',t_SU_days);
+%     fprintf('\n Ingresso nella sfera di influenza di Urano il 2036/08/01 ore 00:00:00');
+%     fprintf('\n-----------------------------------------------------\n')
+    fprintf("\n Fase Saturno-Urano:")
+    fprintf('\n Tempo di volo trascorso da Saturno a Urano %g (giorni)\n',t_SU_days);
+    fprintf('\n Data di ingresso nella sfera di influenza di Urano = %s \n', str_ingresso_SOI_Urano);
     fprintf('\n-----------------------------------------------------\n')
 
     % Cattura su Urano
@@ -84,7 +105,7 @@
     % Cambio piano da Eclittica a Equatoriale
     Uranus_orbital_plane_shift;
 
-    arrivo = datetime(2036, 08, 01, 00, 00, 00) + ...
+    arrivo = ingresso_SOI_Urano + ...
         seconds(t_tot_capture_Uranus) + seconds(deltaT_min);
     str_arrivo = datestr(arrivo);
     fprintf("\n Data di fine missione = %s \n", str_arrivo)

@@ -47,15 +47,15 @@ StateVector_Earth;
 
 % Definisco il tempo di volo dal punto scelto post flyby e Saturno
 %t_fS = year2seconds(6); % 'fS' = da punto post flyby a Saturno 6anni-il tempo trascorso sull'orbita eliocentrica
-t_fS_days = datenum([2030 08 01 18 00 00]) - datenum([DateVector_Earth(1),...
+t_ES_days = datenum([2030 08 01 18 00 00]) - datenum([DateVector_Earth(1),...
     DateVector_Earth(2), DateVector_Earth(3), DateVector_Earth(4),...
     DateVector_Earth(5), DateVector_Earth(6)]);
-t_fS = t_fS_days * 24 * 60 * 60; 
+t_ES = t_ES_days * 24 * 60 * 60; 
 
 % Estraggo il vettore di stato con i coe aggiornati all'ultima posizione
 %[r, v] = sv_from_coe(coe_flyby, mu);
 % Risolvo Lambert per arrivare su Saturno
-[V1_l_f, V2_l_s] = lambert(r2_fin_e, r2_s, t_fS, 'pro');
+[V1_l_f, V2_l_s] = lambert(r2_fin_e, r2_s, t_ES, 'pro');
 
 % Delta V necessario per portarmi sulla traiettoria di Lambert
 d_V_fS = v_fin_Earth - V1_l_f;    % 'fS' = da punto post flyby a Saturno     
