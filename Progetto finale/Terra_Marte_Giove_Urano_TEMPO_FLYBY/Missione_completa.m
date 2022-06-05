@@ -8,7 +8,7 @@
     % Calcolo le Traiettorie di Lambert
     Earth_Mars_Jupiter_Uranus;
 
-    fprintf("\n MISSIONE TERRA-MARTE-GIOvE-URANO \n");
+    fprintf("\n MISSIONE TERRA-MARTE-GIOVE-URANO \n");
     fprintf('\n-----------------------------------------------------\n')
 
 %% Fase Fase Sfera di influenza Terra
