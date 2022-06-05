@@ -1,0 +1,60 @@
+ISTRUZIONI MATLAB:
+
+Lanciando lo script Missione_completa è possibile osservare tutte le fasi della missione, 
+comprende sia la parte grafica che i risultati e dati utili stampati su terminale.
+
+In Missione_completa viene richiamata:
+-init_Terra_pianeta1_pianeta2_Urano
+-Earth_pianeta1_pianeta2_Uranus
+-Earth_plane_shift
+-Escape_from_Earth
+-Uranus_capture
+-Uranus_orbital_plane_shift
+-DeltaV
+
+init_Terra_pianeta1_pianeta2_Urano:
+-Inizializza variabili utili e globali
+
+Earth_pianeta1_pianeta2_Uranus:
+-Calcola tutte le traiettorie utilizzate con il relativo tempo di volo.
+-Richiama:
+--flyby_pianeta_time
+--StateVector_pianeta
+
+flyby_pianeta_time:
+-Calcola flyby e tempo di volo nella sfera di influenza del pianeta.
+
+StateVector_pianeta:
+-Aggiorna la posizione del pianeta e la velocità dello spacecraft dopo il flyby.
+
+Earth_plane_shift:
+-Ruota il piano dell'orbita di parcheggio da equatoriale a eclittico
+
+Escape_from_Earth:
+-Calcola la fuga dalla sfera di influenza della Terra con il relativo tempo di volo.
+
+Uranus_capture:
+-Calcola la traiettoria di cattura nella sfera di influenza di Urano verso l'orbita di parcheggio.
+
+Uranus_orbital_plane_shift:
+-Posiziona la spacecraft in un'orbita di parcheggio equatoriale con una manovra a tre impulsi.
+
+DeltaV:
+-Calcola i deltaV necessari nelle varie fasi della Missione.
+
+GRAFICA:
+
+Solar_System_animation (presente in Missione_completa):
+-Mostra il viaggio completo dello spacecraft nel sistema solare.
+-Richiama:
+--solar_system_animation_init
+--Spacecraft_position_for_EVSU
+
+Spacecraft_position_for_EVSU:
+-Calcola la posizione dello spacecraft durante ogni fase della Missione. Necessaria per la Solar_System_animation.
+
+plot_flyby (presente in Missione_completa):
+-Mostra la traiettoria dello spacecraft all'interno delle sfere di influenza dei pianeti durante la manovra di flyby.
+
+plot_pianeta (presente in Earth_plane_shift, Escape_from_Earth, plot_flyby, Uranus_capture, Uranus_orbital_plane_shift):
+-Disegna il pianeta corrispondente.
