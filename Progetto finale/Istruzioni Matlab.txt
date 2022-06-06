@@ -42,6 +42,9 @@ Uranus_orbital_plane_shift:
 DeltaV:
 -Calcola i deltaV necessari nelle varie fasi della Missione.
 
+Launch_data:
+-Calcola ora e data di lancio.
+
 GRAFICA:
 
 Solar_System_animation (presente in Missione_completa):
